@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package aplikasilaundry.view.layout.main;
+package aplikasilaundry.view.layout.main.TambahLaoundry;
 
 /**
  *
  * @author Sirdzat
  */
-public class TambahLaundry extends javax.swing.JPanel {
+public class Konfirmasi extends javax.swing.JPanel {
 
     /**
-     * Creates new form TambahLaundry
+     * Creates new form Konfirmasi
      */
-    public TambahLaundry() {
+    public Konfirmasi() {
         initComponents();
     }
 
