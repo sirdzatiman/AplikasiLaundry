@@ -109,9 +109,9 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/aplikasilaundry/asset/icon/SimpleLineIconsPlus.png"/>
+          <Image iconType="3" name="/aplikasilaundry/asset/icon/MiDocument.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Tambah Laundry"/>
+        <Property name="text" type="java.lang.String" value="Data Laundry"/>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="horizontalAlignment" type="int" value="2"/>
         <Property name="iconTextGap" type="int" value="15"/>
@@ -135,9 +135,9 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/aplikasilaundry/asset/icon/MiDocument.png"/>
+          <Image iconType="3" name="/aplikasilaundry/asset/icon/TeenyiconsTickCircleOutline (1).png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Data Laundry"/>
+        <Property name="text" type="java.lang.String" value="Riwayat Laundry"/>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="horizontalAlignment" type="int" value="2"/>
         <Property name="iconTextGap" type="int" value="15"/>
@@ -161,9 +161,9 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/aplikasilaundry/asset/icon/TeenyiconsTickCircleOutline (1).png"/>
+          <Image iconType="3" name="/aplikasilaundry/asset/icon/SimpleLineIconsPlus.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Riwayat Laundry"/>
+        <Property name="text" type="java.lang.String" value="Tambah Laundry"/>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="horizontalAlignment" type="int" value="2"/>
         <Property name="iconTextGap" type="int" value="15"/>
