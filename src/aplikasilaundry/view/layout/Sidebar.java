@@ -54,8 +54,8 @@ public class Sidebar extends javax.swing.JPanel {
         jButton2.setBackground(new java.awt.Color(37, 99, 235));
         jButton2.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/SimpleLineIconsPlus.png"))); // NOI18N
-        jButton2.setText("Tambah Laundry");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/MiDocument.png"))); // NOI18N
+        jButton2.setText("Data Laundry");
         jButton2.setBorderPainted(false);
         jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton2.setIconTextGap(15);
@@ -65,8 +65,8 @@ public class Sidebar extends javax.swing.JPanel {
         jButton3.setBackground(new java.awt.Color(37, 99, 235));
         jButton3.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/MiDocument.png"))); // NOI18N
-        jButton3.setText("Data Laundry");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/TeenyiconsTickCircleOutline (1).png"))); // NOI18N
+        jButton3.setText("Riwayat Laundry");
         jButton3.setBorderPainted(false);
         jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton3.setIconTextGap(15);
@@ -76,8 +76,8 @@ public class Sidebar extends javax.swing.JPanel {
         jButton4.setBackground(new java.awt.Color(37, 99, 235));
         jButton4.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/TeenyiconsTickCircleOutline (1).png"))); // NOI18N
-        jButton4.setText("Riwayat Laundry");
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/SimpleLineIconsPlus.png"))); // NOI18N
+        jButton4.setText("Tambah Laundry");
         jButton4.setBorderPainted(false);
         jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton4.setIconTextGap(15);
