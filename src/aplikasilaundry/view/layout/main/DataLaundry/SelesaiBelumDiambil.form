@@ -262,11 +262,10 @@
                           <Component id="jTextField1" min="-2" pref="426" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jDateChooser1" min="-2" pref="342" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -351,18 +350,45 @@
                           <Font name="Segoe UI" size="12" style="1"/>
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="6" rowCount="10">
-                            <Column editable="false" title="No Nota" type="java.lang.Object"/>
-                            <Column editable="false" title="Nama Pelanggan" type="java.lang.Object"/>
-                            <Column editable="false" title="Jam Masuk" type="java.lang.Object"/>
-                            <Column editable="false" title="Jenis" type="java.lang.Object"/>
-                            <Column editable="false" title="Total" type="java.lang.Object"/>
-                            <Column editable="false" title="Status" type="java.lang.Object"/>
+                          <Table columnCount="6" rowCount="3">
+                            <Column editable="false" title="No Nota" type="java.lang.Object">
+                              <Data value="INV-260508-004"/>
+                              <Data value="INV-260508-003"/>
+                              <Data value="INV-260508-002"/>
+                            </Column>
+                            <Column editable="false" title="Nama Pelanggan" type="java.lang.Object">
+                              <Data value="Ahmad Fauzi"/>
+                              <Data value="Rina Wati"/>
+                              <Data value="Nurul Hikmah"/>
+                            </Column>
+                            <Column editable="false" title="Jam Masuk" type="java.lang.Object">
+                              <Data value="16:45"/>
+                              <Data value="12:20"/>
+                              <Data value="11:10"/>
+                            </Column>
+                            <Column editable="false" title="Jenis" type="java.lang.Object">
+                              <Data value=" Bed Cover"/>
+                              <Data value="Boneka / Tas"/>
+                              <Data value="Selimut / Dll"/>
+                            </Column>
+                            <Column editable="false" title="Total" type="java.lang.Object">
+                              <Data value="Rp 10.000"/>
+                              <Data value="Rp 5.000"/>
+                              <Data value="Rp 12.000"/>
+                            </Column>
+                            <Column editable="false" title="Status" type="java.lang.Object">
+                              <Data value="Selesai (Belum Diambil)"/>
+                              <Data value="Selesai (Belum Diambil)"/>
+                              <Data value="Selesai (Belum Diambil)"/>
+                            </Column>
                           </Table>
                         </Property>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                           <Color id="Default Cursor"/>
                         </Property>
+                        <Property name="showGrid" type="boolean" value="true"/>
+                        <Property name="showHorizontalLines" type="boolean" value="true"/>
+                        <Property name="showVerticalLines" type="boolean" value="true"/>
                       </Properties>
                     </Component>
                   </SubComponents>
