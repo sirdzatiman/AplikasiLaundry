@@ -74,9 +74,11 @@ for (int i = 0; i < jTable1.getColumnModel().getColumnCount(); i++) {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Harian", "Mingguan", "Bulanan" }));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(101, 101, 101));
         jLabel2.setText("Periode Harian");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(101, 101, 101));
         jLabel3.setText("Tanggal");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -323,12 +325,15 @@ for (int i = 0; i < jTable1.getColumnModel().getColumnCount(); i++) {
         );
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(101, 101, 101));
         jLabel4.setText("Menampilkan laporkan: ");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(101, 101, 101));
         jLabel5.setText("jLabel5");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(101, 101, 101));
         jLabel6.setText("jLabel6");
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
@@ -381,8 +386,8 @@ for (int i = 0; i < jTable1.getColumnModel().getColumnCount(); i++) {
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel3)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(42, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
