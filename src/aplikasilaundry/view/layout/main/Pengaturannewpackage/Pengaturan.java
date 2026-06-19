@@ -139,18 +139,28 @@ public class Pengaturan extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("1. Pengguna");
 
+        jTable2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Owner", "Admin"},
-                {"2", "Kasir", null}
+                {"1", "Owner", "Owner"},
+                {"2", "Kasir", "Kasir"}
             },
             new String [] {
                 "No", "Nama", "Role"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable2.setGridColor(new java.awt.Color(204, 204, 204));
-        jTable2.setSelectionBackground(new java.awt.Color(153, 153, 255));
-        jTable2.setSelectionForeground(new java.awt.Color(255, 51, 51));
+        jTable2.setRowHeight(25);
+        jTable2.setSelectionBackground(new java.awt.Color(0, 51, 204));
+        jTable2.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jTable2.setShowGrid(true);
         jScrollPane2.setViewportView(jTable2);
 
@@ -361,7 +371,6 @@ public class Pengaturan extends javax.swing.JPanel {
 
         jPanel13.setBackground(new java.awt.Color(239, 238, 245));
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel19.setText("Asal                          :");
 
         jLabel26.setText("PPP.KH.A.BASTHOMI");
@@ -403,6 +412,8 @@ public class Pengaturan extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel20))
         );
+
+        jPanel15.setBackground(new java.awt.Color(239, 238, 245));
 
         jPanel16.setBackground(new java.awt.Color(239, 238, 245));
 
@@ -983,6 +994,9 @@ public class Pengaturan extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setRowHeight(25);
+        jTable1.setSelectionBackground(new java.awt.Color(0, 51, 204));
+        jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jTable1.setShowGrid(true);
         jScrollPane4.setViewportView(jTable1);
 

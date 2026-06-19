@@ -390,7 +390,6 @@
                           <Color id="Default Cursor"/>
                         </Property>
                         <Property name="showGrid" type="boolean" value="true"/>
-                        <Property name="showVerticalLines" type="boolean" value="false"/>
                       </Properties>
                     </Component>
                   </SubComponents>

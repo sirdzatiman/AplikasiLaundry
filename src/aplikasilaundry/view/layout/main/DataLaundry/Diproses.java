@@ -164,7 +164,6 @@ public class Diproses extends javax.swing.JPanel {
         });
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTable1.setShowGrid(true);
-        jTable1.setShowVerticalLines(false);
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
