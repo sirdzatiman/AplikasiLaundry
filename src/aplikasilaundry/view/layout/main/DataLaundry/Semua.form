@@ -321,7 +321,7 @@
                           <Data value="INV-260509-006"/>
                           <Data value="INV-260509-005"/>
                           <Data value="INV-260508-004"/>
-                          <Data value="INV-260508-003 Rina Wati 12:20 Boneka / Tas Rp 5.000 Selesai (Belum Diambil) "/>
+                          <Data value="INV-260508-003"/>
                           <Data value="INV-260508-002"/>
                         </Column>
                         <Column editable="false" title="Nama Pelanggan" type="java.lang.Object">
