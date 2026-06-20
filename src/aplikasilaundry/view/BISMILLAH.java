@@ -33,19 +33,28 @@ public class BISMILLAH extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jTable1.setBackground(new java.awt.Color(240, 243, 247));
+        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"INV-260509-A06", "Siti Aisyah", "09/05/26 10:30", "11/05/26 9:15", "Baju / Dll,  Bed Cover", "Rp 18.000", "Sudah Diambil"}
+                {"INV-260509-006", "Rahma Dina", "12:15", "Baju / Dll", "Rp 4.000", "Diproses"},
+                {"INV-260509-005", "Putri Ayu", "11:00", "Baju / Dll", null, "Diproses"},
+                {"INV-260508-004", "Ahmad Fauzi", "16:45", "Bed Cover", "Rp 10.000", "Selesai (Belum Diambil)"},
+                {"INV-260508-003", "Rina Wati", "12:20", "Boneka / Tas", "Rp 5.000", "Selesai (Belum Diambil)"},
+                {"INV-260508-002", "Nurul Hikmah", "11:10", "Selimut / Dll", "Rp 12.000", "Selesai (Belum Diambil)"}
             },
             new String [] {
-                "No Nota", "Nama pelanggan", "Jam Masuk", "Jam Ambil", "Jenis", "Total", "Status"
+                "No Nota", "Nama Pelanggan", "Jam Masuk", "Jenis", "Total", "Status"
             }
-        ));
-        jTable1.setSelectionBackground(new java.awt.Color(238, 241, 247));
-        jTable1.setSelectionForeground(new java.awt.Color(51, 51, 0));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
@@ -53,21 +62,13 @@ public class BISMILLAH extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 724, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 945, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 404, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
         );
 
         pack();
