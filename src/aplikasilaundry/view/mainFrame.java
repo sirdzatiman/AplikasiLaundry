@@ -205,6 +205,7 @@ public class mainFrame extends javax.swing.JFrame {
 
         getContentPane().add(panelSidebar, java.awt.BorderLayout.LINE_START);
 
+        panelContent.setPreferredSize(new java.awt.Dimension(1006, 728));
         panelContent.setLayout(new java.awt.CardLayout());
         getContentPane().add(panelContent, java.awt.BorderLayout.CENTER);
 
