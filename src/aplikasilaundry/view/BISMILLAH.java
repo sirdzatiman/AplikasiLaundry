@@ -33,28 +33,38 @@ public class BISMILLAH extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204)));
+        jTable1.setForeground(new java.awt.Color(102, 102, 102));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"INV-260509-006", "Rahma Dina", "12:15", "Baju / Dll", "Rp 4.000", "Diproses"},
-                {"INV-260509-005", "Putri Ayu", "11:00", "Baju / Dll", null, "Diproses"},
-                {"INV-260508-004", "Ahmad Fauzi", "16:45", "Bed Cover", "Rp 10.000", "Selesai (Belum Diambil)"},
-                {"INV-260508-003", "Rina Wati", "12:20", "Boneka / Tas", "Rp 5.000", "Selesai (Belum Diambil)"},
-                {"INV-260508-002", "Nurul Hikmah", "11:10", "Selimut / Dll", "Rp 12.000", "Selesai (Belum Diambil)"}
+                {"Baju/Dll", "Cuci Kering",  new Integer(2),  new Double(8000.0)},
+                {"Baju/Dll", "Cuci Kering Setrika",  new Integer(0),  new Double(0.0)},
+                {"Selimut/Dll", "Cuci Kering",  new Integer(0),  new Double(0.0)},
+                {"Selimut/Dll", "Cuci Kering Setrika",  new Integer(0),  new Double(0.0)},
+                {"Bed Cover", "-",  new Integer(1),  new Double(10000.0)},
+                {"Boneka/Tas", "-",  new Integer(0), null}
             },
             new String [] {
-                "No Nota", "Nama Pelanggan", "Jam Masuk", "Jenis", "Total", "Status"
+                "Jenis Item", "Proses Layanan", "Jumlah", "Subtotal"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTable1.setGridColor(new java.awt.Color(204, 204, 204));
+        jTable1.setRowHeight(50);
         jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
@@ -62,13 +72,21 @@ public class BISMILLAH extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 945, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(0, 945, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(183, 183, 183)
+                    .addComponent(jScrollPane1)
+                    .addGap(184, 184, 184)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+            .addGap(0, 404, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(40, 40, 40)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGap(41, 41, 41)))
         );
 
         pack();
