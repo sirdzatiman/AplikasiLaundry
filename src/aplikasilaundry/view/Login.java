@@ -189,6 +189,7 @@ public class Login extends javax.swing.JFrame {
         jPanel26.setPreferredSize(new java.awt.Dimension(640, 140));
         jPanel26.setLayout(new java.awt.BorderLayout());
 
+        jPanel10.setBackground(new java.awt.Color(238, 248, 255));
         jPanel10.setPreferredSize(new java.awt.Dimension(100, 100));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -204,6 +205,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel26.add(jPanel10, java.awt.BorderLayout.LINE_END);
 
+        jPanel13.setBackground(new java.awt.Color(238, 248, 255));
         jPanel13.setPreferredSize(new java.awt.Dimension(100, 100));
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
@@ -227,8 +229,10 @@ public class Login extends javax.swing.JFrame {
 
         jPanel50.setLayout(new java.awt.BorderLayout());
 
+        jPanel51.setBackground(new java.awt.Color(238, 248, 255));
         jPanel51.setPreferredSize(new java.awt.Dimension(85, 70));
 
+        jLabel12.setBackground(new java.awt.Color(238, 248, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/img/icon mesin cuci.png"))); // NOI18N
 
@@ -245,6 +249,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel50.add(jPanel51, java.awt.BorderLayout.PAGE_START);
 
+        jPanel52.setBackground(new java.awt.Color(238, 248, 255));
         jPanel52.setPreferredSize(new java.awt.Dimension(85, 30));
 
         jLabel25.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
@@ -275,6 +280,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel44.setLayout(new java.awt.BorderLayout());
 
+        jPanel45.setBackground(new java.awt.Color(238, 248, 255));
         jPanel45.setPreferredSize(new java.awt.Dimension(85, 70));
 
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -297,6 +303,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel44.add(jPanel45, java.awt.BorderLayout.PAGE_START);
 
+        jPanel46.setBackground(new java.awt.Color(238, 248, 255));
         jPanel46.setPreferredSize(new java.awt.Dimension(85, 30));
 
         jLabel21.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
@@ -327,8 +334,10 @@ public class Login extends javax.swing.JFrame {
 
         jPanel47.setLayout(new java.awt.BorderLayout());
 
+        jPanel48.setBackground(new java.awt.Color(238, 248, 255));
         jPanel48.setPreferredSize(new java.awt.Dimension(85, 70));
 
+        jLabel18.setBackground(new java.awt.Color(238, 248, 255));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/img/Bunga.png"))); // NOI18N
 
@@ -349,8 +358,10 @@ public class Login extends javax.swing.JFrame {
 
         jPanel47.add(jPanel48, java.awt.BorderLayout.PAGE_START);
 
+        jPanel49.setBackground(new java.awt.Color(238, 248, 255));
         jPanel49.setPreferredSize(new java.awt.Dimension(85, 30));
 
+        jLabel22.setBackground(new java.awt.Color(238, 248, 255));
         jLabel22.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel22.setText("Wangi");
@@ -396,6 +407,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel30.setLayout(new java.awt.BorderLayout());
 
+        jPanel2.setBackground(new java.awt.Color(238, 248, 255));
         jPanel2.setMinimumSize(new java.awt.Dimension(200, 100));
         jPanel2.setPreferredSize(new java.awt.Dimension(180, 115));
 
@@ -412,6 +424,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel30.add(jPanel2, java.awt.BorderLayout.LINE_END);
 
+        jPanel3.setBackground(new java.awt.Color(238, 248, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(180, 115));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -433,6 +446,7 @@ public class Login extends javax.swing.JFrame {
         jPanel6.setPreferredSize(new java.awt.Dimension(1, 60));
         jPanel6.setLayout(new java.awt.BorderLayout());
 
+        jPanel7.setBackground(new java.awt.Color(238, 248, 255));
         jPanel7.setPreferredSize(new java.awt.Dimension(400, 50));
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
@@ -444,11 +458,11 @@ public class Login extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel7Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         jPanel7Layout.setVerticalGroup(
@@ -465,6 +479,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel8.setLayout(new java.awt.BorderLayout());
 
+        jPanel9.setBackground(new java.awt.Color(238, 248, 255));
         jPanel9.setPreferredSize(new java.awt.Dimension(400, 35));
 
         jLabel29.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
@@ -476,7 +491,7 @@ public class Login extends javax.swing.JFrame {
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel9Layout.createSequentialGroup()
                     .addContainerGap()
@@ -495,6 +510,8 @@ public class Login extends javax.swing.JFrame {
 
         jPanel8.add(jPanel9, java.awt.BorderLayout.PAGE_START);
 
+        jPanel11.setBackground(new java.awt.Color(238, 248, 255));
+
         jLabel30.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(51, 51, 51));
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -504,7 +521,7 @@ public class Login extends javax.swing.JFrame {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
             .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel11Layout.createSequentialGroup()
                     .addContainerGap()
@@ -531,11 +548,13 @@ public class Login extends javax.swing.JFrame {
 
         jPanel29.add(jPanel30, java.awt.BorderLayout.PAGE_END);
 
+        jPanel1.setBackground(new java.awt.Color(238, 248, 255));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGap(0, 760, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -548,6 +567,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel18.setLayout(new java.awt.BorderLayout());
 
+        jPanel19.setBackground(new java.awt.Color(238, 248, 255));
         jPanel19.setPreferredSize(new java.awt.Dimension(110, 408));
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
@@ -563,6 +583,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel18.add(jPanel19, java.awt.BorderLayout.LINE_END);
 
+        jPanel20.setBackground(new java.awt.Color(238, 248, 255));
         jPanel20.setPreferredSize(new java.awt.Dimension(110, 408));
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
@@ -578,9 +599,11 @@ public class Login extends javax.swing.JFrame {
 
         jPanel18.add(jPanel20, java.awt.BorderLayout.LINE_START);
 
+        jPanel53.setBackground(new java.awt.Color(238, 248, 255));
         jPanel53.setPreferredSize(new java.awt.Dimension(400, 408));
         jPanel53.setLayout(new java.awt.BorderLayout());
 
+        jPanel54.setBackground(new java.awt.Color(238, 248, 255));
         jPanel54.setBorder(javax.swing.BorderFactory.createEmptyBorder(50, 40, 1, 40));
         jPanel54.setPreferredSize(new java.awt.Dimension(400, 250));
         jPanel54.setLayout(new java.awt.GridLayout(4, 1, 0, 10));
@@ -603,8 +626,8 @@ public class Login extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel56Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE))
         );
         jPanel56Layout.setVerticalGroup(
             jPanel56Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -648,9 +671,9 @@ public class Login extends javax.swing.JFrame {
             jPanel57Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel57Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE))
         );
         jPanel57Layout.setVerticalGroup(
             jPanel57Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -677,14 +700,15 @@ public class Login extends javax.swing.JFrame {
 
         jPanel54.add(jPanel5);
 
-        jPanel58.setBackground(new java.awt.Color(37, 99, 235));
+        jPanel58.setBackground(new java.awt.Color(238, 248, 255));
+        jPanel58.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
         jPanel58.setPreferredSize(new java.awt.Dimension(350, 42));
 
         javax.swing.GroupLayout jPanel58Layout = new javax.swing.GroupLayout(jPanel58);
         jPanel58.setLayout(jPanel58Layout);
         jPanel58Layout.setHorizontalGroup(
             jPanel58Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGap(0, 460, Short.MAX_VALUE)
         );
         jPanel58Layout.setVerticalGroup(
             jPanel58Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
