@@ -81,6 +81,7 @@ public class mainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panelSidebar.setBackground(new java.awt.Color(37, 99, 235));
+        panelSidebar.setMinimumSize(new java.awt.Dimension(274, 728));
         panelSidebar.setPreferredSize(new java.awt.Dimension(274, 728));
 
         jLabel1.setBackground(new java.awt.Color(37, 99, 235));
@@ -205,6 +206,7 @@ public class mainFrame extends javax.swing.JFrame {
 
         getContentPane().add(panelSidebar, java.awt.BorderLayout.LINE_START);
 
+        panelContent.setMinimumSize(new java.awt.Dimension(1006, 728));
         panelContent.setPreferredSize(new java.awt.Dimension(1006, 728));
         panelContent.setLayout(new java.awt.CardLayout());
         getContentPane().add(panelContent, java.awt.BorderLayout.CENTER);

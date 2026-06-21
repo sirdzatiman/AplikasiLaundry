@@ -83,8 +83,8 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel39 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel40 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(240, 243, 247));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 20));
@@ -594,10 +594,11 @@ public class Dasboard extends javax.swing.JPanel {
 
         jPanel40.setBackground(new java.awt.Color(255, 255, 255));
         jPanel40.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
+        jPanel40.setLayout(new java.awt.CardLayout());
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"INV-260509-A06", "Siti Aisyah", "09/05/26 10:30", "11/05/26 9:15", "Baju / Dll,  Bed Cover", "Rp 18.000", "Sudah Diambil"}
             },
@@ -605,21 +606,12 @@ public class Dasboard extends javax.swing.JPanel {
                 "No Nota", "Nama pelanggan", "Jam Masuk", "Jam Ambil", "Jenis", "Total", "Status"
             }
         ));
-        jTable1.setSelectionBackground(new java.awt.Color(238, 241, 247));
-        jTable1.setSelectionForeground(new java.awt.Color(51, 51, 0));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        jTable2.setSelectionBackground(new java.awt.Color(238, 241, 247));
+        jTable2.setSelectionForeground(new java.awt.Color(51, 51, 0));
+        jTable2.setShowGrid(true);
+        jScrollPane2.setViewportView(jTable2);
 
-        javax.swing.GroupLayout jPanel40Layout = new javax.swing.GroupLayout(jPanel40);
-        jPanel40.setLayout(jPanel40Layout);
-        jPanel40Layout.setHorizontalGroup(
-            jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 946, Short.MAX_VALUE)
-        );
-        jPanel40Layout.setVerticalGroup(
-            jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
-        );
+        jPanel40.add(jScrollPane2, "card2");
 
         jPanel36.add(jPanel40, java.awt.BorderLayout.CENTER);
 
@@ -685,7 +677,7 @@ public class Dasboard extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

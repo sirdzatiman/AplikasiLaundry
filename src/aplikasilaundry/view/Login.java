@@ -90,8 +90,9 @@ public class Login extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setMinimumSize(new java.awt.Dimension(1280, 728));
-        setPreferredSize(new java.awt.Dimension(1280, 728));
+        setUndecorated(true);
         getContentPane().setLayout(new java.awt.GridLayout(1, 2));
 
         jPanel21.setBackground(new java.awt.Color(238, 248, 255));
@@ -588,6 +589,7 @@ public class Login extends javax.swing.JFrame {
         jPanel55.setPreferredSize(new java.awt.Dimension(350, 42));
 
         jPanel56.setBackground(new java.awt.Color(217, 217, 217));
+        jPanel56.setPreferredSize(new java.awt.Dimension(320, 30));
 
         jTextField1.setBackground(new java.awt.Color(217, 217, 217));
         jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
@@ -616,7 +618,7 @@ public class Login extends javax.swing.JFrame {
             jPanel55Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel55Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel56, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel55Layout.setVerticalGroup(
