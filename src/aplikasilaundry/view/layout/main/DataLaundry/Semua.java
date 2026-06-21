@@ -373,7 +373,7 @@ public class Semua extends javax.swing.JPanel {
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"INV-260509-006", "Rahma Dina", "12:15", "Baju / Dll", "Rp 4.000", "Diproses"},
-                {"INV-260509-005", "Putri Ayu", "11:00", "Baju / Dll", null, "Diproses"},
+                {"INV-260509-005", "Putri Ayu", "11:00", "Baju / Dll", "Rp 12.000", "Diproses"},
                 {"INV-260508-004", "Ahmad Fauzi", "16:45", "Bed Cover", "Rp 10.000", "Selesai (Belum Diambil)"},
                 {"INV-260508-003", "Rina Wati", "12:20", "Boneka / Tas", "Rp 5.000", "Selesai (Belum Diambil)"},
                 {"INV-260508-002", "Nurul Hikmah", "11:10", "Selimut / Dll", "Rp 12.000", "Selesai (Belum Diambil)"}
