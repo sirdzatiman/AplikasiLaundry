@@ -30,6 +30,7 @@ public class BISMILLAH extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jToggleButton2 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,6 +69,11 @@ public class BISMILLAH extends javax.swing.JFrame {
         jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
+        jToggleButton2.setBackground(new java.awt.Color(51, 0, 204));
+        jToggleButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/IonPlus.png"))); // NOI18N
+        jToggleButton2.setText("Tambah konfigurasi layanan");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,6 +84,11 @@ public class BISMILLAH extends javax.swing.JFrame {
                     .addGap(183, 183, 183)
                     .addComponent(jScrollPane1)
                     .addGap(184, 184, 184)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(347, 347, 347)
+                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(347, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,6 +98,11 @@ public class BISMILLAH extends javax.swing.JFrame {
                     .addGap(40, 40, 40)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGap(41, 41, 41)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(182, 182, 182)
+                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(182, Short.MAX_VALUE)))
         );
 
         pack();
@@ -120,5 +136,6 @@ public class BISMILLAH extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JToggleButton jToggleButton2;
     // End of variables declaration//GEN-END:variables
 }
