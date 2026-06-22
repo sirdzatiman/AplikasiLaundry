@@ -62,6 +62,8 @@ public class Diproses extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(240, 243, 247));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 20));
+        setMinimumSize(new java.awt.Dimension(1006, 728));
+        setPreferredSize(new java.awt.Dimension(1006, 728));
         setLayout(new java.awt.BorderLayout());
 
         jPanel5.setPreferredSize(new java.awt.Dimension(1006, 200));
@@ -168,7 +170,7 @@ public class Diproses extends javax.swing.JPanel {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jPanel4.add(jPanel9, java.awt.BorderLayout.CENTER);
