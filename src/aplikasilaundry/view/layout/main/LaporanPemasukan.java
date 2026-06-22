@@ -78,6 +78,7 @@ headerRenderer.setFont(new Font("Segoe UI", Font.BOLD, 12));
         setBackground(new java.awt.Color(240, 243, 247));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 20));
         setMinimumSize(new java.awt.Dimension(1006, 728));
+        setPreferredSize(new java.awt.Dimension(1006, 728));
         setLayout(new java.awt.BorderLayout());
 
         jPanel1.setMinimumSize(new java.awt.Dimension(1006, 200));
@@ -518,6 +519,7 @@ headerRenderer.setFont(new Font("Segoe UI", Font.BOLD, 12));
             }
         });
         jTable1.setGridColor(new java.awt.Color(204, 204, 204));
+        jTable1.setRowHeight(50);
         jTable1.setSelectionBackground(new java.awt.Color(51, 51, 255));
         jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jTable1.setShowGrid(true);
