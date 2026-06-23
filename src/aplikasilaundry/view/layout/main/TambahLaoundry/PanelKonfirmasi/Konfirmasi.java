@@ -757,6 +757,7 @@ public class Konfirmasi extends javax.swing.JPanel {
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector.png"))); // NOI18N
         jButton3.setText("Cetak Struk");
+        jButton3.addActionListener(this::jButton3ActionPerformed);
 
         jButton2.setBackground(new java.awt.Color(15, 82, 195));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -862,6 +863,10 @@ public class Konfirmasi extends javax.swing.JPanel {
     private void jPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel10MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
