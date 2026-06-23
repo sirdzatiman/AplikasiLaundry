@@ -67,7 +67,7 @@ public class Dasboard extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jPanel27 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jPanel28 = new javax.swing.JPanel();
+        pnlRiwayat = new javax.swing.JPanel();
         jPanel29 = new javax.swing.JPanel();
         jPanel30 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -133,6 +133,11 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel3.setLayout(new java.awt.GridLayout(1, 4, 20, 0));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
         jPanel2.setLayout(new java.awt.BorderLayout());
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -449,8 +454,13 @@ public class Dasboard extends javax.swing.JPanel {
 
         jPanel3.add(jPanel20);
 
-        jPanel28.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
-        jPanel28.setLayout(new java.awt.BorderLayout());
+        pnlRiwayat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
+        pnlRiwayat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlRiwayatMouseClicked(evt);
+            }
+        });
+        pnlRiwayat.setLayout(new java.awt.BorderLayout());
 
         jPanel29.setBackground(new java.awt.Color(255, 255, 255));
         jPanel29.setPreferredSize(new java.awt.Dimension(53, 131));
@@ -475,7 +485,7 @@ public class Dasboard extends javax.swing.JPanel {
 
         jPanel29.add(jPanel30, java.awt.BorderLayout.PAGE_START);
 
-        jPanel28.add(jPanel29, java.awt.BorderLayout.LINE_START);
+        pnlRiwayat.add(jPanel29, java.awt.BorderLayout.LINE_START);
 
         jPanel31.setBackground(new java.awt.Color(255, 255, 255));
         jPanel31.setLayout(new java.awt.BorderLayout());
@@ -546,9 +556,9 @@ public class Dasboard extends javax.swing.JPanel {
 
         jPanel31.add(jPanel35, java.awt.BorderLayout.CENTER);
 
-        jPanel28.add(jPanel31, java.awt.BorderLayout.CENTER);
+        pnlRiwayat.add(jPanel31, java.awt.BorderLayout.CENTER);
 
-        jPanel3.add(jPanel28);
+        jPanel3.add(pnlRiwayat);
 
         jPanel1.add(jPanel3, java.awt.BorderLayout.CENTER);
 
@@ -639,6 +649,15 @@ public class Dasboard extends javax.swing.JPanel {
         add(jPanel36, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel2MouseClicked
+
+    private void pnlRiwayatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlRiwayatMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_pnlRiwayatMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -681,7 +700,6 @@ public class Dasboard extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel27;
-    private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
@@ -703,5 +721,6 @@ public class Dasboard extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
+    private javax.swing.JPanel pnlRiwayat;
     // End of variables declaration//GEN-END:variables
 }
