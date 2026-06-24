@@ -31,7 +31,7 @@ public class Dasboard extends javax.swing.JPanel {
         jLabel20 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        pnlLaundryMasuk = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
@@ -43,7 +43,7 @@ public class Dasboard extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jPanel12 = new javax.swing.JPanel();
+        pnlDiproses = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -55,7 +55,7 @@ public class Dasboard extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jPanel19 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jPanel20 = new javax.swing.JPanel();
+        pnlSelesai = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -67,7 +67,7 @@ public class Dasboard extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jPanel27 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        pnlRiwayat = new javax.swing.JPanel();
+        pnlSudahDiambil = new javax.swing.JPanel();
         jPanel29 = new javax.swing.JPanel();
         jPanel30 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -84,7 +84,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel38 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jPanel39 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnLihatSemua = new javax.swing.JButton();
         jPanel40 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -132,13 +132,13 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 15));
         jPanel3.setLayout(new java.awt.GridLayout(1, 4, 20, 0));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
-        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlLaundryMasuk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
+        pnlLaundryMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel2MouseClicked(evt);
+                pnlLaundryMasukMouseClicked(evt);
             }
         });
-        jPanel2.setLayout(new java.awt.BorderLayout());
+        pnlLaundryMasuk.setLayout(new java.awt.BorderLayout());
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setPreferredSize(new java.awt.Dimension(53, 131));
@@ -167,7 +167,7 @@ public class Dasboard extends javax.swing.JPanel {
 
         jPanel5.add(jPanel6, java.awt.BorderLayout.PAGE_START);
 
-        jPanel2.add(jPanel5, java.awt.BorderLayout.LINE_START);
+        pnlLaundryMasuk.add(jPanel5, java.awt.BorderLayout.LINE_START);
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new java.awt.BorderLayout());
@@ -238,12 +238,17 @@ public class Dasboard extends javax.swing.JPanel {
 
         jPanel7.add(jPanel11, java.awt.BorderLayout.CENTER);
 
-        jPanel2.add(jPanel7, java.awt.BorderLayout.CENTER);
+        pnlLaundryMasuk.add(jPanel7, java.awt.BorderLayout.CENTER);
 
-        jPanel3.add(jPanel2);
+        jPanel3.add(pnlLaundryMasuk);
 
-        jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
-        jPanel12.setLayout(new java.awt.BorderLayout());
+        pnlDiproses.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
+        pnlDiproses.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlDiprosesMouseClicked(evt);
+            }
+        });
+        pnlDiproses.setLayout(new java.awt.BorderLayout());
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setPreferredSize(new java.awt.Dimension(53, 131));
@@ -271,7 +276,7 @@ public class Dasboard extends javax.swing.JPanel {
 
         jPanel13.add(jPanel14, java.awt.BorderLayout.PAGE_START);
 
-        jPanel12.add(jPanel13, java.awt.BorderLayout.LINE_START);
+        pnlDiproses.add(jPanel13, java.awt.BorderLayout.LINE_START);
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setLayout(new java.awt.BorderLayout());
@@ -344,12 +349,17 @@ public class Dasboard extends javax.swing.JPanel {
 
         jPanel15.add(jPanel19, java.awt.BorderLayout.CENTER);
 
-        jPanel12.add(jPanel15, java.awt.BorderLayout.CENTER);
+        pnlDiproses.add(jPanel15, java.awt.BorderLayout.CENTER);
 
-        jPanel3.add(jPanel12);
+        jPanel3.add(pnlDiproses);
 
-        jPanel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
-        jPanel20.setLayout(new java.awt.BorderLayout());
+        pnlSelesai.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
+        pnlSelesai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlSelesaiMouseClicked(evt);
+            }
+        });
+        pnlSelesai.setLayout(new java.awt.BorderLayout());
 
         jPanel21.setBackground(new java.awt.Color(255, 255, 255));
         jPanel21.setPreferredSize(new java.awt.Dimension(53, 131));
@@ -377,7 +387,7 @@ public class Dasboard extends javax.swing.JPanel {
 
         jPanel21.add(jPanel22, java.awt.BorderLayout.PAGE_START);
 
-        jPanel20.add(jPanel21, java.awt.BorderLayout.LINE_START);
+        pnlSelesai.add(jPanel21, java.awt.BorderLayout.LINE_START);
 
         jPanel23.setBackground(new java.awt.Color(255, 255, 255));
         jPanel23.setLayout(new java.awt.BorderLayout());
@@ -450,17 +460,17 @@ public class Dasboard extends javax.swing.JPanel {
 
         jPanel23.add(jPanel27, java.awt.BorderLayout.CENTER);
 
-        jPanel20.add(jPanel23, java.awt.BorderLayout.CENTER);
+        pnlSelesai.add(jPanel23, java.awt.BorderLayout.CENTER);
 
-        jPanel3.add(jPanel20);
+        jPanel3.add(pnlSelesai);
 
-        pnlRiwayat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
-        pnlRiwayat.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlSudahDiambil.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
+        pnlSudahDiambil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pnlRiwayatMouseClicked(evt);
+                pnlSudahDiambilMouseClicked(evt);
             }
         });
-        pnlRiwayat.setLayout(new java.awt.BorderLayout());
+        pnlSudahDiambil.setLayout(new java.awt.BorderLayout());
 
         jPanel29.setBackground(new java.awt.Color(255, 255, 255));
         jPanel29.setPreferredSize(new java.awt.Dimension(53, 131));
@@ -485,7 +495,7 @@ public class Dasboard extends javax.swing.JPanel {
 
         jPanel29.add(jPanel30, java.awt.BorderLayout.PAGE_START);
 
-        pnlRiwayat.add(jPanel29, java.awt.BorderLayout.LINE_START);
+        pnlSudahDiambil.add(jPanel29, java.awt.BorderLayout.LINE_START);
 
         jPanel31.setBackground(new java.awt.Color(255, 255, 255));
         jPanel31.setLayout(new java.awt.BorderLayout());
@@ -556,9 +566,9 @@ public class Dasboard extends javax.swing.JPanel {
 
         jPanel31.add(jPanel35, java.awt.BorderLayout.CENTER);
 
-        pnlRiwayat.add(jPanel31, java.awt.BorderLayout.CENTER);
+        pnlSudahDiambil.add(jPanel31, java.awt.BorderLayout.CENTER);
 
-        jPanel3.add(pnlRiwayat);
+        jPanel3.add(pnlSudahDiambil);
 
         jPanel1.add(jPanel3, java.awt.BorderLayout.CENTER);
 
@@ -598,10 +608,10 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel39.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 20));
         jPanel39.setPreferredSize(new java.awt.Dimension(110, 40));
 
-        jButton1.setText("Lihat Semua");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 204)));
-        jButton1.setPreferredSize(new java.awt.Dimension(74, 20));
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnLihatSemua.setText("Lihat Semua");
+        btnLihatSemua.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 204)));
+        btnLihatSemua.setPreferredSize(new java.awt.Dimension(74, 20));
+        btnLihatSemua.addActionListener(this::btnLihatSemuaActionPerformed);
 
         javax.swing.GroupLayout jPanel39Layout = new javax.swing.GroupLayout(jPanel39);
         jPanel39.setLayout(jPanel39Layout);
@@ -609,14 +619,14 @@ public class Dasboard extends javax.swing.JPanel {
             jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel39Layout.createSequentialGroup()
                 .addContainerGap(397, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLihatSemua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel39Layout.setVerticalGroup(
             jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel39Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                .addComponent(btnLihatSemua, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -650,28 +660,70 @@ public class Dasboard extends javax.swing.JPanel {
         add(jPanel36, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+    private void pnlLaundryMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLaundryMasukMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel2MouseClicked
+        // Mengambil parent frame utama (mainFrame) dari panel Dashboard saat ini
+    Object window = javax.swing.SwingUtilities.getWindowAncestor(this);
+    
+    // Validasi apakah window yang ditemukan benar merupakan instance dari mainFrame
+    if (window instanceof aplikasilaundry.view.mainFrame) {
+        // Navigasi ke halaman 'Laundry Masuk' menggunakan CardLayout di mainFrame
+        ((aplikasilaundry.view.mainFrame) window).panggilHalaman("laundryMasuk");
+    }
 
-    private void pnlRiwayatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlRiwayatMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_pnlRiwayatMouseClicked
+    }//GEN-LAST:event_pnlLaundryMasukMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void pnlSudahDiambilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlSudahDiambilMouseClicked
         // TODO add your handling code here:
-//   // Mengambil ancestor window dan langsung cast ke mainFrame secara presisi
+       // Mengambil ancestor window dan langsung cast ke mainFrame secara presisi
     Object window = javax.swing.SwingUtilities.getWindowAncestor(this);
     if (window instanceof aplikasilaundry.view.mainFrame) {
         ((aplikasilaundry.view.mainFrame) window).panggilHalaman("riwayat");
     }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_pnlSudahDiambilMouseClicked
+
+    private void btnLihatSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLihatSemuaActionPerformed
+        // TODO add your handling code here:
+         // Mengambil parent frame utama (mainFrame) dari panel Dashboard saat ini
+    Object window = javax.swing.SwingUtilities.getWindowAncestor(this);
+    
+    // Validasi apakah window yang ditemukan benar merupakan instance dari mainFrame
+    if (window instanceof aplikasilaundry.view.mainFrame) {
+        // Navigasi ke halaman 'Semua Data / Sudah Diambil' menggunakan CardLayout di mainFrame
+        ((aplikasilaundry.view.mainFrame) window).panggilHalaman("semua");
+    }
+   
+    }//GEN-LAST:event_btnLihatSemuaActionPerformed
+
+    private void pnlDiprosesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDiprosesMouseClicked
+        // TODO add your handling code here:
+        // Mengambil parent frame utama (mainFrame) dari panel Dashboard saat ini
+    Object window = javax.swing.SwingUtilities.getWindowAncestor(this);
+    
+    // Validasi apakah window yang ditemukan benar merupakan instance dari mainFrame
+    if (window instanceof aplikasilaundry.view.mainFrame) {
+        // Navigasi ke halaman 'Diproses' menggunakan CardLayout di mainFrame
+        ((aplikasilaundry.view.mainFrame) window).panggilHalaman("diproses");
+    }
+    }//GEN-LAST:event_pnlDiprosesMouseClicked
+
+    private void pnlSelesaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlSelesaiMouseClicked
+        // TODO add your handling code here:
+        // Mengambil parent frame utama (mainFrame) dari panel Dashboard saat ini
+    Object window = javax.swing.SwingUtilities.getWindowAncestor(this);
+    
+    // Validasi apakah window yang ditemukan benar merupakan instance dari mainFrame
+    if (window instanceof aplikasilaundry.view.mainFrame) {
+        // Navigasi ke halaman 'Selesai Belum Diambil' menggunakan CardLayout di mainFrame
+        ((aplikasilaundry.view.mainFrame) window).panggilHalaman("selesaiBelumDiambil");
+    }
+    }//GEN-LAST:event_pnlSelesaiMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnLihatSemua;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -694,7 +746,6 @@ public class Dasboard extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
@@ -702,8 +753,6 @@ public class Dasboard extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
@@ -732,7 +781,10 @@ public class Dasboard extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
-    private javax.swing.JPanel pnlRiwayat;
+    private javax.swing.JPanel pnlDiproses;
+    private javax.swing.JPanel pnlLaundryMasuk;
+    private javax.swing.JPanel pnlSelesai;
+    private javax.swing.JPanel pnlSudahDiambil;
     // End of variables declaration//GEN-END:variables
 }
 
