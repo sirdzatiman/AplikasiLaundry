@@ -60,10 +60,21 @@ public class mainFrame extends javax.swing.JFrame {
         cardLayout.show(panelContent, namaHalaman);
         
         // Agar JToggleButton di sidebar otomatis ikut menyala sesuai halaman
-        if (namaHalaman.equals("riwayat")) {
-            btnRiwayatLaundry.setSelected(true);
-        } else if (namaHalaman.equals("dashboard")) {
+        // 2. Logika agar JToggleButton di sidebar otomatis menyala sesuai halaman tujuan
+        if (namaHalaman.equals("dashboard")) {
             btnDasboard.setSelected(true);
+        } else if (namaHalaman.equals("tambahLaundry")) {
+            btnTambahLaundry.setSelected(true);
+        } else if (namaHalaman.equals("riwayat")) {
+            btnRiwayatLaundry.setSelected(true);
+        } else if (namaHalaman.equals("laporanPemasukan")) {
+            btnLaporanPemasukan.setSelected(true);
+        } else if (namaHalaman.equals("pengaturan")) {
+            btnPengaturan.setSelected(true);
+        } else if (namaHalaman.equals("laundryMasuk") || namaHalaman.equals("diproses") || 
+                   namaHalaman.equals("selesaiBelumDiambil") || namaHalaman.equals("semua")) {
+            // Jika yang dibuka adalah sub-halaman data laundry, maka tombol Data Laundry yang menyala
+            btnDataLaundry.setSelected(true);
         }
     }
 
