@@ -601,6 +601,7 @@ public class Dasboard extends javax.swing.JPanel {
         jButton1.setText("Lihat Semua");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 204)));
         jButton1.setPreferredSize(new java.awt.Dimension(74, 20));
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         javax.swing.GroupLayout jPanel39Layout = new javax.swing.GroupLayout(jPanel39);
         jPanel39.setLayout(jPanel39Layout);
@@ -657,6 +658,16 @@ public class Dasboard extends javax.swing.JPanel {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_pnlRiwayatMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+//   // Mengambil ancestor window dan langsung cast ke mainFrame secara presisi
+    Object window = javax.swing.SwingUtilities.getWindowAncestor(this);
+    if (window instanceof aplikasilaundry.view.mainFrame) {
+        ((aplikasilaundry.view.mainFrame) window).panggilHalaman("riwayat");
+    }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -724,3 +735,4 @@ public class Dasboard extends javax.swing.JPanel {
     private javax.swing.JPanel pnlRiwayat;
     // End of variables declaration//GEN-END:variables
 }
+
