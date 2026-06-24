@@ -4,6 +4,7 @@
  */
 package aplikasilaundry.view.layout.main;
 
+
 /**
  *
  * @author Sirdzat
@@ -15,7 +16,21 @@ public class Dasboard extends javax.swing.JPanel {
      */
     public Dasboard() {
         initComponents();
+        myDesign();
     }
+    
+        void myDesign() {
+        btnLihatSemua.putClientProperty("FlatLaf.style",
+                "borderWidth:2; "
+                + "arc:15; "
+                + "borderColor:#9525EB; "
+                + "focusedBorderColor:#9525EB; "
+                + "hoverBorderColor:#9525EB"
+        );
+
+        
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -609,7 +624,6 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel39.setPreferredSize(new java.awt.Dimension(110, 40));
 
         btnLihatSemua.setText("Lihat Semua");
-        btnLihatSemua.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 204)));
         btnLihatSemua.setPreferredSize(new java.awt.Dimension(74, 20));
         btnLihatSemua.addActionListener(this::btnLihatSemuaActionPerformed);
 
@@ -618,8 +632,8 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel39Layout.setHorizontalGroup(
             jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel39Layout.createSequentialGroup()
-                .addContainerGap(397, Short.MAX_VALUE)
-                .addComponent(btnLihatSemua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(374, Short.MAX_VALUE)
+                .addComponent(btnLihatSemua, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel39Layout.setVerticalGroup(
