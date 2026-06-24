@@ -56,6 +56,16 @@ public class mainFrame extends javax.swing.JFrame {
     panelContent.revalidate();
     panelContent.repaint();
     }
+    public void panggilHalaman(String namaHalaman) {
+        cardLayout.show(panelContent, namaHalaman);
+        
+        // Agar JToggleButton di sidebar otomatis ikut menyala sesuai halaman
+        if (namaHalaman.equals("riwayat")) {
+            btnRiwayatLaundry.setSelected(true);
+        } else if (namaHalaman.equals("dashboard")) {
+            btnDasboard.setSelected(true);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
