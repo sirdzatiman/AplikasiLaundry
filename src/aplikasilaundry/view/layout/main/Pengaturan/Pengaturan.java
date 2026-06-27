@@ -2,12 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package aplikasilaundry.view.layout.main.Pengaturannewpackage;
+package aplikasilaundry.view.layout.main.Pengaturan;
+import java.awt.Frame;
 
-/**
- *
- * @author Sirdzat
- */
 public class Pengaturan extends javax.swing.JPanel {
 
     /**
@@ -16,6 +13,17 @@ public class Pengaturan extends javax.swing.JPanel {
     public Pengaturan() {
         initComponents();
     }
+   public void tambahDataKeTabel(String nama, String username, String peran) {
+        // Ambil model JTable dari tabel pengguna Anda
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblPengguna.getModel();
+        
+        // Hitung nomor urut otomatis
+        int noUrut = model.getRowCount() + 1;
+        
+        // Tambahkan baris baru ke tabel
+        model.addRow(new Object[]{String.valueOf(noUrut), nama, peran}); 
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,10 +42,10 @@ public class Pengaturan extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        btnTambahPengguna = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblPengguna = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -197,11 +205,11 @@ public class Pengaturan extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setMinimumSize(new java.awt.Dimension(1006, 65));
 
-        jButton2.setBackground(new java.awt.Color(51, 0, 204));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/IonPlus.png"))); // NOI18N
-        jButton2.setText("Tambah Pengguna");
-        jButton2.addActionListener(this::jButton2ActionPerformed);
+        btnTambahPengguna.setBackground(new java.awt.Color(51, 0, 204));
+        btnTambahPengguna.setForeground(new java.awt.Color(255, 255, 255));
+        btnTambahPengguna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/IonPlus.png"))); // NOI18N
+        btnTambahPengguna.setText("Tambah Pengguna");
+        btnTambahPengguna.addActionListener(this::btnTambahPenggunaActionPerformed);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -209,14 +217,14 @@ public class Pengaturan extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(786, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTambahPengguna, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTambahPengguna, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -225,8 +233,8 @@ public class Pengaturan extends javax.swing.JPanel {
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
         jPanel4.setLayout(new java.awt.CardLayout());
 
-        jTable2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblPengguna.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tblPengguna.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "Owner", "Owner"},
                 {"2", "Kasir", "Kasir"}
@@ -243,12 +251,12 @@ public class Pengaturan extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable2.setGridColor(new java.awt.Color(204, 204, 204));
-        jTable2.setRowHeight(50);
-        jTable2.setSelectionBackground(new java.awt.Color(0, 51, 204));
-        jTable2.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jTable2.setShowGrid(true);
-        jScrollPane2.setViewportView(jTable2);
+        tblPengguna.setGridColor(new java.awt.Color(204, 204, 204));
+        tblPengguna.setRowHeight(50);
+        tblPengguna.setSelectionBackground(new java.awt.Color(0, 51, 204));
+        tblPengguna.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tblPengguna.setShowGrid(true);
+        jScrollPane2.setViewportView(tblPengguna);
 
         jPanel4.add(jScrollPane2, "card2");
 
@@ -1249,9 +1257,20 @@ public class Pengaturan extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnTambahPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPenggunaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+     // 1. Ambil Frame induk (parent) dari JPanel ini
+    java.awt.Window parentWindow = javax.swing.SwingUtilities.getWindowAncestor(this);
+    java.awt.Frame parentFrame = null;
+    
+    if (parentWindow instanceof java.awt.Frame) {
+        parentFrame = (java.awt.Frame) parentWindow;
+    }
+
+    // 2. Panggil popUpTambahpengguna dengan mengirimkan 'this' sebagai parameter ketiga
+    popUpTambahpengguna popup = new popUpTambahpengguna(parentFrame, true, this);
+    popup.setVisible(true);
+    }//GEN-LAST:event_btnTambahPenggunaActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -1263,8 +1282,8 @@ public class Pengaturan extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTambahPengguna;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton7;
@@ -1369,7 +1388,6 @@ public class Pengaturan extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -1378,5 +1396,6 @@ public class Pengaturan extends javax.swing.JPanel {
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JToggleButton jToggleButton6;
+    private static volatile javax.swing.JTable tblPengguna;
     // End of variables declaration//GEN-END:variables
 }

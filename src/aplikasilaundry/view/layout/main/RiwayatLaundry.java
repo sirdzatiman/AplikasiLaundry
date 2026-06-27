@@ -6,10 +6,7 @@ package aplikasilaundry.view.layout.main;
 
 import aplikasilaundry.view.layout.main.DataLaundry.*;
 
-/**
- *
- * @author Sirdzat
- */
+
 public class RiwayatLaundry extends javax.swing.JPanel {
 
     /**

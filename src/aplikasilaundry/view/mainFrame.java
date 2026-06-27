@@ -10,11 +10,12 @@ import aplikasilaundry.view.layout.main.DataLaundry.LaundryMasuk;
 import aplikasilaundry.view.layout.main.DataLaundry.SelesaiBelumDiambil;
 import aplikasilaundry.view.layout.main.DataLaundry.Semua;
 import aplikasilaundry.view.layout.main.LaporanPemasukan;
-import aplikasilaundry.view.layout.main.Pengaturannewpackage.Pengaturan;
+import aplikasilaundry.view.layout.main.Pengaturan.Pengaturan;
 import aplikasilaundry.view.layout.main.RiwayatLaundry;
 import aplikasilaundry.view.layout.main.TambahLaoundry.PanelKonfirmasi.Konfirmasi;
 import aplikasilaundry.view.layout.main.TambahLaundry.TambahLaundry;
 import aplikasilaundry.view.layout.main.TambahLaoundry.itemLaundrynewpackage.ItemLoundry;
+import aplikasilaundry.view.layout.main.popUpLogout;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.CardLayout;
 import javax.swing.UIManager;
@@ -192,6 +193,7 @@ public class mainFrame extends javax.swing.JFrame {
         btnLogout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnLogout.setIconTextGap(17);
         btnLogout.setPreferredSize(new java.awt.Dimension(112, 40));
+        btnLogout.addActionListener(this::btnLogoutActionPerformed);
 
         javax.swing.GroupLayout panelSidebarLayout = new javax.swing.GroupLayout(panelSidebar);
         panelSidebar.setLayout(panelSidebarLayout);
@@ -270,6 +272,14 @@ public class mainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         cardLayout.show(panelContent, "pengaturan");
     }//GEN-LAST:event_btnPengaturanActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:
+    
+    popUpLogout dialog = new popUpLogout(this, true);
+    // 3. Tampilkan popup
+    dialog.setVisible(true);
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
