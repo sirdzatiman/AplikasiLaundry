@@ -12,9 +12,8 @@ import aplikasilaundry.view.layout.main.DataLaundry.Semua;
 import aplikasilaundry.view.layout.main.LaporanPemasukan;
 import aplikasilaundry.view.layout.main.Pengaturan.Pengaturan;
 import aplikasilaundry.view.layout.main.RiwayatLaundry;
-import aplikasilaundry.view.layout.main.TambahLaoundry.PanelKonfirmasi.Konfirmasi;
+
 import aplikasilaundry.view.layout.main.TambahLaundry.TambahLaundry;
-import aplikasilaundry.view.layout.main.TambahLaoundry.itemLaundrynewpackage.ItemLoundry;
 import aplikasilaundry.view.layout.main.popUpLogout;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.CardLayout;
@@ -48,8 +47,8 @@ public class mainFrame extends javax.swing.JFrame {
         panelContent.add(new Diproses(), "diproses");
         panelContent.add(new Pengaturan(), "pengaturan");
         panelContent.add(new TambahLaundry(), "tambahLaundry");
-        panelContent.add(new Konfirmasi(), "konfirmasi");
-        panelContent.add(new ItemLoundry(), "itemLaundry");
+       
+       
         panelContent.add(new RiwayatLaundry(), "riwayat");
         
         cardLayout.show(panelContent, "dashboard");
