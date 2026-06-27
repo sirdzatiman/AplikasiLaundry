@@ -3,6 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package aplikasilaundry.view.layout.main.DataLaundry;
+
+import java.awt.CardLayout;
+import java.awt.Color;
+import javax.swing.JToggleButton;
+
 /**
  *
  * @author Sirdzat
@@ -14,7 +19,33 @@ public class DataLaundry extends javax.swing.JPanel {
      */
     public DataLaundry() {
         initComponents();
+        panelContentDataLaundry.add(new Semua(), "semua");
+        panelContentDataLaundry.add(new LaundryMasuk(), "masuk");
+        panelContentDataLaundry.add(new Diproses(), "proses");
+        panelContentDataLaundry.add(new SelesaiBelumDiambil(), "selesai");
+
+        tampilPanel("semua"); // panel pertama yang ditampilkan
     }
+    private void tampilPanel(String namaKartu) {
+        CardLayout cl = (CardLayout) panelContentDataLaundry.getLayout();
+        cl.show(panelContentDataLaundry, namaKartu);
+    }
+    private void setButtonAktif(JToggleButton btnAktif){
+    // Reset semua tombol
+    btnSemua.setBackground(Color.WHITE);
+    btnMasuk.setBackground(Color.WHITE);
+    btnProses.setBackground(Color.WHITE);
+    btnSelesai.setBackground(Color.WHITE);
+
+    btnSemua.setForeground(Color.BLACK);
+    btnMasuk.setForeground(Color.BLACK);
+    btnProses.setForeground(Color.BLACK);
+    btnSelesai.setForeground(Color.BLACK);
+
+    // Tombol aktif
+    btnAktif.setBackground(new Color(37, 99, 235)); 
+    btnAktif.setForeground(Color.WHITE);
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -25,15 +56,16 @@ public class DataLaundry extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
-        jToggleButton4 = new javax.swing.JToggleButton();
-        jToggleButton5 = new javax.swing.JToggleButton();
+        btnSemua = new javax.swing.JToggleButton();
+        btnMasuk = new javax.swing.JToggleButton();
+        btnProses = new javax.swing.JToggleButton();
+        btnSelesai = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
@@ -45,7 +77,7 @@ public class DataLaundry extends javax.swing.JPanel {
         jTextField3 = new javax.swing.JTextField();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
         jPanel12 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
+        panelContentDataLaundry = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(240, 243, 247));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 20));
@@ -88,39 +120,45 @@ public class DataLaundry extends javax.swing.JPanel {
         jPanel3.setMinimumSize(new java.awt.Dimension(1006, 80));
         jPanel3.setPreferredSize(new java.awt.Dimension(1006, 80));
 
-        jToggleButton2.setText("Semua");
-        jToggleButton2.addActionListener(this::jToggleButton2ActionPerformed);
+        buttonGroup1.add(btnSemua);
+        btnSemua.setText("Semua");
+        btnSemua.addActionListener(this::btnSemuaActionPerformed);
 
-        jToggleButton3.setText("Laundry Masuk");
-        jToggleButton3.addActionListener(this::jToggleButton3ActionPerformed);
+        buttonGroup1.add(btnMasuk);
+        btnMasuk.setText("Laundry Masuk");
+        btnMasuk.addActionListener(this::btnMasukActionPerformed);
 
-        jToggleButton4.setText("Di Proses");
+        buttonGroup1.add(btnProses);
+        btnProses.setText("Di Proses");
+        btnProses.addActionListener(this::btnProsesActionPerformed);
 
-        jToggleButton5.setText("Selesai (Belum Diambil)");
+        buttonGroup1.add(btnSelesai);
+        btnSelesai.setText("Selesai (Belum Diambil)");
+        btnSelesai.addActionListener(this::btnSelesaiActionPerformed);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSemua, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnProses, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSemua, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnProses, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -240,9 +278,9 @@ public class DataLaundry extends javax.swing.JPanel {
 
         add(jPanel5, java.awt.BorderLayout.PAGE_START);
 
-        jPanel8.setBackground(new java.awt.Color(240, 243, 247));
-        jPanel8.setLayout(new java.awt.CardLayout());
-        add(jPanel8, java.awt.BorderLayout.CENTER);
+        panelContentDataLaundry.setBackground(new java.awt.Color(240, 243, 247));
+        panelContentDataLaundry.setLayout(new java.awt.CardLayout());
+        add(panelContentDataLaundry, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -253,16 +291,37 @@ public class DataLaundry extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+    private void btnSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSemuaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
+        tampilPanel("semua");
+        setButtonAktif(btnSemua);
+    }//GEN-LAST:event_btnSemuaActionPerformed
 
-    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+    private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton3ActionPerformed
+        tampilPanel("masuk");
+        setButtonAktif(btnMasuk);
+    }//GEN-LAST:event_btnMasukActionPerformed
+
+    private void btnProsesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProsesActionPerformed
+        // TODO add your handling code here:
+        tampilPanel("proses");
+        setButtonAktif(btnProses);
+    }//GEN-LAST:event_btnProsesActionPerformed
+
+    private void btnSelesaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelesaiActionPerformed
+        // TODO add your handling code here:
+        tampilPanel("proses");
+        setButtonAktif(btnSelesai);
+    }//GEN-LAST:event_btnSelesaiActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnMasuk;
+    private javax.swing.JToggleButton btnProses;
+    private javax.swing.JToggleButton btnSelesai;
+    private javax.swing.JToggleButton btnSemua;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private com.toedter.calendar.JDateChooser jDateChooser3;
@@ -278,11 +337,7 @@ public class DataLaundry extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton4;
-    private javax.swing.JToggleButton jToggleButton5;
+    private javax.swing.JPanel panelContentDataLaundry;
     // End of variables declaration//GEN-END:variables
 }
