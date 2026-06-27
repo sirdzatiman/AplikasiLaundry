@@ -8,7 +8,8 @@ import aplikasilaundry.view.layout.main.Dasboard;
 import aplikasilaundry.view.layout.main.DataLaundry.Diproses;
 import aplikasilaundry.view.layout.main.DataLaundry.LaundryMasuk;
 import aplikasilaundry.view.layout.main.DataLaundry.SelesaiBelumDiambil;
-import aplikasilaundry.view.layout.main.DataLaundry.Semua;
+import aplikasilaundry.view.layout.main.DataLaundry.DataLaundry;
+import aplikasilaundry.view.layout.main.DataLaundry.DataLaundry;
 import aplikasilaundry.view.layout.main.LaporanPemasukan;
 import aplikasilaundry.view.layout.main.Pengaturan.Pengaturan;
 import aplikasilaundry.view.layout.main.RiwayatLaundry;
@@ -44,7 +45,7 @@ public class mainFrame extends javax.swing.JFrame {
         panelContent.add(new LaundryMasuk(), "laundryMasuk");
         panelContent.add(new LaporanPemasukan(), "laporanPemasukan");
         panelContent.add(new SelesaiBelumDiambil(), "selesaiBelumDiambil");
-        panelContent.add(new Semua(), "semua");
+        panelContent.add(new DataLaundry(), "semua");
         panelContent.add(new Diproses(), "diproses");
         panelContent.add(new Pengaturan(), "pengaturan");
         panelContent.add(new TambahLaundry(), "tambahLaundry");
