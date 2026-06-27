@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package aplikasilaundry.view.layout.main.Pengaturannewpackage;
+package aplikasilaundry.view.layout.main.Pengaturan;
 
 /**
  *
@@ -924,7 +924,7 @@ public class semangatt extends javax.swing.JPanel {
                     .addGap(7, 7, 7)
                     .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, 65, Short.MAX_VALUE)
+                    .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 

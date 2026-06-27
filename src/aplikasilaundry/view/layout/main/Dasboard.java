@@ -661,7 +661,15 @@ public class Dasboard extends javax.swing.JPanel {
             new String [] {
                 "No Nota", "Nama pelanggan", "Jam Masuk", "Jam Ambil", "Jenis", "Total", "Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable2.setSelectionBackground(new java.awt.Color(238, 241, 247));
         jTable2.setSelectionForeground(new java.awt.Color(51, 51, 0));
         jTable2.setShowGrid(true);

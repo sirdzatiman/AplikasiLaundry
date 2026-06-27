@@ -4,6 +4,8 @@
  */
 package aplikasilaundry.view.layout.main;
 
+import aplikasilaundry.view.Login;
+
 /**
  *
  * @author HP 14s Ryzen
@@ -18,6 +20,9 @@ public class popUpLogout extends javax.swing.JDialog {
     public popUpLogout(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        // Supaya popup muncul di tengah-tengah aplikasi utama
+    setLocationRelativeTo(parent);
+        
     }
 
     /**
@@ -34,8 +39,8 @@ public class popUpLogout extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
+        btnBatal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -60,19 +65,20 @@ public class popUpLogout extends javax.swing.JDialog {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Pastikan semua perubahan telah disimpan sebelum logout.");
 
-        jButton1.setBackground(new java.awt.Color(225, 46, 55));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Frame (18).png"))); // NOI18N
-        jButton1.setText("Logout");
-        jButton1.setBorder(null);
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnLogout.setBackground(new java.awt.Color(225, 46, 55));
+        btnLogout.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Frame (18).png"))); // NOI18N
+        btnLogout.setText("Logout");
+        btnLogout.setBorder(null);
+        btnLogout.addActionListener(this::btnLogoutActionPerformed);
 
-        jButton2.setBackground(new java.awt.Color(232, 234, 238));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(102, 102, 102));
-        jButton2.setText("Batal");
-        jButton2.setBorder(null);
+        btnBatal.setBackground(new java.awt.Color(232, 234, 238));
+        btnBatal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnBatal.setForeground(new java.awt.Color(102, 102, 102));
+        btnBatal.setText("Batal");
+        btnBatal.setBorder(null);
+        btnBatal.addActionListener(this::btnBatalActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -91,9 +97,9 @@ public class popUpLogout extends javax.swing.JDialog {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
         jPanel1Layout.setVerticalGroup(
@@ -113,8 +119,8 @@ public class popUpLogout extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(89, 89, 89))))
         );
 
@@ -136,9 +142,25 @@ public class popUpLogout extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        this.dispose(); 
+    
+    // 2. Tutup frame utama (mainFrame) yang memanggil popup ini
+    if (this.getParent() != null) {
+        this.getParent().setVisible(false);
+        // Jika parent-nya adalah JFrame, kita dispose agar hemat memori
+        ((java.awt.Frame) this.getParent()).dispose(); 
+    }
+    
+    // 3. Buka kembali halaman Login Anda
+    new Login().setVisible(true);
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnBatalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,8 +200,8 @@ public class popUpLogout extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnBatal;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

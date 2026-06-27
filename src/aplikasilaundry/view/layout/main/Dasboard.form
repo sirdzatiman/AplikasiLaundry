@@ -1256,25 +1256,25 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="7" rowCount="1">
-                        <Column editable="true" title="No Nota" type="java.lang.Object">
+                        <Column editable="false" title="No Nota" type="java.lang.Object">
                           <Data value="INV-260509-A06"/>
                         </Column>
-                        <Column editable="true" title="Nama pelanggan" type="java.lang.Object">
+                        <Column editable="false" title="Nama pelanggan" type="java.lang.Object">
                           <Data value="Siti Aisyah"/>
                         </Column>
-                        <Column editable="true" title="Jam Masuk" type="java.lang.Object">
+                        <Column editable="false" title="Jam Masuk" type="java.lang.Object">
                           <Data value="09/05/26 10:30"/>
                         </Column>
-                        <Column editable="true" title="Jam Ambil" type="java.lang.Object">
+                        <Column editable="false" title="Jam Ambil" type="java.lang.Object">
                           <Data value="11/05/26 9:15"/>
                         </Column>
-                        <Column editable="true" title="Jenis" type="java.lang.Object">
+                        <Column editable="false" title="Jenis" type="java.lang.Object">
                           <Data value="Baju / Dll,  Bed Cover"/>
                         </Column>
-                        <Column editable="true" title="Total" type="java.lang.Object">
+                        <Column editable="false" title="Total" type="java.lang.Object">
                           <Data value="Rp 18.000"/>
                         </Column>
-                        <Column editable="true" title="Status" type="java.lang.Object">
+                        <Column editable="false" title="Status" type="java.lang.Object">
                           <Data value="Sudah Diambil"/>
                         </Column>
                       </Table>

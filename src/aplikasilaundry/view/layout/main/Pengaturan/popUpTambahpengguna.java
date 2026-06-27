@@ -2,23 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package aplikasilaundry.view.layout.main.Pengaturannewpackage;
+package aplikasilaundry.view.layout.main.Pengaturan;
 
-/**
- *
- * @author HP 14s Ryzen
- */
-public class popUpTambahpengguna extends javax.swing.JDialog {
-    
+import javax.swing.JOptionPane;
+
+public class popUpTambahpengguna extends javax.swing.JDialog {  
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpTambahpengguna.class.getName());
+    private Pengaturan pengaturan; // taruh di atas konstruktor
 
-    /**
-     * Creates new form popUpTambahpengguna
-     */
-    public popUpTambahpengguna(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-    }
+    public popUpTambahpengguna(java.awt.Frame parent, boolean modal, Pengaturan aThis) {
+    super(parent, modal);
+    initComponents();
+    this.pengaturan = aThis;
+    
+    setLocationRelativeTo(parent);
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,15 +28,15 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        btnBatal = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cPeran = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        tUsername = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -46,44 +44,44 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
         jPanel6 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        tPassword = new javax.swing.JPasswordField();
         jLabel11 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tNama = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnSimpan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton2.setBackground(new java.awt.Color(239, 239, 239));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(102, 102, 102));
-        jButton2.setText("Batal");
-        jButton2.setPreferredSize(new java.awt.Dimension(125, 44));
+        btnBatal.setBackground(new java.awt.Color(239, 239, 239));
+        btnBatal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBatal.setForeground(new java.awt.Color(102, 102, 102));
+        btnBatal.setText("Batal");
+        btnBatal.setPreferredSize(new java.awt.Dimension(125, 44));
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setPreferredSize(new java.awt.Dimension(403, 45));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Kasir" }));
+        cPeran.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Kasir" }));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cPeran, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addComponent(cPeran, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -116,10 +114,10 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (1).png"))); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField2.setText("Masukkan nama pengguna");
-        jTextField2.setBorder(null);
-        jTextField2.addActionListener(this::jTextField2ActionPerformed);
+        tUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tUsername.setText("Masukkan nama pengguna");
+        tUsername.setBorder(null);
+        tUsername.addActionListener(this::tUsernameActionPerformed);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -129,7 +127,7 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2)
+                .addComponent(tUsername)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -137,7 +135,7 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField2)
+                .addComponent(tUsername)
                 .addContainerGap())
         );
 
@@ -177,8 +175,8 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (2).png"))); // NOI18N
 
-        jPasswordField1.setText("jPasswordField1");
-        jPasswordField1.setBorder(null);
+        tPassword.setText("jPasswordField1");
+        tPassword.setBorder(null);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -188,7 +186,7 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                 .addContainerGap())
@@ -202,7 +200,7 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 2, Short.MAX_VALUE))
-                    .addComponent(jPasswordField1))
+                    .addComponent(tPassword))
                 .addContainerGap())
         );
 
@@ -235,9 +233,9 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (1).png"))); // NOI18N
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setText("Masukkan nama pengguna");
-        jTextField1.setBorder(null);
+        tNama.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tNama.setText("Masukkan nama pengguna");
+        tNama.setBorder(null);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -247,14 +245,14 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1))
+                .addComponent(tNama))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1)
+                .addComponent(tNama)
                 .addContainerGap())
         );
 
@@ -279,11 +277,12 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jButton1.setBackground(new java.awt.Color(0, 86, 210));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Simpan");
-        jButton1.setPreferredSize(new java.awt.Dimension(125, 44));
+        btnSimpan.setBackground(new java.awt.Color(0, 86, 210));
+        btnSimpan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
+        btnSimpan.setText("Simpan");
+        btnSimpan.setPreferredSize(new java.awt.Dimension(125, 44));
+        btnSimpan.addActionListener(this::btnSimpanActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -310,9 +309,9 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
                                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(36, 36, 36)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -332,8 +331,8 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36))
         );
 
@@ -351,9 +350,38 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void tUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tUsernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_tUsernameActionPerformed
+
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        // TODO add your handling code here:
+        // 1. Ambil data dari inputan form pop-up
+    String nama = tNama.getText();        
+    String username = tUsername.getText(); 
+    String password = new String(tPassword.getPassword());
+    String peran = cPeran.getSelectedItem().toString(); 
+    
+   try {
+    // Jalankan validasi agar inputan tidak kosong
+    if (nama.isEmpty() || username.isEmpty() || password.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Semua kolom harus diisi!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    // === GANTI BLOK INI ===
+    // Panggil fungsi tambahDataKeTabel yang ada di objek pengaturan Anda
+    pengaturan.tambahDataKeTabel(nama, username, peran);
+    // ======================
+
+    // Tutup pop-up setelah sukses
+    JOptionPane.showMessageDialog(this, "Data pengguna berhasil ditambahkan!");
+    this.dispose(); 
+    
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(this, "Gagal menyimpan data: " + e.getMessage());
+}
+    }//GEN-LAST:event_btnSimpanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -380,7 +408,7 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                popUpTambahpengguna dialog = new popUpTambahpengguna(new javax.swing.JFrame(), true);
+                popUpTambahpengguna dialog = new popUpTambahpengguna(new javax.swing.JFrame(), true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -393,9 +421,9 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnBatal;
+    private javax.swing.JButton btnSimpan;
+    private javax.swing.JComboBox<String> cPeran;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
@@ -415,8 +443,8 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField tNama;
+    private javax.swing.JPasswordField tPassword;
+    private javax.swing.JTextField tUsername;
     // End of variables declaration//GEN-END:variables
 }

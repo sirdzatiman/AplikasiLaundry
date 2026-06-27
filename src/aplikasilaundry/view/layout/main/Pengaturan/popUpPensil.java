@@ -1,4 +1,4 @@
-package aplikasilaundry.view.layout.main.Pengaturannewpackage;
+package aplikasilaundry.view.layout.main.Pengaturan;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

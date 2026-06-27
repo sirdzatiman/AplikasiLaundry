@@ -8,14 +8,14 @@ package aplikasilaundry.view.layout.main;
  *
  * @author Sirdzat
  */
-public class NewJDialog extends javax.swing.JDialog {
+public class detailLaundry extends javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(NewJDialog.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(detailLaundry.class.getName());
 
     /**
      * Creates new form NewJDialog
      */
-    public NewJDialog(java.awt.Frame parent, boolean modal) {
+    public detailLaundry(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -949,7 +949,7 @@ public class NewJDialog extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                NewJDialog dialog = new NewJDialog(new javax.swing.JFrame(), true);
+                detailLaundry dialog = new detailLaundry(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -983,17 +983,7 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
@@ -1002,7 +992,6 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
@@ -1011,15 +1000,11 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
-    private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel17;
@@ -1046,16 +1031,6 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel38;
     private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel40;
-    private javax.swing.JPanel jPanel41;
-    private javax.swing.JPanel jPanel42;
-    private javax.swing.JPanel jPanel43;
-    private javax.swing.JPanel jPanel44;
-    private javax.swing.JPanel jPanel45;
-    private javax.swing.JPanel jPanel46;
-    private javax.swing.JPanel jPanel47;
-    private javax.swing.JPanel jPanel48;
-    private javax.swing.JPanel jPanel49;
-    private javax.swing.JPanel jPanel50;
     private javax.swing.JPanel jPanel51;
     private javax.swing.JPanel jPanel52;
     private javax.swing.JPanel jPanel53;
@@ -1068,8 +1043,6 @@ public class NewJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel60;
     private javax.swing.JPanel jPanel61;
     private javax.swing.JPanel jPanel62;
-    private javax.swing.JPanel jPanel63;
-    private javax.swing.JPanel jPanel64;
     private javax.swing.JPanel jPanel65;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
