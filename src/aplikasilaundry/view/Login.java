@@ -7,7 +7,6 @@ package aplikasilaundry.view;
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.ui.FlatLineBorder;
 import java.awt.Color;
 import java.awt.Insets;
@@ -38,19 +37,12 @@ public class Login extends javax.swing.JFrame {
       
       
     void panelLengkung(JPanel p) {
-        
         p.setBorder(new FlatLineBorder(
                 new Insets(0, 0, 0, 0),
                 Color.decode("#2563EB"),
                 0f,
-                10));
-        
-        
-        
+                10));  
     }
-  
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -118,6 +110,7 @@ public class Login extends javax.swing.JFrame {
         jPanel57 = new javax.swing.JPanel();
         tPassword = new javax.swing.JPasswordField();
         jLabel13 = new javax.swing.JLabel();
+        btnMata = new javax.swing.JToggleButton();
         jPanel58 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
@@ -438,7 +431,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel30.setLayout(new java.awt.BorderLayout());
 
-        jPanel2.setBackground(new java.awt.Color(238, 248, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setMinimumSize(new java.awt.Dimension(200, 100));
         jPanel2.setPreferredSize(new java.awt.Dimension(180, 115));
 
@@ -455,7 +448,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel30.add(jPanel2, java.awt.BorderLayout.LINE_END);
 
-        jPanel3.setBackground(new java.awt.Color(238, 248, 255));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(180, 115));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -477,7 +470,7 @@ public class Login extends javax.swing.JFrame {
         jPanel6.setPreferredSize(new java.awt.Dimension(1, 60));
         jPanel6.setLayout(new java.awt.BorderLayout());
 
-        jPanel7.setBackground(new java.awt.Color(238, 248, 255));
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setPreferredSize(new java.awt.Dimension(400, 50));
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
@@ -510,7 +503,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel8.setLayout(new java.awt.BorderLayout());
 
-        jPanel9.setBackground(new java.awt.Color(238, 248, 255));
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setPreferredSize(new java.awt.Dimension(400, 35));
 
         jLabel29.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
@@ -541,7 +534,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel8.add(jPanel9, java.awt.BorderLayout.PAGE_START);
 
-        jPanel11.setBackground(new java.awt.Color(238, 248, 255));
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel30.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(51, 51, 51));
@@ -579,7 +572,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel29.add(jPanel30, java.awt.BorderLayout.PAGE_END);
 
-        jPanel1.setBackground(new java.awt.Color(238, 248, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -598,7 +591,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel18.setLayout(new java.awt.BorderLayout());
 
-        jPanel19.setBackground(new java.awt.Color(238, 248, 255));
+        jPanel19.setBackground(new java.awt.Color(255, 255, 255));
         jPanel19.setPreferredSize(new java.awt.Dimension(110, 408));
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
@@ -614,7 +607,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel18.add(jPanel19, java.awt.BorderLayout.LINE_END);
 
-        jPanel20.setBackground(new java.awt.Color(238, 248, 255));
+        jPanel20.setBackground(new java.awt.Color(255, 255, 255));
         jPanel20.setPreferredSize(new java.awt.Dimension(110, 408));
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
@@ -630,11 +623,11 @@ public class Login extends javax.swing.JFrame {
 
         jPanel18.add(jPanel20, java.awt.BorderLayout.LINE_START);
 
-        jPanel53.setBackground(new java.awt.Color(238, 248, 255));
+        jPanel53.setBackground(new java.awt.Color(255, 255, 255));
         jPanel53.setPreferredSize(new java.awt.Dimension(400, 408));
         jPanel53.setLayout(new java.awt.BorderLayout());
 
-        jPanel54.setBackground(new java.awt.Color(238, 248, 255));
+        jPanel54.setBackground(new java.awt.Color(255, 255, 255));
         jPanel54.setBorder(javax.swing.BorderFactory.createEmptyBorder(50, 40, 1, 40));
         jPanel54.setPreferredSize(new java.awt.Dimension(400, 250));
         jPanel54.setLayout(new java.awt.GridLayout(4, 1, 0, 10));
@@ -658,7 +651,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
+                .addComponent(tUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel56Layout.setVerticalGroup(
@@ -673,7 +666,7 @@ public class Login extends javax.swing.JFrame {
             panelUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelUserLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel56, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                .addComponent(jPanel56, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelUserLayout.setVerticalGroup(
@@ -697,6 +690,12 @@ public class Login extends javax.swing.JFrame {
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Gembok.png"))); // NOI18N
 
+        btnMata.setBackground(new java.awt.Color(217, 217, 217));
+        btnMata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Mata Silang.png"))); // NOI18N
+        btnMata.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
+        btnMata.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Mata Terbuka.png"))); // NOI18N
+        btnMata.addActionListener(this::btnMataActionPerformed);
+
         javax.swing.GroupLayout jPanel57Layout = new javax.swing.GroupLayout(jPanel57);
         jPanel57.setLayout(jPanel57Layout);
         jPanel57Layout.setHorizontalGroup(
@@ -705,13 +704,15 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(tPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnMata, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel57Layout.setVerticalGroup(
             jPanel57Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tPassword)
-            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(btnMata, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout tpasLayout = new javax.swing.GroupLayout(tpas);
@@ -733,7 +734,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel54.add(tpas);
 
-        jPanel58.setBackground(new java.awt.Color(238, 248, 255));
+        jPanel58.setBackground(new java.awt.Color(255, 255, 255));
         jPanel58.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
         jPanel58.setPreferredSize(new java.awt.Dimension(350, 42));
 
@@ -774,6 +775,17 @@ public class Login extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnMataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMataActionPerformed
+        // TODO add your handling code here:
+        if (btnMata.isSelected()) {
+            // Password terlihat
+            tPassword.setEchoChar((char) 0);
+        } else {
+            // Password disembunyikan
+            tPassword.setEchoChar('•');
+        }
+    }//GEN-LAST:event_btnMataActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -802,6 +814,7 @@ public class Login extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnMata;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;

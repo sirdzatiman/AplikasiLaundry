@@ -27,8 +27,6 @@ public class Dasboard extends javax.swing.JPanel {
                 + "focusedBorderColor:#9525EB; "
                 + "hoverBorderColor:#9525EB"
         );
-
-        
     }
     
 
