@@ -6,6 +6,11 @@ package aplikasilaundry.view.layout.main.TambahLaundry;
 
 import aplikasilaundry.view.layout.main.TambahLaoundry.PanelKonfirmasi.Konfirmasi;
 import aplikasilaundry.view.layout.main.TambahLaoundry.itemLaundrynewpackage.PanelItemLaundry;
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -19,30 +24,60 @@ public class TambahLaundry extends javax.swing.JPanel {
     public TambahLaundry() {
         initComponents();
         // Saat memasukkan panel anak ke CardLayout jPanel26:
-panelContentPelanggan.add(new PanelPelanggan(this), "kartuPelanggan");
-panelContentPelanggan.add(new PanelItemLaundry(this), "kartuItem");
-panelContentPelanggan.add(new Konfirmasi(this), "kartuKonfirmasi");
+        panelContentPelanggan.add(new PanelPelanggan(this), "kartuPelanggan");
+        panelContentPelanggan.add(new PanelItemLaundry(this), "kartuItem");
+        panelContentPelanggan.add(new Konfirmasi(this), "kartuKonfirmasi");
     }
-public void panggilTahap(String namaKartu) {
-    // 1. Ambil Layout CardLayout dari jPanel26 (sesuai nama panel CardLayout Anda di gambar Navigator)
-    java.awt.CardLayout cl = (java.awt.CardLayout) panelContentPelanggan.getLayout();
-    cl.show(panelContentPelanggan, namaKartu);
-    
-    // 2. Logika mengubah warna teks/indikator navigasi di bagian atas agar interaktif
-    if (namaKartu.equals("kartuPelanggan")) {
-        lblPelanggan.setForeground(new java.awt.Color(0, 102, 204)); // Biru aktif
-        lblItem.setForeground(java.awt.Color.BLACK);
-        lblKonfirmasi.setForeground(java.awt.Color.BLACK);
-    } else if (namaKartu.equals("kartuItem")) {
-        lblPelanggan.setForeground(java.awt.Color.BLACK);
-        lblItem.setForeground(new java.awt.Color(0, 102, 204)); // Biru aktif
-        lblKonfirmasi.setForeground(java.awt.Color.BLACK);
-    } else if (namaKartu.equals("kartuKonfirmasi")) {
-        lblPelanggan.setForeground(java.awt.Color.BLACK);
-        lblItem.setForeground(java.awt.Color.BLACK);
-        lblKonfirmasi.setForeground(new java.awt.Color(0, 102, 204)); // Biru aktif
+
+    public void panggilTahap(String namaKartu) {
+        // 1. Ambil Layout CardLayout dari jPanel26 (sesuai nama panel CardLayout Anda di gambar Navigator)
+        java.awt.CardLayout cl = (java.awt.CardLayout) panelContentPelanggan.getLayout();
+        cl.show(panelContentPelanggan, namaKartu);
+
+        // 2. Logika mengubah warna teks/indikator navigasi di bagian atas agar interaktif
+        lblPelanggan.setBackground(Color.WHITE);
+        lblItem.setBackground(Color.WHITE);
+        lblKonfirmasi.setBackground(Color.WHITE);
+
+        // Ubah warna label sesuai panel yang aktif
+        if (namaKartu.equals("kartuPelanggan")) {
+
+            // Icon
+            jLabel71.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/1 warna.png")));
+            jLabel75.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/2 no warna.png")));
+            jLabel39.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/3.png")));
+
+            // Label
+            ubahWarnaLabel(lblPelanggan, new Color(0, 102, 204));
+            ubahWarnaLabel(lblItem, Color.BLACK);
+            ubahWarnaLabel(lblKonfirmasi, Color.BLACK);
+
+        } else if (namaKartu.equals("kartuItem")) {
+
+            // Icon
+            jLabel71.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/1 no warna.png")));
+            jLabel75.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/2.png")));
+            jLabel39.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/3.png")));
+
+            // Label
+            ubahWarnaLabel(lblPelanggan, Color.BLACK);
+            ubahWarnaLabel(lblItem, new Color(0, 102, 204));
+            ubahWarnaLabel(lblKonfirmasi, Color.BLACK);
+
+        } else if (namaKartu.equals("kartuKonfirmasi")) {
+
+            // Icon
+            jLabel71.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/1 no warna.png")));
+            jLabel75.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/2 no warna.png")));
+            jLabel39.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/3 warna.png")));
+
+            // Label
+            ubahWarnaLabel(lblPelanggan, Color.BLACK);
+            ubahWarnaLabel(lblItem, Color.BLACK);
+            ubahWarnaLabel(lblKonfirmasi, new Color(0, 102, 204));
+        }
     }
-}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -151,13 +186,12 @@ public void panggilTahap(String namaKartu) {
         });
 
         jLabel70.setFont(new java.awt.Font("Segoe UI Variable", 1, 16)); // NOI18N
-        jLabel70.setForeground(new java.awt.Color(37, 99, 235));
         jLabel70.setText("Data Pelanggan");
 
-        jLabel71.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/1 warna.png"))); // NOI18N
+        jLabel71.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/1 no warna.png"))); // NOI18N
 
         jLabel72.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel72.setForeground(new java.awt.Color(37, 99, 235));
+        jLabel72.setForeground(new java.awt.Color(113, 112, 112));
         jLabel72.setText("Masukkan data pelanggan");
 
         jLabel73.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/MaterialSymbolsChevronRight (1).png"))); // NOI18N
@@ -282,7 +316,7 @@ public void panggilTahap(String namaKartu) {
                         .addComponent(jLabel40))
                     .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
@@ -298,9 +332,12 @@ public void panggilTahap(String namaKartu) {
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(lblItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(lblKonfirmasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblPelanggan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblKonfirmasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         jPanel13.add(jPanel18, java.awt.BorderLayout.CENTER);
@@ -318,17 +355,17 @@ public void panggilTahap(String namaKartu) {
 
     private void lblPelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPelangganMouseClicked
         // TODO add your handling code here:
-       panggilTahap("kartuPelanggan");
+        panggilTahap("kartuPelanggan");
     }//GEN-LAST:event_lblPelangganMouseClicked
 
     private void lblItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblItemMouseClicked
         // TODO add your handling code here:
-         panggilTahap("kartuItem");
+        panggilTahap("kartuItem");
     }//GEN-LAST:event_lblItemMouseClicked
 
     private void lblKonfirmasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblKonfirmasiMouseClicked
         // TODO add your handling code here:
-         panggilTahap("kartuKonfirmasi");
+        panggilTahap("kartuKonfirmasi");
     }//GEN-LAST:event_lblKonfirmasiMouseClicked
 
 
@@ -357,4 +394,15 @@ public void panggilTahap(String namaKartu) {
     private java.awt.Panel panel1;
     private javax.swing.JPanel panelContentPelanggan;
     // End of variables declaration//GEN-END:variables
+
+    private void ubahWarnaLabel(JPanel panel, Color warna) {
+
+        for (Component c : panel.getComponents()) {
+
+            if (c instanceof JLabel) {
+                ((JLabel) c).setForeground(warna);
+            }
+
+        }
+    }
 }
