@@ -95,11 +95,11 @@ public class Semua extends javax.swing.JPanel {
         jTable1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"INV-260510-011", "Widhea", "12:15", "Boneka / Tas", "Rp 5.000", "Baru Masuk"},
-                {"INV-260510-010", "Najwa ", "12:06", "Selimut / Dll", "Rp 16.000", "Baru Masuk"},
-                {"INV-260510-009", "Zanuba Arifah", "10:03", "Bed Cover", "Rp 20.000", "Baru Masuk"},
-                {"INV-260510-008", "Nila Aulia", "08:37", "Boneka / Tas", "Rp 5.000", "Baru Masuk"},
-                {"INV-260510-007", "Betrin Dina", "08:35", "Baju / Dll", "Rp 5.000", "Baru Masuk"}
+                {"INV-260509-006", "Rahma Dina", "12:15", "Baju / Dll", "Rp 4.000", "Diproses"},
+                {"INV-260509-005", "Putri Ayu", "11:00", "Baju / Dll", "Rp 4.000", "Diproses"},
+                {"INV-260508-004", "Ahmad Fauzi", "16:45", "Bed Cover", "Rp 10.000", "Selesai (Belum Diambil)"},
+                {"INV-260508-003", "Rina Wati", "12:20", "Boneka / Tas", "Rp 5.000", "Selesai (Belum Diambil)"},
+                {"INV-260508-002", "Nurul Hikmah", "11:10", "Selimut / Dll", "Rp 10.000", "Selesai (Belum Diambil)"}
             },
             new String [] {
                 "No Nota", "Nama Pelanggan", "Jam Masuk", "Jenis", "Total", "Status"
