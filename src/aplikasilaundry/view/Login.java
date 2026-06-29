@@ -9,6 +9,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import com.formdev.flatlaf.ui.FlatLineBorder;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Insets;
 import javax.swing.JPanel;
 
@@ -796,6 +797,11 @@ public class Login extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
+            FlatLightLaf.setup();
+
+            UIManager.put("TableHeader.background", new Color(238, 241, 247));
+            UIManager.put("TableHeader.foreground", Color.BLACK);
+            UIManager.put("TableHeader.font", new Font("Segoe UI", Font.BOLD, 14));
             //semua komponen button akan berubah 
             UIManager.put("Button.arc", 15);
             UIManager.put("TextComponent.arc", 15);

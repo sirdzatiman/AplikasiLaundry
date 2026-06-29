@@ -34,12 +34,8 @@ public class mainFrame extends javax.swing.JFrame {
      * Creates new form mainFrame
      */
     public mainFrame() {
-        UIManager.put("ToggleButton.selectedBackground", new Color(255, 255, 255));
-        UIManager.put("ToggleButton.selectedForeground", new Color(37, 99, 235));
-
         initComponents();
         inisiasiPanel();
-        
         btnDasboard.putClientProperty("JButton.buttonType", "roundRect");
         btnDasboard.putClientProperty("JButton.selectedBackground", Color.WHITE);
         btnDasboard.putClientProperty("JButton.selectedForeground", new Color(37, 99, 235));
@@ -147,10 +143,8 @@ public class mainFrame extends javax.swing.JFrame {
         btnDasboard.setForeground(new java.awt.Color(255, 255, 255));
         btnDasboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Home.png"))); // NOI18N
         btnDasboard.setText("Dasboard");
-        btnDasboard.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
         btnDasboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnDasboard.setIconTextGap(17);
-        btnDasboard.setOpaque(true);
         btnDasboard.setPreferredSize(new java.awt.Dimension(112, 40));
         btnDasboard.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Dasboard biru.png"))); // NOI18N
         btnDasboard.addActionListener(this::btnDasboardActionPerformed);
@@ -161,7 +155,6 @@ public class mainFrame extends javax.swing.JFrame {
         btnTambahLaundry.setForeground(new java.awt.Color(255, 255, 255));
         btnTambahLaundry.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Tambah.png"))); // NOI18N
         btnTambahLaundry.setText("Tambah Laundry");
-        btnTambahLaundry.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
         btnTambahLaundry.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnTambahLaundry.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnTambahLaundry.setIconTextGap(17);
@@ -175,7 +168,6 @@ public class mainFrame extends javax.swing.JFrame {
         btnDataLaundry.setForeground(new java.awt.Color(255, 255, 255));
         btnDataLaundry.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/data laundry.png"))); // NOI18N
         btnDataLaundry.setText("Data Laundry");
-        btnDataLaundry.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
         btnDataLaundry.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnDataLaundry.setIconTextGap(19);
         btnDataLaundry.setPreferredSize(new java.awt.Dimension(112, 40));
@@ -188,7 +180,6 @@ public class mainFrame extends javax.swing.JFrame {
         btnRiwayatLaundry.setForeground(new java.awt.Color(255, 255, 255));
         btnRiwayatLaundry.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/riwayat laundry.png"))); // NOI18N
         btnRiwayatLaundry.setText("Riwayat Laundry");
-        btnRiwayatLaundry.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
         btnRiwayatLaundry.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnRiwayatLaundry.setIconTextGap(15);
         btnRiwayatLaundry.setPreferredSize(new java.awt.Dimension(112, 40));
@@ -201,7 +192,6 @@ public class mainFrame extends javax.swing.JFrame {
         btnLaporanPemasukan.setForeground(new java.awt.Color(255, 255, 255));
         btnLaporanPemasukan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/riwayat pemasukan.png"))); // NOI18N
         btnLaporanPemasukan.setText("Laporan Pemasukan");
-        btnLaporanPemasukan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 13, 1, 1));
         btnLaporanPemasukan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnLaporanPemasukan.setIconTextGap(15);
         btnLaporanPemasukan.setPreferredSize(new java.awt.Dimension(112, 40));
@@ -214,7 +204,6 @@ public class mainFrame extends javax.swing.JFrame {
         btnPengaturan.setForeground(new java.awt.Color(255, 255, 255));
         btnPengaturan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/pengaturan.png"))); // NOI18N
         btnPengaturan.setText("Pengaturan");
-        btnPengaturan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 11, 1, 1));
         btnPengaturan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnPengaturan.setIconTextGap(10);
         btnPengaturan.setPreferredSize(new java.awt.Dimension(112, 40));
@@ -245,12 +234,11 @@ public class mainFrame extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnPengaturan, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                            .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btnLaporanPemasukan, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                                .addComponent(btnRiwayatLaundry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnDataLaundry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnTambahLaundry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnDasboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnLaporanPemasukan, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                            .addComponent(btnRiwayatLaundry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDataLaundry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnTambahLaundry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDasboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(8, 8, 8)))
                 .addContainerGap())
         );

@@ -17,6 +17,8 @@ public class Dasboard extends javax.swing.JPanel {
     public Dasboard() {
         initComponents();
         myDesign();
+        
+        
     }
     
         void myDesign() {
@@ -671,6 +673,11 @@ public class Dasboard extends javax.swing.JPanel {
         jTable2.setSelectionBackground(new java.awt.Color(238, 241, 247));
         jTable2.setSelectionForeground(new java.awt.Color(51, 51, 0));
         jTable2.setShowGrid(true);
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         jPanel40.add(jScrollPane2, "card2");
@@ -740,6 +747,11 @@ public class Dasboard extends javax.swing.JPanel {
         ((aplikasilaundry.view.mainFrame) window).panggilHalaman("selesaiBelumDiambil");
     }
     }//GEN-LAST:event_pnlSelesaiMouseClicked
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTable2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
