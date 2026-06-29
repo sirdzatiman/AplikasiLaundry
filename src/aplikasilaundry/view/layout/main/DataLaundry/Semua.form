@@ -11,6 +11,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="3"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,44,0,0,3,-18"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -155,46 +156,46 @@
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="6" rowCount="5">
                         <Column editable="false" title="No Nota" type="java.lang.Object">
-                          <Data value="INV-260510-011"/>
-                          <Data value="INV-260510-010"/>
-                          <Data value="INV-260510-009"/>
-                          <Data value="INV-260510-008"/>
-                          <Data value="INV-260510-007"/>
+                          <Data value="INV-260509-006"/>
+                          <Data value="INV-260509-005"/>
+                          <Data value="INV-260508-004"/>
+                          <Data value="INV-260508-003"/>
+                          <Data value="INV-260508-002"/>
                         </Column>
                         <Column editable="false" title="Nama Pelanggan" type="java.lang.Object">
-                          <Data value="Widhea"/>
-                          <Data value="Najwa "/>
-                          <Data value="Zanuba Arifah"/>
-                          <Data value="Nila Aulia"/>
-                          <Data value="Betrin Dina"/>
+                          <Data value="Rahma Dina"/>
+                          <Data value="Putri Ayu"/>
+                          <Data value="Ahmad Fauzi"/>
+                          <Data value="Rina Wati"/>
+                          <Data value="Nurul Hikmah"/>
                         </Column>
                         <Column editable="false" title="Jam Masuk" type="java.lang.Object">
                           <Data value="12:15"/>
-                          <Data value="12:06"/>
-                          <Data value="10:03"/>
-                          <Data value="08:37"/>
-                          <Data value="08:35"/>
+                          <Data value="11:00"/>
+                          <Data value="16:45"/>
+                          <Data value="12:20"/>
+                          <Data value="11:10"/>
                         </Column>
                         <Column editable="false" title="Jenis" type="java.lang.Object">
-                          <Data value="Boneka / Tas"/>
-                          <Data value="Selimut / Dll"/>
+                          <Data value="Baju / Dll"/>
+                          <Data value="Baju / Dll"/>
                           <Data value="Bed Cover"/>
                           <Data value="Boneka / Tas"/>
-                          <Data value="Baju / Dll"/>
+                          <Data value="Selimut / Dll"/>
                         </Column>
                         <Column editable="false" title="Total" type="java.lang.Object">
+                          <Data value="Rp 4.000"/>
+                          <Data value="Rp 4.000"/>
+                          <Data value="Rp 10.000"/>
                           <Data value="Rp 5.000"/>
-                          <Data value="Rp 16.000"/>
-                          <Data value="Rp 20.000"/>
-                          <Data value="Rp 5.000"/>
-                          <Data value="Rp 5.000"/>
+                          <Data value="Rp 10.000"/>
                         </Column>
                         <Column editable="false" title="Status" type="java.lang.Object">
-                          <Data value="Baru Masuk"/>
-                          <Data value="Baru Masuk"/>
-                          <Data value="Baru Masuk"/>
-                          <Data value="Baru Masuk"/>
-                          <Data value="Baru Masuk"/>
+                          <Data value="Diproses"/>
+                          <Data value="Diproses"/>
+                          <Data value="Selesai (Belum Diambil)"/>
+                          <Data value="Selesai (Belum Diambil)"/>
+                          <Data value="Selesai (Belum Diambil)"/>
                         </Column>
                       </Table>
                     </Property>

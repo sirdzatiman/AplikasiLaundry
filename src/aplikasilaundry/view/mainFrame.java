@@ -14,6 +14,7 @@ import aplikasilaundry.view.layout.main.Pengaturan.Pengaturan;
 import aplikasilaundry.view.layout.main.RiwayatLaundry;
 import aplikasilaundry.view.layout.main.TambahLaundry.TambahLaundry;
 import aplikasilaundry.view.layout.main.popUpLogout;
+import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -36,9 +37,38 @@ public class mainFrame extends javax.swing.JFrame {
     public mainFrame() {
         initComponents();
         inisiasiPanel();
-        btnDasboard.putClientProperty("JButton.buttonType", "roundRect");
-        btnDasboard.putClientProperty("JButton.selectedBackground", Color.WHITE);
-        btnDasboard.putClientProperty("JButton.selectedForeground", new Color(37, 99, 235));
+        
+        myDesign();
+
+//        JToggleButton[] tombol = {
+//            btnDasboard,
+//            btnTambahLaundry,
+//            btnDataLaundry,
+//            btnRiwayatLaundry,
+//            btnLaporanPemasukan,
+//            btnPengaturan
+//        };
+//
+//        for (JToggleButton btn : tombol) {
+//            //btn.setOpaque(true);
+//            //btn.setContentAreaFilled(true);
+//            btn.setBorderPainted(false);
+//            btn.setFocusPainted(false);
+//        }
+
+
+
+    }
+
+    void myDesign() {
+
+        JToggleButton toggleButton = new JToggleButton("Flat Button");
+
+// Menonaktifkan opacity agar perubahan warna latar belakang dirender dengan benar
+        toggleButton.setOpaque(true);
+
+// Mengubah background saat SELECTION / ditekan menjadi Putih
+        toggleButton.putClientProperty(FlatClientProperties.STYLE, "background: #FFFFFF;");
     }
 
     void inisiasiPanel() {
@@ -84,23 +114,25 @@ public class mainFrame extends javax.swing.JFrame {
 
     private void setMenuAktif(JToggleButton tombolAktif) {
 
-        // Semua tombol kembali ke warna normal
-        btnDasboard.setBackground(new Color(37, 99, 235));
-        btnTambahLaundry.setBackground(new Color(37, 99, 235));
-        btnDataLaundry.setBackground(new Color(37, 99, 235));
-        btnRiwayatLaundry.setBackground(new Color(37, 99, 235));
-        btnLaporanPemasukan.setBackground(new Color(37, 99, 235));
-        btnPengaturan.setBackground(new Color(37, 99, 235));
+        JToggleButton[] tombol = {
+            btnDasboard,
+            btnTambahLaundry,
+            btnDataLaundry,
+            btnRiwayatLaundry,
+            btnLaporanPemasukan,
+            btnPengaturan
+        };
 
-        btnDasboard.setForeground(Color.WHITE);
-        btnTambahLaundry.setForeground(Color.WHITE);
-        btnDataLaundry.setForeground(Color.WHITE);
-        btnRiwayatLaundry.setForeground(Color.WHITE);
-        btnLaporanPemasukan.setForeground(Color.WHITE);
-        btnPengaturan.setForeground(Color.WHITE);
+        // Kembalikan semua tombol ke warna normal
+        for (JToggleButton btn : tombol) {
+            btn.setSelected(false); // hilangkan status selected
+            btn.setBackground(new Color(37, 99, 235));
+            btn.setForeground(new Color(255,255,255));
+        }
 
-        // Tombol aktif
-        tombolAktif.setBackground(Color.WHITE);
+        // Aktifkan tombol yang dipilih
+        tombolAktif.setSelected(true);
+        tombolAktif.setBackground(new Color(255,255,255));
         tombolAktif.setForeground(new Color(37, 99, 235));
     }
 
@@ -143,6 +175,8 @@ public class mainFrame extends javax.swing.JFrame {
         btnDasboard.setForeground(new java.awt.Color(255, 255, 255));
         btnDasboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Home.png"))); // NOI18N
         btnDasboard.setText("Dasboard");
+        btnDasboard.setBorderPainted(false);
+        btnDasboard.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Home.png"))); // NOI18N
         btnDasboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnDasboard.setIconTextGap(17);
         btnDasboard.setPreferredSize(new java.awt.Dimension(112, 40));
@@ -155,6 +189,7 @@ public class mainFrame extends javax.swing.JFrame {
         btnTambahLaundry.setForeground(new java.awt.Color(255, 255, 255));
         btnTambahLaundry.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Tambah.png"))); // NOI18N
         btnTambahLaundry.setText("Tambah Laundry");
+        btnTambahLaundry.setBorderPainted(false);
         btnTambahLaundry.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnTambahLaundry.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnTambahLaundry.setIconTextGap(17);
@@ -168,6 +203,7 @@ public class mainFrame extends javax.swing.JFrame {
         btnDataLaundry.setForeground(new java.awt.Color(255, 255, 255));
         btnDataLaundry.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/data laundry.png"))); // NOI18N
         btnDataLaundry.setText("Data Laundry");
+        btnDataLaundry.setBorderPainted(false);
         btnDataLaundry.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnDataLaundry.setIconTextGap(19);
         btnDataLaundry.setPreferredSize(new java.awt.Dimension(112, 40));
@@ -180,6 +216,7 @@ public class mainFrame extends javax.swing.JFrame {
         btnRiwayatLaundry.setForeground(new java.awt.Color(255, 255, 255));
         btnRiwayatLaundry.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/riwayat laundry.png"))); // NOI18N
         btnRiwayatLaundry.setText("Riwayat Laundry");
+        btnRiwayatLaundry.setBorderPainted(false);
         btnRiwayatLaundry.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnRiwayatLaundry.setIconTextGap(15);
         btnRiwayatLaundry.setPreferredSize(new java.awt.Dimension(112, 40));
@@ -192,6 +229,7 @@ public class mainFrame extends javax.swing.JFrame {
         btnLaporanPemasukan.setForeground(new java.awt.Color(255, 255, 255));
         btnLaporanPemasukan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/riwayat pemasukan.png"))); // NOI18N
         btnLaporanPemasukan.setText("Laporan Pemasukan");
+        btnLaporanPemasukan.setBorderPainted(false);
         btnLaporanPemasukan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnLaporanPemasukan.setIconTextGap(15);
         btnLaporanPemasukan.setPreferredSize(new java.awt.Dimension(112, 40));
@@ -204,6 +242,7 @@ public class mainFrame extends javax.swing.JFrame {
         btnPengaturan.setForeground(new java.awt.Color(255, 255, 255));
         btnPengaturan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/pengaturan.png"))); // NOI18N
         btnPengaturan.setText("Pengaturan");
+        btnPengaturan.setBorderPainted(false);
         btnPengaturan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnPengaturan.setIconTextGap(10);
         btnPengaturan.setPreferredSize(new java.awt.Dimension(112, 40));
@@ -215,7 +254,6 @@ public class mainFrame extends javax.swing.JFrame {
         btnLogout.setForeground(new java.awt.Color(255, 255, 255));
         btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/logout.png"))); // NOI18N
         btnLogout.setText("Logout");
-        btnLogout.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
         btnLogout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnLogout.setIconTextGap(17);
         btnLogout.setPreferredSize(new java.awt.Dimension(112, 40));
@@ -265,6 +303,7 @@ public class mainFrame extends javax.swing.JFrame {
 
         getContentPane().add(panelSidebar, java.awt.BorderLayout.LINE_START);
 
+        panelContent.setBackground(new java.awt.Color(255, 255, 255));
         panelContent.setMinimumSize(new java.awt.Dimension(1006, 728));
         panelContent.setPreferredSize(new java.awt.Dimension(1006, 728));
         panelContent.setLayout(new java.awt.CardLayout());
@@ -315,7 +354,7 @@ public class mainFrame extends javax.swing.JFrame {
         popUpLogout dialog = new popUpLogout(this, true);
         // 3. Tampilkan popup
         dialog.setVisible(true);
-        
+
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
