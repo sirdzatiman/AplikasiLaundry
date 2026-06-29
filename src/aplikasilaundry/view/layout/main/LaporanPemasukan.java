@@ -20,6 +20,7 @@ headerRenderer.setHorizontalAlignment(JLabel.CENTER);
 headerRenderer.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
 
+
 }
 
     /**
@@ -73,7 +74,7 @@ headerRenderer.setFont(new Font("Segoe UI", Font.BOLD, 12));
         jLabel15 = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tRincianPemasukan = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(240, 243, 247));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 20));
@@ -488,9 +489,9 @@ headerRenderer.setFont(new Font("Segoe UI", Font.BOLD, 12));
         jPanel15.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         jPanel15.setLayout(new java.awt.CardLayout());
 
-        jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204)));
-        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tRincianPemasukan.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204)));
+        tRincianPemasukan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tRincianPemasukan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Baju/Dll", "Cuci Kering",  new Integer(2),  new Double(8000.0)},
                 {"Baju/Dll", "Cuci Kering Setrika",  new Integer(0),  new Double(0.0)},
@@ -518,12 +519,12 @@ headerRenderer.setFont(new Font("Segoe UI", Font.BOLD, 12));
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setGridColor(new java.awt.Color(204, 204, 204));
-        jTable1.setRowHeight(50);
-        jTable1.setSelectionBackground(new java.awt.Color(51, 51, 255));
-        jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        tRincianPemasukan.setGridColor(new java.awt.Color(204, 204, 204));
+        tRincianPemasukan.setRowHeight(50);
+        tRincianPemasukan.setSelectionBackground(new java.awt.Color(51, 51, 255));
+        tRincianPemasukan.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tRincianPemasukan.setShowGrid(true);
+        jScrollPane1.setViewportView(tRincianPemasukan);
 
         jPanel15.add(jScrollPane1, "card2");
 
@@ -582,6 +583,6 @@ headerRenderer.setFont(new Font("Segoe UI", Font.BOLD, 12));
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tRincianPemasukan;
     // End of variables declaration//GEN-END:variables
 }

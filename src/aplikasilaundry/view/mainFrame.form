@@ -64,13 +64,11 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="btnPengaturan" pref="247" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="btnLaporanPemasukan" pref="247" max="32767" attributes="0"/>
-                                  <Component id="btnRiwayatLaundry" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="btnDataLaundry" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="btnTambahLaundry" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="btnDasboard" alignment="1" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="btnLaporanPemasukan" pref="247" max="32767" attributes="0"/>
+                              <Component id="btnRiwayatLaundry" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnDataLaundry" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnTambahLaundry" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnDasboard" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                       </Group>
@@ -131,14 +129,8 @@
               <Image iconType="3" name="/aplikasilaundry/asset/icon/Home.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Dasboard"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-                <EmptyBorder bottom="1" left="15" right="1" top="1"/>
-              </Border>
-            </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="iconTextGap" type="int" value="17"/>
-            <Property name="opaque" type="boolean" value="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[112, 40]"/>
             </Property>
@@ -168,11 +160,6 @@
               <Image iconType="3" name="/aplikasilaundry/asset/icon/Tambah.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Tambah Laundry"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-                <EmptyBorder bottom="1" left="15" right="1" top="1"/>
-              </Border>
-            </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Default Cursor"/>
             </Property>
@@ -207,11 +194,6 @@
               <Image iconType="3" name="/aplikasilaundry/asset/icon/data laundry.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Data Laundry"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-                <EmptyBorder bottom="1" left="15" right="1" top="1"/>
-              </Border>
-            </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="iconTextGap" type="int" value="19"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -243,11 +225,6 @@
               <Image iconType="3" name="/aplikasilaundry/asset/icon/riwayat laundry.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Riwayat Laundry"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-                <EmptyBorder bottom="1" left="15" right="1" top="1"/>
-              </Border>
-            </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="iconTextGap" type="int" value="15"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -279,11 +256,6 @@
               <Image iconType="3" name="/aplikasilaundry/asset/icon/riwayat pemasukan.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Laporan Pemasukan"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-                <EmptyBorder bottom="1" left="13" right="1" top="1"/>
-              </Border>
-            </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="iconTextGap" type="int" value="15"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -315,11 +287,6 @@
               <Image iconType="3" name="/aplikasilaundry/asset/icon/pengaturan.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Pengaturan"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-                <EmptyBorder bottom="1" left="11" right="1" top="1"/>
-              </Border>
-            </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="iconTextGap" type="int" value="10"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
