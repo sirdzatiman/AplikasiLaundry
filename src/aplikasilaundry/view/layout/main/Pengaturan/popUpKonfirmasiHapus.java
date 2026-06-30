@@ -53,6 +53,7 @@ public class popUpKonfirmasiHapus extends javax.swing.JDialog {
         jButton1.setForeground(new java.awt.Color(102, 102, 102));
         jButton1.setText("Batal");
         jButton1.setPreferredSize(new java.awt.Dimension(140, 43));
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton2.setBackground(new java.awt.Color(251, 44, 54));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -115,6 +116,11 @@ public class popUpKonfirmasiHapus extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
