@@ -62,6 +62,7 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
         btnBatal.setForeground(new java.awt.Color(102, 102, 102));
         btnBatal.setText("Batal");
         btnBatal.setPreferredSize(new java.awt.Dimension(125, 44));
+        btnBatal.addActionListener(this::btnBatalActionPerformed);
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -382,6 +383,11 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
     JOptionPane.showMessageDialog(this, "Gagal menyimpan data: " + e.getMessage());
 }
     }//GEN-LAST:event_btnSimpanActionPerformed
+
+    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnBatalActionPerformed
 
     /**
      * @param args the command line arguments

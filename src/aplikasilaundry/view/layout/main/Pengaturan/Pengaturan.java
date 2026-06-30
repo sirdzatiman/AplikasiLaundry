@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package aplikasilaundry.view.layout.main.Pengaturan;
-import java.awt.Frame;
 
 public class Pengaturan extends javax.swing.JPanel {
 
@@ -23,6 +22,11 @@ public class Pengaturan extends javax.swing.JPanel {
         // Tambahkan baris baru ke tabel
         model.addRow(new Object[]{String.valueOf(noUrut), nama, peran}); 
     }
+   
+   private java.awt.Frame getParentFrame() {
+    java.awt.Window window = javax.swing.SwingUtilities.getWindowAncestor(this);
+    return (window instanceof java.awt.Frame) ? (java.awt.Frame) window : null;
+}
 
 
     /**
@@ -39,8 +43,8 @@ public class Pengaturan extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnPensil = new javax.swing.JButton();
+        btnHapus = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnTambahPengguna = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -135,15 +139,15 @@ public class Pengaturan extends javax.swing.JPanel {
         jPanel13 = new javax.swing.JPanel();
         jPanel36 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        editKonfigurasiLayanan = new javax.swing.JButton();
+        btnHapusKonfigurasi = new javax.swing.JButton();
         jPanel37 = new javax.swing.JPanel();
         jPanel39 = new javax.swing.JPanel();
         jPanel41 = new javax.swing.JPanel();
         jPanel42 = new javax.swing.JPanel();
         jPanel43 = new javax.swing.JPanel();
         jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton5 = new javax.swing.JToggleButton();
+        btnTambahKonfigurasiLAyanan = new javax.swing.JToggleButton();
         jToggleButton6 = new javax.swing.JToggleButton();
         jPanel44 = new javax.swing.JPanel();
         jPanel38 = new javax.swing.JPanel();
@@ -171,10 +175,11 @@ public class Pengaturan extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("1. Pengguna");
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/LucidePencil.png"))); // NOI18N
-        jButton3.addActionListener(this::jButton3ActionPerformed);
+        btnPensil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/LucidePencil.png"))); // NOI18N
+        btnPensil.addActionListener(this::btnPensilActionPerformed);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/SolarTrashBinTrashOutline.png"))); // NOI18N
+        btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/SolarTrashBinTrashOutline.png"))); // NOI18N
+        btnHapus.addActionListener(this::btnHapusActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -184,9 +189,9 @@ public class Pengaturan extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 767, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(btnPensil)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4))
+                .addComponent(btnHapus))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,8 +199,8 @@ public class Pengaturan extends javax.swing.JPanel {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4))
+                        .addComponent(btnPensil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnHapus))
                     .addComponent(jLabel1))
                 .addContainerGap(7, Short.MAX_VALUE))
         );
@@ -1097,10 +1102,11 @@ public class Pengaturan extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("3. Jenis Layanan & Proses");
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/LucidePencil.png"))); // NOI18N
-        jButton7.addActionListener(this::jButton7ActionPerformed);
+        editKonfigurasiLayanan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/LucidePencil.png"))); // NOI18N
+        editKonfigurasiLayanan.addActionListener(this::editKonfigurasiLayananActionPerformed);
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/SolarTrashBinTrashOutline.png"))); // NOI18N
+        btnHapusKonfigurasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/SolarTrashBinTrashOutline.png"))); // NOI18N
+        btnHapusKonfigurasi.addActionListener(this::btnHapusKonfigurasiActionPerformed);
 
         javax.swing.GroupLayout jPanel36Layout = new javax.swing.GroupLayout(jPanel36);
         jPanel36.setLayout(jPanel36Layout);
@@ -1110,9 +1116,9 @@ public class Pengaturan extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 657, Short.MAX_VALUE)
-                .addComponent(jButton7)
+                .addComponent(editKonfigurasiLayanan)
                 .addGap(18, 18, 18)
-                .addComponent(jButton8))
+                .addComponent(btnHapusKonfigurasi))
         );
         jPanel36Layout.setVerticalGroup(
             jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1122,8 +1128,8 @@ public class Pengaturan extends javax.swing.JPanel {
                     .addGroup(jPanel36Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 8, Short.MAX_VALUE))
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnHapusKonfigurasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editKonfigurasiLayanan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1178,11 +1184,12 @@ public class Pengaturan extends javax.swing.JPanel {
         jToggleButton2.setBorder(null);
         jPanel43.add(jToggleButton2);
 
-        jToggleButton5.setBackground(new java.awt.Color(51, 0, 204));
-        jToggleButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/IonPlus.png"))); // NOI18N
-        jToggleButton5.setText("Tambah konfigurasi layanan");
-        jPanel43.add(jToggleButton5);
+        btnTambahKonfigurasiLAyanan.setBackground(new java.awt.Color(51, 0, 204));
+        btnTambahKonfigurasiLAyanan.setForeground(new java.awt.Color(255, 255, 255));
+        btnTambahKonfigurasiLAyanan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/IonPlus.png"))); // NOI18N
+        btnTambahKonfigurasiLAyanan.setText("Tambah konfigurasi layanan");
+        btnTambahKonfigurasiLAyanan.addActionListener(this::btnTambahKonfigurasiLAyananActionPerformed);
+        jPanel43.add(btnTambahKonfigurasiLAyanan);
 
         jToggleButton6.setForeground(new java.awt.Color(255, 255, 255));
         jToggleButton6.setBorder(null);
@@ -1253,25 +1260,20 @@ public class Pengaturan extends javax.swing.JPanel {
         add(jScrollPane3, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnPensilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPensilActionPerformed
         // TODO add your handling code here:
-//        popUpPensil dialog = new popUpPensil(parentFrame,true, this);
-//        // 3. Tampilkan popup
-//        dialog.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+        // Ambil Frame induk dari JPanel Pengaturan
+         popUpPensil popup = new popUpPensil(getParentFrame(), true);
+    popup.setLocationRelativeTo(getParentFrame());
+    popup.setVisible(true);
+    }//GEN-LAST:event_btnPensilActionPerformed
 
     private void btnTambahPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPenggunaActionPerformed
         // TODO add your handling code here:
-     // 1. Ambil Frame induk (parent) dari JPanel ini
-    java.awt.Window parentWindow = javax.swing.SwingUtilities.getWindowAncestor(this);
-    java.awt.Frame parentFrame = null;
-    
-    if (parentWindow instanceof java.awt.Frame) {
-        parentFrame = (java.awt.Frame) parentWindow;
-    }
+       popUpTambahpengguna popup =
+            new popUpTambahpengguna(getParentFrame(), true, this);
 
-    // 2. Panggil popUpTambahpengguna dengan mengirimkan 'this' sebagai parameter ketiga
-    popUpTambahpengguna popup = new popUpTambahpengguna(parentFrame, true, this);
+    popup.setLocationRelativeTo(getParentFrame());
     popup.setVisible(true);
     }//GEN-LAST:event_btnTambahPenggunaActionPerformed
 
@@ -1279,18 +1281,50 @@ public class Pengaturan extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void editKonfigurasiLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editKonfigurasiLayananActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+         popUpEditKonfigurasiLayanan popup =
+            new popUpEditKonfigurasiLayanan(getParentFrame(), true);
+
+    popup.setLocationRelativeTo(getParentFrame());
+    popup.setVisible(true);
+    }//GEN-LAST:event_editKonfigurasiLayananActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        // TODO add your handling code here:
+        popUpSampah popup = new popUpSampah(getParentFrame(), true);
+
+        popup.setLocationRelativeTo(getParentFrame());
+        popup.setVisible(true);
+    }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void btnTambahKonfigurasiLAyananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahKonfigurasiLAyananActionPerformed
+        // TODO add your handling code here:
+        popUpTambahKonfigurasiLayanan popup =
+            new popUpTambahKonfigurasiLayanan(getParentFrame(), true);
+
+    popup.setLocationRelativeTo(getParentFrame());
+    popup.setVisible(true);
+    }//GEN-LAST:event_btnTambahKonfigurasiLAyananActionPerformed
+
+    private void btnHapusKonfigurasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusKonfigurasiActionPerformed
+        // TODO add your handling code here:
+        popUpSampah popup =
+            new popUpSampah(getParentFrame(), true);
+
+    popup.setLocationRelativeTo(getParentFrame());
+    popup.setVisible(true);
+    }//GEN-LAST:event_btnHapusKonfigurasiActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHapus;
+    private javax.swing.JButton btnHapusKonfigurasi;
+    private javax.swing.JButton btnPensil;
+    private javax.swing.JToggleButton btnTambahKonfigurasiLAyanan;
     private javax.swing.JButton btnTambahPengguna;
+    private javax.swing.JButton editKonfigurasiLayanan;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1397,7 +1431,6 @@ public class Pengaturan extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JToggleButton jToggleButton6;
     private static volatile javax.swing.JTable tblPengguna;
     // End of variables declaration//GEN-END:variables
