@@ -4,6 +4,7 @@
  */
 package aplikasilaundry.view;
 
+import aplikasilaundry.config.Koneksi;
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -11,6 +12,11 @@ import com.formdev.flatlaf.ui.FlatLineBorder;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -105,7 +111,7 @@ public class Login extends javax.swing.JFrame {
         jPanel54 = new javax.swing.JPanel();
         panelUser = new javax.swing.JPanel();
         jPanel56 = new javax.swing.JPanel();
-        tUsername = new javax.swing.JTextField();
+        tUserName = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         tpas = new javax.swing.JPanel();
         jPanel57 = new javax.swing.JPanel();
@@ -639,8 +645,8 @@ public class Login extends javax.swing.JFrame {
         jPanel56.setBackground(new java.awt.Color(217, 217, 217));
         jPanel56.setPreferredSize(new java.awt.Dimension(320, 30));
 
-        tUsername.setBackground(new java.awt.Color(217, 217, 217));
-        tUsername.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
+        tUserName.setBackground(new java.awt.Color(217, 217, 217));
+        tUserName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/icon user (1).png"))); // NOI18N
 
@@ -652,13 +658,13 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                .addComponent(tUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel56Layout.setVerticalGroup(
             jPanel56Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-            .addComponent(tUsername, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(tUserName, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         javax.swing.GroupLayout panelUserLayout = new javax.swing.GroupLayout(panelUser);
@@ -686,7 +692,6 @@ public class Login extends javax.swing.JFrame {
         jPanel57.setBackground(new java.awt.Color(217, 217, 217));
 
         tPassword.setBackground(new java.awt.Color(217, 217, 217));
-        tPassword.setText("jPasswordField1");
         tPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Gembok.png"))); // NOI18N
@@ -772,8 +777,57 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        new mainFrame().setVisible(true);
-        dispose();
+        String username = tUserName.getText();
+
+        // Ambil teks yang dimasukkan user pada field password
+        String password = tPassword.getText();
+
+        // Periksa apakah username dan password tidak kosong
+        if (username.length() != 0 && password.length() != 0) {
+            try {
+                // Query SQL untuk mencari user dengan username dan password (dihash dengan MD5)
+                String sql = "SELECT * FROM pengguna WHERE username=? AND password=md5(?)";
+
+                // Buat koneksi ke database
+                Connection con = Koneksi.konek();
+
+                // Siapkan statement SQL dengan parameter
+                PreparedStatement ps = con.prepareStatement(sql);
+
+                // Isi parameter pertama (?) dengan username
+                ps.setString(1, username);
+
+                // Isi parameter kedua (?) dengan password yang akan di-hash MD5 di sisi database
+                ps.setString(2, password);
+
+                // Jalankan query dan ambil hasilnya
+                ResultSet rs = ps.executeQuery();
+
+                // Jika hasil query memiliki baris (berarti login berhasil)
+                if (rs.next()) {
+                    //AMBIL DATA ROLE DARI DATABASE
+                    String role = rs.getString("role");
+                    // Tutup form login
+                    dispose();
+
+                    //Buka form Dashboard dan kirim data role-nya
+                    mainFrame dashboard = new mainFrame();
+                    dashboard.setVisible(true);
+                  
+                } else {
+                    // Jika data tidak ditemukan, tampilkan pesan error
+                    JOptionPane.showMessageDialog(null, "Username/password salah");
+                }
+
+            } catch (SQLException SQLException) {
+                // Jika terjadi kesalahan SQL, tampilkan pesan error
+                JOptionPane.showMessageDialog(null, SQLException.getMessage(),"Error SQL", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else {
+            // Jika username atau password kosong, beri peringatan ke user
+            JOptionPane.showMessageDialog(null, "Username/password tidak boleh kosong");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnMataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMataActionPerformed
@@ -879,7 +933,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel panelUser;
     private javax.swing.JPasswordField tPassword;
-    private javax.swing.JTextField tUsername;
+    private javax.swing.JTextField tUserName;
     private javax.swing.JPanel tpas;
     // End of variables declaration//GEN-END:variables
 

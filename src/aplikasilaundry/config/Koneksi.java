@@ -1,3 +1,5 @@
+package aplikasilaundry.config;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -7,7 +9,7 @@ public class Koneksi {
 
     private static Connection mysqlkonek;
     
-    public static Connection koneksiDB() {
+    public static Connection konek() {
         if (mysqlkonek == null) {
             try {
                 // Menuju ke database mojosari_laundry yang ada di XAMPP
@@ -32,7 +34,7 @@ public class Koneksi {
     }
     // KODE BARU UNTUK TES LANGSUNG:
     public static void main(String[] args) {
-        koneksiDB();
+        konek();
     }
 }
 
