@@ -19,6 +19,7 @@ public class popUpPensil extends javax.swing.JDialog {
     public popUpPensil(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(parent);
     }
 
     /**

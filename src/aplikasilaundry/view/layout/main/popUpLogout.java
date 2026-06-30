@@ -11,7 +11,7 @@ import aplikasilaundry.view.Login;
  * @author HP 14s Ryzen
  */
 public class popUpLogout extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpLogout.class.getName());
 
     /**
@@ -21,8 +21,8 @@ public class popUpLogout extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         // Supaya popup muncul di tengah-tengah aplikasi utama
-    setLocationRelativeTo(parent);
-        
+        setLocationRelativeTo(parent);
+
     }
 
     /**
@@ -43,6 +43,7 @@ public class popUpLogout extends javax.swing.JDialog {
         btnBatal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(612, 468));
@@ -128,13 +129,14 @@ public class popUpLogout extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -144,17 +146,17 @@ public class popUpLogout extends javax.swing.JDialog {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        this.dispose(); 
-    
-    // 2. Tutup frame utama (mainFrame) yang memanggil popup ini
-    if (this.getParent() != null) {
-        this.getParent().setVisible(false);
-        // Jika parent-nya adalah JFrame, kita dispose agar hemat memori
-        ((java.awt.Frame) this.getParent()).dispose(); 
-    }
-    
-    // 3. Buka kembali halaman Login Anda
-    new Login().setVisible(true);
+        this.dispose();
+
+        // 2. Tutup frame utama (mainFrame) yang memanggil popup ini
+        if (this.getParent() != null) {
+            this.getParent().setVisible(false);
+            // Jika parent-nya adalah JFrame, kita dispose agar hemat memori
+            ((java.awt.Frame) this.getParent()).dispose();
+        }
+
+        // 3. Buka kembali halaman Login Anda
+        new Login().setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed

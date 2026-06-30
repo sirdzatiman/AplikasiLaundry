@@ -14,10 +14,8 @@ import aplikasilaundry.view.layout.main.Pengaturan.Pengaturan;
 import aplikasilaundry.view.layout.main.RiwayatLaundry;
 import aplikasilaundry.view.layout.main.TambahLaundry.TambahLaundry;
 import aplikasilaundry.view.layout.main.popUpLogout;
-import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.CardLayout;
-import java.awt.Color;
 import javax.swing.JToggleButton;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -38,38 +36,10 @@ public class mainFrame extends javax.swing.JFrame {
         initComponents();
         inisiasiPanel();
         
-        myDesign();
-
-//        JToggleButton[] tombol = {
-//            btnDasboard,
-//            btnTambahLaundry,
-//            btnDataLaundry,
-//            btnRiwayatLaundry,
-//            btnLaporanPemasukan,
-//            btnPengaturan
-//        };
-//
-//        for (JToggleButton btn : tombol) {
-//            //btn.setOpaque(true);
-//            //btn.setContentAreaFilled(true);
-//            btn.setBorderPainted(false);
-//            btn.setFocusPainted(false);
-//        }
-
-
-
+        btnDasboard.setSelected(true);
+        setMenuAktif(btnDasboard);
     }
 
-    void myDesign() {
-
-        JToggleButton toggleButton = new JToggleButton("Flat Button");
-
-// Menonaktifkan opacity agar perubahan warna latar belakang dirender dengan benar
-        toggleButton.setOpaque(true);
-
-// Mengubah background saat SELECTION / ditekan menjadi Putih
-        toggleButton.putClientProperty(FlatClientProperties.STYLE, "background: #FFFFFF;");
-    }
 
     void inisiasiPanel() {
         cardLayout = (CardLayout) panelContent.getLayout();
@@ -81,9 +51,7 @@ public class mainFrame extends javax.swing.JFrame {
         panelContent.add(new Diproses(), "diproses");
         panelContent.add(new Pengaturan(), "pengaturan");
         panelContent.add(new TambahLaundry(), "tambahLaundry");
-
         panelContent.add(new RiwayatLaundry(), "riwayat");
-
         cardLayout.show(panelContent, "dashboard");
 
         panelContent.revalidate();
@@ -106,34 +74,25 @@ public class mainFrame extends javax.swing.JFrame {
         } else if (namaHalaman.equals("pengaturan")) {
             btnPengaturan.setSelected(true);
         } else if (namaHalaman.equals("laundryMasuk") || namaHalaman.equals("diproses")
-                || namaHalaman.equals("selesaiBelumDiambil") || namaHalaman.equals("semua")) {
-            // Jika yang dibuka adalah sub-halaman data laundry, maka tombol Data Laundry yang menyala
-            btnDataLaundry.setSelected(true);
-        }
-    }
-
-    private void setMenuAktif(JToggleButton tombolAktif) {
-
-        JToggleButton[] tombol = {
-            btnDasboard,
-            btnTambahLaundry,
-            btnDataLaundry,
-            btnRiwayatLaundry,
-            btnLaporanPemasukan,
-            btnPengaturan
-        };
-
-        // Kembalikan semua tombol ke warna normal
-        for (JToggleButton btn : tombol) {
-            btn.setSelected(false); // hilangkan status selected
-            btn.setBackground(new Color(37, 99, 235));
-            btn.setForeground(new Color(255,255,255));
+                    || namaHalaman.equals("selesaiBelumDiambil") || namaHalaman.equals("semua")) {
+                // Jika yang dibuka adalah sub-halaman data laundry, maka tombol Data Laundry yang menyala
+                btnDataLaundry.setSelected(true);
+            }
         }
 
-        // Aktifkan tombol yang dipilih
-        tombolAktif.setSelected(true);
-        tombolAktif.setBackground(new Color(255,255,255));
-        tombolAktif.setForeground(new Color(37, 99, 235));
+    private void setMenuAktif(JToggleButton tombol) { 
+
+        if (tombol.isSelected()) {
+            tombol.putClientProperty("FlatLaf.style",
+                    "background:#FFFFFF;"
+                    + "foreground:#2563EB;");
+        } else {
+            tombol.putClientProperty("FlatLaf.style",
+                    "background:#2563EB;"
+                    + "foreground:#FFFFFF;");
+        }
+        tombol.revalidate();
+        tombol.repaint();
     }
 
     /**
@@ -175,12 +134,14 @@ public class mainFrame extends javax.swing.JFrame {
         btnDasboard.setForeground(new java.awt.Color(255, 255, 255));
         btnDasboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Home.png"))); // NOI18N
         btnDasboard.setText("Dasboard");
-        btnDasboard.setBorderPainted(false);
+        btnDasboard.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
         btnDasboard.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Home.png"))); // NOI18N
         btnDasboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnDasboard.setIconTextGap(17);
         btnDasboard.setPreferredSize(new java.awt.Dimension(112, 40));
+        btnDasboard.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Home.png"))); // NOI18N
         btnDasboard.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Dasboard biru.png"))); // NOI18N
+        btnDasboard.addItemListener(this::btnDasboardItemStateChanged);
         btnDasboard.addActionListener(this::btnDasboardActionPerformed);
 
         btnTambahLaundry.setBackground(new java.awt.Color(37, 99, 235));
@@ -189,12 +150,14 @@ public class mainFrame extends javax.swing.JFrame {
         btnTambahLaundry.setForeground(new java.awt.Color(255, 255, 255));
         btnTambahLaundry.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Tambah.png"))); // NOI18N
         btnTambahLaundry.setText("Tambah Laundry");
-        btnTambahLaundry.setBorderPainted(false);
+        btnTambahLaundry.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
         btnTambahLaundry.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnTambahLaundry.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnTambahLaundry.setIconTextGap(17);
         btnTambahLaundry.setPreferredSize(new java.awt.Dimension(112, 40));
+        btnTambahLaundry.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Tambah.png"))); // NOI18N
         btnTambahLaundry.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Tambah Biru.png"))); // NOI18N
+        btnTambahLaundry.addItemListener(this::btnTambahLaundryItemStateChanged);
         btnTambahLaundry.addActionListener(this::btnTambahLaundryActionPerformed);
 
         btnDataLaundry.setBackground(new java.awt.Color(37, 99, 235));
@@ -203,11 +166,12 @@ public class mainFrame extends javax.swing.JFrame {
         btnDataLaundry.setForeground(new java.awt.Color(255, 255, 255));
         btnDataLaundry.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/data laundry.png"))); // NOI18N
         btnDataLaundry.setText("Data Laundry");
-        btnDataLaundry.setBorderPainted(false);
+        btnDataLaundry.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
         btnDataLaundry.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnDataLaundry.setIconTextGap(19);
         btnDataLaundry.setPreferredSize(new java.awt.Dimension(112, 40));
         btnDataLaundry.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Data Biru.png"))); // NOI18N
+        btnDataLaundry.addItemListener(this::btnDataLaundryItemStateChanged);
         btnDataLaundry.addActionListener(this::btnDataLaundryActionPerformed);
 
         btnRiwayatLaundry.setBackground(new java.awt.Color(37, 99, 235));
@@ -216,11 +180,12 @@ public class mainFrame extends javax.swing.JFrame {
         btnRiwayatLaundry.setForeground(new java.awt.Color(255, 255, 255));
         btnRiwayatLaundry.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/riwayat laundry.png"))); // NOI18N
         btnRiwayatLaundry.setText("Riwayat Laundry");
-        btnRiwayatLaundry.setBorderPainted(false);
+        btnRiwayatLaundry.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
         btnRiwayatLaundry.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnRiwayatLaundry.setIconTextGap(15);
         btnRiwayatLaundry.setPreferredSize(new java.awt.Dimension(112, 40));
         btnRiwayatLaundry.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Riwayat Biru.png"))); // NOI18N
+        btnRiwayatLaundry.addItemListener(this::btnRiwayatLaundryItemStateChanged);
         btnRiwayatLaundry.addActionListener(this::btnRiwayatLaundryActionPerformed);
 
         btnLaporanPemasukan.setBackground(new java.awt.Color(37, 99, 235));
@@ -229,11 +194,12 @@ public class mainFrame extends javax.swing.JFrame {
         btnLaporanPemasukan.setForeground(new java.awt.Color(255, 255, 255));
         btnLaporanPemasukan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/riwayat pemasukan.png"))); // NOI18N
         btnLaporanPemasukan.setText("Laporan Pemasukan");
-        btnLaporanPemasukan.setBorderPainted(false);
+        btnLaporanPemasukan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
         btnLaporanPemasukan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnLaporanPemasukan.setIconTextGap(15);
         btnLaporanPemasukan.setPreferredSize(new java.awt.Dimension(112, 40));
         btnLaporanPemasukan.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Laporan biru.png"))); // NOI18N
+        btnLaporanPemasukan.addItemListener(this::btnLaporanPemasukanItemStateChanged);
         btnLaporanPemasukan.addActionListener(this::btnLaporanPemasukanActionPerformed);
 
         btnPengaturan.setBackground(new java.awt.Color(37, 99, 235));
@@ -242,11 +208,12 @@ public class mainFrame extends javax.swing.JFrame {
         btnPengaturan.setForeground(new java.awt.Color(255, 255, 255));
         btnPengaturan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/pengaturan.png"))); // NOI18N
         btnPengaturan.setText("Pengaturan");
-        btnPengaturan.setBorderPainted(false);
+        btnPengaturan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
         btnPengaturan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnPengaturan.setIconTextGap(10);
         btnPengaturan.setPreferredSize(new java.awt.Dimension(112, 40));
         btnPengaturan.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Pengaturan Biru.png"))); // NOI18N
+        btnPengaturan.addItemListener(this::btnPengaturanItemStateChanged);
         btnPengaturan.addActionListener(this::btnPengaturanActionPerformed);
 
         btnLogout.setBackground(new java.awt.Color(37, 99, 235));
@@ -254,6 +221,7 @@ public class mainFrame extends javax.swing.JFrame {
         btnLogout.setForeground(new java.awt.Color(255, 255, 255));
         btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/logout.png"))); // NOI18N
         btnLogout.setText("Logout");
+        btnLogout.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
         btnLogout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnLogout.setIconTextGap(17);
         btnLogout.setPreferredSize(new java.awt.Dimension(112, 40));
@@ -264,20 +232,16 @@ public class mainFrame extends javax.swing.JFrame {
         panelSidebarLayout.setHorizontalGroup(
             panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSidebarLayout.createSequentialGroup()
+            .addGroup(panelSidebarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-                    .addGroup(panelSidebarLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnPengaturan, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                            .addComponent(btnLaporanPemasukan, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                            .addComponent(btnRiwayatLaundry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnDataLaundry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnTambahLaundry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnDasboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(8, 8, 8)))
+                .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDasboard, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                    .addComponent(btnTambahLaundry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDataLaundry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRiwayatLaundry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLaporanPemasukan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPengaturan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelSidebarLayout.setVerticalGroup(
@@ -315,37 +279,33 @@ public class mainFrame extends javax.swing.JFrame {
     private void btnDasboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDasboardActionPerformed
         // TODO add your handling code here:
         cardLayout.show(panelContent, "dashboard");
-        setMenuAktif(btnDasboard);
+        
     }//GEN-LAST:event_btnDasboardActionPerformed
 
     private void btnTambahLaundryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahLaundryActionPerformed
         // TODO add your handling code here:
         cardLayout.show(panelContent, "tambahLaundry");
-        setMenuAktif(btnTambahLaundry);
+        
     }//GEN-LAST:event_btnTambahLaundryActionPerformed
 
     private void btnDataLaundryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataLaundryActionPerformed
         // TODO add your handling code here:
         cardLayout.show(panelContent, "semua");
-        setMenuAktif(btnDataLaundry);
     }//GEN-LAST:event_btnDataLaundryActionPerformed
 
     private void btnRiwayatLaundryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRiwayatLaundryActionPerformed
         // TODO add your handling code here:
         cardLayout.show(panelContent, "riwayat");
-        setMenuAktif(btnRiwayatLaundry);
     }//GEN-LAST:event_btnRiwayatLaundryActionPerformed
 
     private void btnLaporanPemasukanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaporanPemasukanActionPerformed
         // TODO add your handling code here:
         cardLayout.show(panelContent, "laporanPemasukan");
-        setMenuAktif(btnLaporanPemasukan);
     }//GEN-LAST:event_btnLaporanPemasukanActionPerformed
 
     private void btnPengaturanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPengaturanActionPerformed
         // TODO add your handling code here:
         cardLayout.show(panelContent, "pengaturan");
-        setMenuAktif(btnPengaturan);
     }//GEN-LAST:event_btnPengaturanActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -356,6 +316,44 @@ public class mainFrame extends javax.swing.JFrame {
         dialog.setVisible(true);
 
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnDasboardItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_btnDasboardItemStateChanged
+        // TODO add your handling code here:
+        setMenuAktif(btnDasboard);
+    }//GEN-LAST:event_btnDasboardItemStateChanged
+
+    private void btnTambahLaundryItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_btnTambahLaundryItemStateChanged
+        // TODO add your handling code here:
+        setMenuAktif(btnTambahLaundry);
+    }//GEN-LAST:event_btnTambahLaundryItemStateChanged
+
+    private void btnDataLaundryItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_btnDataLaundryItemStateChanged
+        // TODO add your handling code here:
+                setMenuAktif(btnDataLaundry);
+
+        
+    }//GEN-LAST:event_btnDataLaundryItemStateChanged
+
+    private void btnRiwayatLaundryItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_btnRiwayatLaundryItemStateChanged
+        // TODO add your handling code here:
+                setMenuAktif(btnRiwayatLaundry);
+
+     
+    }//GEN-LAST:event_btnRiwayatLaundryItemStateChanged
+
+    private void btnLaporanPemasukanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_btnLaporanPemasukanItemStateChanged
+        // TODO add your handling code here:
+                setMenuAktif(btnLaporanPemasukan);
+
+        
+    }//GEN-LAST:event_btnLaporanPemasukanItemStateChanged
+
+    private void btnPengaturanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_btnPengaturanItemStateChanged
+        // TODO add your handling code here:
+                setMenuAktif(btnPengaturan);
+
+        
+    }//GEN-LAST:event_btnPengaturanItemStateChanged
 
     /**
      * @param args the command line arguments
