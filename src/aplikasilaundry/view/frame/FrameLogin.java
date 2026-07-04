@@ -1,8 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package aplikasilaundry.view.frame;
+
+import aplikasilaundry.controller.LoginController;
 
 import aplikasilaundry.config.Koneksi;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -25,24 +24,32 @@ import javax.swing.JPanel;
  */
 public class FrameLogin extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrameLogin.class.getName());
+   private LoginController controller;
 
-    /**
-     * Creates new form Login
-     */
-      public FrameLogin() {
-        initComponents();
-       
+public FrameLogin() {
+    initComponents();
+
+    controller = new LoginController(this);
+
         
         panelLengkung(panelUser);
         panelLengkung(jPanel56);
         panelLengkung(tpas);
         panelLengkung(jPanel57);
-    }
+    
+        
+}
       
-      
-      
-      
+      // Mengambil username dari TextField
+public String getUsername() {
+    return tUserName.getText().trim();
+}
+
+// Mengambil password dari PasswordField
+public String getPassword() {
+    return String.valueOf(tPassword.getPassword());
+}
+     
     void panelLengkung(JPanel p) {
         p.setBorder(new FlatLineBorder(
                 new Insets(0, 0, 0, 0),
@@ -119,7 +126,7 @@ public class FrameLogin extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         btnMata = new javax.swing.JToggleButton();
         jPanel58 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -757,12 +764,12 @@ public class FrameLogin extends javax.swing.JFrame {
 
         jPanel54.add(jPanel58);
 
-        jButton1.setBackground(new java.awt.Color(37, 99, 235));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Login");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
-        jPanel54.add(jButton1);
+        btnLogin.setBackground(new java.awt.Color(37, 99, 235));
+        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(this::btnLoginActionPerformed);
+        jPanel54.add(btnLogin);
 
         jPanel53.add(jPanel54, java.awt.BorderLayout.PAGE_START);
 
@@ -775,60 +782,61 @@ public class FrameLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String username = tUserName.getText();
-
-        // Ambil teks yang dimasukkan user pada field password
-        String password = tPassword.getText();
-
-        // Periksa apakah username dan password tidak kosong
-        if (username.length() != 0 && password.length() != 0) {
-            try {
-                // Query SQL untuk mencari user dengan username dan password (dihash dengan MD5)
-                String sql = "SELECT * FROM pengguna WHERE username=? AND password=md5(?)";
-
-//                // Buat koneksi ke database
-                Connection con = Koneksi.konek();
-
-                // Siapkan statement SQL dengan parameter
-                PreparedStatement ps = con.prepareStatement(sql);
-
-                // Isi parameter pertama (?) dengan username
-                ps.setString(1, username);
-
-                // Isi parameter kedua (?) dengan password yang akan di-hash MD5 di sisi database
-                ps.setString(2, password);
-
-                // Jalankan query dan ambil hasilnya
-                ResultSet rs = ps.executeQuery();
-
-                // Jika hasil query memiliki baris (berarti login berhasil)
-                if (rs.next()) {
-                    //AMBIL DATA ROLE DARI DATABASE
-                    String role = rs.getString("role");
-                    // Tutup form login
-                    dispose();
-
-                    //Buka form Dashboard dan kirim data role-nya
-                    FrameDashoard dashboard = new FrameDashoard();
-                    dashboard.setVisible(true);
-                  
-                } else {
-                    // Jika data tidak ditemukan, tampilkan pesan error
-                    JOptionPane.showMessageDialog(null, "Username/password salah");
-                }
-
-            } catch (SQLException SQLException) {
-                // Jika terjadi kesalahan SQL, tampilkan pesan error
-                JOptionPane.showMessageDialog(null, SQLException.getMessage(),"Error SQL", JOptionPane.ERROR_MESSAGE);
-            }
-
-        } else {
-            // Jika username atau password kosong, beri peringatan ke user
-            JOptionPane.showMessageDialog(null, "Username/password tidak boleh kosong");
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+//        // TODO add your handling code here:
+//        String username = tUserName.getText();
+//
+//        // Ambil teks yang dimasukkan user pada field password
+//        String password = tPassword.getText();
+//
+//        // Periksa apakah username dan password tidak kosong
+//        if (username.length() != 0 && password.length() != 0) {
+//            try {
+//                // Query SQL untuk mencari user dengan username dan password (dihash dengan MD5)
+//                String sql = "SELECT * FROM pengguna WHERE username=? AND password=md5(?)";
+//
+////                // Buat koneksi ke database
+//                Connection con = Koneksi.konek();
+//
+//                // Siapkan statement SQL dengan parameter
+//                PreparedStatement ps = con.prepareStatement(sql);
+//
+//                // Isi parameter pertama (?) dengan username
+//                ps.setString(1, username);
+//
+//                // Isi parameter kedua (?) dengan password yang akan di-hash MD5 di sisi database
+//                ps.setString(2, password);
+//
+//                // Jalankan query dan ambil hasilnya
+//                ResultSet rs = ps.executeQuery();
+//
+//                // Jika hasil query memiliki baris (berarti login berhasil)
+//                if (rs.next()) {
+//                    //AMBIL DATA ROLE DARI DATABASE
+//                    String role = rs.getString("role");
+//                    // Tutup form login
+//                    dispose();
+//
+//                    //Buka form Dashboard dan kirim data role-nya
+//                    FrameDashboard dashboard = new FrameDashboard();
+//                    dashboard.setVisible(true);
+//                  
+//                } else {
+//                    // Jika data tidak ditemukan, tampilkan pesan error
+//                    JOptionPane.showMessageDialog(null, "Username/password salah");
+//                }
+//
+//            } catch (SQLException SQLException) {
+//                // Jika terjadi kesalahan SQL, tampilkan pesan error
+//                JOptionPane.showMessageDialog(null, SQLException.getMessage(),"Error SQL", JOptionPane.ERROR_MESSAGE);
+//            }
+//
+//        } else {
+//            // Jika username atau password kosong, beri peringatan ke user
+//            JOptionPane.showMessageDialog(null, "Username/password tidak boleh kosong");
+//        }
+  controller.login();
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnMataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMataActionPerformed
         // TODO add your handling code here:
@@ -874,8 +882,8 @@ public class FrameLogin extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogin;
     private javax.swing.JToggleButton btnMata;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package aplikasilaundry.view.frame;
+import aplikasilaundry.config.Session;
 
 import aplikasilaundry.view.panel.Dasboard;
 import aplikasilaundry.view.panel.Diproses;
@@ -24,20 +25,22 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author Sirdzat
  */
-public class FrameDashoard extends javax.swing.JFrame {
+public class FrameDashboard extends javax.swing.JFrame {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrameDashoard.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrameDashboard.class.getName());
     private CardLayout cardLayout;
 
     /**
      * Creates new form mainFrame
      */
-    public FrameDashoard() {
+    public FrameDashboard() {
         initComponents();
         inisiasiPanel();
         
         btnDasboard.setSelected(true);
         setMenuAktif(btnDasboard);
+        System.out.println(Session.getNamaPengguna());
+        System.out.println(Session.getRole());
     }
 
 
@@ -373,7 +376,7 @@ public class FrameDashoard extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrameDashoard().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new FrameDashboard().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

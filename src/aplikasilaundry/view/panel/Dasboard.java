@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package aplikasilaundry.view.panel;
 
-
+import aplikasilaundry.config.Session;
 /**
  *
  * @author Sirdzat
@@ -17,7 +14,8 @@ public class Dasboard extends javax.swing.JPanel {
     public Dasboard() {
         initComponents();
         myDesign();
-        
+        System.out.println("Nama Session = " + Session.getNamaPengguna());
+        lblSelamatDatang.setText("Selamat Datang, " + Session.getNamaPengguna());
         
     }
     
@@ -43,7 +41,7 @@ public class Dasboard extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
+        lblSelamatDatang = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         pnlLaundryMasuk = new javax.swing.JPanel();
@@ -114,8 +112,8 @@ public class Dasboard extends javax.swing.JPanel {
 
         jPanel4.setPreferredSize(new java.awt.Dimension(1006, 50));
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel20.setText("Selamat Datang !");
+        lblSelamatDatang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblSelamatDatang.setText("Selamat Datang !");
 
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Semangat bekerja hari ini!");
@@ -128,14 +126,14 @@ public class Dasboard extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel20))
+                    .addComponent(lblSelamatDatang))
                 .addContainerGap(850, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel20)
+                .addComponent(lblSelamatDatang)
                 .addGap(0, 0, 0)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -693,9 +691,9 @@ public class Dasboard extends javax.swing.JPanel {
     Object window = javax.swing.SwingUtilities.getWindowAncestor(this);
     
     // Validasi apakah window yang ditemukan benar merupakan instance dari mainFrame
-    if (window instanceof aplikasilaundry.view.frame.FrameDashoard) {
+    if (window instanceof aplikasilaundry.view.frame.FrameDashboard) {
         // Navigasi ke halaman 'Laundry Masuk' menggunakan CardLayout di mainFrame
-        ((aplikasilaundry.view.frame.FrameDashoard) window).panggilHalaman("laundryMasuk");
+        ((aplikasilaundry.view.frame.FrameDashboard) window).panggilHalaman("laundryMasuk");
     }
 
     }//GEN-LAST:event_pnlLaundryMasukMouseClicked
@@ -704,8 +702,8 @@ public class Dasboard extends javax.swing.JPanel {
         // TODO add your handling code here:
        // Mengambil ancestor window dan langsung cast ke mainFrame secara presisi
     Object window = javax.swing.SwingUtilities.getWindowAncestor(this);
-    if (window instanceof aplikasilaundry.view.frame.FrameDashoard) {
-        ((aplikasilaundry.view.frame.FrameDashoard) window).panggilHalaman("riwayat");
+    if (window instanceof aplikasilaundry.view.frame.FrameDashboard) {
+        ((aplikasilaundry.view.frame.FrameDashboard) window).panggilHalaman("riwayat");
     }
 
         
@@ -717,9 +715,9 @@ public class Dasboard extends javax.swing.JPanel {
     Object window = javax.swing.SwingUtilities.getWindowAncestor(this);
     
     // Validasi apakah window yang ditemukan benar merupakan instance dari mainFrame
-    if (window instanceof aplikasilaundry.view.frame.FrameDashoard) {
+    if (window instanceof aplikasilaundry.view.frame.FrameDashboard) {
         // Navigasi ke halaman 'Semua Data / Sudah Diambil' menggunakan CardLayout di mainFrame
-        ((aplikasilaundry.view.frame.FrameDashoard) window).panggilHalaman("semua");
+        ((aplikasilaundry.view.frame.FrameDashboard) window).panggilHalaman("semua");
     }
    
     }//GEN-LAST:event_btnLihatSemuaActionPerformed
@@ -730,9 +728,9 @@ public class Dasboard extends javax.swing.JPanel {
     Object window = javax.swing.SwingUtilities.getWindowAncestor(this);
     
     // Validasi apakah window yang ditemukan benar merupakan instance dari mainFrame
-    if (window instanceof aplikasilaundry.view.frame.FrameDashoard) {
+    if (window instanceof aplikasilaundry.view.frame.FrameDashboard) {
         // Navigasi ke halaman 'Diproses' menggunakan CardLayout di mainFrame
-        ((aplikasilaundry.view.frame.FrameDashoard) window).panggilHalaman("diproses");
+        ((aplikasilaundry.view.frame.FrameDashboard) window).panggilHalaman("diproses");
     }
     }//GEN-LAST:event_pnlDiprosesMouseClicked
 
@@ -742,9 +740,9 @@ public class Dasboard extends javax.swing.JPanel {
     Object window = javax.swing.SwingUtilities.getWindowAncestor(this);
     
     // Validasi apakah window yang ditemukan benar merupakan instance dari mainFrame
-    if (window instanceof aplikasilaundry.view.frame.FrameDashoard) {
+    if (window instanceof aplikasilaundry.view.frame.FrameDashboard) {
         // Navigasi ke halaman 'Selesai Belum Diambil' menggunakan CardLayout di mainFrame
-        ((aplikasilaundry.view.frame.FrameDashoard) window).panggilHalaman("selesaiBelumDiambil");
+        ((aplikasilaundry.view.frame.FrameDashboard) window).panggilHalaman("selesaiBelumDiambil");
     }
     }//GEN-LAST:event_pnlSelesaiMouseClicked
 
@@ -767,7 +765,6 @@ public class Dasboard extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -813,6 +810,7 @@ public class Dasboard extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
+    private javax.swing.JLabel lblSelamatDatang;
     private javax.swing.JPanel pnlDiproses;
     private javax.swing.JPanel pnlLaundryMasuk;
     private javax.swing.JPanel pnlSelesai;
