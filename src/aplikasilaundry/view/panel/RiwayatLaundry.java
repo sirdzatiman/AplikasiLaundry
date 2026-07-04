@@ -264,7 +264,7 @@ public class RiwayatLaundry extends javax.swing.JPanel {
         jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"INV-260508-001", "Siti Aisyah", "08/05/26 10:30", "11/05/26 9:15", "Cuci Kering,  Bed Cover", "Rp 18.000", "Sudah Diambil"}
+
             },
             new String [] {
                 "No Nota", "Nama Pelanggan", "Jam Masuk", "Jam Ambil", "Jenis", "Total", "Status"

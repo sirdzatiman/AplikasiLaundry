@@ -29,6 +29,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel37 = new javax.swing.JPanel();
@@ -37,12 +38,12 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         jComboBox3 = new javax.swing.JComboBox<>();
         jPanel28 = new javax.swing.JPanel();
         jLabel56 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
         jPanel29 = new javax.swing.JPanel();
         jLabel57 = new javax.swing.JLabel();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        jToggleButton3 = new javax.swing.JToggleButton();
+        jToggleButton4 = new javax.swing.JToggleButton();
         jPanel30 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
         jLabel58 = new javax.swing.JLabel();
@@ -61,6 +62,8 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         jLabel66 = new javax.swing.JLabel();
         jLabel67 = new javax.swing.JLabel();
         jLabel68 = new javax.swing.JLabel();
+        btnSimpan = new javax.swing.JButton();
+        btnBatal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -106,13 +109,9 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         jLabel56.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel56.setText("Satuan");
 
-        jButton7.setText("Biji (per item)");
-        jButton7.setPreferredSize(new java.awt.Dimension(142, 25));
+        jToggleButton1.setText("Kg (per kilogram)");
 
-        jButton8.setBackground(new java.awt.Color(29, 78, 216));
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("Kg (per kilogram)");
-        jButton8.setPreferredSize(new java.awt.Dimension(142, 25));
+        jToggleButton2.setText("Biji (per item)");
 
         javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
         jPanel28.setLayout(jPanel28Layout);
@@ -122,9 +121,10 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
                 .addComponent(jLabel56)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel28Layout.createSequentialGroup()
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jToggleButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jToggleButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel28Layout.setVerticalGroup(
@@ -132,11 +132,11 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel56)
-                .addGap(7, 7, 7)
+                .addGap(8, 8, 8)
                 .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
+                    .addComponent(jToggleButton1)
+                    .addComponent(jToggleButton2))
+                .addGap(20, 20, 20))
         );
 
         jPanel29.setBackground(new java.awt.Color(255, 255, 255));
@@ -144,13 +144,9 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         jLabel57.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel57.setText("Pakai Proses?");
 
-        jButton9.setText("Tidak, tanpa proses");
-        jButton9.setPreferredSize(new java.awt.Dimension(142, 25));
+        jToggleButton3.setText("Ya, pakai proses");
 
-        jButton10.setBackground(new java.awt.Color(29, 78, 216));
-        jButton10.setForeground(new java.awt.Color(255, 255, 255));
-        jButton10.setText("Ya, pakai proses");
-        jButton10.setPreferredSize(new java.awt.Dimension(142, 25));
+        jToggleButton4.setText("Tidak, tanpa proses");
 
         javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
         jPanel29.setLayout(jPanel29Layout);
@@ -160,21 +156,21 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
                 .addComponent(jLabel57)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel29Layout.createSequentialGroup()
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jToggleButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jToggleButton4)
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel29Layout.setVerticalGroup(
             jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel29Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel57)
-                .addGap(7, 7, 7)
+                .addGap(8, 8, 8)
                 .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
+                    .addComponent(jToggleButton3)
+                    .addComponent(jToggleButton4))
+                .addGap(20, 20, 20))
         );
 
         jPanel30.setBackground(new java.awt.Color(255, 255, 255));
@@ -192,8 +188,8 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
             jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel30Layout.createSequentialGroup()
                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel58))
+                    .addComponent(jLabel58)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 12, Short.MAX_VALUE))
         );
         jPanel30Layout.setVerticalGroup(
@@ -330,6 +326,20 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         jLabel68.setForeground(new java.awt.Color(153, 153, 153));
         jLabel68.setText("Tambahkan jenis layanan dan prosesnya.");
 
+        btnSimpan.setBackground(new java.awt.Color(0, 86, 210));
+        btnSimpan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
+        btnSimpan.setText("Simpan");
+        btnSimpan.setPreferredSize(new java.awt.Dimension(125, 44));
+        btnSimpan.addActionListener(this::btnSimpanActionPerformed);
+
+        btnBatal.setBackground(new java.awt.Color(239, 239, 239));
+        btnBatal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBatal.setForeground(new java.awt.Color(102, 102, 102));
+        btnBatal.setText("Batal");
+        btnBatal.setPreferredSize(new java.awt.Dimension(125, 44));
+        btnBatal.addActionListener(this::btnBatalActionPerformed);
+
         javax.swing.GroupLayout jPanel37Layout = new javax.swing.GroupLayout(jPanel37);
         jPanel37.setLayout(jPanel37Layout);
         jPanel37Layout.setHorizontalGroup(
@@ -341,14 +351,19 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
                     .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel31, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel63)
                     .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel67)
                     .addComponent(jLabel68)
                     .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel32, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel32, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel37Layout.createSequentialGroup()
+                            .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel31, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel37Layout.setVerticalGroup(
@@ -374,7 +389,11 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
                 .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel31, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel37);
@@ -387,7 +406,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -398,11 +417,45 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        // TODO add your handling code here:
+        // 1. Ambil data dari inputan form pop-up
+        String nama = tNama.getText();
+        String username = tUsername.getText();
+        String password = new String(tPassword.getPassword());
+        String peran = cPeran.getSelectedItem().toString();
+
+        try {
+            // Jalankan validasi agar inputan tidak kosong
+            if (nama.isEmpty() || username.isEmpty() || password.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Semua kolom harus diisi!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            // === GANTI BLOK INI ===
+            // Panggil fungsi tambahDataKeTabel yang ada di objek pengaturan Anda
+            pengaturan.tambahDataKeTabel(nama, username, peran);
+            // ======================
+
+            // Tutup pop-up setelah sukses
+            JOptionPane.showMessageDialog(this, "Data pengguna berhasil ditambahkan!");
+            this.dispose();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal menyimpan data: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnSimpanActionPerformed
+
+    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnBatalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -442,10 +495,9 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton btnBatal;
+    private javax.swing.JButton btnSimpan;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
@@ -474,5 +526,9 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JToggleButton jToggleButton4;
     // End of variables declaration//GEN-END:variables
 }

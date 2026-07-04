@@ -58,8 +58,7 @@ public class Diproses extends javax.swing.JPanel {
         jTable1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"INV-260509-006", "Rahma Dina", "12:15", "Baju / Dll", "Rp 4.000", "Diproses"},
-                {"INV-260509-005", "Putri Ayu", "11:00", "Baju / Dll", "Rp 12.000", "Diproses"}
+
             },
             new String [] {
                 "No Nota", "Nama Pelanggan", "Jam Masuk", "Jenis", "Total", "Status"
