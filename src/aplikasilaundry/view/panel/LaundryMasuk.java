@@ -96,11 +96,7 @@ public class LaundryMasuk extends javax.swing.JPanel {
         jTable1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"INV-260510-011", "Widhea", "12:15", "Boneka / Tas", "Rp 5.000", "Baru Masuk"},
-                {"INV-260510-010", "Najwa ", "12:06", "Selimut / Dll", "Rp 16.000", "Baru Masuk"},
-                {"INV-260510-009", "Zanuba Arifah", "10:03", "Bed Cover", "Rp 20.000", "Baru Masuk"},
-                {"INV-260510-008", "Nila Aulia", "08:37", "Boneka / Tas", "Rp 5.000", "Baru Masuk"},
-                {"INV-260510-007", "Betrin Dina", "08:35", "Baju / Dll", "Rp 5.000", "Baru Masuk"}
+
             },
             new String [] {
                 "No Nota", "Nama Pelanggan", "Jam Masuk", "Jenis", "Total", "Status"
