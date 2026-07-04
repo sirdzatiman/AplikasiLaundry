@@ -788,7 +788,7 @@ public class FrameLogin extends javax.swing.JFrame {
                 // Query SQL untuk mencari user dengan username dan password (dihash dengan MD5)
                 String sql = "SELECT * FROM pengguna WHERE username=? AND password=md5(?)";
 
-                // Buat koneksi ke database
+//                // Buat koneksi ke database
                 Connection con = Koneksi.konek();
 
                 // Siapkan statement SQL dengan parameter
