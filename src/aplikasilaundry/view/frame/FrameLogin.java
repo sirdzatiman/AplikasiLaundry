@@ -706,6 +706,7 @@ public String getPassword() {
         btnMata.setBackground(new java.awt.Color(217, 217, 217));
         btnMata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Mata Silang.png"))); // NOI18N
         btnMata.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
+        btnMata.setContentAreaFilled(false);
         btnMata.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Mata Terbuka.png"))); // NOI18N
         btnMata.addActionListener(this::btnMataActionPerformed);
 
