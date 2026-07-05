@@ -175,6 +175,7 @@ public class detailLaundry extends javax.swing.JDialog {
         jButton1.setBackground(new java.awt.Color(0, 86, 210));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Tutup");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jLabel27.setText("jLabel27");

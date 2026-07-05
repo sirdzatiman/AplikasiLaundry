@@ -146,6 +146,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel3.setLayout(new java.awt.GridLayout(1, 4, 20, 0));
 
         pnlLaundryMasuk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
+        pnlLaundryMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnlLaundryMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlLaundryMasukMouseClicked(evt);
@@ -256,6 +257,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel3.add(pnlLaundryMasuk);
 
         pnlDiproses.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
+        pnlDiproses.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnlDiproses.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlDiprosesMouseClicked(evt);
@@ -367,6 +369,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel3.add(pnlDiproses);
 
         pnlSelesai.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
+        pnlSelesai.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnlSelesai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlSelesaiMouseClicked(evt);
@@ -478,6 +481,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel3.add(pnlSelesai);
 
         pnlSudahDiambil.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
+        pnlSudahDiambil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnlSudahDiambil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pnlSudahDiambilMouseClicked(evt);
@@ -622,6 +626,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel39.setPreferredSize(new java.awt.Dimension(110, 40));
 
         btnLihatSemua.setText("Lihat Semua");
+        btnLihatSemua.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLihatSemua.setPreferredSize(new java.awt.Dimension(74, 20));
         btnLihatSemua.addActionListener(this::btnLihatSemuaActionPerformed);
 

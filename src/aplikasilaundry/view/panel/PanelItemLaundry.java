@@ -71,6 +71,7 @@ public class PanelItemLaundry extends javax.swing.JPanel {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/MaterialSymbolsArrowRightAlt.png"))); // NOI18N
         jButton2.setText("Lanjut ke Konfirmasi");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -98,6 +99,7 @@ public class PanelItemLaundry extends javax.swing.JPanel {
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Kiri.png"))); // NOI18N
         jButton4.setText("Kembali");
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -209,6 +211,7 @@ public class PanelItemLaundry extends javax.swing.JPanel {
         jPanel8.add(jPanel9);
 
         jPanel10.setBackground(new java.awt.Color(240, 243, 247));
+        jPanel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel10.setMaximumSize(new java.awt.Dimension(307, 74));
         jPanel10.setMinimumSize(new java.awt.Dimension(307, 74));
         jPanel10.addMouseListener(new java.awt.event.MouseAdapter() {
