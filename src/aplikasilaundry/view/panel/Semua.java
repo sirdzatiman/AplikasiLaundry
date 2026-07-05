@@ -1,21 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-package aplikasilaundry.view.panel;
 
-/**
- *
- * @author Sirdzat
- */
+package aplikasilaundry.view.panel;
+import aplikasilaundry.controller.PelangganController;
+
 public class Semua extends javax.swing.JPanel {
 
-    /**
-     * Creates new form DataLaundry
-     */
+    private PelangganController controller;
+    
     public Semua() {
         initComponents();
+      
     }
+    public javax.swing.JTable getTblSemua() {
+    return tblSemua;
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,7 +30,7 @@ public class Semua extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblSemua = new javax.swing.JTable();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -92,14 +89,10 @@ public class Semua extends javax.swing.JPanel {
 
         jPanel17.setLayout(new java.awt.CardLayout());
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblSemua.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tblSemua.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"INV-260509-006", "Rahma Dina", "12:15", "Baju / Dll", "Rp 4.000", "Diproses"},
-                {"INV-260509-005", "Putri Ayu", "11:00", "Baju / Dll", "Rp 4.000", "Diproses"},
-                {"INV-260508-004", "Ahmad Fauzi", "16:45", "Bed Cover", "Rp 10.000", "Selesai (Belum Diambil)"},
-                {"INV-260508-003", "Rina Wati", "12:20", "Boneka / Tas", "Rp 5.000", "Selesai (Belum Diambil)"},
-                {"INV-260508-002", "Nurul Hikmah", "11:10", "Selimut / Dll", "Rp 10.000", "Selesai (Belum Diambil)"}
+
             },
             new String [] {
                 "No Nota", "Nama Pelanggan", "Jam Masuk", "Jenis", "Total", "Status"
@@ -113,9 +106,9 @@ public class Semua extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        tblSemua.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblSemua.setShowGrid(true);
+        jScrollPane1.setViewportView(tblSemua);
 
         jPanel17.add(jScrollPane1, "card2");
 
@@ -133,6 +126,6 @@ public class Semua extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblSemua;
     // End of variables declaration//GEN-END:variables
 }
