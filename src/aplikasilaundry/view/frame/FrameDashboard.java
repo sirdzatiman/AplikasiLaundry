@@ -17,6 +17,8 @@ import aplikasilaundry.view.panel.TambahLaundry;
 import aplikasilaundry.view.panel.popUpLogout;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.ComponentOrientation;
 import javax.swing.JToggleButton;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -282,7 +284,9 @@ public class FrameDashboard extends javax.swing.JFrame {
     private void btnDasboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDasboardActionPerformed
         // TODO add your handling code here:
         cardLayout.show(panelContent, "dashboard");
-        
+//        btnDasboard.setBackground(new java.awt.Color(Color.RED));
+        btnDasboard.setBackground(Color.WHITE);
+        btnDasboard.setForeground(Color.BLUE);
     }//GEN-LAST:event_btnDasboardActionPerformed
 
     private void btnTambahLaundryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahLaundryActionPerformed
