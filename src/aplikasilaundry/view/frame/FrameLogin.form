@@ -166,7 +166,7 @@
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/aplikasilaundry/asset/img/WhatsApp_Image_2026-05-07_at_10.44.16-removebg-preview 1.png"/>
+                          <Image iconType="3" name="/aplikasilaundry/asset/img/logo_laundry.png"/>
                         </Property>
                         <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
                       </Properties>
