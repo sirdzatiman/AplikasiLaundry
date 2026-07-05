@@ -122,18 +122,22 @@ public class DataLaundry extends javax.swing.JPanel {
 
         buttonGroup1.add(btnSemua);
         btnSemua.setText("Semua");
+        btnSemua.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSemua.addActionListener(this::btnSemuaActionPerformed);
 
         buttonGroup1.add(btnMasuk);
         btnMasuk.setText("Laundry Masuk");
+        btnMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMasuk.addActionListener(this::btnMasukActionPerformed);
 
         buttonGroup1.add(btnProses);
         btnProses.setText("Di Proses");
+        btnProses.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProses.addActionListener(this::btnProsesActionPerformed);
 
         buttonGroup1.add(btnSelesai);
         btnSelesai.setText("Selesai (Belum Diambil)");
+        btnSelesai.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSelesai.addActionListener(this::btnSelesaiActionPerformed);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -179,8 +183,10 @@ public class DataLaundry extends javax.swing.JPanel {
         jPanel13.setPreferredSize(new java.awt.Dimension(150, 50));
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (4).png"))); // NOI18N
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (5).png"))); // NOI18N
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.addActionListener(this::jButton6ActionPerformed);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
