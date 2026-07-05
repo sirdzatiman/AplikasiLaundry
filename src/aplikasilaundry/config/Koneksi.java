@@ -12,7 +12,7 @@ import java.sql.SQLException;
  *
  * @author HP 14s Ryzen
  */
-public class Connect {
+public class Koneksi {
 
     private static Connection mysqlconfig;
 
