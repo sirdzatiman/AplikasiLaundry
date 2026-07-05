@@ -1,21 +1,60 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package aplikasilaundry.view.panel;
 
-/**
- *
- * @author Sirdzat
- */
+//Mengimpor controller transaksi
+import aplikasilaundry.controller.TransaksiController;
+
+//Mengimpor model transaksi
+import aplikasilaundry.model.Transaksi;
+
+//Mengimpor DefaultTableModel
+import javax.swing.table.DefaultTableModel;
+
+//Mengimpor collection
+import java.util.List;
 public class SelesaiBelumDiambil extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Selesai
-     */
+    private TransaksiController controller;
     public SelesaiBelumDiambil() {
         initComponents();
+        
+         //Membuat objek controller
+    controller = new TransaksiController();
+
+    //Menampilkan data
+    tampilData();
     }
+    
+    //Method untuk menampilkan data laundry selesai ke tabel
+private void tampilData() {
+
+    //Mengambil model tabel
+    DefaultTableModel model =
+            (DefaultTableModel) tblSelesai.getModel();
+
+    //Menghapus seluruh isi tabel
+    model.setRowCount(0);
+
+    //Mengambil data laundry selesai
+    List<Transaksi> list = controller.getSelesai();
+
+    //Menampilkan data satu per satu
+    for (Transaksi t : list) {
+
+        model.addRow(new Object[]{
+
+            t.getNoNota(),
+            t.getNamaPelanggan(),
+            t.getJamMasuk(),
+            t.getJenis(),
+            t.getTotalHarga(),
+            t.getStatus()
+
+        });
+
+    }
+
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,7 +72,7 @@ public class SelesaiBelumDiambil extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblSelesai = new javax.swing.JTable();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -92,8 +131,8 @@ public class SelesaiBelumDiambil extends javax.swing.JPanel {
 
         jPanel17.setLayout(new java.awt.CardLayout());
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblSelesai.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tblSelesai.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -109,9 +148,9 @@ public class SelesaiBelumDiambil extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        tblSelesai.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblSelesai.setShowGrid(true);
+        jScrollPane1.setViewportView(tblSelesai);
 
         jPanel17.add(jScrollPane1, "card2");
 
@@ -129,6 +168,6 @@ public class SelesaiBelumDiambil extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblSelesai;
     // End of variables declaration//GEN-END:variables
 }

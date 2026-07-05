@@ -1,19 +1,64 @@
 
 package aplikasilaundry.view.panel;
-import aplikasilaundry.controller.PelangganController;
+//Mengimpor controller transaksi
+import aplikasilaundry.controller.TransaksiController;
 
+//Mengimpor model transaksi
+import aplikasilaundry.model.Transaksi;
+
+//Mengimpor DefaultTableModel
+import javax.swing.table.DefaultTableModel;
+
+//Mengimpor collection
+import java.util.List;
+
+//Panel untuk menampilkan seluruh data laundry
 public class Semua extends javax.swing.JPanel {
 
-    private PelangganController controller;
+    //Menyimpan controller transaksi
+    private TransaksiController controller;
     
-    public Semua() {
-        initComponents();
-      
-    }
-    public javax.swing.JTable getTblSemua() {
-    return tblSemua;
+   public Semua() {
+    initComponents();
+
+    //Membuat objek controller
+    controller = new TransaksiController();
+
+    //Menampilkan data ke tabel
+    tampilData();
 }
 
+   //Method untuk menampilkan data transaksi ke tabel
+private void tampilData() {
+
+    //Mengambil model tabel
+    DefaultTableModel model = (DefaultTableModel) tblSemua.getModel();
+
+    //Menghapus seluruh isi tabel
+    model.setRowCount(0);
+
+    //Mengambil seluruh data transaksi
+    List<Transaksi> list = controller.getAll();
+
+    //Menampilkan data satu per satu
+    for (Transaksi t : list) {
+
+        model.addRow(new Object[]{
+            t.getNoNota(),
+            t.getNamaPelanggan(),
+            t.getJamMasuk(),
+            t.getJenis(),
+            t.getTotalHarga(),
+            t.getStatus()
+        });
+
+    }
+
+}
+//Method untuk mengambil JTable
+public javax.swing.JTable getTblSemua() {
+    return tblSemua;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
