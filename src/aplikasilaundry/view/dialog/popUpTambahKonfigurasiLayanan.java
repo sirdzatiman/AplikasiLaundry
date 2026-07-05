@@ -425,31 +425,31 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        // 1. Ambil data dari inputan form pop-up
-        String nama = tNama.getText();
-        String username = tUsername.getText();
-        String password = new String(tPassword.getPassword());
-        String peran = cPeran.getSelectedItem().toString();
-
-        try {
-            // Jalankan validasi agar inputan tidak kosong
-            if (nama.isEmpty() || username.isEmpty() || password.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Semua kolom harus diisi!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-
-            // === GANTI BLOK INI ===
-            // Panggil fungsi tambahDataKeTabel yang ada di objek pengaturan Anda
-            pengaturan.tambahDataKeTabel(nama, username, peran);
-            // ======================
-
-            // Tutup pop-up setelah sukses
-            JOptionPane.showMessageDialog(this, "Data pengguna berhasil ditambahkan!");
-            this.dispose();
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Gagal menyimpan data: " + e.getMessage());
-        }
+//        // 1. Ambil data dari inputan form pop-up
+//        String nama = tNama.getText();
+//        String username = tUsername.getText();
+//        String password = new String(tPassword.getPassword());
+//        String peran = cPeran.getSelectedItem().toString();
+//
+//        try {
+//            // Jalankan validasi agar inputan tidak kosong
+//            if (nama.isEmpty() || username.isEmpty() || password.isEmpty()) {
+//                JOptionPane.showMessageDialog(this, "Semua kolom harus diisi!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+//                return;
+//            }
+//
+//            // === GANTI BLOK INI ===
+//            // Panggil fungsi tambahDataKeTabel yang ada di objek pengaturan Anda
+//            pengaturan.tambahDataKeTabel(nama, username, peran);
+//            // ======================
+//
+//            // Tutup pop-up setelah sukses
+//            JOptionPane.showMessageDialog(this, "Data pengguna berhasil ditambahkan!");
+//            this.dispose();
+//
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Gagal menyimpan data: " + e.getMessage());
+//        }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
