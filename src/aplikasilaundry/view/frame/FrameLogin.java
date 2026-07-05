@@ -3,7 +3,7 @@ package aplikasilaundry.view.frame;
 
 import aplikasilaundry.controller.LoginController;
 
-import aplikasilaundry.config.Koneksi;
+import aplikasilaundry.config.Connect;
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
