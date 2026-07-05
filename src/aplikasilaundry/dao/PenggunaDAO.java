@@ -1,7 +1,7 @@
 
 package aplikasilaundry.dao;
 //Mengimpor class koneksi database
-import aplikasilaundry.config.Koneksi;
+import aplikasilaundry.config.Connect;
 
 //Mengimpor model Pengguna
 import aplikasilaundry.model.Pengguna;
@@ -21,7 +21,7 @@ public class PenggunaDAO {
     public PenggunaDAO() {
 
         //Mengambil koneksi dari class Koneksi
-        conn = Koneksi.getKoneksi();
+        conn = Connect.konek();
 
     }
 
