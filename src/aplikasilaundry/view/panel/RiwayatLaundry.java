@@ -1,18 +1,60 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-package aplikasilaundry.view.panel;
 
+package aplikasilaundry.view.panel;
+//Mengimpor controller transaksi
+import aplikasilaundry.controller.TransaksiController;
+
+//Mengimpor model transaksi
+import aplikasilaundry.model.Transaksi;
+
+//Mengimpor DefaultTableModel
+import javax.swing.table.DefaultTableModel;
+
+//Mengimpor collection
+import java.util.List;
 
 public class RiwayatLaundry extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Semua
-     */
+   //Menyimpan controller transaksi
+private TransaksiController controller;
     public RiwayatLaundry() {
         initComponents();
+        //Membuat objek controller
+    controller = new TransaksiController();
+
+    //Menampilkan data ke tabel
+    tampilData();
     }
+    
+    //Method untuk menampilkan data laundry yang sudah selesai
+private void tampilData() {
+
+    //Mengambil model tabel
+    DefaultTableModel model =
+            (DefaultTableModel) tblRiwayat.getModel();
+
+    //Menghapus seluruh isi tabel
+    model.setRowCount(0);
+
+    //Mengambil data laundry dengan status Selesai
+    List<Transaksi> list = controller.getSudahDiambil();
+
+    //Menampilkan data satu per satu
+    for (Transaksi t : list) {
+
+        model.addRow(new Object[]{
+
+    t.getNoNota(),
+    t.getNamaPelanggan(),
+    t.getJamMasuk(),
+    t.getJamAmbil(),
+    t.getJenis(),
+    t.getTotalHarga(),
+    t.getStatus()
+
+});
+    }
+
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,7 +88,7 @@ public class RiwayatLaundry extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblRiwayat = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(240, 243, 247));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 20));
@@ -261,8 +303,8 @@ public class RiwayatLaundry extends javax.swing.JPanel {
 
         jPanel17.setLayout(new java.awt.CardLayout());
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblRiwayat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblRiwayat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -270,9 +312,9 @@ public class RiwayatLaundry extends javax.swing.JPanel {
                 "No Nota", "Nama Pelanggan", "Jam Masuk", "Jam Ambil", "Jenis", "Total", "Status"
             }
         ));
-        jTable1.setRowHeight(30);
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        tblRiwayat.setRowHeight(30);
+        tblRiwayat.setShowGrid(true);
+        jScrollPane1.setViewportView(tblRiwayat);
 
         jPanel17.add(jScrollPane1, "card2");
 
@@ -313,7 +355,7 @@ public class RiwayatLaundry extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable tblRiwayat;
     // End of variables declaration//GEN-END:variables
 }

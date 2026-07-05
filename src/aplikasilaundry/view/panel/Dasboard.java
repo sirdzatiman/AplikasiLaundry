@@ -100,7 +100,7 @@ public class Dasboard extends javax.swing.JPanel {
         btnLihatSemua = new javax.swing.JButton();
         jPanel40 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(240, 243, 247));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 20));
@@ -652,31 +652,20 @@ public class Dasboard extends javax.swing.JPanel {
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"INV-260509-A06", "Siti Aisyah", "09/05/26 10:30", "11/05/26 9:15", "Baju / Dll,  Bed Cover", "Rp 18.000", "Sudah Diambil"}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "No Nota", "Nama pelanggan", "Jam Masuk", "Jam Ambil", "Jenis", "Total", "Status"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable2.setSelectionBackground(new java.awt.Color(238, 241, 247));
-        jTable2.setSelectionForeground(new java.awt.Color(51, 51, 0));
-        jTable2.setShowGrid(true);
-        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTable2);
+        ));
+        jTable1.setShowHorizontalLines(true);
+        jTable1.setShowVerticalLines(true);
+        jScrollPane2.setViewportView(jTable1);
 
         jPanel40.add(jScrollPane2, "card2");
 
@@ -746,11 +735,6 @@ public class Dasboard extends javax.swing.JPanel {
     }
     }//GEN-LAST:event_pnlSelesaiMouseClicked
 
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jTable2MouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLihatSemua;
@@ -809,7 +793,7 @@ public class Dasboard extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblSelamatDatang;
     private javax.swing.JPanel pnlDiproses;
     private javax.swing.JPanel pnlLaundryMasuk;

@@ -1,21 +1,48 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package aplikasilaundry.view.panel;
 
-/**
- *
- * @author Sirdzat
- */
-public class Diproses extends javax.swing.JPanel {
+import aplikasilaundry.controller.TransaksiController;
+import aplikasilaundry.model.Transaksi;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
-    /**
-     * Creates new form Proses
-     */
+public class Diproses extends javax.swing.JPanel {
+private TransaksiController controller;
+
     public Diproses() {
         initComponents();
+        
+         //Membuat objek controller
+    controller = new TransaksiController();
+
+    //Menampilkan data
+    tampilData();
     }
+    private void tampilData() {
+
+    DefaultTableModel model =
+            (DefaultTableModel) tblProses.getModel();
+
+    model.setRowCount(0);
+
+    List<Transaksi> list = controller.getDiproses();
+
+    for (Transaksi t : list) {
+
+        model.addRow(new Object[]{
+
+            t.getNoNota(),
+            t.getNamaPelanggan(),
+            t.getJamMasuk(),
+            t.getJenis(),
+            t.getTotalHarga(),
+            t.getStatus()
+
+        });
+
+    }
+
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,7 +57,7 @@ public class Diproses extends javax.swing.JPanel {
         jPanel16 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProses = new javax.swing.JTable();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -55,8 +82,8 @@ public class Diproses extends javax.swing.JPanel {
 
         jPanel17.setLayout(new java.awt.CardLayout());
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProses.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tblProses.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -72,9 +99,11 @@ public class Diproses extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        tblProses.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblProses.setShowGrid(false);
+        tblProses.setShowHorizontalLines(true);
+        tblProses.setShowVerticalLines(true);
+        jScrollPane1.setViewportView(tblProses);
 
         jPanel17.add(jScrollPane1, "card2");
 
@@ -89,6 +118,6 @@ public class Diproses extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblProses;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,21 +1,72 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package aplikasilaundry.view.panel;
 
-/**
- *
- * @author Sirdzat
- */
-public class LaundryMasuk extends javax.swing.JPanel {
+//Mengimpor controller transaksi
+import aplikasilaundry.controller.TransaksiController;
 
-    /**
-     * Creates new form Masuk
-     */
-    public LaundryMasuk() {
+//Mengimpor model transaksi
+import aplikasilaundry.model.Transaksi;
+
+//Mengimpor DefaultTableModel
+import javax.swing.table.DefaultTableModel;
+
+//Mengimpor collection
+import java.util.List;
+
+public class LaundryMasuk extends javax.swing.JPanel {
+//Menyimpan controller transaksi
+private TransaksiController controller;
+
+      public LaundryMasuk() {
         initComponents();
+         //Membuat objek controller
+    controller = new TransaksiController();
+
+    //Menampilkan data laundry masuk
+    tampilData();
+
     }
+      //Method untuk menampilkan data laundry masuk ke tabel
+private void tampilData() {
+
+    //Mengambil model tabel
+    DefaultTableModel model =
+            (DefaultTableModel) tblMasuk.getModel();
+
+    //Menghapus seluruh isi tabel
+    model.setRowCount(0);
+
+    //Mengambil data laundry masuk
+    List<Transaksi> list = controller.getLaundryMasuk();
+
+    //Menampilkan data ke tabel
+    for (Transaksi t : list) {
+
+        model.addRow(new Object[]{
+
+            //Nomor nota
+            t.getNoNota(),
+
+            //Nama pelanggan
+            t.getNamaPelanggan(),
+
+            //Jam masuk
+            t.getJamMasuk(),
+
+            //Jenis layanan
+            t.getJenis(),
+
+            //Total harga
+            t.getTotalHarga(),
+
+            //Status transaksi
+            t.getStatus()
+
+        });
+
+    }
+
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,7 +84,7 @@ public class LaundryMasuk extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblMasuk = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(1006, 480));
         setLayout(new java.awt.BorderLayout());
@@ -93,8 +144,8 @@ public class LaundryMasuk extends javax.swing.JPanel {
 
         jPanel17.setLayout(new java.awt.CardLayout());
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblMasuk.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tblMasuk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -110,9 +161,9 @@ public class LaundryMasuk extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        tblMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblMasuk.setShowGrid(true);
+        jScrollPane1.setViewportView(tblMasuk);
 
         jPanel17.add(jScrollPane1, "card2");
 
@@ -130,6 +181,6 @@ public class LaundryMasuk extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblMasuk;
     // End of variables declaration//GEN-END:variables
 }

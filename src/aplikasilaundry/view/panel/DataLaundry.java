@@ -1,22 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package aplikasilaundry.view.panel;
 
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JToggleButton;
 
-/**
- *
- * @author Sirdzat
- */
+
 public class DataLaundry extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Semua
-     */
+   
     public DataLaundry() {
         initComponents();
         panelContentDataLaundry.add(new Semua(), "semua");
@@ -311,7 +303,7 @@ public class DataLaundry extends javax.swing.JPanel {
 
     private void btnSelesaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelesaiActionPerformed
         // TODO add your handling code here:
-        tampilPanel("proses");
+        tampilPanel("selesai");
         setButtonAktif(btnSelesai);
     }//GEN-LAST:event_btnSelesaiActionPerformed
 
