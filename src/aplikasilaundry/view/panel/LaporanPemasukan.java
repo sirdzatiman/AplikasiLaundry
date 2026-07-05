@@ -215,6 +215,7 @@ headerRenderer.setFont(new Font("Segoe UI", Font.BOLD, 12));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/BxBxsPrinter (1).png"))); // NOI18N
         jButton2.setText("Cetak Laporan");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(this::jButton2ActionPerformed);
 
         jPanel16.setBackground(new java.awt.Color(240, 243, 247));

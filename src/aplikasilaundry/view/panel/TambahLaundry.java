@@ -177,6 +177,7 @@ public class TambahLaundry extends javax.swing.JPanel {
         jPanel18.setMinimumSize(new java.awt.Dimension(797, 115));
 
         lblPelanggan.setBackground(new java.awt.Color(255, 255, 255));
+        lblPelanggan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblPelanggan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblPelangganMouseClicked(evt);
@@ -224,6 +225,7 @@ public class TambahLaundry extends javax.swing.JPanel {
         );
 
         lblItem.setBackground(new java.awt.Color(255, 255, 255));
+        lblItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblItemMouseClicked(evt);
@@ -271,6 +273,7 @@ public class TambahLaundry extends javax.swing.JPanel {
         );
 
         lblKonfirmasi.setBackground(new java.awt.Color(255, 255, 255));
+        lblKonfirmasi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblKonfirmasi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblKonfirmasiMouseClicked(evt);

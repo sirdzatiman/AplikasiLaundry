@@ -72,6 +72,7 @@ public class popUpLogout extends javax.swing.JDialog {
         btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Frame (18).png"))); // NOI18N
         btnLogout.setText("Logout");
         btnLogout.setBorder(null);
+        btnLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogout.addActionListener(this::btnLogoutActionPerformed);
 
         btnBatal.setBackground(new java.awt.Color(232, 234, 238));
@@ -79,6 +80,7 @@ public class popUpLogout extends javax.swing.JDialog {
         btnBatal.setForeground(new java.awt.Color(102, 102, 102));
         btnBatal.setText("Batal");
         btnBatal.setBorder(null);
+        btnBatal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBatal.addActionListener(this::btnBatalActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

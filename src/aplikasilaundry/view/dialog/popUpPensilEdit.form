@@ -451,6 +451,9 @@
               <Image iconType="3" name="/aplikasilaundry/asset/icon/Sampah.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Delete"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
@@ -468,6 +471,9 @@
               <Image iconType="3" name="/aplikasilaundry/asset/icon/Simpan.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Simpan"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>

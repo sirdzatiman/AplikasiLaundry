@@ -99,6 +99,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         jPanel28.setBackground(new java.awt.Color(255, 255, 255));
 
         jToggleButton6.setText("Biji (per item)");
+        jToggleButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jToggleButton6.addActionListener(this::jToggleButton6ActionPerformed);
 
         javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
@@ -123,8 +124,10 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         jLabel57.setText("Pakai Proses?");
 
         jToggleButton1.setText("Ya, pakai proses");
+        jToggleButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jToggleButton2.setText("Tidak, tanpa proses");
+        jToggleButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jToggleButton2.addActionListener(this::jToggleButton2ActionPerformed);
 
         javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
@@ -249,6 +252,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         jLabel68.setText("Tambahkan jenis layanan dan prosesnya.");
 
         jToggleButton5.setText("Kg (per kilogram)");
+        jToggleButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel56.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel56.setText("Satuan");
@@ -297,6 +301,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         btnSimpan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
         btnSimpan.setText("Simpan");
+        btnSimpan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSimpan.setPreferredSize(new java.awt.Dimension(125, 44));
         btnSimpan.addActionListener(this::btnSimpanActionPerformed);
 
@@ -304,6 +309,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         btnBatal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnBatal.setForeground(new java.awt.Color(102, 102, 102));
         btnBatal.setText("Batal");
+        btnBatal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBatal.setPreferredSize(new java.awt.Dimension(125, 44));
         btnBatal.addActionListener(this::btnBatalActionPerformed);
 

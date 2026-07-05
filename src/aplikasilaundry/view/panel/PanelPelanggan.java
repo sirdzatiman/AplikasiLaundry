@@ -92,6 +92,7 @@ public class PanelPelanggan extends javax.swing.JPanel {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/MaterialSymbolsArrowRightAlt.png"))); // NOI18N
         jButton2.setText("Lanjut ");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jButton2.addActionListener(this::jButton2ActionPerformed);
 
