@@ -175,6 +175,7 @@ public class detailLaundry extends javax.swing.JDialog {
         jButton1.setBackground(new java.awt.Color(0, 86, 210));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Tutup");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jLabel27.setText("jLabel27");
 
@@ -327,6 +328,11 @@ public class detailLaundry extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
