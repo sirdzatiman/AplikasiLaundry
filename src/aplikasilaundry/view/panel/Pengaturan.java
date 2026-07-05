@@ -181,9 +181,11 @@ public class Pengaturan extends javax.swing.JPanel {
         jLabel1.setText("1. Pengguna");
 
         btnPensil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/LucidePencil.png"))); // NOI18N
+        btnPensil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPensil.addActionListener(this::btnPensilActionPerformed);
 
         btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/SolarTrashBinTrashOutline.png"))); // NOI18N
+        btnHapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnHapus.addActionListener(this::btnHapusActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -219,6 +221,7 @@ public class Pengaturan extends javax.swing.JPanel {
         btnTambahPengguna.setForeground(new java.awt.Color(255, 255, 255));
         btnTambahPengguna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/IonPlus.png"))); // NOI18N
         btnTambahPengguna.setText("Tambah Pengguna");
+        btnTambahPengguna.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTambahPengguna.addActionListener(this::btnTambahPenggunaActionPerformed);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -939,7 +942,7 @@ public class Pengaturan extends javax.swing.JPanel {
                     .addGap(7, 7, 7)
                     .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                    .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, 65, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -992,9 +995,11 @@ public class Pengaturan extends javax.swing.JPanel {
         jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/IonPlus.png"))); // NOI18N
         jToggleButton1.setText("Simpan Pengaturan");
+        jToggleButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/SystemUiconsReset.png"))); // NOI18N
         jButton1.setText("Reset");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jPanel34.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1108,9 +1113,11 @@ public class Pengaturan extends javax.swing.JPanel {
         jLabel2.setText("3. Jenis Layanan & Proses");
 
         editKonfigurasiLayanan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/LucidePencil.png"))); // NOI18N
+        editKonfigurasiLayanan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editKonfigurasiLayanan.addActionListener(this::editKonfigurasiLayananActionPerformed);
 
         btnHapusKonfigurasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/SolarTrashBinTrashOutline.png"))); // NOI18N
+        btnHapusKonfigurasi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnHapusKonfigurasi.addActionListener(this::btnHapusKonfigurasiActionPerformed);
 
         javax.swing.GroupLayout jPanel36Layout = new javax.swing.GroupLayout(jPanel36);
@@ -1193,6 +1200,7 @@ public class Pengaturan extends javax.swing.JPanel {
         btnTambahKonfigurasiLAyanan.setForeground(new java.awt.Color(255, 255, 255));
         btnTambahKonfigurasiLAyanan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/IonPlus.png"))); // NOI18N
         btnTambahKonfigurasiLAyanan.setText("Tambah konfigurasi layanan");
+        btnTambahKonfigurasiLAyanan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTambahKonfigurasiLAyanan.addActionListener(this::btnTambahKonfigurasiLAyananActionPerformed);
         jPanel43.add(btnTambahKonfigurasiLAyanan);
 
