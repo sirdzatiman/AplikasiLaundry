@@ -6,7 +6,6 @@ package aplikasilaundry.view.panel;
 
 import aplikasilaundry.view.dialog.popUpEditKonfigurasiLayanan;
 import aplikasilaundry.view.dialog.popUpPensil;
-
 import aplikasilaundry.view.dialog.popUpTambahKonfigurasiLayanan;
 import aplikasilaundry.view.dialog.popUpTambahpengguna;
 
