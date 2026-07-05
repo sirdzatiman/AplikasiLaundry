@@ -21,7 +21,7 @@ public class PenggunaDAO {
     public PenggunaDAO() {
 
         //Mengambil koneksi dari class Koneksi
-        conn = Koneksi.konek();
+        conn = Koneksi.getKoneksi();
 
     }
 

@@ -14,30 +14,42 @@ import java.sql.SQLException;
  */
 public class Koneksi {
 
-    private static Connection mysqlconfig;
+    //Menyimpan objek koneksi
+    private static Connection koneksi;
 
-    public static Connection konek() {
+    //Method untuk mendapatkan koneksi database
+    public static Connection getKoneksi() {
 
-        try {
-            // URL koneksi ke database: jdbc:mysql://[host]:[port]/[nama_database]
-            String url = "jdbc:mysql://localhost:3306/mojosari_laundry1";
+        //Jika koneksi belum dibuat
+        if (koneksi == null) {
 
-            // Username database
-            String user = "root";
+            try {
 
-            // Password database
-            String pass = "";
+                //URL database
+                String url = "jdbc:mysql://localhost:3306/mojosari_laundry1";
 
-            // Membuka koneksi ke database dan menyimpannya di mysqlconfig
-            mysqlconfig = DriverManager.getConnection(url, user, pass);
+                //Username database
+                String user = "root";
 
-        } catch (SQLException SQLException) {
-            // Menampilkan pesan error jika koneksi gagal
-            System.err.println(SQLException.getMessage());
+                //Password database
+                String password = "";
+
+                //Membuat koneksi
+                koneksi = DriverManager.getConnection(url, user, password);
+
+                System.out.println("Koneksi database berhasil.");
+
+            } catch (SQLException e) {
+
+                System.out.println("Koneksi database gagal!");
+                System.out.println(e.getMessage());
+
+            }
+
         }
 
-        // Mengembalikan objek koneksi (bisa null jika gagal)
-        return mysqlconfig;
+        //Mengembalikan koneksi
+        return koneksi;
     }
 
 }
