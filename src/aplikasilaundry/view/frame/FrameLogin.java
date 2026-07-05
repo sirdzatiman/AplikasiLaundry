@@ -180,7 +180,7 @@ public String getPassword() {
 
         jLabel1.setBackground(new java.awt.Color(238, 248, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/img/WhatsApp_Image_2026-05-07_at_10.44.16-removebg-preview 1.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/img/logo_laundry.png"))); // NOI18N
         jLabel1.setVerifyInputWhenFocusTarget(false);
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
