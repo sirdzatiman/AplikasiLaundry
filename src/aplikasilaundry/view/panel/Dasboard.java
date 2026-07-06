@@ -687,7 +687,7 @@ public class Dasboard extends javax.swing.JPanel {
     // Validasi apakah window yang ditemukan benar merupakan instance dari mainFrame
     if (window instanceof aplikasilaundry.view.frame.FrameDashboard) {
         // Navigasi ke halaman 'Laundry Masuk' menggunakan CardLayout di mainFrame
-        ((aplikasilaundry.view.frame.FrameDashboard) window).panggilHalaman("laundryMasuk");
+        ((aplikasilaundry.view.frame.FrameDashboard) window).panggilHalaman("DataLaundry");
     }
 
     }//GEN-LAST:event_pnlLaundryMasukMouseClicked
