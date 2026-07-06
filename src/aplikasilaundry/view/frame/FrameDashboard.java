@@ -25,6 +25,7 @@ import java.awt.ComponentOrientation;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -535,7 +536,13 @@ public class FrameDashboard extends javax.swing.JFrame {
 
     private void pnlLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLogoutMouseClicked
         // TODO add your handling code here:
-        
+        popUpLogout dialog = new popUpLogout(
+            (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
+            true
+    );
+
+    dialog.setLocationRelativeTo(this); // tampil di tengah frame
+    dialog.setVisible(true);
     }//GEN-LAST:event_pnlLogoutMouseClicked
 
     /**
