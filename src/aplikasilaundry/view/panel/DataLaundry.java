@@ -1,9 +1,11 @@
 
 package aplikasilaundry.view.panel;
 
+import aplikasilaundry.view.dialog.popUpPensilEdit;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JToggleButton;
+import javax.swing.SwingUtilities;
 
 
 public class DataLaundry extends javax.swing.JPanel {
@@ -287,6 +289,10 @@ public class DataLaundry extends javax.swing.JPanel {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        popUpPensilEdit dialog = new popUpPensilEdit(
+            (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
+            true
+        );
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void btnSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSemuaActionPerformed
