@@ -5,6 +5,7 @@
 package aplikasilaundry.view.panel;
 
 import aplikasilaundry.view.dialog.popUpEditKonfigurasiLayanan;
+import aplikasilaundry.view.dialog.popUpKonfirmasiHapus;
 import aplikasilaundry.view.dialog.popUpPensil;
 import aplikasilaundry.view.dialog.popUpTambahKonfigurasiLayanan;
 import aplikasilaundry.view.dialog.popUpTambahpengguna;
@@ -17,22 +18,22 @@ public class Pengaturan extends javax.swing.JPanel {
     public Pengaturan() {
         initComponents();
     }
-   public void tambahDataKeTabel(String nama, String username, String peran) {
+
+    public void tambahDataKeTabel(String nama, String username, String peran) {
         // Ambil model JTable dari tabel pengguna Anda
         javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblPengguna.getModel();
-        
+
         // Hitung nomor urut otomatis
         int noUrut = model.getRowCount() + 1;
-        
-        // Tambahkan baris baru ke tabel
-        model.addRow(new Object[]{String.valueOf(noUrut), nama, peran}); 
-    }
-   
-   private java.awt.Frame getParentFrame() {
-    java.awt.Window window = javax.swing.SwingUtilities.getWindowAncestor(this);
-    return (window instanceof java.awt.Frame) ? (java.awt.Frame) window : null;
-}
 
+        // Tambahkan baris baru ke tabel
+        model.addRow(new Object[]{String.valueOf(noUrut), nama, peran});
+    }
+
+    private java.awt.Frame getParentFrame() {
+        java.awt.Window window = javax.swing.SwingUtilities.getWindowAncestor(this);
+        return (window instanceof java.awt.Frame) ? (java.awt.Frame) window : null;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1276,18 +1277,18 @@ public class Pengaturan extends javax.swing.JPanel {
     private void btnPensilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPensilActionPerformed
         // TODO add your handling code here:
         // Ambil Frame induk dari JPanel Pengaturan
-         popUpPensil popup = new popUpPensil(getParentFrame(), true);
-    popup.setLocationRelativeTo(getParentFrame());
-    popup.setVisible(true);
+        popUpPensil popup = new popUpPensil(getParentFrame(), true);
+        popup.setLocationRelativeTo(getParentFrame());
+        popup.setVisible(true);
     }//GEN-LAST:event_btnPensilActionPerformed
 
     private void btnTambahPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPenggunaActionPerformed
         // TODO add your handling code here:
-       popUpTambahpengguna popup =
-            new popUpTambahpengguna(getParentFrame(), true, this);
+        popUpTambahpengguna popup
+                = new popUpTambahpengguna(getParentFrame(), true, this);
 
-    popup.setLocationRelativeTo(getParentFrame());
-    popup.setVisible(true);
+        popup.setLocationRelativeTo(getParentFrame());
+        popup.setVisible(true);
     }//GEN-LAST:event_btnTambahPenggunaActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -1296,28 +1297,27 @@ public class Pengaturan extends javax.swing.JPanel {
 
     private void editKonfigurasiLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editKonfigurasiLayananActionPerformed
         // TODO add your handling code here:
-         popUpEditKonfigurasiLayanan popup =
-            new popUpEditKonfigurasiLayanan(getParentFrame(), true);
+        popUpEditKonfigurasiLayanan popup
+                = new popUpEditKonfigurasiLayanan(getParentFrame(), true);
 
-    popup.setLocationRelativeTo(getParentFrame());
-    popup.setVisible(true);
+        popup.setLocationRelativeTo(getParentFrame());
+        popup.setVisible(true);
     }//GEN-LAST:event_editKonfigurasiLayananActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
 //        // TODO add your handling code here:
-//        popUpSampah popup = new popUpSampah(getParentFrame(), true);
-//
-//        popup.setLocationRelativeTo(getParentFrame());
-//        popup.setVisible(true);
+        popUpKonfirmasiHapus popup = new popUpKonfirmasiHapus(getParentFrame(), true);
+        popup.setLocationRelativeTo(getParentFrame());
+        popup.setVisible(true);
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnTambahKonfigurasiLAyananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahKonfigurasiLAyananActionPerformed
         // TODO add your handling code here:
-        popUpTambahKonfigurasiLayanan popup =
-            new popUpTambahKonfigurasiLayanan(getParentFrame(), true);
+        popUpTambahKonfigurasiLayanan popup
+                = new popUpTambahKonfigurasiLayanan(getParentFrame(), true);
 
-    popup.setLocationRelativeTo(getParentFrame());
-    popup.setVisible(true);
+        popup.setLocationRelativeTo(getParentFrame());
+        popup.setVisible(true);
     }//GEN-LAST:event_btnTambahKonfigurasiLAyananActionPerformed
 
     private void btnHapusKonfigurasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusKonfigurasiActionPerformed
