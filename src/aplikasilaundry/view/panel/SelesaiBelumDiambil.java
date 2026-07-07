@@ -6,6 +6,8 @@ import aplikasilaundry.controller.TransaksiController;
 
 //Mengimpor model transaksi
 import aplikasilaundry.model.Transaksi;
+import aplikasilaundry.util.FormatJam;
+import aplikasilaundry.util.FormatRupiah;
 
 //Mengimpor DefaultTableModel
 import javax.swing.table.DefaultTableModel;
@@ -42,15 +44,13 @@ private void tampilData() {
     for (Transaksi t : list) {
 
         model.addRow(new Object[]{
-
-            t.getNoNota(),
-            t.getNamaPelanggan(),
-            t.getJamMasuk(),
-            t.getJenis(),
-            t.getTotalHarga(),
-            t.getStatus()
-
-        });
+                t.getNoNota(),
+                t.getNamaPelanggan(),
+                t.getJenis(),
+                FormatRupiah.format(t.getTotalHarga()),
+                FormatJam.format(t.getJamMasuk()),
+                t.getStatus()
+            });
 
     }
 
@@ -79,7 +79,7 @@ private void tampilData() {
         jPanel2.setBackground(new java.awt.Color(240, 243, 247));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jPanel16.setBackground(new java.awt.Color(240, 243, 247));
+        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
         jPanel16.setMinimumSize(new java.awt.Dimension(1006, 75));
 
         jPanel20.setBackground(new java.awt.Color(232, 240, 255));
@@ -149,6 +149,9 @@ private void tampilData() {
             }
         });
         tblSelesai.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblSelesai.setGridColor(new java.awt.Color(240, 243, 247));
+        tblSelesai.setRowHeight(35);
+        tblSelesai.setSelectionBackground(new java.awt.Color(195, 220, 255));
         tblSelesai.setShowGrid(true);
         jScrollPane1.setViewportView(tblSelesai);
 

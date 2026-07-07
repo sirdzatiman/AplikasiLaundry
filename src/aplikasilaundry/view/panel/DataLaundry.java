@@ -27,13 +27,34 @@ public class DataLaundry extends javax.swing.JPanel {
         CardLayout cl = (CardLayout) panelContentDataLaundry.getLayout();
         cl.show(panelContentDataLaundry, namaKartu);
     }
-    public void tampilLaundryMasuk() {
-        Container panelCard = null;
+    public void tampilStatus(String status){
 
-    CardLayout cl = (CardLayout) panelCard.getLayout();
-    cl.show(panelCard, "laundryMasuk");
+    switch(status){
 
-    setButtonAktif(btnMasuk);
+        case "semua":
+            tampilPanel("semua");
+            btnSemua.setSelected(true);
+            setButtonAktif(btnSemua);
+            break;
+
+        case "masuk":
+            tampilPanel("masuk");
+            btnMasuk.setSelected(true);
+            setButtonAktif(btnMasuk);
+            break;
+
+        case "proses":
+            tampilPanel("proses");
+            btnProses.setSelected(true);
+            setButtonAktif(btnProses);
+            break;
+
+        case "selesai":
+            tampilPanel("selesai");
+            btnSelesai.setSelected(true);
+            setButtonAktif(btnSelesai);
+            break;
+    }
 
 }
     
@@ -131,21 +152,25 @@ public class DataLaundry extends javax.swing.JPanel {
         jPanel3.setPreferredSize(new java.awt.Dimension(1006, 80));
 
         buttonGroup1.add(btnSemua);
+        btnSemua.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSemua.setText("Semua");
         btnSemua.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSemua.addActionListener(this::btnSemuaActionPerformed);
 
         buttonGroup1.add(btnMasuk);
+        btnMasuk.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMasuk.setText("Laundry Masuk");
         btnMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMasuk.addActionListener(this::btnMasukActionPerformed);
 
         buttonGroup1.add(btnProses);
+        btnProses.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnProses.setText("Di Proses");
         btnProses.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProses.addActionListener(this::btnProsesActionPerformed);
 
         buttonGroup1.add(btnSelesai);
+        btnSelesai.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSelesai.setText("Selesai (Belum Diambil)");
         btnSelesai.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSelesai.addActionListener(this::btnSelesaiActionPerformed);
@@ -180,15 +205,17 @@ public class DataLaundry extends javax.swing.JPanel {
 
         jPanel5.add(jPanel6, java.awt.BorderLayout.PAGE_START);
 
-        jPanel1.setBackground(new java.awt.Color(240, 243, 247));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(1006, 90));
         jPanel1.setPreferredSize(new java.awt.Dimension(1006, 90));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setMinimumSize(new java.awt.Dimension(1006, 50));
-        jPanel11.setPreferredSize(new java.awt.Dimension(1006, 50));
+        jPanel11.setPreferredSize(new java.awt.Dimension(1006, 60));
         jPanel11.setLayout(new java.awt.BorderLayout());
 
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setMinimumSize(new java.awt.Dimension(150, 50));
         jPanel13.setPreferredSize(new java.awt.Dimension(150, 50));
 
@@ -213,18 +240,20 @@ public class DataLaundry extends javax.swing.JPanel {
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         jPanel11.add(jPanel13, java.awt.BorderLayout.LINE_END);
 
+        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
         jPanel18.setMinimumSize(new java.awt.Dimension(856, 50));
 
         jPanel19.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(224, 226, 230)));
         jPanel19.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -248,26 +277,30 @@ public class DataLaundry extends javax.swing.JPanel {
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
             .addComponent(jTextField3)
         );
+
+        jDateChooser3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(224, 226, 230)));
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
         jPanel18Layout.setHorizontalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(14, 14, 14))
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jDateChooser3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jDateChooser3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -275,6 +308,7 @@ public class DataLaundry extends javax.swing.JPanel {
 
         jPanel1.add(jPanel11, java.awt.BorderLayout.PAGE_START);
 
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
         jPanel12.setMinimumSize(new java.awt.Dimension(1006, 40));
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -294,7 +328,8 @@ public class DataLaundry extends javax.swing.JPanel {
 
         add(jPanel5, java.awt.BorderLayout.PAGE_START);
 
-        panelContentDataLaundry.setBackground(new java.awt.Color(240, 243, 247));
+        panelContentDataLaundry.setBackground(new java.awt.Color(255, 255, 255));
+        panelContentDataLaundry.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panelContentDataLaundry.setLayout(new java.awt.CardLayout());
         add(panelContentDataLaundry, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -360,6 +395,18 @@ public class DataLaundry extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel panelContentDataLaundry;
     // End of variables declaration//GEN-END:variables
+
+    void tampilDiproses() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void tampilSelesai() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void tampilLaundryMasuk() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 
 }

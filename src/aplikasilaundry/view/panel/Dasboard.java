@@ -1,27 +1,79 @@
-
 package aplikasilaundry.view.panel;
 
+import aplikasilaundry.model.Transaksi;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import aplikasilaundry.config.Session;
+import aplikasilaundry.dao.TransaksiDAO;
+import aplikasilaundry.util.FormatJam;
+import aplikasilaundry.util.FormatRupiah;
 import aplikasilaundry.view.frame.FrameDashboard;
 import javax.swing.SwingUtilities;
+
 /**
  *
  * @author Sirdzat
  */
 public class Dasboard extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Dasboard
-     */
+    private TransaksiDAO transaksiDAO = new TransaksiDAO();
+
     public Dasboard() {
         initComponents();
         myDesign();
+
+        tampilJumlahTransaksi();
+        tampilTransaksiTerbaru();
+
         System.out.println("Nama Session = " + Session.getNamaPengguna());
         lblSelamatDatang.setText("Selamat Datang, " + Session.getNamaPengguna());
-        
+
     }
     
-        void myDesign() {
+    
+
+    private void tampilJumlahTransaksi() {
+
+        lblMasuk.setText(String.valueOf(
+                transaksiDAO.getLaundryMasuk().size()));
+
+        lblDiproses.setText(String.valueOf(
+                transaksiDAO.getDiproses().size()));
+
+        lblSelesai.setText(String.valueOf(
+                transaksiDAO.getSelesai().size()));
+
+        lblDiambil.setText(String.valueOf(
+                transaksiDAO.getSudahDiambil().size()));
+
+    }
+
+    private void tampilTransaksiTerbaru() {
+
+        DefaultTableModel model
+                = (DefaultTableModel) tblDashboard.getModel();
+
+        model.setRowCount(0);
+
+        List<Transaksi> list
+                = transaksiDAO.getTransaksiTerbaru();
+
+        for (Transaksi t : list) {
+
+            model.addRow(new Object[]{
+                t.getNoNota(),
+                t.getNamaPelanggan(),
+                t.getJenis(),
+                FormatRupiah.format(t.getTotalHarga()),
+                FormatJam.format(t.getJamMasuk()),
+                t.getStatus()
+            });
+
+        }
+
+    }
+
+    void myDesign() {
         btnLihatSemua.putClientProperty("FlatLaf.style",
                 "borderWidth:2; "
                 + "arc:15; "
@@ -30,6 +82,20 @@ public class Dasboard extends javax.swing.JPanel {
                 + "hoverBorderColor:#9525EB"
         );
     }
+
+    private void bukaDataLaundry(String status) {
+
+        Object window = SwingUtilities.getWindowAncestor(this);
+
+        if (window instanceof FrameDashboard frame) {
+
+            frame.panggilHalaman("semua");
+            frame.getDataLaundry().tampilStatus(status);
+
+        }
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,7 +121,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel10 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        lblMasuk = new javax.swing.JLabel();
         pnlDiproses = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -67,7 +133,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel18 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel19 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
+        lblDiproses = new javax.swing.JLabel();
         pnlSelesai = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
@@ -79,7 +145,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel26 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jPanel27 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
+        lblSelesai = new javax.swing.JLabel();
         pnlSudahDiambil = new javax.swing.JPanel();
         jPanel29 = new javax.swing.JPanel();
         jPanel30 = new javax.swing.JPanel();
@@ -91,7 +157,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel34 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jPanel35 = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
+        lblDiambil = new javax.swing.JLabel();
         jPanel36 = new javax.swing.JPanel();
         jPanel37 = new javax.swing.JPanel();
         jPanel38 = new javax.swing.JPanel();
@@ -100,7 +166,7 @@ public class Dasboard extends javax.swing.JPanel {
         btnLihatSemua = new javax.swing.JButton();
         jPanel40 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblDashboard = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(240, 243, 247));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 20));
@@ -234,20 +300,20 @@ public class Dasboard extends javax.swing.JPanel {
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 51, 204));
-        jLabel5.setText(" 5");
+        lblMasuk.setBackground(new java.awt.Color(255, 255, 255));
+        lblMasuk.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
+        lblMasuk.setForeground(new java.awt.Color(0, 51, 204));
+        lblMasuk.setText(" 5");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(lblMasuk, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel7.add(jPanel11, java.awt.BorderLayout.CENTER);
@@ -346,20 +412,20 @@ public class Dasboard extends javax.swing.JPanel {
 
         jPanel19.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(254, 168, 22));
-        jLabel9.setText(" 5");
+        lblDiproses.setBackground(new java.awt.Color(255, 255, 255));
+        lblDiproses.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
+        lblDiproses.setForeground(new java.awt.Color(254, 168, 22));
+        lblDiproses.setText(" 5");
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(lblDiproses, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblDiproses, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel15.add(jPanel19, java.awt.BorderLayout.CENTER);
@@ -458,20 +524,20 @@ public class Dasboard extends javax.swing.JPanel {
 
         jPanel27.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(62, 155, 90));
-        jLabel13.setText(" 5");
+        lblSelesai.setBackground(new java.awt.Color(255, 255, 255));
+        lblSelesai.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
+        lblSelesai.setForeground(new java.awt.Color(62, 155, 90));
+        lblSelesai.setText(" 5");
 
         javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
         jPanel27.setLayout(jPanel27Layout);
         jPanel27Layout.setHorizontalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(lblSelesai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
         );
         jPanel27Layout.setVerticalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblSelesai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel23.add(jPanel27, java.awt.BorderLayout.CENTER);
@@ -565,20 +631,20 @@ public class Dasboard extends javax.swing.JPanel {
 
         jPanel35.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel17.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(149, 37, 235));
-        jLabel17.setText(" 5");
+        lblDiambil.setBackground(new java.awt.Color(255, 255, 255));
+        lblDiambil.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
+        lblDiambil.setForeground(new java.awt.Color(149, 37, 235));
+        lblDiambil.setText(" 5");
 
         javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
         jPanel35.setLayout(jPanel35Layout);
         jPanel35Layout.setHorizontalGroup(
             jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(lblDiambil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
         );
         jPanel35Layout.setVerticalGroup(
             jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblDiambil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel31.add(jPanel35, java.awt.BorderLayout.CENTER);
@@ -602,7 +668,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel38.setPreferredSize(new java.awt.Dimension(120, 40));
 
         jLabel18.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel18.setText("Transaksi Terbaru");
         jLabel18.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
 
@@ -611,8 +677,8 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel38Layout.setHorizontalGroup(
             jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel38Layout.createSequentialGroup()
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 334, Short.MAX_VALUE))
         );
         jPanel38Layout.setVerticalGroup(
             jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -657,20 +723,29 @@ public class Dasboard extends javax.swing.JPanel {
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblDashboard.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tblDashboard.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "No Nota", "Nama Pelanggan", "Jam Masuk", "Jenis", "Total", "Status"
             }
-        ));
-        jTable1.setShowHorizontalLines(true);
-        jTable1.setShowVerticalLines(true);
-        jScrollPane2.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblDashboard.setGridColor(new java.awt.Color(240, 243, 247));
+        tblDashboard.setRowHeight(35);
+        tblDashboard.setSelectionBackground(new java.awt.Color(195, 220, 255));
+        tblDashboard.setShowHorizontalLines(true);
+        tblDashboard.setShowVerticalLines(true);
+        jScrollPane2.setViewportView(tblDashboard);
 
         jPanel40.add(jScrollPane2, "card2");
 
@@ -681,62 +756,44 @@ public class Dasboard extends javax.swing.JPanel {
 
     private void pnlLaundryMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLaundryMasukMouseClicked
         // TODO add your handling code here:
-          Object window = SwingUtilities.getWindowAncestor(this);
-
-    if(window instanceof FrameDashboard frame){
-
-        frame.panggilHalaman("semua");
-
-        frame.getDataLaundry().tampilLaundryMasuk();
-    }
+        bukaDataLaundry("masuk");
     }//GEN-LAST:event_pnlLaundryMasukMouseClicked
 
     private void pnlSudahDiambilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlSudahDiambilMouseClicked
         // TODO add your handling code here:
-       // Mengambil ancestor window dan langsung cast ke mainFrame secara presisi
-    Object window = javax.swing.SwingUtilities.getWindowAncestor(this);
-    if (window instanceof aplikasilaundry.view.frame.FrameDashboard) {
-        ((aplikasilaundry.view.frame.FrameDashboard) window).panggilHalaman("riwayat");
-    }
+        Object window = SwingUtilities.getWindowAncestor(this);
 
-        
+        if (window instanceof FrameDashboard frame) {
+
+            frame.panggilHalaman("riwayat");
+
+        }
+
+
     }//GEN-LAST:event_pnlSudahDiambilMouseClicked
 
     private void btnLihatSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLihatSemuaActionPerformed
         // TODO add your handling code here:
-         // Mengambil parent frame utama (mainFrame) dari panel Dashboard saat ini
-    Object window = javax.swing.SwingUtilities.getWindowAncestor(this);
-    
-    // Validasi apakah window yang ditemukan benar merupakan instance dari mainFrame
-    if (window instanceof aplikasilaundry.view.frame.FrameDashboard) {
-        // Navigasi ke halaman 'Semua Data / Sudah Diambil' menggunakan CardLayout di mainFrame
-        ((aplikasilaundry.view.frame.FrameDashboard) window).panggilHalaman("semua");
-    }
-   
+        // Mengambil parent frame utama (mainFrame) dari panel Dashboard saat ini
+        Object window = SwingUtilities.getWindowAncestor(this);
+
+        if (window instanceof FrameDashboard frame) {
+
+            frame.panggilHalaman("semua");
+            frame.getDataLaundry().tampilStatus("semua");
+
+        }
+
     }//GEN-LAST:event_btnLihatSemuaActionPerformed
 
     private void pnlDiprosesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDiprosesMouseClicked
         // TODO add your handling code here:
-        // Mengambil parent frame utama (mainFrame) dari panel Dashboard saat ini
-    Object window = javax.swing.SwingUtilities.getWindowAncestor(this);
-    
-    // Validasi apakah window yang ditemukan benar merupakan instance dari mainFrame
-    if (window instanceof aplikasilaundry.view.frame.FrameDashboard) {
-        // Navigasi ke halaman 'Diproses' menggunakan CardLayout di mainFrame
-        ((aplikasilaundry.view.frame.FrameDashboard) window).panggilHalaman("diproses");
-    }
+        bukaDataLaundry("proses");
     }//GEN-LAST:event_pnlDiprosesMouseClicked
 
     private void pnlSelesaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlSelesaiMouseClicked
         // TODO add your handling code here:
-        // Mengambil parent frame utama (mainFrame) dari panel Dashboard saat ini
-    Object window = javax.swing.SwingUtilities.getWindowAncestor(this);
-    
-    // Validasi apakah window yang ditemukan benar merupakan instance dari mainFrame
-    if (window instanceof aplikasilaundry.view.frame.FrameDashboard) {
-        // Navigasi ke halaman 'Selesai Belum Diambil' menggunakan CardLayout di mainFrame
-        ((aplikasilaundry.view.frame.FrameDashboard) window).panggilHalaman("selesaiBelumDiambil");
-    }
+        bukaDataLaundry("selesai");
     }//GEN-LAST:event_pnlSelesaiMouseClicked
 
 
@@ -745,21 +802,17 @@ public class Dasboard extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -797,12 +850,15 @@ public class Dasboard extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblDiambil;
+    private javax.swing.JLabel lblDiproses;
+    private javax.swing.JLabel lblMasuk;
     private javax.swing.JLabel lblSelamatDatang;
+    private javax.swing.JLabel lblSelesai;
     private javax.swing.JPanel pnlDiproses;
     private javax.swing.JPanel pnlLaundryMasuk;
     private javax.swing.JPanel pnlSelesai;
     private javax.swing.JPanel pnlSudahDiambil;
+    private javax.swing.JTable tblDashboard;
     // End of variables declaration//GEN-END:variables
 }
-
