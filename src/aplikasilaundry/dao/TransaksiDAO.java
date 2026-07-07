@@ -7,6 +7,12 @@ import aplikasilaundry.config.Koneksi;
 //Mengimpor model transaksi
 import aplikasilaundry.model.Transaksi;
 
+//Mengimpor model transaksi simpan
+import aplikasilaundry.model.TransaksiSimpan;
+
+//Mengimpor Statement
+import java.sql.Statement;
+
 //Mengimpor class JDBC
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -331,5 +337,91 @@ public List<Transaksi> getSudahDiambil() {
 
 }
 
+//Method menyimpan transaksi
+public int simpan(TransaksiSimpan transaksi){
 
+    //ID transaksi yang akan dikembalikan
+    int idTransaksi = 0;
+
+    try{
+
+        //Query menyimpan transaksi
+        String sql =
+                "INSERT INTO transaksi "
+                + "(no_nota,"
+                + "id_pengguna,"
+                + "id_pelanggan,"
+                + "id_status,"
+                + "tanggal_masuk,"
+                + "jam_masuk,"
+                + "catatan,"
+                + "total_harga)"
+                + " VALUES (?,?,?,?,?,?,?,?)";
+
+        //Menyiapkan query
+        PreparedStatement ps =
+                conn.prepareStatement(
+                        sql,
+                        Statement.RETURN_GENERATED_KEYS);
+
+        //Nomor nota
+        ps.setString(1,
+                transaksi.getNoNota());
+
+        //ID pengguna
+        ps.setInt(2,
+                transaksi.getIdPengguna());
+
+        //ID pelanggan
+        ps.setInt(3,
+                transaksi.getIdPelanggan());
+
+        //Status
+        ps.setInt(4,
+                transaksi.getIdStatus());
+
+        //Tanggal masuk
+        ps.setDate(5,
+                java.sql.Date.valueOf(
+                        transaksi.getTanggalMasuk()));
+
+        //Jam masuk
+        ps.setTime(6,
+                java.sql.Time.valueOf(
+                        transaksi.getJamMasuk()));
+
+        //Catatan
+        ps.setString(7,
+                transaksi.getCatatan());
+
+        //Total harga
+        ps.setBigDecimal(8,
+                transaksi.getTotalHarga());
+
+        //Menjalankan query
+        ps.executeUpdate();
+
+        //Mengambil ID transaksi
+        ResultSet rs =
+                ps.getGeneratedKeys();
+
+        //Jika berhasil
+        if(rs.next()){
+
+            //Menyimpan ID transaksi
+            idTransaksi = rs.getInt(1);
+
+        }
+
+    }catch(SQLException e){
+
+        //Menampilkan error
+        System.out.println(e.getMessage());
+
+    }
+
+    //Mengembalikan ID transaksi
+    return idTransaksi;
+
+}
 }
