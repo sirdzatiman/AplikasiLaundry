@@ -1,26 +1,109 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package aplikasilaundry.view.panel;
+
+//Mengimpor Frame
+import java.awt.Frame;
+
+//Mengimpor SwingUtilities
+import javax.swing.SwingUtilities;
+
+//Mengimpor popup tambah item laundry
+import aplikasilaundry.view.dialog.popUpTambahItemLaundry;
+//Mengimpor model item laundry
+import aplikasilaundry.model.ItemLaundry;
+
 import aplikasilaundry.view.panel.TambahLaundry;
 
 import javax.swing.JPanel;
-/**
- *
- * @author HP 14s Ryzen
- */
+
+//Mengimpor controller transaksi
+import aplikasilaundry.controller.TransaksiController;
+
+//Mengimpor model pelanggan
+import aplikasilaundry.model.Pelanggan;
+
 public class PanelItemLaundry extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelItemLaundry
-     */
+    //Menyimpan controller transaksi
+    private TransaksiController controller;
     private TambahLaundry induk;
+
     public PanelItemLaundry(TambahLaundry induk) {
         this.induk = induk;
-        initComponents();
-    }
 
+        initComponents();
+
+       //Mengambil controller dari panel induk
+controller = induk.getController();
+        //Menampilkan data pelanggan yang sudah dipilih
+        tampilDataPelanggan();
+
+        //Menyiapkan tabel item laundry
+        aturTabel();
+    }
+    //Method untuk menampilkan data pelanggan sementara
+
+    private void tampilDataPelanggan() {
+
+        //Mengambil data pelanggan yang telah dipilih
+        Pelanggan pelanggan = controller.getPelangganSementara();
+
+        //Jika belum ada pelanggan, hentikan proses
+        if (pelanggan == null) {
+            return;
+        }
+
+    }
+//Method mengatur header tabel item laundry
+
+    private void aturTabel() {
+
+        javax.swing.table.DefaultTableModel model
+                = new javax.swing.table.DefaultTableModel();
+
+        model.addColumn("No.");
+    model.addColumn("Jenis Laundry");
+    model.addColumn("Proses");
+    model.addColumn("Kg / Biji");
+    model.addColumn("Harga");
+    model.addColumn("Subtotal");
+
+
+        tblItem.setModel(model);
+
+    }
+//Method untuk menambahkan item laundry ke tabel
+public void tambahItemKeTabel(ItemLaundry item) {
+
+
+    //Mengambil model tabel
+    javax.swing.table.DefaultTableModel model =
+            (javax.swing.table.DefaultTableModel) tblItem.getModel();
+
+    //Nomor urut
+    int no = model.getRowCount() + 1;
+
+    //Menambahkan data ke tabel
+    model.addRow(new Object[]{
+
+        no,
+        item.getLayanan(),
+        item.getProses(),
+        item.getQty(),
+        item.getHarga(),
+        item.getSubtotal()
+
+    });
+}
+    //Method mengambil controller transaksi
+public TransaksiController getController() {
+
+    //Mengembalikan controller
+    return controller;
+
+
+
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,9 +116,9 @@ public class PanelItemLaundry extends javax.swing.JPanel {
         jPanel14 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        btnLanjutKonfirmasi = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
+        btnKembali = new javax.swing.JButton();
         jPanel26 = new javax.swing.JPanel();
         jPanel27 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
@@ -45,14 +128,14 @@ public class PanelItemLaundry extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
+        pnlTambahItem = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        scroll = new javax.swing.JScrollPane();
+        tblItem = new javax.swing.JTable();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -66,13 +149,14 @@ public class PanelItemLaundry extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(240, 243, 247));
         jPanel1.setMinimumSize(new java.awt.Dimension(250, 120));
 
-        jButton2.setBackground(new java.awt.Color(37, 99, 235));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/MaterialSymbolsArrowRightAlt.png"))); // NOI18N
-        jButton2.setText("Lanjut ke Konfirmasi");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnLanjutKonfirmasi.setBackground(new java.awt.Color(37, 99, 235));
+        btnLanjutKonfirmasi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLanjutKonfirmasi.setForeground(new java.awt.Color(255, 255, 255));
+        btnLanjutKonfirmasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/MaterialSymbolsArrowRightAlt.png"))); // NOI18N
+        btnLanjutKonfirmasi.setText("Lanjut ke Konfirmasi");
+        btnLanjutKonfirmasi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLanjutKonfirmasi.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnLanjutKonfirmasi.addActionListener(this::btnLanjutKonfirmasiActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -80,14 +164,14 @@ public class PanelItemLaundry extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLanjutKonfirmasi, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(7, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLanjutKonfirmasi, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(58, Short.MAX_VALUE))
         );
 
@@ -96,10 +180,11 @@ public class PanelItemLaundry extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(240, 243, 247));
         jPanel2.setMinimumSize(new java.awt.Dimension(200, 120));
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Kiri.png"))); // NOI18N
-        jButton4.setText("Kembali");
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnKembali.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnKembali.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Kiri.png"))); // NOI18N
+        btnKembali.setText("Kembali");
+        btnKembali.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnKembali.addActionListener(this::btnKembaliActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -107,14 +192,14 @@ public class PanelItemLaundry extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
@@ -210,13 +295,13 @@ public class PanelItemLaundry extends javax.swing.JPanel {
 
         jPanel8.add(jPanel9);
 
-        jPanel10.setBackground(new java.awt.Color(240, 243, 247));
-        jPanel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel10.setMaximumSize(new java.awt.Dimension(307, 74));
-        jPanel10.setMinimumSize(new java.awt.Dimension(307, 74));
-        jPanel10.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlTambahItem.setBackground(new java.awt.Color(240, 243, 247));
+        pnlTambahItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlTambahItem.setMaximumSize(new java.awt.Dimension(307, 74));
+        pnlTambahItem.setMinimumSize(new java.awt.Dimension(307, 74));
+        pnlTambahItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel10MouseClicked(evt);
+                pnlTambahItemMouseClicked(evt);
             }
         });
 
@@ -230,16 +315,16 @@ public class PanelItemLaundry extends javax.swing.JPanel {
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel29.setText("Tambah item laundry yang dipesan");
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlTambahItemLayout = new javax.swing.GroupLayout(pnlTambahItem);
+        pnlTambahItem.setLayout(pnlTambahItemLayout);
+        pnlTambahItemLayout.setHorizontalGroup(
+            pnlTambahItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
             .addComponent(jLabel29, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
+        pnlTambahItemLayout.setVerticalGroup(
+            pnlTambahItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTambahItemLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel28)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -247,7 +332,7 @@ public class PanelItemLaundry extends javax.swing.JPanel {
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
-        jPanel8.add(jPanel10);
+        jPanel8.add(pnlTambahItem);
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -295,8 +380,8 @@ public class PanelItemLaundry extends javax.swing.JPanel {
         jPanel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
         jPanel4.setLayout(new java.awt.CardLayout());
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblItem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tblItem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -304,11 +389,11 @@ public class PanelItemLaundry extends javax.swing.JPanel {
                 "No.", "Jenis Laundry", "Proses", "Kg / Biji", "Harga", "Subtotal"
             }
         ));
-        jTable1.setRowHeight(30);
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        tblItem.setRowHeight(30);
+        tblItem.setShowGrid(true);
+        scroll.setViewportView(tblItem);
 
-        jPanel4.add(jScrollPane1, "card2");
+        jPanel4.add(scroll, "card2");
 
         jPanel26.add(jPanel4, java.awt.BorderLayout.CENTER);
 
@@ -319,25 +404,85 @@ public class PanelItemLaundry extends javax.swing.JPanel {
 
     private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jPanel9MouseClicked
 
-    private void jPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseClicked
+    private void pnlTambahItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTambahItemMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel10MouseClicked
+       
+
+    //Mengambil frame utama yang sedang aktif
+    Frame frame = (Frame) SwingUtilities.getWindowAncestor(this);
+
+    //Membuat popup tambah item laundry
+    popUpTambahItemLaundry dialog =
+           new popUpTambahItemLaundry(frame, true, PanelItemLaundry.this);
+
+    //Menampilkan popup di tengah panel
+    dialog.setLocationRelativeTo(this);
+
+    //Menampilkan popup
+    dialog.setVisible(true);
+
+
+    }//GEN-LAST:event_pnlTambahItemMouseClicked
 
     private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jPanel11MouseClicked
+
+    private void btnLanjutKonfirmasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLanjutKonfirmasiActionPerformed
+        // TODO add your handling code here:
+       //Jika belum ada item
+if (tblItem.getRowCount() == 0) {
+
+    javax.swing.JOptionPane.showMessageDialog(
+            this,
+            "Tambahkan minimal satu item laundry!");
+
+    return;
+}
+
+//Mengambil panel konfirmasi
+Konfirmasi konfirmasi = induk.getPanelKonfirmasi();
+
+//Menampilkan data pelanggan
+konfirmasi.tampilDataPelanggan(
+        controller.getPelangganSementara());
+
+//Menampilkan daftar item
+konfirmasi.tampilItem(
+        controller.getDaftarItem());
+
+//Menghitung ringkasan transaksi
+konfirmasi.hitungRingkasan(
+        controller.getDaftarItem());
+
+//Menampilkan pesan berhasil
+javax.swing.JOptionPane.showMessageDialog(
+        this,
+        "Item laundry berhasil disimpan.");
+
+//Berpindah ke halaman konfirmasi
+induk.panggilTahap("kartuKonfirmasi");
+    
+    }//GEN-LAST:event_btnLanjutKonfirmasiActionPerformed
+
+    private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
+        // TODO add your handling code here:
+           //Kembali ke panel pelanggan
+    induk.panggilTahap("kartuPelanggan");
+    }//GEN-LAST:event_btnKembaliActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnKembali;
+    private javax.swing.JButton btnLanjutKonfirmasi;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel14;
@@ -352,7 +497,8 @@ public class PanelItemLaundry extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JPanel pnlTambahItem;
+    private javax.swing.JScrollPane scroll;
+    private javax.swing.JTable tblItem;
     // End of variables declaration//GEN-END:variables
 }

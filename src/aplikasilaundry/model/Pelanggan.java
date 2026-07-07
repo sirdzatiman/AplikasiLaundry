@@ -13,6 +13,8 @@ public class Pelanggan {
 
     //Menyimpan alamat pelanggan
     private String alamat;
+    
+    private String catatan;
 
     //Mengambil ID pelanggan
     public int getIdPelanggan() {
@@ -53,5 +55,14 @@ public class Pelanggan {
     public void setAlamat(String alamat) {
         this.alamat = alamat;
     }
+    //Mengambil catatan
+public String getCatatan() {
+    return catatan;
+}
+
+//Mengisi catatan
+public void setCatatan(String catatan) {
+    this.catatan = catatan;
+}
 }
 
