@@ -6,12 +6,15 @@ import aplikasilaundry.controller.TransaksiController;
 
 //Mengimpor model transaksi
 import aplikasilaundry.model.Transaksi;
+import aplikasilaundry.util.FormatJam;
 
 //Mengimpor DefaultTableModel
 import javax.swing.table.DefaultTableModel;
 
 //Mengimpor collection
 import java.util.List;
+import aplikasilaundry.util.FormatRupiah;
+
 
 public class LaundryMasuk extends javax.swing.JPanel {
 //Menyimpan controller transaksi
@@ -43,26 +46,13 @@ private void tampilData() {
     for (Transaksi t : list) {
 
         model.addRow(new Object[]{
-
-            //Nomor nota
-            t.getNoNota(),
-
-            //Nama pelanggan
-            t.getNamaPelanggan(),
-
-            //Jam masuk
-            t.getJamMasuk(),
-
-            //Jenis layanan
-            t.getJenis(),
-
-            //Total harga
-            t.getTotalHarga(),
-
-            //Status transaksi
-            t.getStatus()
-
-        });
+                t.getNoNota(),
+                t.getNamaPelanggan(),
+                t.getJenis(),
+                FormatRupiah.format(t.getTotalHarga()),
+                FormatJam.format(t.getJamMasuk()),
+                t.getStatus()
+            });
 
     }
 
@@ -92,7 +82,7 @@ private void tampilData() {
         jPanel2.setBackground(new java.awt.Color(240, 243, 247));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jPanel16.setBackground(new java.awt.Color(240, 243, 247));
+        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
         jPanel16.setMinimumSize(new java.awt.Dimension(1006, 75));
 
         jPanel20.setBackground(new java.awt.Color(232, 240, 255));
@@ -162,6 +152,9 @@ private void tampilData() {
             }
         });
         tblMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblMasuk.setGridColor(new java.awt.Color(240, 243, 247));
+        tblMasuk.setRowHeight(35);
+        tblMasuk.setSelectionBackground(new java.awt.Color(195, 220, 255));
         tblMasuk.setShowGrid(true);
         jScrollPane1.setViewportView(tblMasuk);
 

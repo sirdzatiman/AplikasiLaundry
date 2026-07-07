@@ -5,6 +5,8 @@ import aplikasilaundry.controller.TransaksiController;
 
 //Mengimpor model transaksi
 import aplikasilaundry.model.Transaksi;
+import aplikasilaundry.util.FormatJam;
+import aplikasilaundry.util.FormatRupiah;
 
 //Mengimpor DefaultTableModel
 import javax.swing.table.DefaultTableModel;
@@ -42,16 +44,13 @@ private void tampilData() {
     for (Transaksi t : list) {
 
         model.addRow(new Object[]{
-
-    t.getNoNota(),
-    t.getNamaPelanggan(),
-    t.getJamMasuk(),
-    t.getJamAmbil(),
-    t.getJenis(),
-    t.getTotalHarga(),
-    t.getStatus()
-
-});
+            t.getNoNota(),
+            t.getNamaPelanggan(),
+            t.getJenis(),
+            FormatRupiah.format(t.getTotalHarga()),
+            FormatJam.format(t.getJamMasuk()),
+            t.getStatus()
+        });
     }
 
 }
@@ -176,7 +175,7 @@ private void tampilData() {
         jPanel18.setMinimumSize(new java.awt.Dimension(856, 50));
 
         jPanel19.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(224, 226, 230)));
         jPanel19.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -203,6 +202,8 @@ private void tampilData() {
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
             .addComponent(jTextField3)
         );
+
+        jDateChooser3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(224, 226, 230)));
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -252,7 +253,7 @@ private void tampilData() {
         jPanel2.setBackground(new java.awt.Color(240, 243, 247));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jPanel16.setBackground(new java.awt.Color(240, 243, 247));
+        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
         jPanel16.setMinimumSize(new java.awt.Dimension(1006, 75));
         jPanel16.setPreferredSize(new java.awt.Dimension(1006, 75));
 
@@ -305,7 +306,7 @@ private void tampilData() {
 
         jPanel17.setLayout(new java.awt.CardLayout());
 
-        tblRiwayat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblRiwayat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tblRiwayat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -314,7 +315,9 @@ private void tampilData() {
                 "No Nota", "Nama Pelanggan", "Jam Masuk", "Jam Ambil", "Jenis", "Total", "Status"
             }
         ));
-        tblRiwayat.setRowHeight(30);
+        tblRiwayat.setGridColor(new java.awt.Color(240, 243, 247));
+        tblRiwayat.setRowHeight(35);
+        tblRiwayat.setSelectionBackground(new java.awt.Color(195, 220, 255));
         tblRiwayat.setShowGrid(true);
         jScrollPane1.setViewportView(tblRiwayat);
 

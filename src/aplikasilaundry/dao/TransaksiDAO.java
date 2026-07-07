@@ -1,4 +1,3 @@
-
 package aplikasilaundry.dao;
 
 //Mengimpor class koneksi database
@@ -25,6 +24,7 @@ import java.util.List;
 
 //Class untuk mengelola data transaksi
 public class TransaksiDAO {
+
     //Menyimpan koneksi database
     private Connection conn;
 
@@ -45,20 +45,20 @@ public class TransaksiDAO {
         try {
 
             //Query mengambil seluruh data transaksi
-            String sql =
-                    "SELECT " +
-                    "t.no_nota, " +
-                    "p.nama_pelanggan, " +
-                    "t.jam_masuk, " +
-                    "l.nama_layanan, " +
-                    "t.total_harga, " +
-                    "st.nama_status " +
-                    "FROM transaksi t " +
-                    "JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan " +
-                    "JOIN status_transaksi st ON t.id_status = st.id_status " +
-                    "JOIN detail_transaksi dt ON t.id_transaksi = dt.id_transaksi " +
-                    "JOIN layanan l ON dt.id_layanan = l.id_layanan " +
-                    "ORDER BY t.id_transaksi DESC";
+            String sql
+                    = "SELECT "
+                    + "t.no_nota, "
+                    + "p.nama_pelanggan, "
+                    + "t.jam_masuk, "
+                    + "l.nama_layanan, "
+                    + "t.total_harga, "
+                    + "st.nama_status "
+                    + "FROM transaksi t "
+                    + "JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan "
+                    + "JOIN status_transaksi st ON t.id_status = st.id_status "
+                    + "JOIN detail_transaksi dt ON t.id_transaksi = dt.id_transaksi "
+                    + "JOIN layanan l ON dt.id_layanan = l.id_layanan "
+                    + "ORDER BY t.id_transaksi DESC";
 
             //Menyiapkan query
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -97,44 +97,37 @@ public class TransaksiDAO {
 
     }
     
-    //Method untuk mengambil data laundry dengan status Baru Masuk
-public List<Transaksi> getLaundryMasuk() {
+    //Method untuk mengambil 5 transaksi terbaru
+public List<Transaksi> getTransaksiTerbaru() {
 
-    //Membuat list transaksi
     List<Transaksi> list = new ArrayList<>();
 
     try {
 
-        //Query mengambil data laundry dengan status Baru Masuk
         String sql =
-                "SELECT " +
-                "t.no_nota, " +
-                "p.nama_pelanggan, " +
-                "t.jam_masuk, " +
-                "l.nama_layanan, " +
-                "t.total_harga, " +
-                "st.nama_status " +
-                "FROM transaksi t " +
-                "JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan " +
-                "JOIN status_transaksi st ON t.id_status = st.id_status " +
-                "JOIN detail_transaksi dt ON t.id_transaksi = dt.id_transaksi " +
-                "JOIN layanan l ON dt.id_layanan = l.id_layanan " +
-                "WHERE st.nama_status = 'Baru Masuk' " +
-                "ORDER BY t.id_transaksi DESC";
+                "SELECT "
+                + "t.no_nota, "
+                + "p.nama_pelanggan, "
+                + "t.jam_masuk, "
+                + "l.nama_layanan, "
+                + "t.total_harga, "
+                + "st.nama_status "
+                + "FROM transaksi t "
+                + "JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan "
+                + "JOIN status_transaksi st ON t.id_status = st.id_status "
+                + "JOIN detail_transaksi dt ON t.id_transaksi = dt.id_transaksi "
+                + "JOIN layanan l ON dt.id_layanan = l.id_layanan "
+                + "ORDER BY t.id_transaksi DESC "
+                + "LIMIT 5";
 
-        //Menyiapkan query
         PreparedStatement ps = conn.prepareStatement(sql);
 
-        //Menjalankan query
         ResultSet rs = ps.executeQuery();
 
-        //Membaca seluruh data
         while (rs.next()) {
 
-            //Membuat objek transaksi
             Transaksi transaksi = new Transaksi();
 
-            //Mengisi data transaksi
             transaksi.setNoNota(rs.getString("no_nota"));
             transaksi.setNamaPelanggan(rs.getString("nama_pelanggan"));
             transaksi.setJamMasuk(rs.getString("jam_masuk"));
@@ -142,286 +135,347 @@ public List<Transaksi> getLaundryMasuk() {
             transaksi.setTotalHarga(rs.getBigDecimal("total_harga"));
             transaksi.setStatus(rs.getString("nama_status"));
 
-            //Menambahkan ke dalam list
             list.add(transaksi);
 
         }
 
     } catch (SQLException e) {
 
-        //Menampilkan pesan error
         System.out.println(e.getMessage());
 
     }
 
-    //Mengembalikan list transaksi
     return list;
 
 }
     
+
+    //Method untuk mengambil data laundry dengan status Baru Masuk
+    public List<Transaksi> getLaundryMasuk() {
+
+        //Membuat list transaksi
+        List<Transaksi> list = new ArrayList<>();
+
+        try {
+
+            //Query mengambil data laundry dengan status Baru Masuk
+            String sql
+                    = "SELECT "
+                    + "t.no_nota, "
+                    + "p.nama_pelanggan, "
+                    + "t.jam_masuk, "
+                    + "l.nama_layanan, "
+                    + "t.total_harga, "
+                    + "st.nama_status "
+                    + "FROM transaksi t "
+                    + "JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan "
+                    + "JOIN status_transaksi st ON t.id_status = st.id_status "
+                    + "JOIN detail_transaksi dt ON t.id_transaksi = dt.id_transaksi "
+                    + "JOIN layanan l ON dt.id_layanan = l.id_layanan "
+                    + "WHERE st.nama_status = 'Baru Masuk' "
+                    + "ORDER BY t.id_transaksi DESC";
+
+            //Menyiapkan query
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            //Menjalankan query
+            ResultSet rs = ps.executeQuery();
+
+            //Membaca seluruh data
+            while (rs.next()) {
+
+                //Membuat objek transaksi
+                Transaksi transaksi = new Transaksi();
+
+                //Mengisi data transaksi
+                transaksi.setNoNota(rs.getString("no_nota"));
+                transaksi.setNamaPelanggan(rs.getString("nama_pelanggan"));
+                transaksi.setJamMasuk(rs.getString("jam_masuk"));
+                transaksi.setJenis(rs.getString("nama_layanan"));
+                transaksi.setTotalHarga(rs.getBigDecimal("total_harga"));
+                transaksi.setStatus(rs.getString("nama_status"));
+
+                //Menambahkan ke dalam list
+                list.add(transaksi);
+
+            }
+
+        } catch (SQLException e) {
+
+            //Menampilkan pesan error
+            System.out.println(e.getMessage());
+
+        }
+
+        //Mengembalikan list transaksi
+        return list;
+
+    }
+
     //Method untuk mengambil data laundry dengan status Diproses
-public List<Transaksi> getDiproses() {
+    public List<Transaksi> getDiproses() {
 
-    //Membuat list transaksi
-    List<Transaksi> list = new ArrayList<>();
+        //Membuat list transaksi
+        List<Transaksi> list = new ArrayList<>();
 
-    try {
+        try {
 
-        //Query mengambil data laundry dengan status Diproses
-        String sql =
-                "SELECT " +
-                "t.no_nota, " +
-                "p.nama_pelanggan, " +
-                "t.jam_masuk, " +
-                "l.nama_layanan, " +
-                "t.total_harga, " +
-                "st.nama_status " +
-                "FROM transaksi t " +
-                "JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan " +
-                "JOIN status_transaksi st ON t.id_status = st.id_status " +
-                "JOIN detail_transaksi dt ON t.id_transaksi = dt.id_transaksi " +
-                "JOIN layanan l ON dt.id_layanan = l.id_layanan " +
-                "WHERE st.nama_status = 'Diproses' " +
-                "ORDER BY t.id_transaksi DESC";
+            //Query mengambil data laundry dengan status Diproses
+            String sql
+                    = "SELECT "
+                    + "t.no_nota, "
+                    + "p.nama_pelanggan, "
+                    + "t.jam_masuk, "
+                    + "l.nama_layanan, "
+                    + "t.total_harga, "
+                    + "st.nama_status "
+                    + "FROM transaksi t "
+                    + "JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan "
+                    + "JOIN status_transaksi st ON t.id_status = st.id_status "
+                    + "JOIN detail_transaksi dt ON t.id_transaksi = dt.id_transaksi "
+                    + "JOIN layanan l ON dt.id_layanan = l.id_layanan "
+                    + "WHERE st.nama_status = 'Diproses' "
+                    + "ORDER BY t.id_transaksi DESC";
 
-        //Menyiapkan query
-        PreparedStatement ps = conn.prepareStatement(sql);
+            //Menyiapkan query
+            PreparedStatement ps = conn.prepareStatement(sql);
 
-        //Menjalankan query
-        ResultSet rs = ps.executeQuery();
+            //Menjalankan query
+            ResultSet rs = ps.executeQuery();
 
-        //Membaca seluruh data
-        while (rs.next()) {
+            //Membaca seluruh data
+            while (rs.next()) {
 
-            //Membuat objek transaksi
-            Transaksi transaksi = new Transaksi();
+                //Membuat objek transaksi
+                Transaksi transaksi = new Transaksi();
 
-            //Mengisi data transaksi
-            transaksi.setNoNota(rs.getString("no_nota"));
-            transaksi.setNamaPelanggan(rs.getString("nama_pelanggan"));
-            transaksi.setJamMasuk(rs.getString("jam_masuk"));
-            transaksi.setJenis(rs.getString("nama_layanan"));
-            transaksi.setTotalHarga(rs.getBigDecimal("total_harga"));
-            transaksi.setStatus(rs.getString("nama_status"));
+                //Mengisi data transaksi
+                transaksi.setNoNota(rs.getString("no_nota"));
+                transaksi.setNamaPelanggan(rs.getString("nama_pelanggan"));
+                transaksi.setJamMasuk(rs.getString("jam_masuk"));
+                transaksi.setJenis(rs.getString("nama_layanan"));
+                transaksi.setTotalHarga(rs.getBigDecimal("total_harga"));
+                transaksi.setStatus(rs.getString("nama_status"));
 
-            //Menambahkan ke dalam list
-            list.add(transaksi);
+                //Menambahkan ke dalam list
+                list.add(transaksi);
+
+            }
+
+        } catch (SQLException e) {
+
+            //Menampilkan pesan error
+            System.out.println(e.getMessage());
 
         }
 
-    } catch (SQLException e) {
-
-        //Menampilkan pesan error
-        System.out.println(e.getMessage());
+        //Mengembalikan list transaksi
+        return list;
 
     }
-
-    //Mengembalikan list transaksi
-    return list;
-
-}
     //Method untuk mengambil data laundry dengan status Selesai
-public List<Transaksi> getSelesai() {
 
-    //Membuat list transaksi
-    List<Transaksi> list = new ArrayList<>();
+    public List<Transaksi> getSelesai() {
 
-    try {
+        //Membuat list transaksi
+        List<Transaksi> list = new ArrayList<>();
 
-        //Query mengambil data laundry dengan status Selesai
-        String sql =
-                "SELECT " +
-                "t.no_nota, " +
-                "p.nama_pelanggan, " +
-                "t.jam_masuk, " +
-                "l.nama_layanan, " +
-                "t.total_harga, " +
-                "st.nama_status " +
-                "FROM transaksi t " +
-                "JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan " +
-                "JOIN status_transaksi st ON t.id_status = st.id_status " +
-                "JOIN detail_transaksi dt ON t.id_transaksi = dt.id_transaksi " +
-                "JOIN layanan l ON dt.id_layanan = l.id_layanan " +
-                "WHERE st.nama_status = 'Selesai' " +
-                "ORDER BY t.id_transaksi DESC";
+        try {
 
-        //Menyiapkan query
-        PreparedStatement ps = conn.prepareStatement(sql);
+            //Query mengambil data laundry dengan status Selesai
+            String sql
+                    = "SELECT "
+                    + "t.no_nota, "
+                    + "p.nama_pelanggan, "
+                    + "t.jam_masuk, "
+                    + "l.nama_layanan, "
+                    + "t.total_harga, "
+                    + "st.nama_status "
+                    + "FROM transaksi t "
+                    + "JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan "
+                    + "JOIN status_transaksi st ON t.id_status = st.id_status "
+                    + "JOIN detail_transaksi dt ON t.id_transaksi = dt.id_transaksi "
+                    + "JOIN layanan l ON dt.id_layanan = l.id_layanan "
+                    + "WHERE st.nama_status = 'Selesai' "
+                    + "ORDER BY t.id_transaksi DESC";
 
-        //Menjalankan query
-        ResultSet rs = ps.executeQuery();
+            //Menyiapkan query
+            PreparedStatement ps = conn.prepareStatement(sql);
 
-        //Membaca seluruh data
-        while (rs.next()) {
+            //Menjalankan query
+            ResultSet rs = ps.executeQuery();
 
-            //Membuat objek transaksi
-            Transaksi transaksi = new Transaksi();
+            //Membaca seluruh data
+            while (rs.next()) {
 
-            //Mengisi data transaksi
-            transaksi.setNoNota(rs.getString("no_nota"));
-            transaksi.setNamaPelanggan(rs.getString("nama_pelanggan"));
-            transaksi.setJamMasuk(rs.getString("jam_masuk"));
-            transaksi.setJenis(rs.getString("nama_layanan"));
-            transaksi.setTotalHarga(rs.getBigDecimal("total_harga"));
-            transaksi.setStatus(rs.getString("nama_status"));
+                //Membuat objek transaksi
+                Transaksi transaksi = new Transaksi();
 
-            //Menambahkan ke dalam list
-            list.add(transaksi);
+                //Mengisi data transaksi
+                transaksi.setNoNota(rs.getString("no_nota"));
+                transaksi.setNamaPelanggan(rs.getString("nama_pelanggan"));
+                transaksi.setJamMasuk(rs.getString("jam_masuk"));
+                transaksi.setJenis(rs.getString("nama_layanan"));
+                transaksi.setTotalHarga(rs.getBigDecimal("total_harga"));
+                transaksi.setStatus(rs.getString("nama_status"));
+
+                //Menambahkan ke dalam list
+                list.add(transaksi);
+
+            }
+
+        } catch (SQLException e) {
+
+            //Menampilkan pesan error
+            System.out.println(e.getMessage());
 
         }
 
-    } catch (SQLException e) {
-
-        //Menampilkan pesan error
-        System.out.println(e.getMessage());
+        //Mengembalikan list transaksi
+        return list;
 
     }
-
-    //Mengembalikan list transaksi
-    return list;
-
-}
 
 //Method untuk mengambil data laundry dengan status Sudah Diambil
-public List<Transaksi> getSudahDiambil() {
+    public List<Transaksi> getSudahDiambil() {
 
-    //Membuat list transaksi
-    List<Transaksi> list = new ArrayList<>();
+        //Membuat list transaksi
+        List<Transaksi> list = new ArrayList<>();
 
-    try {
+        try {
 
-        //Query mengambil data laundry dengan status Sudah Diambil
-        String sql =
-                "SELECT " +
-                "t.no_nota, " +
-                "p.nama_pelanggan, " +
-                "t.jam_masuk, " +
-                "CONCAT(DATE_FORMAT(t.tanggal_ambil,'%d-%m-%Y'),' ',TIME_FORMAT(t.jam_ambil,'%H:%i:%s')) AS jam_ambil, "  +
-                "l.nama_layanan, " +
-                "t.total_harga, " +
-                "st.nama_status " +
-                "FROM transaksi t " +
-                "JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan " +
-                "JOIN status_transaksi st ON t.id_status = st.id_status " +
-                "JOIN detail_transaksi dt ON t.id_transaksi = dt.id_transaksi " +
-                "JOIN layanan l ON dt.id_layanan = l.id_layanan " +
-                "WHERE st.nama_status = 'Sudah Diambil' " +
-                "ORDER BY t.id_transaksi DESC";
+            //Query mengambil data laundry dengan status Sudah Diambil
+            String sql
+                    = "SELECT "
+                    + "t.no_nota, "
+                    + "p.nama_pelanggan, "
+                    + "t.jam_masuk, "
+                    + "CONCAT(DATE_FORMAT(t.tanggal_ambil,'%d-%m-%Y'),' ',TIME_FORMAT(t.jam_ambil,'%H:%i:%s')) AS jam_ambil, "
+                    + "l.nama_layanan, "
+                    + "t.total_harga, "
+                    + "st.nama_status "
+                    + "FROM transaksi t "
+                    + "JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan "
+                    + "JOIN status_transaksi st ON t.id_status = st.id_status "
+                    + "JOIN detail_transaksi dt ON t.id_transaksi = dt.id_transaksi "
+                    + "JOIN layanan l ON dt.id_layanan = l.id_layanan "
+                    + "WHERE st.nama_status = 'Sudah Diambil' "
+                    + "ORDER BY t.id_transaksi DESC";
 
-        PreparedStatement ps = conn.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
 
-        while (rs.next()) {
+            while (rs.next()) {
 
-            Transaksi transaksi = new Transaksi();
+                Transaksi transaksi = new Transaksi();
 
-            transaksi.setNoNota(rs.getString("no_nota"));
-            transaksi.setNamaPelanggan(rs.getString("nama_pelanggan"));
-            transaksi.setJamMasuk(rs.getString("jam_masuk"));
-            transaksi.setJamAmbil(rs.getString("jam_ambil"));
-            transaksi.setJenis(rs.getString("nama_layanan"));
-            transaksi.setTotalHarga(rs.getBigDecimal("total_harga"));
-            transaksi.setStatus(rs.getString("nama_status"));
+                transaksi.setNoNota(rs.getString("no_nota"));
+                transaksi.setNamaPelanggan(rs.getString("nama_pelanggan"));
+                transaksi.setJamMasuk(rs.getString("jam_masuk"));
+                transaksi.setJamAmbil(rs.getString("jam_ambil"));
+                transaksi.setJenis(rs.getString("nama_layanan"));
+                transaksi.setTotalHarga(rs.getBigDecimal("total_harga"));
+                transaksi.setStatus(rs.getString("nama_status"));
 
-            list.add(transaksi);
+                list.add(transaksi);
+
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
 
         }
 
-    } catch (SQLException e) {
-
-        System.out.println(e.getMessage());
+        return list;
 
     }
-
-    return list;
-
-}
 
 //Method menyimpan transaksi
-public int simpan(TransaksiSimpan transaksi){
+    public int simpan(TransaksiSimpan transaksi) {
 
-    //ID transaksi yang akan dikembalikan
-    int idTransaksi = 0;
+        //ID transaksi yang akan dikembalikan
+        int idTransaksi = 0;
 
-    try{
+        try {
 
-        //Query menyimpan transaksi
-        String sql =
-                "INSERT INTO transaksi "
-                + "(no_nota,"
-                + "id_pengguna,"
-                + "id_pelanggan,"
-                + "id_status,"
-                + "tanggal_masuk,"
-                + "jam_masuk,"
-                + "catatan,"
-                + "total_harga)"
-                + " VALUES (?,?,?,?,?,?,?,?)";
+            //Query menyimpan transaksi
+            String sql
+                    = "INSERT INTO transaksi "
+                    + "(no_nota,"
+                    + "id_pengguna,"
+                    + "id_pelanggan,"
+                    + "id_status,"
+                    + "tanggal_masuk,"
+                    + "jam_masuk,"
+                    + "catatan,"
+                    + "total_harga)"
+                    + " VALUES (?,?,?,?,?,?,?,?)";
 
-        //Menyiapkan query
-        PreparedStatement ps =
-                conn.prepareStatement(
-                        sql,
-                        Statement.RETURN_GENERATED_KEYS);
+            //Menyiapkan query
+            PreparedStatement ps
+                    = conn.prepareStatement(
+                            sql,
+                            Statement.RETURN_GENERATED_KEYS);
 
-        //Nomor nota
-        ps.setString(1,
-                transaksi.getNoNota());
+            //Nomor nota
+            ps.setString(1,
+                    transaksi.getNoNota());
 
-        //ID pengguna
-        ps.setInt(2,
-                transaksi.getIdPengguna());
+            //ID pengguna
+            ps.setInt(2,
+                    transaksi.getIdPengguna());
 
-        //ID pelanggan
-        ps.setInt(3,
-                transaksi.getIdPelanggan());
+            //ID pelanggan
+            ps.setInt(3,
+                    transaksi.getIdPelanggan());
 
-        //Status
-        ps.setInt(4,
-                transaksi.getIdStatus());
+            //Status
+            ps.setInt(4,
+                    transaksi.getIdStatus());
 
-        //Tanggal masuk
-        ps.setDate(5,
-                java.sql.Date.valueOf(
-                        transaksi.getTanggalMasuk()));
+            //Tanggal masuk
+            ps.setDate(5,
+                    java.sql.Date.valueOf(
+                            transaksi.getTanggalMasuk()));
 
-        //Jam masuk
-        ps.setTime(6,
-                java.sql.Time.valueOf(
-                        transaksi.getJamMasuk()));
+            //Jam masuk
+            ps.setTime(6,
+                    java.sql.Time.valueOf(
+                            transaksi.getJamMasuk()));
 
-        //Catatan
-        ps.setString(7,
-                transaksi.getCatatan());
+            //Catatan
+            ps.setString(7,
+                    transaksi.getCatatan());
 
-        //Total harga
-        ps.setBigDecimal(8,
-                transaksi.getTotalHarga());
+            //Total harga
+            ps.setBigDecimal(8,
+                    transaksi.getTotalHarga());
 
-        //Menjalankan query
-        ps.executeUpdate();
+            //Menjalankan query
+            ps.executeUpdate();
 
-        //Mengambil ID transaksi
-        ResultSet rs =
-                ps.getGeneratedKeys();
+            //Mengambil ID transaksi
+            ResultSet rs
+                    = ps.getGeneratedKeys();
 
-        //Jika berhasil
-        if(rs.next()){
+            //Jika berhasil
+            if (rs.next()) {
 
-            //Menyimpan ID transaksi
-            idTransaksi = rs.getInt(1);
+                //Menyimpan ID transaksi
+                idTransaksi = rs.getInt(1);
+
+            }
+
+        } catch (SQLException e) {
+
+            //Menampilkan error
+            System.out.println(e.getMessage());
 
         }
 
-    }catch(SQLException e){
-
-        //Menampilkan error
-        System.out.println(e.getMessage());
+        //Mengembalikan ID transaksi
+        return idTransaksi;
 
     }
-
-    //Mengembalikan ID transaksi
-    return idTransaksi;
-
-}
 }

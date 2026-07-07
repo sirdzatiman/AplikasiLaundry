@@ -7,9 +7,6 @@ package aplikasilaundry.view.frame;
 import aplikasilaundry.config.Session;
 
 import aplikasilaundry.view.panel.Dasboard;
-import aplikasilaundry.view.panel.Diproses;
-import aplikasilaundry.view.panel.LaundryMasuk;
-import aplikasilaundry.view.panel.SelesaiBelumDiambil;
 import aplikasilaundry.view.panel.DataLaundry;
 import aplikasilaundry.view.panel.LaporanPemasukan;
 import aplikasilaundry.view.panel.Pengaturan;
@@ -41,10 +38,12 @@ public class FrameDashboard extends javax.swing.JFrame {
     /**
      * Creates new form mainFrame
      */
+    private DataLaundry dataLaundry;
     public FrameDashboard() {
         initComponents();
         inisiasiPanel();
         resetMenu();
+        
         setMenuAktif(pnlDasboard);
 //        System.out.println(Session.getNamaPengguna());
 //        System.out.println(Session.getRole());
@@ -52,24 +51,23 @@ public class FrameDashboard extends javax.swing.JFrame {
 
     void inisiasiPanel() {
         cardLayout = (CardLayout) panelContent.getLayout();
+
         panelContent.add(new Dasboard(), "dashboard");
-        panelContent.add(new LaundryMasuk(), "laundryMasuk");
-        panelContent.add(new LaporanPemasukan(), "laporanPemasukan");
-        panelContent.add(new SelesaiBelumDiambil(), "selesaiBelumDiambil");
-        panelContent.add(new DataLaundry(), "semua");
-        panelContent.add(new Diproses(), "diproses");
-        panelContent.add(new Pengaturan(), "pengaturan");
         panelContent.add(new TambahLaundry(), "tambahLaundry");
+
+        dataLaundry = new DataLaundry();
+        panelContent.add(dataLaundry, "semua");
+
         panelContent.add(new RiwayatLaundry(), "riwayat");
-        cardLayout.show(panelContent, "dashboard");
+        panelContent.add(new LaporanPemasukan(), "laporanPemasukan");
+        panelContent.add(new Pengaturan(), "pengaturan");
 
         panelContent.revalidate();
         panelContent.repaint();
     }
     public DataLaundry getDataLaundry() {
-        DataLaundry DataLaundry = null;
-        return DataLaundry;
-    }
+    return dataLaundry;
+}
 
     private void setWarnaMenu(JPanel panel, Color bg, Color fg) {
 
