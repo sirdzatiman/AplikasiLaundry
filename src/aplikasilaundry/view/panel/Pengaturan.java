@@ -997,6 +997,7 @@ public class Pengaturan extends javax.swing.JPanel {
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/IonPlus.png"))); // NOI18N
         jToggleButton1.setText("Simpan Pengaturan");
         jToggleButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jToggleButton1.addActionListener(this::jToggleButton1ActionPerformed);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/SystemUiconsReset.png"))); // NOI18N
         jButton1.setText("Reset");
@@ -1328,6 +1329,11 @@ public class Pengaturan extends javax.swing.JPanel {
 //    popup.setLocationRelativeTo(getParentFrame());
 //    popup.setVisible(true);
     }//GEN-LAST:event_btnHapusKonfigurasiActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

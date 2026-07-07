@@ -3,10 +3,13 @@ package aplikasilaundry.view.panel;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Container;
 import javax.swing.JToggleButton;
 
 
 public class DataLaundry extends javax.swing.JPanel {
+
+    
 
    
     public DataLaundry() {
@@ -22,6 +25,18 @@ public class DataLaundry extends javax.swing.JPanel {
         CardLayout cl = (CardLayout) panelContentDataLaundry.getLayout();
         cl.show(panelContentDataLaundry, namaKartu);
     }
+    public void tampilLaundryMasuk() {
+        Container panelCard = null;
+
+    CardLayout cl = (CardLayout) panelCard.getLayout();
+    cl.show(panelCard, "laundryMasuk");
+
+    setButtonAktif(btnMasuk);
+
+}
+    
+    
+    
     private void setButtonAktif(JToggleButton btnAktif){
     // Reset semua tombol
     btnSemua.setBackground(Color.WHITE);
@@ -37,6 +52,7 @@ public class DataLaundry extends javax.swing.JPanel {
     // Tombol aktif
     btnAktif.setBackground(new Color(37, 99, 235)); 
     btnAktif.setForeground(Color.WHITE);
+
 }
 
     /**
@@ -338,4 +354,6 @@ public class DataLaundry extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel panelContentDataLaundry;
     // End of variables declaration//GEN-END:variables
+
+
 }
