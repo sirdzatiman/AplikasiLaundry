@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package aplikasilaundry.view.panel;
 
 import java.awt.Color;
@@ -9,23 +6,57 @@ import java.awt.Component;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+//Mengimpor controller transaksi
+import aplikasilaundry.controller.TransaksiController;
 
-/**
- *
- * @author Sirdzat
- */
 public class TambahLaundry extends javax.swing.JPanel {
 
-    /**
-     * Creates new form TambahLoundry
-     */
+    //Controller transaksi yang dipakai semua panel
+private TransaksiController controller = new TransaksiController();
+
+//Panel pelanggan
+private PanelPelanggan panelPelanggan;
+
+//Panel item
+private PanelItemLaundry panelItem;
+
+//Panel konfirmasi
+private Konfirmasi panelKonfirmasi;
+
     public TambahLaundry() {
         initComponents();
-        // Saat memasukkan panel anak ke CardLayout jPanel26:
-        panelContentPelanggan.add(new PanelPelanggan(this), "kartuPelanggan");
-        panelContentPelanggan.add(new PanelItemLaundry(this), "kartuItem");
-        panelContentPelanggan.add(new Konfirmasi(this), "kartuKonfirmasi");
+        //Membuat panel pelanggan
+panelPelanggan = new PanelPelanggan(this);
+
+//Membuat panel item
+panelItem = new PanelItemLaundry(this);
+
+//Membuat panel konfirmasi
+panelKonfirmasi = new Konfirmasi(this);
+
+//Menambahkan panel ke CardLayout
+panelContentPelanggan.add(panelPelanggan,"kartuPelanggan");
+panelContentPelanggan.add(panelItem,"kartuItem");
+panelContentPelanggan.add(panelKonfirmasi,"kartuKonfirmasi");
+        //Menampilkan tahap pertama saat panel dibuka
+    panggilTahap("kartuPelanggan");
     }
+    
+    //Method mengambil controller transaksi
+public TransaksiController getController() {
+
+    //Mengembalikan controller
+    return controller;
+
+}
+
+//Method mengambil panel konfirmasi
+public Konfirmasi getPanelKonfirmasi() {
+
+    //Mengembalikan panel konfirmasi
+    return panelKonfirmasi;
+
+}
 
     public void panggilTahap(String namaKartu) {
         // 1. Ambil Layout CardLayout dari jPanel26 (sesuai nama panel CardLayout Anda di gambar Navigator)
