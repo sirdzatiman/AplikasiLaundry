@@ -1,25 +1,143 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package aplikasilaundry.view.panel;
 import aplikasilaundry.view.panel.TambahLaundry;
-
+import aplikasilaundry.controller.TransaksiController;
 import javax.swing.JPanel;
-/**
- *
- * @author Sirdzat
- */
+import aplikasilaundry.model.Pelanggan;
+import aplikasilaundry.model.ItemLaundry;
+
 public class Konfirmasi extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Konfirmasi
-     */
+ 
     private TambahLaundry induk;
+    private TransaksiController controller;
     public Konfirmasi(TambahLaundry induk) {
-        this.induk = induk;
-        initComponents();
+
+    //Menyimpan panel induk
+    this.induk = induk;
+
+    //Membuat komponen
+    initComponents();
+
+    //Mengambil controller dari panel induk
+    controller = induk.getController();
+    
+    //Event tombol simpan transaksi
+btnSimpan.addActionListener(this::btnSimpanActionPerformed);
+
+}
+///Menampilkan data pelanggan
+public void tampilDataPelanggan(Pelanggan pelanggan){
+
+    //Jika data pelanggan belum ada
+    if (pelanggan == null) {
+        return;
     }
+
+    //Menampilkan nama pelanggan
+    lblNama.setText(pelanggan.getNamaPelanggan());
+
+    //Menampilkan nomor HP
+    lblNoHp.setText(pelanggan.getNoHp());
+
+    //Menampilkan alamat
+    lblAlaamat.setText(pelanggan.getAlamat());
+
+    //Menampilkan catatan
+    lblCatatan.setText(pelanggan.getCatatan());
+
+}
+//Menampilkan daftar item laundry
+public void tampilItem(java.util.List<ItemLaundry> daftarItem){
+
+    javax.swing.table.DefaultTableModel model =
+            (javax.swing.table.DefaultTableModel) jTable1.getModel();
+
+    model.setRowCount(0);
+
+    int no = 1;
+
+    for(ItemLaundry item : daftarItem){
+
+        model.addRow(new Object[]{
+
+            no++,
+            item.getLayanan(),
+            item.getProses(),
+            item.getQty(),
+            item.getHarga(),
+            item.getSubtotal()
+
+        });
+
+    }
+
+}
+//Method menghitung ringkasan transaksi
+public void hitungRingkasan(java.util.List<ItemLaundry> daftarItem){
+
+    //Total berat
+    double totalBerat = 0;
+
+    //Total biji
+    int totalBiji = 0;
+
+    //Total item
+    int totalItem = daftarItem.size();
+
+    //Subtotal
+    java.math.BigDecimal subtotal = java.math.BigDecimal.ZERO;
+
+    //Menghitung seluruh item
+    for(ItemLaundry item : daftarItem){
+
+        //Jika menggunakan kilogram
+        if(item.getProses() != null){
+
+            totalBerat += item.getQty();
+
+        }
+
+        //Jika menggunakan satuan
+        else{
+
+            totalBiji += (int)item.getQty();
+
+        }
+
+        //Menjumlah subtotal
+        subtotal = subtotal.add(item.getSubtotal());
+
+    }
+
+    //Menampilkan total berat
+    lblTotalBerat.setText(totalBerat + " Kg");
+
+    //Menampilkan total biji
+    lblTotalBiji.setText(String.valueOf(totalBiji));
+
+    //Menampilkan total item
+    lblTotalItem.setText(totalItem + " Item");
+
+    //Menampilkan subtotal
+    lblSubtotal.setText("Rp " + subtotal);
+
+    //Menampilkan total bayar
+    lblTotalBayar.setText("Rp " + subtotal);
+
+}
+//Method ketika tombol Simpan Transaksi ditekan
+private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt){
+
+    //Menyimpan transaksi ke database
+    controller.simpanTransaksi();
+
+    //Menampilkan pesan berhasil
+    javax.swing.JOptionPane.showMessageDialog(
+            this,
+            "Transaksi berhasil disimpan.");
+
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,30 +151,30 @@ public class Konfirmasi extends javax.swing.JPanel {
         jPanel14 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCetakStruk = new javax.swing.JButton();
+        btnSimpan = new javax.swing.JButton();
         jPanel24 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
+        btnKembali = new javax.swing.JButton();
         jPanel16 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jPanel26 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
+        lblSubtotal = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jPanel23 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        lblTotalBerat = new javax.swing.JLabel();
         jPanel27 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
-        jLabel48 = new javax.swing.JLabel();
+        lblTotalBayar = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
+        lblTotalBiji = new javax.swing.JLabel();
         jPanel28 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
+        lblTotalItem = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel29 = new javax.swing.JPanel();
@@ -65,19 +183,19 @@ public class Konfirmasi extends javax.swing.JPanel {
         jLabel44 = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        lblAlaamat = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel45 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
+        lblNama = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
         jPanel22 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        lblCatatan = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        lblNoHp = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -100,18 +218,18 @@ public class Konfirmasi extends javax.swing.JPanel {
         jPanel12.setBackground(new java.awt.Color(240, 243, 247));
         jPanel12.setMinimumSize(new java.awt.Dimension(437, 78));
 
-        jButton3.setBackground(new java.awt.Color(234, 179, 8));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector.png"))); // NOI18N
-        jButton3.setText("Cetak Struk");
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.addActionListener(this::jButton3ActionPerformed);
+        btnCetakStruk.setBackground(new java.awt.Color(234, 179, 8));
+        btnCetakStruk.setForeground(new java.awt.Color(255, 255, 255));
+        btnCetakStruk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector.png"))); // NOI18N
+        btnCetakStruk.setText("Cetak Struk");
+        btnCetakStruk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCetakStruk.addActionListener(this::btnCetakStrukActionPerformed);
 
-        jButton2.setBackground(new java.awt.Color(15, 82, 195));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Frame (7).png"))); // NOI18N
-        jButton2.setText("Simpan Transaksi");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSimpan.setBackground(new java.awt.Color(15, 82, 195));
+        btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
+        btnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Frame (7).png"))); // NOI18N
+        btnSimpan.setText("Simpan Transaksi");
+        btnSimpan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -121,9 +239,9 @@ public class Konfirmasi extends javax.swing.JPanel {
             .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel12Layout.createSequentialGroup()
                     .addGap(30, 30, 30)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCetakStruk, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(30, 30, 30)))
         );
         jPanel12Layout.setVerticalGroup(
@@ -133,8 +251,8 @@ public class Konfirmasi extends javax.swing.JPanel {
                 .addGroup(jPanel12Layout.createSequentialGroup()
                     .addGap(17, 17, 17)
                     .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCetakStruk, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(18, Short.MAX_VALUE)))
         );
 
@@ -143,10 +261,10 @@ public class Konfirmasi extends javax.swing.JPanel {
         jPanel24.setBackground(new java.awt.Color(240, 243, 247));
         jPanel24.setMinimumSize(new java.awt.Dimension(200, 78));
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Kiri.png"))); // NOI18N
-        jButton4.setText("Kembali");
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnKembali.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnKembali.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Kiri.png"))); // NOI18N
+        btnKembali.setText("Kembali");
+        btnKembali.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
         jPanel24.setLayout(jPanel24Layout);
@@ -154,14 +272,14 @@ public class Konfirmasi extends javax.swing.JPanel {
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel24Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel24Layout.setVerticalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel24Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -187,9 +305,9 @@ public class Konfirmasi extends javax.swing.JPanel {
         jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel25.setText("Subtotal");
 
-        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel26.setText("Rp 18.000");
+        lblSubtotal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblSubtotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblSubtotal.setText("Rp 18.000");
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
@@ -199,7 +317,7 @@ public class Konfirmasi extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel25)
                 .addGap(110, 110, 110)
-                .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel26Layout.setVerticalGroup(
@@ -207,7 +325,7 @@ public class Konfirmasi extends javax.swing.JPanel {
             .addGroup(jPanel26Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26)
+                    .addComponent(lblSubtotal)
                     .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
@@ -220,9 +338,9 @@ public class Konfirmasi extends javax.swing.JPanel {
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel19.setText("Total Berat");
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel20.setText("2.0 Kg");
+        lblTotalBerat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTotalBerat.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotalBerat.setText("2.0 Kg");
 
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
@@ -232,7 +350,7 @@ public class Konfirmasi extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel19)
                 .addGap(110, 110, 110)
-                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTotalBerat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel23Layout.setVerticalGroup(
@@ -240,7 +358,7 @@ public class Konfirmasi extends javax.swing.JPanel {
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
+                    .addComponent(lblTotalBerat)
                     .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
@@ -250,9 +368,9 @@ public class Konfirmasi extends javax.swing.JPanel {
         jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel27.setText("Total Bayar");
 
-        jLabel48.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel48.setText("Rp 18.000");
+        lblTotalBayar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTotalBayar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotalBayar.setText("Rp 18.000");
 
         javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
         jPanel27.setLayout(jPanel27Layout);
@@ -262,7 +380,7 @@ public class Konfirmasi extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel27)
                 .addGap(110, 110, 110)
-                .addComponent(jLabel48, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                .addComponent(lblTotalBayar, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel27Layout.setVerticalGroup(
@@ -270,7 +388,7 @@ public class Konfirmasi extends javax.swing.JPanel {
             .addGroup(jPanel27Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel48)
+                    .addComponent(lblTotalBayar)
                     .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
@@ -280,9 +398,9 @@ public class Konfirmasi extends javax.swing.JPanel {
         jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel21.setText("Total Biji");
 
-        jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel22.setText("1");
+        lblTotalBiji.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTotalBiji.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotalBiji.setText("1");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -292,7 +410,7 @@ public class Konfirmasi extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel21)
                 .addGap(110, 110, 110)
-                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTotalBiji, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
@@ -300,7 +418,7 @@ public class Konfirmasi extends javax.swing.JPanel {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22)
+                    .addComponent(lblTotalBiji)
                     .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
@@ -310,9 +428,9 @@ public class Konfirmasi extends javax.swing.JPanel {
         jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel23.setText("Total Item");
 
-        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel24.setText("2 Item");
+        lblTotalItem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTotalItem.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotalItem.setText("2 Item");
 
         javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
         jPanel28.setLayout(jPanel28Layout);
@@ -322,7 +440,7 @@ public class Konfirmasi extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel23)
                 .addGap(110, 110, 110)
-                .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTotalItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel28Layout.setVerticalGroup(
@@ -330,7 +448,7 @@ public class Konfirmasi extends javax.swing.JPanel {
             .addGroup(jPanel28Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel24)
+                    .addComponent(lblTotalItem)
                     .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
@@ -423,7 +541,7 @@ public class Konfirmasi extends javax.swing.JPanel {
 
         jLabel11.setText("Alamat");
 
-        jLabel12.setText("PPP.KH.A.BASTHOMI");
+        lblAlaamat.setText("PPP.KH.A.BASTHOMI");
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Frame (3).png"))); // NOI18N
 
@@ -437,7 +555,7 @@ public class Konfirmasi extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addGap(126, 126, 126)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblAlaamat, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel21Layout.setVerticalGroup(
@@ -449,7 +567,7 @@ public class Konfirmasi extends javax.swing.JPanel {
                     .addGroup(jPanel21Layout.createSequentialGroup()
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
-                            .addComponent(jLabel12))
+                            .addComponent(lblAlaamat))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -458,7 +576,7 @@ public class Konfirmasi extends javax.swing.JPanel {
 
         jLabel45.setText("Nama Pelanggan");
 
-        jLabel46.setText("Siti Aisyah");
+        lblNama.setText("Siti Aisyah");
 
         jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Frame (1).png"))); // NOI18N
 
@@ -472,7 +590,7 @@ public class Konfirmasi extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel45)
                 .addGap(75, 75, 75)
-                .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNama, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -484,7 +602,7 @@ public class Konfirmasi extends javax.swing.JPanel {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel47)
-                            .addComponent(jLabel46))
+                            .addComponent(lblNama))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -493,7 +611,7 @@ public class Konfirmasi extends javax.swing.JPanel {
 
         jLabel14.setText("Catatan");
 
-        jLabel15.setText("-");
+        lblCatatan.setText("-");
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Frame (4).png"))); // NOI18N
 
@@ -507,7 +625,7 @@ public class Konfirmasi extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
                 .addGap(129, 129, 129)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblCatatan, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel22Layout.setVerticalGroup(
@@ -519,7 +637,7 @@ public class Konfirmasi extends javax.swing.JPanel {
                     .addGroup(jPanel22Layout.createSequentialGroup()
                         .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel16)
-                            .addComponent(jLabel15))
+                            .addComponent(lblCatatan))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -528,7 +646,7 @@ public class Konfirmasi extends javax.swing.JPanel {
 
         jLabel8.setText("No . Hp");
 
-        jLabel9.setText("0857-9155-9991");
+        lblNoHp.setText("0857-9155-9991");
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Frame (2).png"))); // NOI18N
 
@@ -542,7 +660,7 @@ public class Konfirmasi extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addGap(123, 123, 123)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNoHp, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -554,7 +672,7 @@ public class Konfirmasi extends javax.swing.JPanel {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(lblNoHp, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -658,43 +776,33 @@ public class Konfirmasi extends javax.swing.JPanel {
         add(jPanel14, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnCetakStrukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakStrukActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
+    }//GEN-LAST:event_btnCetakStrukActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnCetakStruk;
+    private javax.swing.JButton btnKembali;
+    private javax.swing.JButton btnSimpan;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -720,5 +828,14 @@ public class Konfirmasi extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblAlaamat;
+    private javax.swing.JLabel lblCatatan;
+    private javax.swing.JLabel lblNama;
+    private javax.swing.JLabel lblNoHp;
+    private javax.swing.JLabel lblSubtotal;
+    private javax.swing.JLabel lblTotalBayar;
+    private javax.swing.JLabel lblTotalBerat;
+    private javax.swing.JLabel lblTotalBiji;
+    private javax.swing.JLabel lblTotalItem;
     // End of variables declaration//GEN-END:variables
 }

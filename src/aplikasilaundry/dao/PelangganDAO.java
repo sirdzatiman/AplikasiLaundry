@@ -12,7 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+//Mengimpor Statement
+import java.sql.Statement;
 //Mengimpor collection
 import java.util.ArrayList;
 import java.util.List;
@@ -73,4 +74,63 @@ public class PelangganDAO {
         //Mengembalikan list pelanggan
         return list;
     }
+    //Method menyimpan pelanggan ke database
+public int simpan(Pelanggan pelanggan){
+
+    //ID pelanggan yang akan dikembalikan
+    int idPelanggan = 0;
+
+    try{
+
+        //Query simpan pelanggan
+        String sql =
+                "INSERT INTO pelanggan "
+                + "(nama_pelanggan,no_hp,alamat) "
+                + "VALUES (?,?,?)";
+
+        //Menyiapkan query
+        PreparedStatement ps =
+                conn.prepareStatement(
+                        sql,
+                        Statement.RETURN_GENERATED_KEYS);
+
+        //Nama pelanggan
+        ps.setString(1,
+                pelanggan.getNamaPelanggan());
+
+        //Nomor HP
+        ps.setString(2,
+                pelanggan.getNoHp());
+
+        //Alamat
+        ps.setString(3,
+                pelanggan.getAlamat());
+
+        //Menjalankan query
+        ps.executeUpdate();
+
+        //Mengambil ID yang baru dibuat
+        ResultSet rs =
+                ps.getGeneratedKeys();
+
+        //Jika ada ID
+        if(rs.next()){
+
+            //Menyimpan ID pelanggan
+            idPelanggan =
+                    rs.getInt(1);
+
+        }
+
+    }catch(SQLException e){
+
+        //Menampilkan error
+        System.out.println(e.getMessage());
+
+    }
+
+    //Mengembalikan ID pelanggan
+    return idPelanggan;
+
+}
 }

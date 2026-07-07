@@ -1,24 +1,39 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
+
 package aplikasilaundry.view.dialog;
 
-/**
- *
- * @author HP 14s Ryzen
- */
+//Mengimpor controller transaksi
+import aplikasilaundry.controller.TransaksiController;
+
+//Mengimpor BigDecimal
+import java.math.BigDecimal;
+
+//Mengimpor panel item laundry
+import aplikasilaundry.view.panel.PanelItemLaundry;
+
+import javax.swing.JOptionPane;
 public class popUpTambahItemLaundry extends javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpTambahItemLaundry.class.getName());
+//Menyimpan panel yang membuka popup
+private PanelItemLaundry panelItem;
+//Menyimpan controller transaksi
+private TransaksiController controller;
 
-    /**
-     * Creates new form popUpTambahItemLaundry
-     */
-    public popUpTambahItemLaundry(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-    }
+//Constructor
+public popUpTambahItemLaundry(java.awt.Frame parent,
+                              boolean modal,
+                              PanelItemLaundry panelItem) {
+
+    super(parent, modal);
+
+    initComponents();
+    //Membuat controller transaksi
+controller = panelItem.getController();
+    //Menjalankan pengaturan awal komponen
+cJenisActionPerformed(null);
+
+    //Menyimpan panel asal
+    this.panelItem = panelItem;
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,18 +49,18 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cJenis = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cProses = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tBerat = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        tSatuan = new javax.swing.JTextField();
+        btnBatal = new javax.swing.JButton();
+        btnSimpan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -61,7 +76,8 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Jenis Laundry");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baju / Dll", "Selimut /Dll", "Bed Cover", "Boneka / Tas" }));
+        cJenis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baju / Dll", "Selimut / Dll", "Bed Cover", "Boneka / Tas" }));
+        cJenis.addActionListener(this::cJenisActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -71,7 +87,7 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cJenis, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -80,7 +96,7 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cJenis, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -89,7 +105,7 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Proses");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuci Kering", "Cuci Kering Setrika" }));
+        cProses.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuci Kering", "Cuci Kering Setrika" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -99,7 +115,7 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cProses, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -108,7 +124,7 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cProses, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -116,8 +132,6 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Berat (kg)");
-
-        jTextField1.setText("0.0");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -127,7 +141,7 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tBerat, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -136,7 +150,7 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tBerat, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -145,8 +159,6 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Satuan (Biji)");
 
-        jTextField2.setText("0");
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -154,7 +166,7 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tSatuan, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -164,21 +176,22 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tSatuan, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText(" Batal");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setPreferredSize(new java.awt.Dimension(97, 32));
+        btnBatal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBatal.setText(" Batal");
+        btnBatal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBatal.setPreferredSize(new java.awt.Dimension(97, 32));
 
-        jButton2.setBackground(new java.awt.Color(15, 82, 195));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Simpan");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setPreferredSize(new java.awt.Dimension(130, 32));
+        btnSimpan.setBackground(new java.awt.Color(15, 82, 195));
+        btnSimpan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
+        btnSimpan.setText("Simpan");
+        btnSimpan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSimpan.setPreferredSize(new java.awt.Dimension(130, 32));
+        btnSimpan.addActionListener(this::btnSimpanActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -196,9 +209,9 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
         jPanel1Layout.setVerticalGroup(
@@ -218,8 +231,8 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -237,48 +250,146 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        // TODO add your handling code here:
+          //Validasi berat
+    if (tBerat.isEnabled() && tBerat.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this,
+                "Berat belum diisi!");
+        return;
+    }
+
+    //Validasi satuan
+    if (tSatuan.isEnabled() && tSatuan.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this,
+                "Jumlah satuan belum diisi!");
+        return;
+    }
+//Mengambil jenis laundry
+String layanan = cJenis.getSelectedItem().toString();
+
+//Variabel jumlah
+double qty;
+
+//Menyimpan proses
+String proses = null;
+
+//Jika combo proses aktif
+if (cProses.isEnabled()) {
+
+    proses =
+        cProses.getSelectedItem().toString();
+
+}
+
+
+//Jika berat aktif
+if (tBerat.isEnabled()) {
+
+    qty = Double.parseDouble(tBerat.getText());
+
+}
+
+//Jika satuan aktif
+else {
+
+    qty = Double.parseDouble(tSatuan.getText());
+
+}
+
+
+//Mengambil harga dari database
+BigDecimal harga =
+        controller.getHargaLayanan(
+                layanan,
+                proses);
+    
+    //Menghitung subtotal
+BigDecimal subtotal =
+        harga.multiply(
+                BigDecimal.valueOf(qty));
+//Membuat objek item laundry
+aplikasilaundry.model.ItemLaundry item =
+        new aplikasilaundry.model.ItemLaundry();
+
+//Mengambil ID layanan dari database
+int idLayanan =
+        controller.getIdLayanan(
+                layanan,
+                proses);
+//Mengisi data item laundry
+item.setLayanan(layanan);
+//Menyimpan ID layanan
+item.setIdLayanan(idLayanan);
+item.setProses(proses);
+item.setQty(qty);
+item.setHarga(harga);
+item.setSubtotal(subtotal);
+
+//Mengirim data ke Panel Item Laundry
+panelItem.tambahItemKeTabel(item);
+
+//Menyimpan item ke transaksi sementara
+controller.tambahItem(item);
+
+//Menutup popup
+dispose();
+    }//GEN-LAST:event_btnSimpanActionPerformed
+
+    private void cJenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cJenisActionPerformed
+        // TODO add your handling code here:
+      //Mengambil jenis laundry yang dipilih
+String jenis = cJenis.getSelectedItem().toString();
+
+//Jika Baju atau Selimut
+if (jenis.equals("Baju / Dll")
+        || jenis.equals("Selimut / Dll")) {
+
+    //Berat aktif
+    tBerat.setEnabled(true);
+
+    //Satuan tidak aktif
+    tSatuan.setEnabled(false);
+
+    //Proses aktif
+    cProses.setEnabled(true);
+
+    //Mengosongkan satuan
+    tSatuan.setText("0");
+
+}
+
+//Jika Bed Cover atau Boneka
+else {
+
+    //Berat tidak aktif
+    tBerat.setEnabled(false);
+
+    //Satuan aktif
+    tSatuan.setEnabled(true);
+
+    //Proses tidak aktif
+    cProses.setEnabled(false);
+
+    //Kembalikan proses ke pilihan pertama
+    cProses.setSelectedIndex(0);
+
+    //Mengosongkan berat
+    tBerat.setText("0");
+
+}
+    }//GEN-LAST:event_cJenisActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                popUpTambahItemLaundry dialog = new popUpTambahItemLaundry(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton btnBatal;
+    private javax.swing.JButton btnSimpan;
+    private javax.swing.JComboBox<String> cJenis;
+    private javax.swing.JComboBox<String> cProses;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -290,7 +401,7 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField tBerat;
+    private javax.swing.JTextField tSatuan;
     // End of variables declaration//GEN-END:variables
 }
