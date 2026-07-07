@@ -2,6 +2,8 @@
 package aplikasilaundry.view.panel;
 
 import aplikasilaundry.config.Session;
+import aplikasilaundry.view.frame.FrameDashboard;
+import javax.swing.SwingUtilities;
 /**
  *
  * @author Sirdzat
@@ -28,8 +30,6 @@ public class Dasboard extends javax.swing.JPanel {
                 + "hoverBorderColor:#9525EB"
         );
     }
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -681,15 +681,14 @@ public class Dasboard extends javax.swing.JPanel {
 
     private void pnlLaundryMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLaundryMasukMouseClicked
         // TODO add your handling code here:
-        // Mengambil parent frame utama (mainFrame) dari panel Dashboard saat ini
-    Object window = javax.swing.SwingUtilities.getWindowAncestor(this);
-    
-    // Validasi apakah window yang ditemukan benar merupakan instance dari mainFrame
-    if (window instanceof aplikasilaundry.view.frame.FrameDashboard) {
-        // Navigasi ke halaman 'Laundry Masuk' menggunakan CardLayout di mainFrame
-        ((aplikasilaundry.view.frame.FrameDashboard) window).panggilHalaman("DataLaundry");
-    }
+          Object window = SwingUtilities.getWindowAncestor(this);
 
+    if(window instanceof FrameDashboard frame){
+
+        frame.panggilHalaman("semua");
+
+        frame.getDataLaundry().tampilLaundryMasuk();
+    }
     }//GEN-LAST:event_pnlLaundryMasukMouseClicked
 
     private void pnlSudahDiambilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlSudahDiambilMouseClicked

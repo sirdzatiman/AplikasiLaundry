@@ -46,9 +46,8 @@ public class FrameDashboard extends javax.swing.JFrame {
         inisiasiPanel();
         resetMenu();
         setMenuAktif(pnlDasboard);
-
-        System.out.println(Session.getNamaPengguna());
-        System.out.println(Session.getRole());
+//        System.out.println(Session.getNamaPengguna());
+//        System.out.println(Session.getRole());
     }
 
     void inisiasiPanel() {
@@ -66,6 +65,10 @@ public class FrameDashboard extends javax.swing.JFrame {
 
         panelContent.revalidate();
         panelContent.repaint();
+    }
+    public DataLaundry getDataLaundry() {
+        DataLaundry DataLaundry = null;
+        return DataLaundry;
     }
 
     private void setWarnaMenu(JPanel panel, Color bg, Color fg) {
