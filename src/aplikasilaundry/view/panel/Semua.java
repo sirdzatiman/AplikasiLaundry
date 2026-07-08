@@ -20,14 +20,20 @@ public class Semua extends javax.swing.JPanel {
     //Menyimpan controller transaksi
     private TransaksiController controller;
     
-   public Semua() {
+  public Semua() {
+
+    //Membuat komponen panel
     initComponents();
 
-    //Membuat objek controller
+    //Menampilkan bahwa constructor dipanggil
+    System.out.println("Constructor Semua dipanggil");
+
+    //Membuat controller transaksi
     controller = new TransaksiController();
 
     //Menampilkan data ke tabel
     tampilData();
+
 }
 
    //Method untuk menampilkan data transaksi ke tabel
@@ -41,21 +47,49 @@ private void tampilData() {
 
     //Mengambil seluruh data transaksi
     List<Transaksi> list = controller.getAll();
+    
+    //Menampilkan jumlah data yang diterima
+System.out.println("Data diterima = " + list.size());
 
     //Menampilkan data satu per satu
     for (Transaksi t : list) {
 
-        model.addRow(new Object[]{
-                t.getNoNota(),
-                t.getNamaPelanggan(),
-                t.getJenis(),
-                FormatRupiah.format(t.getTotalHarga()),
-                FormatJam.format(t.getJamMasuk()),
-                t.getStatus()
-            });
+        //Menyimpan teks jenis layanan
+String jenis = t.getJenis();
 
+//Jika jumlah item lebih dari satu
+if(t.getJumlahItem() > 1){
+
+    //Menambahkan jumlah item lain
+    jenis = jenis + " +" + (t.getJumlahItem() - 1);
+
+}
+
+//Menambahkan data ke tabel
+model.addRow(new Object[]{
+
+        //Nomor nota
+        t.getNoNota(),
+
+        //Nama pelanggan
+        t.getNamaPelanggan(),
+
+        //Jam masuk
+        FormatJam.format(
+                t.getJamMasuk()),
+
+        //Jenis layanan
+        jenis,
+
+        //Total harga
+        FormatRupiah.format(
+                t.getTotalHarga()),
+
+        //Status transaksi
+        t.getStatus()
+
+});
     }
-
 }
 //Method untuk memperbarui data tabel
 public void refreshData(){

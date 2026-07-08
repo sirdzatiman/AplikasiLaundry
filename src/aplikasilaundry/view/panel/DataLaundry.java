@@ -445,17 +445,36 @@ public void refreshSemuaPanel(){
     private javax.swing.JPanel panelContentDataLaundry;
     // End of variables declaration//GEN-END:variables
 
-    void tampilDiproses() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+  //Method untuk menampilkan panel Diproses
+public void tampilDiproses() {
 
-    void tampilSelesai() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    //Menampilkan panel Diproses
+    tampilPanel("proses");
 
-    void tampilLaundryMasuk() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    //Mengaktifkan tombol Diproses
+    setButtonAktif(btnProses);
+
+}
+   //Method untuk menampilkan panel Selesai
+public void tampilSelesai() {
+
+    //Menampilkan panel Selesai
+    tampilPanel("selesai");
+
+    //Mengaktifkan tombol Selesai
+    setButtonAktif(btnSelesai);
+
+}
+    //Method untuk menampilkan panel Laundry Masuk
+public void tampilLaundryMasuk() {
+
+    //Menampilkan panel Laundry Masuk
+    tampilPanel("masuk");
+
+    //Mengaktifkan tombol Laundry Masuk
+    setButtonAktif(btnMasuk);
+
+}
 
 
 }

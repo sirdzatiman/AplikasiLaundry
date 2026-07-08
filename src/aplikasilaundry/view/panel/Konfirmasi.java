@@ -127,25 +127,6 @@ public void hitungRingkasan(java.util.List<ItemLaundry> daftarItem){
 
 }
 //Method ketika tombol Simpan Transaksi ditekan
-private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt){
-
-    //Menyimpan transaksi ke database
-    controller.simpanTransaksi();
-
-    //Mengambil FrameDashboard yang sedang aktif
-aplikasilaundry.view.frame.FrameDashboard frame =
-        (aplikasilaundry.view.frame.FrameDashboard)
-        javax.swing.SwingUtilities.getWindowAncestor(this);
-
-//Memperbarui seluruh panel Data Laundry
-frame.getDataLaundry().refreshSemuaPanel();
-
-    //Menampilkan pesan berhasil
-    javax.swing.JOptionPane.showMessageDialog(
-            this,
-            "Transaksi berhasil disimpan.");
-
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -238,6 +219,7 @@ frame.getDataLaundry().refreshSemuaPanel();
         btnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Frame (7).png"))); // NOI18N
         btnSimpan.setText("Simpan Transaksi");
         btnSimpan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSimpan.addActionListener(this::btnSimpanActionPerformed);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -787,6 +769,31 @@ frame.getDataLaundry().refreshSemuaPanel();
     private void btnCetakStrukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakStrukActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCetakStrukActionPerformed
+
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        // TODO add your handling code here:
+        //Menyimpan transaksi ke database
+controller.simpanTransaksi();
+
+//Mengambil FrameDashboard yang sedang aktif
+aplikasilaundry.view.frame.FrameDashboard frame =
+        (aplikasilaundry.view.frame.FrameDashboard)
+        javax.swing.SwingUtilities.getWindowAncestor(this);
+
+//Memperbarui seluruh panel Data Laundry
+frame.getDataLaundry().refreshSemuaPanel();
+
+//Berpindah ke halaman Data Laundry
+frame.panggilHalaman("semua");
+
+//Menampilkan panel Laundry Masuk
+frame.getDataLaundry().tampilLaundryMasuk();
+
+//Menampilkan pesan berhasil
+javax.swing.JOptionPane.showMessageDialog(
+        this,
+        "Transaksi berhasil disimpan.");
+    }//GEN-LAST:event_btnSimpanActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCetakStruk;
