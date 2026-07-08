@@ -44,22 +44,33 @@ public class TransaksiDAO {
 
         try {
 
-            //Query mengambil seluruh data transaksi
-            String sql
-                    = "SELECT "
-                    + "t.no_nota, "
-                    + "p.nama_pelanggan, "
-                    + "t.jam_masuk, "
-                    + "l.nama_layanan, "
-                    + "t.total_harga, "
-                    + "st.nama_status "
-                    + "FROM transaksi t "
-                    + "JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan "
-                    + "JOIN status_transaksi st ON t.id_status = st.id_status "
-                    + "JOIN detail_transaksi dt ON t.id_transaksi = dt.id_transaksi "
-                    + "JOIN layanan l ON dt.id_layanan = l.id_layanan "
-                    + "ORDER BY t.id_transaksi DESC";
-
+            //Query mengambil seluruh transaksi
+String sql =
+    "SELECT "
+    + "t.no_nota, "
+    + "p.nama_pelanggan, "
+    + "t.jam_masuk, "
+    + "MIN(l.nama_layanan) AS jenis, "
+    + "COUNT(dt.id_detail) AS jumlah_item, "
+    + "t.total_harga, "
+    + "s.nama_status "
+    + "FROM transaksi t "
+    + "JOIN pelanggan p "
+    + "ON t.id_pelanggan = p.id_pelanggan "
+    + "JOIN status s "
+    + "ON t.id_status = s.id_status "
+    + "JOIN detail_transaksi dt "
+    + "ON t.id_transaksi = dt.id_transaksi "
+    + "JOIN layanan l "
+    + "ON dt.id_layanan = l.id_layanan "
+    + "GROUP BY "
+    + "t.id_transaksi, "
+    + "t.no_nota, "
+    + "p.nama_pelanggan, "
+    + "t.jam_masuk, "
+    + "t.total_harga, "
+    + "s.nama_status "
+    + "ORDER BY t.id_transaksi DESC";
             //Menyiapkan query
             PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -369,14 +380,33 @@ public List<Transaksi> getTransaksiTerbaru() {
 
                 Transaksi transaksi = new Transaksi();
 
-                transaksi.setNoNota(rs.getString("no_nota"));
-                transaksi.setNamaPelanggan(rs.getString("nama_pelanggan"));
-                transaksi.setJamMasuk(rs.getString("jam_masuk"));
-                transaksi.setJamAmbil(rs.getString("jam_ambil"));
-                transaksi.setJenis(rs.getString("nama_layanan"));
-                transaksi.setTotalHarga(rs.getBigDecimal("total_harga"));
-                transaksi.setStatus(rs.getString("nama_status"));
+                //Mengisi nomor nota
+transaksi.setNoNota(
+        rs.getString("no_nota"));
 
+//Mengisi nama pelanggan
+transaksi.setNamaPelanggan(
+        rs.getString("nama_pelanggan"));
+
+//Mengisi jam masuk
+transaksi.setJamMasuk(
+        rs.getString("jam_masuk"));
+
+//Mengisi jenis layanan utama
+transaksi.setJenis(
+        rs.getString("jenis"));
+
+//Mengisi jumlah item laundry
+transaksi.setJumlahItem(
+        rs.getInt("jumlah_item"));
+
+//Mengisi total harga
+transaksi.setTotalHarga(
+        rs.getBigDecimal("total_harga"));
+
+//Mengisi status transaksi
+transaksi.setStatus(
+        rs.getString("nama_status"));
                 list.add(transaksi);
 
             }

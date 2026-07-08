@@ -55,6 +55,13 @@ private void tampilData() {
     }
 
 }
+//Method untuk memperbarui data tabel
+public void refreshData(){
+
+    //Menampilkan ulang seluruh data transaksi
+    tampilData();
+
+}
 
     /**
      * This method is called from within the constructor to initialize the form.

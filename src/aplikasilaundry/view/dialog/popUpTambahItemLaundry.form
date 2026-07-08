@@ -150,10 +150,10 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
-                    <StringItem index="0" value="Baju / Dll"/>
-                    <StringItem index="1" value="Selimut / Dll"/>
+                    <StringItem index="0" value="Baju/DLL"/>
+                    <StringItem index="1" value="Selimut/DLL"/>
                     <StringItem index="2" value="Bed Cover"/>
-                    <StringItem index="3" value="Boneka / Tas"/>
+                    <StringItem index="3" value="Boneka/Tas"/>
                   </StringArray>
                 </Property>
               </Properties>
