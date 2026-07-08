@@ -239,9 +239,15 @@ public void simpanTransaksi(){
     int idTransaksi =
             dao.simpan(transaksi);
 
+    System.out.println("===== DEBUG =====");
+System.out.println("Jumlah item : " + dataTransaksi.getDaftarItem().size());
     //Menyimpan seluruh item laundry
     for(ItemLaundry item :
             dataTransaksi.getDaftarItem()){
+        System.out.println(
+        "ID Layanan = " + item.getIdLayanan()
+        + ", Layanan = " + item.getLayanan()
+        + ", Qty = " + item.getQty());
 
         DetailTransaksi detail =
                 new DetailTransaksi();

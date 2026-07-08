@@ -83,6 +83,10 @@ public class LayananDAO {
     //Method mengambil ID layanan
 public int getIdLayanan(String layanan,
                         String proses){
+   
+    System.out.println("Layanan dipilih : " + layanan);
+    System.out.println("Proses dipilih  : " + proses);
+
 
     try{
 
@@ -136,7 +140,7 @@ public int getIdLayanan(String layanan,
         System.out.println(e.getMessage());
 
     }
-
+System.out.println("DATA TIDAK DITEMUKAN DI TABEL LAYANAN");
     //Jika tidak ditemukan
     return 0;
 

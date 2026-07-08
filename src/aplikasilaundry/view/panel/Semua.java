@@ -57,6 +57,13 @@ private void tampilData() {
     }
 
 }
+//Method untuk memperbarui data tabel
+public void refreshData(){
+
+    //Menampilkan ulang seluruh data transaksi
+    tampilData();
+
+}
 //Method untuk mengambil JTable
 public javax.swing.JTable getTblSemua() {
     return tblSemua;

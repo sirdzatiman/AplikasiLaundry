@@ -132,6 +132,14 @@ private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt){
     //Menyimpan transaksi ke database
     controller.simpanTransaksi();
 
+    //Mengambil FrameDashboard yang sedang aktif
+aplikasilaundry.view.frame.FrameDashboard frame =
+        (aplikasilaundry.view.frame.FrameDashboard)
+        javax.swing.SwingUtilities.getWindowAncestor(this);
+
+//Memperbarui seluruh panel Data Laundry
+frame.getDataLaundry().refreshSemuaPanel();
+
     //Menampilkan pesan berhasil
     javax.swing.JOptionPane.showMessageDialog(
             this,

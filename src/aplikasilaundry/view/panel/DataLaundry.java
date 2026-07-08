@@ -10,19 +10,53 @@ import javax.swing.SwingUtilities;
 
 
 public class DataLaundry extends javax.swing.JPanel {
+//Menyimpan panel Semua
+private Semua panelSemua;
 
+//Menyimpan panel Laundry Masuk
+private LaundryMasuk panelMasuk;
+
+//Menyimpan panel Diproses
+private Diproses panelProses;
+
+//Menyimpan panel Selesai Belum Diambil
+private SelesaiBelumDiambil panelSelesai;
     
 
    
     public DataLaundry() {
-        initComponents();
-        panelContentDataLaundry.add(new Semua(), "semua");
-        panelContentDataLaundry.add(new LaundryMasuk(), "masuk");
-        panelContentDataLaundry.add(new Diproses(), "proses");
-        panelContentDataLaundry.add(new SelesaiBelumDiambil(), "selesai");
 
-        tampilPanel("semua"); // panel pertama yang ditampilkan
-    }
+    //Membuat seluruh panel Data Laundry
+    initComponents();
+
+    //Membuat objek panel Semua
+    panelSemua = new Semua();
+
+    //Membuat objek panel Laundry Masuk
+    panelMasuk = new LaundryMasuk();
+
+    //Membuat objek panel Diproses
+    panelProses = new Diproses();
+
+    //Membuat objek panel Selesai Belum Diambil
+    panelSelesai = new SelesaiBelumDiambil();
+
+    //Menambahkan panel Semua ke CardLayout
+    panelContentDataLaundry.add(panelSemua, "semua");
+
+    //Menambahkan panel Laundry Masuk ke CardLayout
+    panelContentDataLaundry.add(panelMasuk, "masuk");
+
+    //Menambahkan panel Diproses ke CardLayout
+    panelContentDataLaundry.add(panelProses, "proses");
+
+    //Menambahkan panel Selesai Belum Diambil ke CardLayout
+    panelContentDataLaundry.add(panelSelesai, "selesai");
+
+    //Menampilkan panel pertama
+    tampilPanel("semua");
+
+}
     private void tampilPanel(String namaKartu) {
         CardLayout cl = (CardLayout) panelContentDataLaundry.getLayout();
         cl.show(panelContentDataLaundry, namaKartu);
@@ -369,7 +403,22 @@ public class DataLaundry extends javax.swing.JPanel {
         tampilPanel("selesai");
         setButtonAktif(btnSelesai);
     }//GEN-LAST:event_btnSelesaiActionPerformed
+//Method untuk memperbarui seluruh panel Data Laundry
+public void refreshSemuaPanel(){
 
+    //Memperbarui panel Semua
+    panelSemua.refreshData();
+
+    //Memperbarui panel Laundry Masuk
+    panelMasuk.refreshData();
+
+    //Memperbarui panel Diproses
+    panelProses.refreshData();
+
+    //Memperbarui panel Selesai Belum Diambil
+    panelSelesai.refreshData();
+
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnMasuk;
