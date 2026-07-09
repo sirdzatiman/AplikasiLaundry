@@ -91,11 +91,19 @@ model.addRow(new Object[]{
 });
     }
 }
+
 //Method untuk memperbarui data tabel
 public void refreshData(){
 
     //Menampilkan ulang seluruh data transaksi
     tampilData();
+
+}
+//Method untuk mengambil JTable Laundry Masuk
+public javax.swing.JTable getTblMasuk(){
+
+    //Mengembalikan tabel Laundry Masuk
+    return tblSemua;
 
 }
 //Method untuk mengambil JTable

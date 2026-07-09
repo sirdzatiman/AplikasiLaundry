@@ -22,8 +22,7 @@ public class Konfirmasi extends javax.swing.JPanel {
     //Mengambil controller dari panel induk
     controller = induk.getController();
     
-    //Event tombol simpan transaksi
-btnSimpan.addActionListener(this::btnSimpanActionPerformed);
+  
 
 }
 ///Menampilkan data pelanggan
@@ -51,7 +50,7 @@ public void tampilDataPelanggan(Pelanggan pelanggan){
 public void tampilItem(java.util.List<ItemLaundry> daftarItem){
 
     javax.swing.table.DefaultTableModel model =
-            (javax.swing.table.DefaultTableModel) jTable1.getModel();
+            (javax.swing.table.DefaultTableModel) tblDetailLaundry.getModel();
 
     model.setRowCount(0);
 
@@ -192,7 +191,7 @@ public void hitungRingkasan(java.util.List<ItemLaundry> daftarItem){
         jLabel50 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblDetailLaundry = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(240, 243, 247));
         setLayout(new java.awt.BorderLayout());
@@ -737,7 +736,7 @@ public void hitungRingkasan(java.util.List<ItemLaundry> daftarItem){
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
         jPanel10.setLayout(new java.awt.CardLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblDetailLaundry.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "Baju/Dll", "Cuci Kering", "2.0", "Rp 4000", "Rp 8000"},
                 {"2", "Bed Cover", "-", "1", "Rp 10000", null}
@@ -746,8 +745,8 @@ public void hitungRingkasan(java.util.List<ItemLaundry> daftarItem){
                 "No.", "Jenis Laundry", "Proses", "Kg / Biji", "Harga", "Subtotal"
             }
         ));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        tblDetailLaundry.setShowGrid(true);
+        jScrollPane1.setViewportView(tblDetailLaundry);
 
         jPanel10.add(jScrollPane1, "card2");
 
@@ -772,8 +771,14 @@ public void hitungRingkasan(java.util.List<ItemLaundry> daftarItem){
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        //Menyimpan transaksi ke database
+  //Menyimpan transaksi ke database
 controller.simpanTransaksi();
+//Mengosongkan transaksi sementara
+controller.resetTransaksi();
+//Menampilkan pesan berhasil
+javax.swing.JOptionPane.showMessageDialog(
+        this,
+        "Transaksi berhasil disimpan.");
 
 //Mengambil FrameDashboard yang sedang aktif
 aplikasilaundry.view.frame.FrameDashboard frame =
@@ -782,19 +787,55 @@ aplikasilaundry.view.frame.FrameDashboard frame =
 
 //Memperbarui seluruh panel Data Laundry
 frame.getDataLaundry().refreshSemuaPanel();
+//Mereset seluruh form Tambah Laundry
+induk.resetForm();
 
 //Berpindah ke halaman Data Laundry
 frame.panggilHalaman("semua");
 
-//Menampilkan panel Laundry Masuk
+//Menampilkan tab Laundry Masuk
 frame.getDataLaundry().tampilLaundryMasuk();
 
-//Menampilkan pesan berhasil
-javax.swing.JOptionPane.showMessageDialog(
-        this,
-        "Transaksi berhasil disimpan.");
     }//GEN-LAST:event_btnSimpanActionPerformed
+//Method untuk mereset seluruh tampilan konfirmasi
+public void resetForm(){
 
+    //Mengosongkan nama pelanggan
+    lblNama.setText("-");
+
+    //Mengosongkan nomor HP
+    lblNoHp.setText("-");
+
+    //Mengosongkan alamat
+    lblAlaamat.setText("-");
+
+    //Mengosongkan catatan
+    lblCatatan.setText("-");
+
+    //Mengembalikan total berat menjadi nol
+    lblTotalBerat.setText("0 Kg");
+
+    //Mengembalikan total biji menjadi nol
+    lblTotalBiji.setText("0");
+
+    //Mengembalikan total item menjadi nol
+    lblTotalItem.setText("0");
+
+    //Mengembalikan subtotal menjadi nol
+    lblSubtotal.setText("Rp0");
+
+    //Mengembalikan total bayar menjadi nol
+    lblTotalBayar.setText("Rp0");
+
+    //Mengambil model tabel
+    javax.swing.table.DefaultTableModel model =
+            (javax.swing.table.DefaultTableModel)
+            tblDetailLaundry.getModel();
+
+    //Menghapus seluruh isi tabel
+    model.setRowCount(0);
+
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCetakStruk;
     private javax.swing.JButton btnKembali;
@@ -842,7 +883,6 @@ javax.swing.JOptionPane.showMessageDialog(
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAlaamat;
     private javax.swing.JLabel lblCatatan;
     private javax.swing.JLabel lblNama;
@@ -852,5 +892,6 @@ javax.swing.JOptionPane.showMessageDialog(
     private javax.swing.JLabel lblTotalBerat;
     private javax.swing.JLabel lblTotalBiji;
     private javax.swing.JLabel lblTotalItem;
+    private javax.swing.JTable tblDetailLaundry;
     // End of variables declaration//GEN-END:variables
 }

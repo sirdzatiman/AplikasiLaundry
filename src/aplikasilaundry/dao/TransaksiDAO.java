@@ -774,5 +774,75 @@ System.out.println(
     return null;
 
 }
-    
+    //Method mengambil satu transaksi berdasarkan nomor nota
+public Transaksi getByNoNota(String noNota){
+
+    //Membuat objek transaksi
+    Transaksi transaksi = null;
+
+    try{
+
+        //Query mengambil data transaksi
+        String sql =
+                "SELECT "
+                + "t.no_nota, "
+                + "p.nama_pelanggan, "
+                + "st.nama_status, "
+                + "t.jam_masuk, "
+                + "t.jam_ambil "
+                + "FROM transaksi t "
+                + "JOIN pelanggan p "
+                + "ON t.id_pelanggan = p.id_pelanggan "
+                + "JOIN status_transaksi st "
+                + "ON t.id_status = st.id_status "
+                + "WHERE t.no_nota = ?";
+
+        //Menyiapkan query
+        PreparedStatement ps =
+                conn.prepareStatement(sql);
+
+        //Mengisi parameter nomor nota
+        ps.setString(1, noNota);
+
+        //Menjalankan query
+        ResultSet rs =
+                ps.executeQuery();
+
+        //Jika data ditemukan
+        if(rs.next()){
+
+            //Membuat objek transaksi
+            transaksi = new Transaksi();
+
+            //Mengisi nomor nota
+            transaksi.setNoNota(
+                    rs.getString("no_nota"));
+
+            //Mengisi nama pelanggan
+            transaksi.setNamaPelanggan(
+                    rs.getString("nama_pelanggan"));
+
+            //Mengisi status
+            transaksi.setStatus(
+                    rs.getString("nama_status"));
+
+            //Mengisi jam masuk
+            transaksi.setJamMasuk(
+                    rs.getString("jam_masuk"));
+
+            //Mengisi jam ambil
+            transaksi.setJamAmbil(
+                    rs.getString("jam_ambil"));
+
+        }
+
+    }catch(SQLException e){
+
+        e.printStackTrace();
+
+    }
+
+    return transaksi;
+
+}
 }

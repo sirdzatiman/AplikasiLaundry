@@ -474,7 +474,18 @@ induk.panggilTahap("kartuKonfirmasi");
            //Kembali ke panel pelanggan
     induk.panggilTahap("kartuPelanggan");
     }//GEN-LAST:event_btnKembaliActionPerformed
+//Method untuk mereset tabel item laundry
+public void resetForm(){
 
+    //Mengambil model tabel
+    javax.swing.table.DefaultTableModel model =
+            (javax.swing.table.DefaultTableModel)
+            tblItem.getModel();
+
+    //Menghapus seluruh isi tabel
+    model.setRowCount(0);
+
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnKembali;

@@ -85,6 +85,20 @@ dataTransaksi = DataTransaksi.getInstance();
 
     }
     
+    //Method mengambil transaksi berdasarkan nomor nota
+public Transaksi getByNoNota(String noNota){
+
+    //Mengembalikan data transaksi dari DAO
+    return dao.getByNoNota(noNota);
+
+}
+//Method mengambil seluruh detail transaksi berdasarkan nomor nota
+public List<DetailTransaksi> getDetailByNota(String noNota){
+
+    //Mengembalikan daftar detail transaksi dari DAO
+    return detailDAO.getDetailByNota(noNota);
+
+}
     //Method untuk mengambil data laundry dengan status Selesai
 public List<Transaksi> getSelesai() {
 
@@ -251,6 +265,7 @@ System.out.println("Jumlah item : " + dataTransaksi.getDaftarItem().size());
 
         DetailTransaksi detail =
                 new DetailTransaksi();
+        
 
         detail.setIdTransaksi(idTransaksi);
 
@@ -268,4 +283,12 @@ System.out.println("Jumlah item : " + dataTransaksi.getDaftarItem().size());
     }
 
 }
+//Method untuk mengosongkan transaksi sementara
+public void resetTransaksi(){
+
+    //Mengosongkan seluruh data transaksi sementara
+    dataTransaksi.clear();
+
+}
+
 }
