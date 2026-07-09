@@ -8,6 +8,7 @@ import aplikasilaundry.controller.TransaksiController;
 import aplikasilaundry.model.Transaksi;
 import aplikasilaundry.util.FormatJam;
 import aplikasilaundry.util.FormatRupiah;
+import aplikasilaundry.util.TableStyle;
 
 //Mengimpor DefaultTableModel
 import javax.swing.table.DefaultTableModel;
@@ -22,9 +23,11 @@ public class SelesaiBelumDiambil extends javax.swing.JPanel {
         
          //Membuat objek controller
     controller = new TransaksiController();
-
+    TableStyle.style(tblSelesai);
     //Menampilkan data
     tampilData();
+    tblSelesai.getColumnModel()
+        .getColumn(5);
     }
     
     //Method untuk menampilkan data laundry selesai ke tabel

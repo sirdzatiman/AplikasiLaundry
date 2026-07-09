@@ -39,11 +39,12 @@ public class FrameDashboard extends javax.swing.JFrame {
      * Creates new form mainFrame
      */
     private DataLaundry dataLaundry;
+
     public FrameDashboard() {
         initComponents();
         inisiasiPanel();
         resetMenu();
-        
+
         setMenuAktif(pnlDasboard);
 //        System.out.println(Session.getNamaPengguna());
 //        System.out.println(Session.getRole());
@@ -65,9 +66,10 @@ public class FrameDashboard extends javax.swing.JFrame {
         panelContent.revalidate();
         panelContent.repaint();
     }
+
     public DataLaundry getDataLaundry() {
-    return dataLaundry;
-}
+        return dataLaundry;
+    }
 
     private void setWarnaMenu(JPanel panel, Color bg, Color fg) {
 
@@ -538,12 +540,12 @@ public class FrameDashboard extends javax.swing.JFrame {
     private void pnlLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLogoutMouseClicked
         // TODO add your handling code here:
         popUpLogout dialog = new popUpLogout(
-            (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
-            true
-    );
+                (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
+                true
+        );
 
-    dialog.setLocationRelativeTo(this); // tampil di tengah frame
-    dialog.setVisible(true);
+        dialog.setLocationRelativeTo(this); // tampil di tengah frame
+        dialog.setVisible(true);
     }//GEN-LAST:event_pnlLogoutMouseClicked
 
     /**
