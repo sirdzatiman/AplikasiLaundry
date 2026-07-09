@@ -221,8 +221,6 @@ lblBayar.setText(
         lblTotalBiji = new javax.swing.JLabel();
         lblBayar = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -335,10 +333,6 @@ lblBayar.setText(
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
-        jLabel27.setText("jLabel27");
-
-        jLabel28.setText("jLabel28");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -363,9 +357,7 @@ lblBayar.setText(
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel12)
                                         .addGap(18, 18, 18)
-                                        .addComponent(lblJamAmbil)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel28))
+                                        .addComponent(lblJamAmbil))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel10)
                                         .addGap(18, 18, 18)
@@ -373,9 +365,7 @@ lblBayar.setText(
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel11)
                                         .addGap(18, 18, 18)
-                                        .addComponent(lblJamMasuk)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel27))))
+                                        .addComponent(lblJamMasuk))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(75, 75, 75)
@@ -406,7 +396,7 @@ lblBayar.setText(
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblTotalBerat)
                                     .addComponent(lblTotalBiji))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 196, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(152, 152, 152)
@@ -439,14 +429,12 @@ lblBayar.setText(
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel11)
-                    .addComponent(lblJamMasuk)
-                    .addComponent(jLabel27))
+                    .addComponent(lblJamMasuk))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel12)
-                    .addComponent(lblJamAmbil)
-                    .addComponent(jLabel28))
+                    .addComponent(lblJamAmbil))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -510,8 +498,6 @@ lblBayar.setText(
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -38,7 +38,8 @@ public class FrameDashboard extends javax.swing.JFrame {
     /**
      * Creates new form mainFrame
      */
-    private DataLaundry dataLaundry;
+   private DataLaundry dataLaundry;
+private RiwayatLaundry riwayatLaundry;
     public FrameDashboard() {
         initComponents();
         inisiasiPanel();
@@ -58,7 +59,11 @@ public class FrameDashboard extends javax.swing.JFrame {
         dataLaundry = new DataLaundry();
         panelContent.add(dataLaundry, "semua");
 
-        panelContent.add(new RiwayatLaundry(), "riwayat");
+       //Membuat objek panel Riwayat Laundry
+riwayatLaundry = new RiwayatLaundry();
+
+//Menambahkan panel Riwayat Laundry
+panelContent.add(riwayatLaundry, "riwayat");
         panelContent.add(new LaporanPemasukan(), "laporanPemasukan");
         panelContent.add(new Pengaturan(), "pengaturan");
 
@@ -67,6 +72,10 @@ public class FrameDashboard extends javax.swing.JFrame {
     }
     public DataLaundry getDataLaundry() {
     return dataLaundry;
+}
+    //Method mengambil panel Riwayat Laundry
+public RiwayatLaundry getRiwayatLaundry() {
+    return riwayatLaundry;
 }
 
     private void setWarnaMenu(JPanel panel, Color bg, Color fg) {
