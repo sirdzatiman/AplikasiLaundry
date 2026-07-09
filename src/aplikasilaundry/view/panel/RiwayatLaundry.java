@@ -26,6 +26,13 @@ private TransaksiController controller;
     //Menampilkan data ke tabel
     tampilData();
     }
+    //Method untuk memperbarui data tabel
+public void refreshData(){
+
+    //Menampilkan ulang seluruh data transaksi
+    tampilData();
+
+}
     
     //Method untuk menampilkan data laundry yang sudah selesai
 private void tampilData() {
@@ -44,13 +51,31 @@ private void tampilData() {
     for (Transaksi t : list) {
 
         model.addRow(new Object[]{
-            t.getNoNota(),
-            t.getNamaPelanggan(),
-            t.getJenis(),
-            FormatRupiah.format(t.getTotalHarga()),
-            FormatJam.format(t.getJamMasuk()),
-            t.getStatus()
-        });
+
+    //No Nota
+    t.getNoNota(),
+
+    //Nama Pelanggan
+    t.getNamaPelanggan(),
+
+    //Jam Masuk
+    FormatJam.format(
+            t.getJamMasuk()),
+
+    //Jam Ambil
+    t.getJamAmbil(),
+
+    //Jenis
+    t.getJenis(),
+
+    //Total
+    FormatRupiah.format(
+            t.getTotalHarga()),
+
+    //Status
+    t.getStatus()
+
+});
     }
 
 }

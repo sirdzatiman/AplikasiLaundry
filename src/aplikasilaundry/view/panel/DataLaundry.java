@@ -7,22 +7,59 @@ import java.awt.Color;
 import java.awt.Container;
 import javax.swing.JToggleButton;
 import javax.swing.SwingUtilities;
-
+import aplikasilaundry.view.dialog.detailLaundry;
+import javax.swing.JTable;
+import javax.swing.JOptionPane;
+import aplikasilaundry.view.dialog.popUpPensilEdit;
 
 public class DataLaundry extends javax.swing.JPanel {
+//Menyimpan panel Semua
+private Semua panelSemua;
 
+//Menyimpan panel Laundry Masuk
+private LaundryMasuk panelMasuk;
+
+//Menyimpan panel Diproses
+private Diproses panelProses;
+
+//Menyimpan panel Selesai Belum Diambil
+private SelesaiBelumDiambil panelSelesai;
     
 
    
     public DataLaundry() {
-        initComponents();
-        panelContentDataLaundry.add(new Semua(), "semua");
-        panelContentDataLaundry.add(new LaundryMasuk(), "masuk");
-        panelContentDataLaundry.add(new Diproses(), "proses");
-        panelContentDataLaundry.add(new SelesaiBelumDiambil(), "selesai");
 
-        tampilPanel("semua"); // panel pertama yang ditampilkan
-    }
+    //Membuat seluruh panel Data Laundry
+    initComponents();
+
+    //Membuat objek panel Semua
+    panelSemua = new Semua();
+
+    //Membuat objek panel Laundry Masuk
+    panelMasuk = new LaundryMasuk();
+
+    //Membuat objek panel Diproses
+    panelProses = new Diproses();
+
+    //Membuat objek panel Selesai Belum Diambil
+    panelSelesai = new SelesaiBelumDiambil();
+
+    //Menambahkan panel Semua ke CardLayout
+    panelContentDataLaundry.add(panelSemua, "semua");
+
+    //Menambahkan panel Laundry Masuk ke CardLayout
+    panelContentDataLaundry.add(panelMasuk, "masuk");
+
+    //Menambahkan panel Diproses ke CardLayout
+    panelContentDataLaundry.add(panelProses, "proses");
+
+    //Menambahkan panel Selesai Belum Diambil ke CardLayout
+    panelContentDataLaundry.add(panelSelesai, "selesai");
+
+    //Menampilkan panel pertama
+    tampilPanel("semua");
+
+}
     private void tampilPanel(String namaKartu) {
         CardLayout cl = (CardLayout) panelContentDataLaundry.getLayout();
         cl.show(panelContentDataLaundry, namaKartu);
@@ -100,8 +137,8 @@ public class DataLaundry extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnLihat = new javax.swing.JButton();
+        btnPensil = new javax.swing.JButton();
         jPanel18 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -219,12 +256,13 @@ public class DataLaundry extends javax.swing.JPanel {
         jPanel13.setMinimumSize(new java.awt.Dimension(150, 50));
         jPanel13.setPreferredSize(new java.awt.Dimension(150, 50));
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (4).png"))); // NOI18N
-        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLihat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (4).png"))); // NOI18N
+        btnLihat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLihat.addActionListener(this::btnLihatActionPerformed);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (5).png"))); // NOI18N
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton6.addActionListener(this::jButton6ActionPerformed);
+        btnPensil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (5).png"))); // NOI18N
+        btnPensil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPensil.addActionListener(this::btnPensilActionPerformed);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -232,9 +270,9 @@ public class DataLaundry extends javax.swing.JPanel {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
                 .addContainerGap(10, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPensil, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLihat, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -242,8 +280,8 @@ public class DataLaundry extends javax.swing.JPanel {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
+                    .addComponent(btnLihat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPensil, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -338,13 +376,60 @@ public class DataLaundry extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnPensilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPensilActionPerformed
         // TODO add your handling code here:
-        popUpPensilEdit dialog = new popUpPensilEdit(
-            (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
-            true
-        );
-    }//GEN-LAST:event_jButton6ActionPerformed
+        //Menyimpan tabel yang sedang aktif
+JTable tabel;
+
+//Menentukan tabel berdasarkan tab yang dipilih
+if(btnSemua.isSelected()){
+
+    tabel = panelSemua.getTblSemua();
+
+}else if(btnMasuk.isSelected()){
+
+    tabel = panelMasuk.getTblMasuk();
+
+}else if(btnProses.isSelected()){
+
+    tabel = panelProses.getTblDiproses();
+
+}else{
+
+    tabel = panelSelesai.getTblSelesai();
+
+}
+
+//Jika belum memilih data
+if(tabel.getSelectedRow() == -1){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Silakan pilih data terlebih dahulu.");
+
+    return;
+
+}
+
+//Mengambil nomor nota
+String noNota =
+        tabel.getValueAt(
+                tabel.getSelectedRow(),
+                0).toString();
+
+//Membuka popup Edit Laundry
+popUpPensilEdit dialog =
+        new popUpPensilEdit(
+                (java.awt.Frame)
+                SwingUtilities.getWindowAncestor(this),
+                true,
+                noNota);
+
+dialog.setLocationRelativeTo(this);
+dialog.setVisible(true);
+//Memperbarui seluruh panel Data Laundry
+refreshSemuaPanel();
+    }//GEN-LAST:event_btnPensilActionPerformed
 
     private void btnSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSemuaActionPerformed
         // TODO add your handling code here:
@@ -370,15 +455,88 @@ public class DataLaundry extends javax.swing.JPanel {
         setButtonAktif(btnSelesai);
     }//GEN-LAST:event_btnSelesaiActionPerformed
 
+    private void btnLihatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLihatActionPerformed
+        // TODO add your handling code here:
+      //Menyimpan tabel yang sedang aktif
+JTable tabel;
+
+//Menentukan tabel berdasarkan tab yang dipilih
+if(btnSemua.isSelected()){
+
+    tabel = panelSemua.getTblSemua();
+
+}else if(btnMasuk.isSelected()){
+
+    tabel = panelMasuk.getTblMasuk();
+
+}else if(btnProses.isSelected()){
+
+    tabel = panelProses.getTblDiproses();
+
+}else{
+
+    tabel = panelSelesai.getTblSelesai();
+
+}
+System.out.println("Tab Semua : " + btnSemua.isSelected());
+System.out.println("Tab Masuk : " + btnMasuk.isSelected());
+System.out.println("Tab Proses : " + btnProses.isSelected());
+System.out.println("Tab Selesai : " + btnSelesai.isSelected());
+
+System.out.println("Baris terpilih = " + tabel.getSelectedRow());
+
+//Jika belum memilih data
+if(tabel.getSelectedRow() == -1){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Silakan pilih data terlebih dahulu.");
+
+    return;
+
+}
+//Mengambil nomor nota dari baris yang dipilih
+String noNota =
+        tabel.getValueAt(
+                tabel.getSelectedRow(),
+                0).toString();
+
+//Membuka dialog Detail Laundry
+detailLaundry dialog =
+        new detailLaundry(
+                (java.awt.Frame)
+                SwingUtilities.getWindowAncestor(this),
+                true,
+                noNota);
+
+dialog.setLocationRelativeTo(this);
+dialog.setVisible(true);
+    }//GEN-LAST:event_btnLihatActionPerformed
+//Method untuk memperbarui seluruh panel Data Laundry
+public void refreshSemuaPanel(){
+    
+    //Memperbarui panel Semua
+    panelSemua.refreshData();
+
+    //Memperbarui panel Laundry Masuk
+    panelMasuk.refreshData();
+
+    //Memperbarui panel Diproses
+    panelProses.refreshData();
+
+    //Memperbarui panel Selesai Belum Diambil
+    panelSelesai.refreshData();
+
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLihat;
     private javax.swing.JToggleButton btnMasuk;
+    private javax.swing.JButton btnPensil;
     private javax.swing.JToggleButton btnProses;
     private javax.swing.JToggleButton btnSelesai;
     private javax.swing.JToggleButton btnSemua;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private com.toedter.calendar.JDateChooser jDateChooser3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -396,17 +554,36 @@ public class DataLaundry extends javax.swing.JPanel {
     private javax.swing.JPanel panelContentDataLaundry;
     // End of variables declaration//GEN-END:variables
 
-    void tampilDiproses() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+  //Method untuk menampilkan panel Diproses
+public void tampilDiproses() {
 
-    void tampilSelesai() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    //Menampilkan panel Diproses
+    tampilPanel("proses");
 
-    void tampilLaundryMasuk() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    //Mengaktifkan tombol Diproses
+    setButtonAktif(btnProses);
+
+}
+   //Method untuk menampilkan panel Selesai
+public void tampilSelesai() {
+
+    //Menampilkan panel Selesai
+    tampilPanel("selesai");
+
+    //Mengaktifkan tombol Selesai
+    setButtonAktif(btnSelesai);
+
+}
+    //Method untuk menampilkan panel Laundry Masuk
+public void tampilLaundryMasuk() {
+
+    //Menampilkan panel Laundry Masuk
+    tampilPanel("masuk");
+
+    //Mengaktifkan tombol Laundry Masuk
+    setButtonAktif(btnMasuk);
+
+}
 
 
 }

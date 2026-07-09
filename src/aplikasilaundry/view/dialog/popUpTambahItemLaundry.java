@@ -76,7 +76,7 @@ cJenisActionPerformed(null);
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Jenis Laundry");
 
-        cJenis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baju / Dll", "Selimut / Dll", "Bed Cover", "Boneka / Tas" }));
+        cJenis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baju/DLL", "Selimut/DLL", "Bed Cover", "Boneka/Tas" }));
         cJenis.addActionListener(this::cJenisActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -342,8 +342,8 @@ dispose();
 String jenis = cJenis.getSelectedItem().toString();
 
 //Jika Baju atau Selimut
-if (jenis.equals("Baju / Dll")
-        || jenis.equals("Selimut / Dll")) {
+if (jenis.equals("Baju/DLL")
+        || jenis.equals("Selimut/DLL")) {
 
     //Berat aktif
     tBerat.setEnabled(true);

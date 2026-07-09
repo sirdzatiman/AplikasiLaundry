@@ -1,24 +1,181 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
-package aplikasilaundry.view.panel;
 
-/**
- *
- * @author Sirdzat
- */
+package aplikasilaundry.view.dialog;
+
+import aplikasilaundry.view.dialog.detailLaundry;
+import javax.swing.JTable;
+import javax.swing.JOptionPane;
+//Mengimpor controller transaksi
+import aplikasilaundry.controller.TransaksiController;
+
+//Mengimpor model transaksi
+import aplikasilaundry.model.Transaksi;
+
+//Mengimpor util format jam
+import aplikasilaundry.util.FormatJam;
+
+//Mengimpor DefaultTableModel
+import javax.swing.table.DefaultTableModel;
+
+//Mengimpor collection
+import java.util.List;
+
+//Mengimpor model Detail Transaksi
+import aplikasilaundry.model.DetailTransaksi;
+
+//Mengimpor Format Rupiah
+import aplikasilaundry.util.FormatRupiah;
+import java.math.BigDecimal;
 public class detailLaundry extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(detailLaundry.class.getName());
+//Menyimpan nomor nota transaksi yang dipilih
+private String noNota;
+//Controller transaksi
+private TransaksiController controller =
+        new TransaksiController();
+//Model tabel detail laundry
+private DefaultTableModel model;
+//Constructor dialog Detail Laundry
+public detailLaundry(java.awt.Frame parent,
+                     boolean modal,
+                     String noNota) {
 
-    /**
-     * Creates new form NewJDialog
-     */
-    public detailLaundry(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
+    //Memanggil constructor JDialog
+    super(parent, modal);
+
+    //Membuat seluruh komponen
+    initComponents();
+    //Mengambil model tabel
+model =
+        (DefaultTableModel)
+        tblDetail.getModel();
+
+    //Menyimpan nomor nota yang diterima
+this.noNota = noNota;
+
+//Menampilkan data transaksi
+tampilData();
+
+}
+//Method menampilkan data transaksi
+private void tampilData(){
+
+    //Mengambil data transaksi berdasarkan nomor nota
+    Transaksi transaksi =
+            controller.getByNoNota(noNota);
+
+    //Jika data ditemukan
+    if(transaksi != null){
+
+        //Menampilkan nomor nota
+        lblNoNota.setText(
+                transaksi.getNoNota());
+
+        //Menampilkan nama pelanggan
+        lblNama.setText(
+                transaksi.getNamaPelanggan());
+
+        //Menampilkan status
+        lblStatus.setText(
+                transaksi.getStatus());
+
+        //Menampilkan jam masuk
+        lblJamMasuk.setText(
+                FormatJam.format(
+                        transaksi.getJamMasuk()));
+
+        //Menampilkan jam ambil
+        //Jika jam ambil masih kosong
+if(transaksi.getJamAmbil() == null){
+
+    lblJamAmbil.setText("-");
+
+}else{
+
+    lblJamAmbil.setText(
+            FormatJam.format(
+                    transaksi.getJamAmbil()));
+
+}
+        
+//Menampilkan detail item laundry
+tampilDetail();
     }
+
+}
+//Method menampilkan detail laundry
+private void tampilDetail(){
+
+    //Menghapus isi tabel
+    model.setRowCount(0);
+
+    //Mengambil seluruh detail transaksi
+    List<DetailTransaksi> list =
+            controller.getDetailByNota(noNota);
+
+    //Total berat
+double totalBerat = 0;
+
+//Total biji
+double totalBiji = 0;
+
+//Total bayar
+BigDecimal totalBayar = BigDecimal.ZERO;
+
+    //Menampilkan satu per satu
+    for(DetailTransaksi detail : list){
+
+        model.addRow(new Object[]{
+            
+
+            //Jenis Laundry
+            detail.getNamaLayanan(),
+
+            //Proses
+            detail.getNamaProses(),
+
+            //Kg / Biji
+            detail.getQty(),
+
+            //Harga
+            FormatRupiah.format(
+                    detail.getHarga()),
+
+            //Subtotal
+            FormatRupiah.format(
+                    detail.getSubtotal())
+
+        });
+//Jika satuan Kg
+if(detail.getSatuan().equalsIgnoreCase("Kg")){
+
+    totalBerat += detail.getQty();
+
+}else{
+
+    totalBiji += detail.getQty();
+
+}
+
+//Menjumlahkan total bayar
+totalBayar =
+        totalBayar.add(
+                detail.getSubtotal());
+    }
+    //Menampilkan total berat
+lblTotalBerat.setText(
+        totalBerat + " Kg");
+
+//Menampilkan total biji
+lblTotalBiji.setText(
+        (int) totalBiji + " Biji");
+
+//Menampilkan total bayar
+lblBayar.setText(
+        FormatRupiah.format(
+                totalBayar));
+
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,15 +201,15 @@ public class detailLaundry extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        lblNoNota = new javax.swing.JLabel();
+        lblNama = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
+        lblJamMasuk = new javax.swing.JLabel();
+        lblJamAmbil = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblDetail = new javax.swing.JTable();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -60,12 +217,10 @@ public class detailLaundry extends javax.swing.JDialog {
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
+        lblTotalBerat = new javax.swing.JLabel();
+        lblTotalBiji = new javax.swing.JLabel();
+        lblBayar = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -121,19 +276,19 @@ public class detailLaundry extends javax.swing.JDialog {
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setText(":");
 
-        jLabel13.setText("jLabel13");
+        lblNoNota.setText("jLabel13");
 
-        jLabel14.setText("jLabel14");
+        lblNama.setText("jLabel14");
 
-        jLabel15.setText("jLabel15");
+        lblStatus.setText("jLabel15");
 
-        jLabel16.setText("jLabel16");
+        lblJamMasuk.setText("jLabel16");
 
-        jLabel17.setText("jLabel17");
+        lblJamAmbil.setText("jLabel17");
 
         jPanel2.setLayout(new java.awt.CardLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblDetail.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -144,7 +299,7 @@ public class detailLaundry extends javax.swing.JDialog {
                 "Jenis", "Proses", "Kg/Biji", "Harga", "Subtotal"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblDetail);
 
         jPanel2.add(jScrollPane1, "card2");
 
@@ -166,21 +321,17 @@ public class detailLaundry extends javax.swing.JDialog {
         jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel23.setText(":");
 
-        jLabel24.setText("jLabel24");
+        lblTotalBerat.setText("jLabel24");
 
-        jLabel25.setText("jLabel25");
+        lblTotalBiji.setText("jLabel25");
 
-        jLabel26.setText("jLabel26");
+        lblBayar.setText("jLabel26");
 
         jButton1.setBackground(new java.awt.Color(0, 86, 210));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Tutup");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(this::jButton1ActionPerformed);
-
-        jLabel27.setText("jLabel27");
-
-        jLabel28.setText("jLabel28");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -206,37 +357,33 @@ public class detailLaundry extends javax.swing.JDialog {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel12)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel17)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel28))
+                                        .addComponent(lblJamAmbil))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel10)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel15))
+                                        .addComponent(lblStatus))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel11)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel16)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel27))))
+                                        .addComponent(lblJamMasuk))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(75, 75, 75)
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel13))
+                                .addComponent(lblNoNota))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel14))
+                                .addComponent(lblNama))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel20)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel23)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel26))
+                                .addComponent(lblBayar))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel18)
@@ -247,9 +394,9 @@ public class detailLaundry extends javax.swing.JDialog {
                                     .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel24)
-                                    .addComponent(jLabel25))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(lblTotalBerat)
+                                    .addComponent(lblTotalBiji))))
+                        .addGap(0, 196, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(152, 152, 152)
@@ -267,29 +414,27 @@ public class detailLaundry extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel13))
+                    .addComponent(lblNoNota))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel14))
+                    .addComponent(lblNama))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel15))
+                    .addComponent(lblStatus))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel27))
+                    .addComponent(lblJamMasuk))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel12)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel28))
+                    .addComponent(lblJamAmbil))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -300,17 +445,17 @@ public class detailLaundry extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(jLabel21)
-                    .addComponent(jLabel24))
+                    .addComponent(lblTotalBerat))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(jLabel22)
-                    .addComponent(jLabel25))
+                    .addComponent(lblTotalBiji))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
                     .addComponent(jLabel23)
-                    .addComponent(jLabel26))
+                    .addComponent(lblBayar))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -338,39 +483,7 @@ public class detailLaundry extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                detailLaundry dialog = new detailLaundry(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -378,11 +491,6 @@ public class detailLaundry extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -390,11 +498,6 @@ public class detailLaundry extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -409,6 +512,14 @@ public class detailLaundry extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblBayar;
+    private javax.swing.JLabel lblJamAmbil;
+    private javax.swing.JLabel lblJamMasuk;
+    private javax.swing.JLabel lblNama;
+    private javax.swing.JLabel lblNoNota;
+    private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblTotalBerat;
+    private javax.swing.JLabel lblTotalBiji;
+    private javax.swing.JTable tblDetail;
     // End of variables declaration//GEN-END:variables
 }

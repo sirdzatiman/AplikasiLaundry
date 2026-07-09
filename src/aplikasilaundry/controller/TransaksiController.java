@@ -85,6 +85,20 @@ dataTransaksi = DataTransaksi.getInstance();
 
     }
     
+    //Method mengambil transaksi berdasarkan nomor nota
+public Transaksi getByNoNota(String noNota){
+
+    //Mengembalikan data transaksi dari DAO
+    return dao.getByNoNota(noNota);
+
+}
+//Method mengambil seluruh detail transaksi berdasarkan nomor nota
+public List<DetailTransaksi> getDetailByNota(String noNota){
+
+    //Mengembalikan daftar detail transaksi dari DAO
+    return detailDAO.getDetailByNota(noNota);
+
+}
     //Method untuk mengambil data laundry dengan status Selesai
 public List<Transaksi> getSelesai() {
 
@@ -171,6 +185,18 @@ public void tambahItem(ItemLaundry item){
     dataTransaksi.tambahItem(item);
 
 }
+//Method mengubah data transaksi
+public void updateTransaksi(String noNota,
+                            String namaPelanggan,
+                            String status){
+
+    //Mengirim data ke DAO
+    dao.updateTransaksi(
+            noNota,
+            namaPelanggan,
+            status);
+
+}
 //Method mengambil seluruh item laundry sementara
 public List<ItemLaundry> getDaftarItem(){
 
@@ -239,12 +265,19 @@ public void simpanTransaksi(){
     int idTransaksi =
             dao.simpan(transaksi);
 
+    System.out.println("===== DEBUG =====");
+System.out.println("Jumlah item : " + dataTransaksi.getDaftarItem().size());
     //Menyimpan seluruh item laundry
     for(ItemLaundry item :
             dataTransaksi.getDaftarItem()){
+        System.out.println(
+        "ID Layanan = " + item.getIdLayanan()
+        + ", Layanan = " + item.getLayanan()
+        + ", Qty = " + item.getQty());
 
         DetailTransaksi detail =
                 new DetailTransaksi();
+        
 
         detail.setIdTransaksi(idTransaksi);
 
@@ -262,4 +295,12 @@ public void simpanTransaksi(){
     }
 
 }
+//Method untuk mengosongkan transaksi sementara
+public void resetTransaksi(){
+
+    //Mengosongkan seluruh data transaksi sementara
+    dataTransaksi.clear();
+
+}
+
 }
