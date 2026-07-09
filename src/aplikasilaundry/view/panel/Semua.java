@@ -7,6 +7,7 @@ import aplikasilaundry.controller.TransaksiController;
 import aplikasilaundry.model.Transaksi;
 import aplikasilaundry.util.FormatJam;
 import aplikasilaundry.util.FormatRupiah;
+import aplikasilaundry.util.TableStyle;
 
 //Mengimpor DefaultTableModel
 import javax.swing.table.DefaultTableModel;
@@ -19,22 +20,19 @@ public class Semua extends javax.swing.JPanel {
 
     //Menyimpan controller transaksi
     private TransaksiController controller;
-    
-  public Semua() {
 
-    //Membuat komponen panel
-    initComponents();
+    public Semua() {
+        initComponents();
 
-    //Menampilkan bahwa constructor dipanggil
-    System.out.println("Constructor Semua dipanggil");
-
-    //Membuat controller transaksi
-    controller = new TransaksiController();
-
-    //Menampilkan data ke tabel
-    tampilData();
-
-}
+        //Membuat objek controller
+        controller = new TransaksiController();
+        TableStyle.TableStyle(tblSemua);
+        
+        //Menampilkan data ke tabel
+        tampilData();
+        tblSemua.getColumnModel()
+                .getColumn(5);
+    }
 
    //Method untuk menampilkan data transaksi ke tabel
 private void tampilData() {
@@ -185,7 +183,6 @@ public javax.swing.JTable getTblSemua() {
 
         jPanel17.setLayout(new java.awt.CardLayout());
 
-        tblSemua.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tblSemua.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -203,9 +200,7 @@ public javax.swing.JTable getTblSemua() {
             }
         });
         tblSemua.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tblSemua.setGridColor(new java.awt.Color(240, 243, 247));
         tblSemua.setRowHeight(35);
-        tblSemua.setSelectionBackground(new java.awt.Color(195, 220, 255));
         tblSemua.setShowGrid(true);
         jScrollPane1.setViewportView(tblSemua);
 

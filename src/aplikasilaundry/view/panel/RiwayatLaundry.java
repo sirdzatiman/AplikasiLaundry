@@ -1,12 +1,13 @@
-
 package aplikasilaundry.view.panel;
 //Mengimpor controller transaksi
+
 import aplikasilaundry.controller.TransaksiController;
 
 //Mengimpor model transaksi
 import aplikasilaundry.model.Transaksi;
 import aplikasilaundry.util.FormatJam;
 import aplikasilaundry.util.FormatRupiah;
+import aplikasilaundry.util.TableStyle;
 
 //Mengimpor DefaultTableModel
 import javax.swing.table.DefaultTableModel;
@@ -16,69 +17,65 @@ import java.util.List;
 
 public class RiwayatLaundry extends javax.swing.JPanel {
 
-   //Menyimpan controller transaksi
-private TransaksiController controller;
+    //Menyimpan controller transaksi
+    private TransaksiController controller;
+
     public RiwayatLaundry() {
         initComponents();
         //Membuat objek controller
-    controller = new TransaksiController();
-
-    //Menampilkan data ke tabel
-    tampilData();
+        controller = new TransaksiController();
+        TableStyle.TableStyle(tblRiwayat);
+        //Menampilkan data ke tabel
+        tampilData();
+        tblRiwayat.getColumnModel()
+                .getColumn(6);
     }
     //Method untuk memperbarui data tabel
-public void refreshData(){
 
-    //Menampilkan ulang seluruh data transaksi
-    tampilData();
+    public void refreshData() {
 
-}
-    
-    //Method untuk menampilkan data laundry yang sudah selesai
-private void tampilData() {
+        //Menampilkan ulang seluruh data transaksi
+        tampilData();
 
-    //Mengambil model tabel
-    DefaultTableModel model =
-            (DefaultTableModel) tblRiwayat.getModel();
-
-    //Menghapus seluruh isi tabel
-    model.setRowCount(0);
-
-    //Mengambil data laundry dengan status Selesai
-    List<Transaksi> list = controller.getSudahDiambil();
-
-    //Menampilkan data satu per satu
-    for (Transaksi t : list) {
-
-        model.addRow(new Object[]{
-
-    //No Nota
-    t.getNoNota(),
-
-    //Nama Pelanggan
-    t.getNamaPelanggan(),
-
-    //Jam Masuk
-    FormatJam.format(
-            t.getJamMasuk()),
-
-    //Jam Ambil
-    t.getJamAmbil(),
-
-    //Jenis
-    t.getJenis(),
-
-    //Total
-    FormatRupiah.format(
-            t.getTotalHarga()),
-
-    //Status
-    t.getStatus()
-
-});
     }
 
-}
+    //Method untuk menampilkan data laundry yang sudah selesai
+    private void tampilData() {
+
+        //Mengambil model tabel
+        DefaultTableModel model
+                = (DefaultTableModel) tblRiwayat.getModel();
+
+        //Menghapus seluruh isi tabel
+        model.setRowCount(0);
+
+        //Mengambil data laundry dengan status Selesai
+        List<Transaksi> list = controller.getSudahDiambil();
+
+        //Menampilkan data satu per satu
+        for (Transaksi t : list) {
+
+            model.addRow(new Object[]{
+                //No Nota
+                t.getNoNota(),
+                //Nama Pelanggan
+                t.getNamaPelanggan(),
+                //Jam Masuk
+                FormatJam.format(
+                t.getJamMasuk()),
+                //Jam Ambil
+                t.getJamAmbil(),
+                //Jenis
+                t.getJenis(),
+                //Total
+                FormatRupiah.format(
+                t.getTotalHarga()),
+                //Status
+                t.getStatus()
+
+            });
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -173,7 +170,6 @@ private void tampilData() {
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (5).png"))); // NOI18N
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton6.addActionListener(this::jButton6ActionPerformed);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -210,7 +206,6 @@ private void tampilData() {
         jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jTextField3.setText("Cari nama / no nota / no hp");
         jTextField3.setBorder(null);
-        jTextField3.addActionListener(this::jTextField3ActionPerformed);
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -352,14 +347,6 @@ private void tampilData() {
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

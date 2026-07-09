@@ -5,6 +5,7 @@ import aplikasilaundry.controller.TransaksiController;
 import aplikasilaundry.model.Transaksi;
 import aplikasilaundry.util.FormatJam;
 import aplikasilaundry.util.FormatRupiah;
+import aplikasilaundry.util.TableStyle;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,6 +20,9 @@ private TransaksiController controller;
 
     //Menampilkan data
     tampilData();
+    tblProses.getColumnModel()
+        .getColumn(5);
+    TableStyle.TableStyle(tblProses);
     }
     private void tampilData() {
 

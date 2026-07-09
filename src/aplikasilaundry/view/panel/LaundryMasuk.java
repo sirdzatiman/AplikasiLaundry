@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 //Mengimpor collection
 import java.util.List;
 import aplikasilaundry.util.FormatRupiah;
+import aplikasilaundry.util.TableStyle;
 
 
 public class LaundryMasuk extends javax.swing.JPanel {
@@ -24,7 +25,7 @@ private TransaksiController controller;
         initComponents();
          //Membuat objek controller
     controller = new TransaksiController();
-
+    TableStyle.TableStyle(tblMasuk);
     //Menampilkan data laundry masuk
     tampilData();
 

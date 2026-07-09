@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package aplikasilaundry.view.panel;
+import aplikasilaundry.util.TableStyle;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
@@ -11,13 +12,13 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class LaporanPemasukan extends javax.swing.JPanel {
     public LaporanPemasukan() {
         initComponents();
-    
+        TableStyle.TableStyle(tRincianPemasukan);
 
-   DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
-headerRenderer.setBackground(new Color(245, 247, 250)); // abu-abu muda
-headerRenderer.setForeground(new Color(50, 50, 50));    // warna tulisan
-headerRenderer.setHorizontalAlignment(JLabel.CENTER);
-headerRenderer.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+        headerRenderer.setBackground(new Color(245, 247, 250)); // abu-abu muda
+        headerRenderer.setForeground(new Color(50, 50, 50));    // warna tulisan
+        headerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        headerRenderer.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
 
 
@@ -546,10 +547,7 @@ headerRenderer.setFont(new Font("Segoe UI", Font.BOLD, 12));
             }
         });
         tRincianPemasukan.setGridColor(new java.awt.Color(204, 204, 204));
-        tRincianPemasukan.setRowHeight(50);
-        tRincianPemasukan.setSelectionBackground(new java.awt.Color(51, 51, 255));
-        tRincianPemasukan.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        tRincianPemasukan.setShowGrid(true);
+        tRincianPemasukan.setShowGrid(false);
         jScrollPane1.setViewportView(tRincianPemasukan);
 
         jPanel15.add(jScrollPane1, "card2");
