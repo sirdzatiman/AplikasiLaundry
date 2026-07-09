@@ -19,6 +19,8 @@ private String jamAmbil;
     
     //Menyimpan jenis layanan
     private String jenis;
+    //Menyimpan jumlah item laundry
+private int jumlahItem;
 
     //Menyimpan total harga
     private BigDecimal totalHarga;
@@ -75,6 +77,16 @@ public void setJamAmbil(String jamAmbil) {
     public void setJenis(String jenis) {
         this.jenis = jenis;
     }
+    
+    //Method untuk mengambil jumlah item laundry
+public int getJumlahItem() {
+    return jumlahItem;
+}
+
+//Method untuk mengisi jumlah item laundry
+public void setJumlahItem(int jumlahItem) {
+    this.jumlahItem = jumlahItem;
+}
 
     //Method untuk mengambil total harga
     public BigDecimal getTotalHarga() {

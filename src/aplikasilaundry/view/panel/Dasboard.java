@@ -48,30 +48,62 @@ public class Dasboard extends javax.swing.JPanel {
 
     }
 
-    private void tampilTransaksiTerbaru() {
+    //Method menampilkan transaksi terbaru pada tabel Dashboard
+private void tampilTransaksiTerbaru() {
 
-        DefaultTableModel model
-                = (DefaultTableModel) tblDashboard.getModel();
+    //Mengambil model tabel
+    DefaultTableModel model =
+            (DefaultTableModel) tblDashboard.getModel();
 
-        model.setRowCount(0);
+    //Menghapus seluruh isi tabel
+    model.setRowCount(0);
 
-        List<Transaksi> list
-                = transaksiDAO.getTransaksiTerbaru();
+    //Mengambil daftar transaksi terbaru
+    List<Transaksi> list =
+            transaksiDAO.getTransaksiTerbaru();
 
-        for (Transaksi t : list) {
+    //Menampilkan seluruh transaksi
+    for (Transaksi t : list) {
 
-            model.addRow(new Object[]{
-                t.getNoNota(),
-                t.getNamaPelanggan(),
-                t.getJenis(),
-                FormatRupiah.format(t.getTotalHarga()),
-                FormatJam.format(t.getJamMasuk()),
-                t.getStatus()
-            });
+        //Menyimpan jenis layanan
+        String jenis = t.getJenis();
+
+        //Jika terdapat lebih dari satu item laundry
+        if (t.getJumlahItem() > 1) {
+
+            //Menambahkan jumlah item lainnya
+            jenis = jenis + " +" + (t.getJumlahItem() - 1);
 
         }
 
+        //Menambahkan data ke tabel
+        model.addRow(new Object[]{
+
+            //Nomor nota
+            t.getNoNota(),
+
+            //Nama pelanggan
+            t.getNamaPelanggan(),
+
+            //Jam masuk
+            FormatJam.format(
+                    t.getJamMasuk()),
+
+            //Jenis layanan
+            jenis,
+
+            //Total harga
+            FormatRupiah.format(
+                    t.getTotalHarga()),
+
+            //Status transaksi
+            t.getStatus()
+
+        });
+
     }
+
+}
 
     void myDesign() {
         btnLihatSemua.putClientProperty("FlatLaf.style",

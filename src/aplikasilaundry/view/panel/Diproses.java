@@ -31,19 +31,63 @@ private TransaksiController controller;
 
     for (Transaksi t : list) {
 
-        model.addRow(new Object[]{
-                t.getNoNota(),
-                t.getNamaPelanggan(),
-                t.getJenis(),
-                FormatRupiah.format(t.getTotalHarga()),
-                FormatJam.format(t.getJamMasuk()),
-                t.getStatus()
-            });
+        //Menyimpan teks jenis layanan
+String jenis = t.getJenis();
 
-    }
+//Jika jumlah item lebih dari satu
+if (t.getJumlahItem() > 1) {
+
+    //Menambahkan jumlah item lainnya
+    jenis = jenis + " +" + (t.getJumlahItem() - 1);
 
 }
 
+//Menambahkan data ke tabel
+model.addRow(new Object[]{
+
+    //Nomor nota
+    t.getNoNota(),
+
+    //Nama pelanggan
+    t.getNamaPelanggan(),
+
+    //Jam masuk
+    t.getJamMasuk(),
+
+    //Jenis layanan
+    jenis,
+
+    //Total harga
+    t.getTotalHarga(),
+
+    //Status transaksi
+    t.getStatus()
+
+});
+    }
+
+}
+    //Method untuk memperbarui data tabel
+public void refreshData(){
+
+    //Menampilkan ulang seluruh data transaksi
+    tampilData();
+
+}
+//Method untuk mengambil JTable Diproses
+public javax.swing.JTable getTblDiproses(){
+
+    //Mengembalikan tabel Diproses
+    return tblProses;
+
+}
+//Method untuk mengambil JTable Laundry Masuk
+public javax.swing.JTable getTblMasuk(){
+
+    //Mengembalikan tabel Laundry Masuk
+    return tblProses;
+
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

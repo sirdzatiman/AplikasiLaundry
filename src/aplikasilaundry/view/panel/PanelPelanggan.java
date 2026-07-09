@@ -605,6 +605,23 @@ controller = induk.getController();
     
     //Pindah ke tahap Item Laundry
 induk.panggilTahap("kartuItem");
+//Method untuk mereset seluruh form pelanggan
+    }
+public void resetForm(){
+
+    //Mengosongkan nama pelanggan
+    tNama.setText("");
+
+    //Mengosongkan nomor HP
+    tNoHp.setText("");
+
+    //Mengosongkan alamat
+    tAlamat.setText("");
+
+    //Mengosongkan catatan
+    tCatatan.setText("");
+
+
 
     }//GEN-LAST:event_btnLanjutActionPerformed
 
@@ -663,4 +680,5 @@ induk.panggilTahap("kartuItem");
     private javax.swing.JTextField tNama;
     private javax.swing.JTextField tNoHp;
     // End of variables declaration//GEN-END:variables
+
 }
