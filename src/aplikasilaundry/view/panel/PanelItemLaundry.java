@@ -21,6 +21,7 @@ import aplikasilaundry.controller.TransaksiController;
 
 //Mengimpor model pelanggan
 import aplikasilaundry.model.Pelanggan;
+import aplikasilaundry.util.TableStyle;
 
 public class PanelItemLaundry extends javax.swing.JPanel {
 
@@ -33,10 +34,11 @@ public class PanelItemLaundry extends javax.swing.JPanel {
 
         initComponents();
 
-       //Mengambil controller dari panel induk
-controller = induk.getController();
+        //Mengambil controller dari panel induk
+        controller = induk.getController();
         //Menampilkan data pelanggan yang sudah dipilih
         tampilDataPelanggan();
+        TableStyle.style(tblItem);
 
         //Menyiapkan tabel item laundry
         aturTabel();

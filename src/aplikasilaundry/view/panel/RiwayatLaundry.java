@@ -1,12 +1,13 @@
-
 package aplikasilaundry.view.panel;
 //Mengimpor controller transaksi
+
 import aplikasilaundry.controller.TransaksiController;
 
 //Mengimpor model transaksi
 import aplikasilaundry.model.Transaksi;
 import aplikasilaundry.util.FormatJam;
 import aplikasilaundry.util.FormatRupiah;
+import aplikasilaundry.util.TableStyle;
 
 //Mengimpor DefaultTableModel
 import javax.swing.table.DefaultTableModel;
@@ -16,44 +17,47 @@ import java.util.List;
 
 public class RiwayatLaundry extends javax.swing.JPanel {
 
-   //Menyimpan controller transaksi
-private TransaksiController controller;
+    //Menyimpan controller transaksi
+    private TransaksiController controller;
+
     public RiwayatLaundry() {
         initComponents();
         //Membuat objek controller
-    controller = new TransaksiController();
-
-    //Menampilkan data ke tabel
-    tampilData();
+        controller = new TransaksiController();
+        TableStyle.style(tblRiwayat);
+        //Menampilkan data ke tabel
+        tampilData();
+        tblRiwayat.getColumnModel()
+                .getColumn(6);
     }
-    
+
     //Method untuk menampilkan data laundry yang sudah selesai
-private void tampilData() {
+    private void tampilData() {
 
-    //Mengambil model tabel
-    DefaultTableModel model =
-            (DefaultTableModel) tblRiwayat.getModel();
+        //Mengambil model tabel
+        DefaultTableModel model
+                = (DefaultTableModel) tblRiwayat.getModel();
 
-    //Menghapus seluruh isi tabel
-    model.setRowCount(0);
+        //Menghapus seluruh isi tabel
+        model.setRowCount(0);
 
-    //Mengambil data laundry dengan status Selesai
-    List<Transaksi> list = controller.getSudahDiambil();
+        //Mengambil data laundry dengan status Selesai
+        List<Transaksi> list = controller.getSudahDiambil();
 
-    //Menampilkan data satu per satu
-    for (Transaksi t : list) {
+        //Menampilkan data satu per satu
+        for (Transaksi t : list) {
 
-        model.addRow(new Object[]{
-            t.getNoNota(),
-            t.getNamaPelanggan(),
-            t.getJenis(),
-            FormatRupiah.format(t.getTotalHarga()),
-            FormatJam.format(t.getJamMasuk()),
-            t.getStatus()
-        });
+            model.addRow(new Object[]{
+                t.getNoNota(),
+                t.getNamaPelanggan(),
+                t.getJenis(),
+                FormatRupiah.format(t.getTotalHarga()),
+                FormatJam.format(t.getJamMasuk()),
+                t.getStatus()
+            });
+        }
+
     }
-
-}
 
     /**
      * This method is called from within the constructor to initialize the form.

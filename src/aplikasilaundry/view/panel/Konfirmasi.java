@@ -5,6 +5,7 @@ import aplikasilaundry.controller.TransaksiController;
 import javax.swing.JPanel;
 import aplikasilaundry.model.Pelanggan;
 import aplikasilaundry.model.ItemLaundry;
+import aplikasilaundry.util.TableStyle;
 
 public class Konfirmasi extends javax.swing.JPanel {
 
@@ -21,6 +22,7 @@ public class Konfirmasi extends javax.swing.JPanel {
 
     //Mengambil controller dari panel induk
     controller = induk.getController();
+    TableStyle.style(tblItemLaundry);
     
     //Event tombol simpan transaksi
 btnSimpan.addActionListener(this::btnSimpanActionPerformed);
@@ -51,7 +53,7 @@ public void tampilDataPelanggan(Pelanggan pelanggan){
 public void tampilItem(java.util.List<ItemLaundry> daftarItem){
 
     javax.swing.table.DefaultTableModel model =
-            (javax.swing.table.DefaultTableModel) jTable1.getModel();
+            (javax.swing.table.DefaultTableModel) tblItemLaundry.getModel();
 
     model.setRowCount(0);
 
@@ -203,7 +205,7 @@ private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt){
         jLabel50 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblItemLaundry = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(240, 243, 247));
         setLayout(new java.awt.BorderLayout());
@@ -747,7 +749,7 @@ private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt){
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
         jPanel10.setLayout(new java.awt.CardLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblItemLaundry.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "Baju/Dll", "Cuci Kering", "2.0", "Rp 4000", "Rp 8000"},
                 {"2", "Bed Cover", "-", "1", "Rp 10000", null}
@@ -756,8 +758,8 @@ private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt){
                 "No.", "Jenis Laundry", "Proses", "Kg / Biji", "Harga", "Subtotal"
             }
         ));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        tblItemLaundry.setShowGrid(true);
+        jScrollPane1.setViewportView(tblItemLaundry);
 
         jPanel10.add(jScrollPane1, "card2");
 
@@ -827,7 +829,6 @@ private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt){
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAlaamat;
     private javax.swing.JLabel lblCatatan;
     private javax.swing.JLabel lblNama;
@@ -837,5 +838,6 @@ private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt){
     private javax.swing.JLabel lblTotalBerat;
     private javax.swing.JLabel lblTotalBiji;
     private javax.swing.JLabel lblTotalItem;
+    private javax.swing.JTable tblItemLaundry;
     // End of variables declaration//GEN-END:variables
 }

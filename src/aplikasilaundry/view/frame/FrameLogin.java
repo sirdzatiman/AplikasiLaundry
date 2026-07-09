@@ -865,6 +865,7 @@ public String getPassword() {
             UIManager.put("TableHeader.background", new Color(238, 241, 247));
             UIManager.put("TableHeader.foreground", Color.BLACK);
             UIManager.put("TableHeader.font", new Font("Segoe UI", Font.BOLD, 14));
+            UIManager.put("TableHeader.height",35);
             //semua komponen button akan berubah 
             UIManager.put("Button.arc", 15);
             UIManager.put("TextComponent.arc", 15);

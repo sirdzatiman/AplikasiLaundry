@@ -4,6 +4,7 @@
  */
 package aplikasilaundry.view.panel;
 
+import aplikasilaundry.util.TableStyle;
 import aplikasilaundry.view.dialog.popUpEditKonfigurasiLayanan;
 import aplikasilaundry.view.dialog.popUpKonfirmasiHapus;
 import aplikasilaundry.view.dialog.popUpPensil;
@@ -17,6 +18,8 @@ public class Pengaturan extends javax.swing.JPanel {
      */
     public Pengaturan() {
         initComponents();
+        TableStyle.style(tblPengguna);
+        TableStyle.style(tblJenisLayanan);
     }
 
     public void tambahDataKeTabel(String nama, String username, String peran) {
@@ -158,7 +161,7 @@ public class Pengaturan extends javax.swing.JPanel {
         jPanel44 = new javax.swing.JPanel();
         jPanel38 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblJenisLayanan = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(240, 243, 247));
         setMinimumSize(new java.awt.Dimension(1006, 728));
@@ -1236,7 +1239,7 @@ public class Pengaturan extends javax.swing.JPanel {
         jPanel38.setMinimumSize(new java.awt.Dimension(1006, 512));
         jPanel38.setLayout(new java.awt.CardLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblJenisLayanan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "Baju / Dll", "Cuci Kering", "Kg", "Rp 4.000/kg", "Berat"},
                 {"2", "Baju / Dll", "Cuci Kering Setrika", "Kg", "Rp 6.000/kg", "Berat"},
@@ -1256,11 +1259,11 @@ public class Pengaturan extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setRowHeight(50);
-        jTable1.setSelectionBackground(new java.awt.Color(0, 51, 204));
-        jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setShowGrid(true);
-        jScrollPane4.setViewportView(jTable1);
+        tblJenisLayanan.setRowHeight(50);
+        tblJenisLayanan.setSelectionBackground(new java.awt.Color(0, 51, 204));
+        tblJenisLayanan.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tblJenisLayanan.setShowGrid(true);
+        jScrollPane4.setViewportView(tblJenisLayanan);
 
         jPanel38.add(jScrollPane4, "card2");
 
@@ -1275,23 +1278,6 @@ public class Pengaturan extends javax.swing.JPanel {
         add(jScrollPane3, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPensilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPensilActionPerformed
-        // TODO add your handling code here:
-        // Ambil Frame induk dari JPanel Pengaturan
-        popUpPensil popup = new popUpPensil(getParentFrame(), true);
-        popup.setLocationRelativeTo(getParentFrame());
-        popup.setVisible(true);
-    }//GEN-LAST:event_btnPensilActionPerformed
-
-    private void btnTambahPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPenggunaActionPerformed
-        // TODO add your handling code here:
-        popUpTambahpengguna popup
-                = new popUpTambahpengguna(getParentFrame(), true, this);
-
-        popup.setLocationRelativeTo(getParentFrame());
-        popup.setVisible(true);
-    }//GEN-LAST:event_btnTambahPenggunaActionPerformed
-
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -1304,13 +1290,6 @@ public class Pengaturan extends javax.swing.JPanel {
         popup.setLocationRelativeTo(getParentFrame());
         popup.setVisible(true);
     }//GEN-LAST:event_editKonfigurasiLayananActionPerformed
-
-    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-//        // TODO add your handling code here:
-        popUpKonfirmasiHapus popup = new popUpKonfirmasiHapus(getParentFrame(), true);
-        popup.setLocationRelativeTo(getParentFrame());
-        popup.setVisible(true);
-    }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnTambahKonfigurasiLAyananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahKonfigurasiLAyananActionPerformed
         // TODO add your handling code here:
@@ -1334,6 +1313,30 @@ public class Pengaturan extends javax.swing.JPanel {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void btnTambahPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPenggunaActionPerformed
+        // TODO add your handling code here:
+        popUpTambahpengguna popup
+        = new popUpTambahpengguna(getParentFrame(), true, this);
+
+        popup.setLocationRelativeTo(getParentFrame());
+        popup.setVisible(true);
+    }//GEN-LAST:event_btnTambahPenggunaActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        //        // TODO add your handling code here:
+        popUpKonfirmasiHapus popup = new popUpKonfirmasiHapus(getParentFrame(), true);
+        popup.setLocationRelativeTo(getParentFrame());
+        popup.setVisible(true);
+    }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void btnPensilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPensilActionPerformed
+        // TODO add your handling code here:
+        // Ambil Frame induk dari JPanel Pengaturan
+        popUpPensil popup = new popUpPensil(getParentFrame(), true);
+        popup.setLocationRelativeTo(getParentFrame());
+        popup.setVisible(true);
+    }//GEN-LAST:event_btnPensilActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1443,7 +1446,6 @@ public class Pengaturan extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -1451,6 +1453,7 @@ public class Pengaturan extends javax.swing.JPanel {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton6;
-    private static volatile javax.swing.JTable tblPengguna;
+    private javax.swing.JTable tblJenisLayanan;
+    private javax.swing.JTable tblPengguna;
     // End of variables declaration//GEN-END:variables
 }

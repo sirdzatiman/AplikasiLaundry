@@ -7,6 +7,7 @@ import aplikasilaundry.config.Session;
 import aplikasilaundry.dao.TransaksiDAO;
 import aplikasilaundry.util.FormatJam;
 import aplikasilaundry.util.FormatRupiah;
+import aplikasilaundry.util.TableStyle;
 import aplikasilaundry.view.frame.FrameDashboard;
 import javax.swing.SwingUtilities;
 
@@ -24,6 +25,7 @@ public class Dasboard extends javax.swing.JPanel {
 
         tampilJumlahTransaksi();
         tampilTransaksiTerbaru();
+        TableStyle.style(tblDashboard);
 
         System.out.println("Nama Session = " + Session.getNamaPengguna());
         lblSelamatDatang.setText("Selamat Datang, " + Session.getNamaPengguna());
