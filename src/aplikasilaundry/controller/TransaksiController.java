@@ -92,6 +92,13 @@ public Transaksi getByNoNota(String noNota){
     return dao.getByNoNota(noNota);
 
 }
+//Method mengambil data transaksi berdasarkan nomor nota
+public Transaksi getTransaksiByNota(String noNota){
+
+    //Mengambil data dari DAO
+    return dao.getByNoNota(noNota);
+
+}
 //Method mengambil seluruh detail transaksi berdasarkan nomor nota
 public List<DetailTransaksi> getDetailByNota(String noNota){
 
