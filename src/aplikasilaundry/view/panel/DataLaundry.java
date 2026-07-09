@@ -10,7 +10,7 @@ import javax.swing.SwingUtilities;
 import aplikasilaundry.view.dialog.detailLaundry;
 import javax.swing.JTable;
 import javax.swing.JOptionPane;
-
+import aplikasilaundry.view.dialog.popUpPensilEdit;
 
 public class DataLaundry extends javax.swing.JPanel {
 //Menyimpan panel Semua
@@ -138,7 +138,7 @@ private SelesaiBelumDiambil panelSelesai;
         jPanel11 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         btnLihat = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnPensil = new javax.swing.JButton();
         jPanel18 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -260,9 +260,9 @@ private SelesaiBelumDiambil panelSelesai;
         btnLihat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLihat.addActionListener(this::btnLihatActionPerformed);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (5).png"))); // NOI18N
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton6.addActionListener(this::jButton6ActionPerformed);
+        btnPensil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (5).png"))); // NOI18N
+        btnPensil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPensil.addActionListener(this::btnPensilActionPerformed);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -270,7 +270,7 @@ private SelesaiBelumDiambil panelSelesai;
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
                 .addContainerGap(10, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPensil, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLihat, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -281,7 +281,7 @@ private SelesaiBelumDiambil panelSelesai;
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLihat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
+                    .addComponent(btnPensil, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -376,13 +376,60 @@ private SelesaiBelumDiambil panelSelesai;
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnPensilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPensilActionPerformed
         // TODO add your handling code here:
-        popUpPensilEdit dialog = new popUpPensilEdit(
-            (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
-            true
-        );
-    }//GEN-LAST:event_jButton6ActionPerformed
+        //Menyimpan tabel yang sedang aktif
+JTable tabel;
+
+//Menentukan tabel berdasarkan tab yang dipilih
+if(btnSemua.isSelected()){
+
+    tabel = panelSemua.getTblSemua();
+
+}else if(btnMasuk.isSelected()){
+
+    tabel = panelMasuk.getTblMasuk();
+
+}else if(btnProses.isSelected()){
+
+    tabel = panelProses.getTblDiproses();
+
+}else{
+
+    tabel = panelSelesai.getTblSelesai();
+
+}
+
+//Jika belum memilih data
+if(tabel.getSelectedRow() == -1){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Silakan pilih data terlebih dahulu.");
+
+    return;
+
+}
+
+//Mengambil nomor nota
+String noNota =
+        tabel.getValueAt(
+                tabel.getSelectedRow(),
+                0).toString();
+
+//Membuka popup Edit Laundry
+popUpPensilEdit dialog =
+        new popUpPensilEdit(
+                (java.awt.Frame)
+                SwingUtilities.getWindowAncestor(this),
+                true,
+                noNota);
+
+dialog.setLocationRelativeTo(this);
+dialog.setVisible(true);
+//Memperbarui seluruh panel Data Laundry
+refreshSemuaPanel();
+    }//GEN-LAST:event_btnPensilActionPerformed
 
     private void btnSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSemuaActionPerformed
         // TODO add your handling code here:
@@ -485,11 +532,11 @@ public void refreshSemuaPanel(){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLihat;
     private javax.swing.JToggleButton btnMasuk;
+    private javax.swing.JButton btnPensil;
     private javax.swing.JToggleButton btnProses;
     private javax.swing.JToggleButton btnSelesai;
     private javax.swing.JToggleButton btnSemua;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton6;
     private com.toedter.calendar.JDateChooser jDateChooser3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

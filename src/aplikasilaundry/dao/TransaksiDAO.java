@@ -1,5 +1,4 @@
 package aplikasilaundry.dao;
-
 //Mengimpor class koneksi database
 import aplikasilaundry.config.Koneksi;
 
@@ -843,6 +842,71 @@ public Transaksi getByNoNota(String noNota){
     }
 
     return transaksi;
+
+}
+//Method mengubah data transaksi
+public void updateTransaksi(String noNota,
+                            String namaPelanggan,
+                            String status){
+
+    try{
+
+        //Mengubah nama pelanggan
+        String sqlPelanggan =
+                "UPDATE pelanggan p "
+                + "JOIN transaksi t "
+                + "ON p.id_pelanggan = t.id_pelanggan "
+                + "SET p.nama_pelanggan = ? "
+                + "WHERE t.no_nota = ?";
+
+        PreparedStatement psPelanggan =
+                conn.prepareStatement(sqlPelanggan);
+
+        psPelanggan.setString(1, namaPelanggan);
+        psPelanggan.setString(2, noNota);
+
+        psPelanggan.executeUpdate();
+
+        //Mengubah status transaksi
+        String sqlStatus =
+                "UPDATE transaksi "
+                + "SET id_status = "
+                + "(SELECT id_status "
+                + "FROM status_transaksi "
+                + "WHERE nama_status = ?) "
+                + "WHERE no_nota = ?";
+
+        PreparedStatement psStatus =
+                conn.prepareStatement(sqlStatus);
+
+        psStatus.setString(1, status);
+        psStatus.setString(2, noNota);
+
+        psStatus.executeUpdate();
+
+        //Jika status sudah diambil
+        if(status.equals("Sudah Diambil")){
+
+            String sqlAmbil =
+                    "UPDATE transaksi "
+                    + "SET tanggal_ambil = CURDATE(), "
+                    + "jam_ambil = CURTIME() "
+                    + "WHERE no_nota = ?";
+
+            PreparedStatement psAmbil =
+                    conn.prepareStatement(sqlAmbil);
+
+            psAmbil.setString(1, noNota);
+
+            psAmbil.executeUpdate();
+
+        }
+
+    }catch(SQLException e){
+
+        e.printStackTrace();
+
+    }
 
 }
 }

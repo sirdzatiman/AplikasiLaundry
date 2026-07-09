@@ -185,6 +185,18 @@ public void tambahItem(ItemLaundry item){
     dataTransaksi.tambahItem(item);
 
 }
+//Method mengubah data transaksi
+public void updateTransaksi(String noNota,
+                            String namaPelanggan,
+                            String status){
+
+    //Mengirim data ke DAO
+    dao.updateTransaksi(
+            noNota,
+            namaPelanggan,
+            status);
+
+}
 //Method mengambil seluruh item laundry sementara
 public List<ItemLaundry> getDaftarItem(){
 
