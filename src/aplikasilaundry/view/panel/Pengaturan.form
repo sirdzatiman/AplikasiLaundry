@@ -561,11 +561,6 @@
                                   </Layout>
                                   <SubComponents>
                                     <Container class="javax.swing.JPanel" name="jPanel17">
-                                      <Properties>
-                                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                          <Color blue="f5" green="ee" red="ef" type="rgb"/>
-                                        </Property>
-                                      </Properties>
 
                                       <Layout>
                                         <DimensionLayout dim="0">
@@ -607,11 +602,6 @@
                                       </SubComponents>
                                     </Container>
                                     <Container class="javax.swing.JPanel" name="jPanel18">
-                                      <Properties>
-                                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                          <Color blue="f5" green="ee" red="ef" type="rgb"/>
-                                        </Property>
-                                      </Properties>
 
                                       <Layout>
                                         <DimensionLayout dim="0">
@@ -651,11 +641,6 @@
                                       </SubComponents>
                                     </Container>
                                     <Container class="javax.swing.JPanel" name="jPanel19">
-                                      <Properties>
-                                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                          <Color blue="f5" green="ee" red="ef" type="rgb"/>
-                                        </Property>
-                                      </Properties>
 
                                       <Layout>
                                         <DimensionLayout dim="0">
@@ -695,11 +680,6 @@
                                       </SubComponents>
                                     </Container>
                                     <Container class="javax.swing.JPanel" name="jPanel20">
-                                      <Properties>
-                                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                          <Color blue="f5" green="ee" red="ef" type="rgb"/>
-                                        </Property>
-                                      </Properties>
 
                                       <Layout>
                                         <DimensionLayout dim="0">
@@ -736,11 +716,6 @@
                                       </SubComponents>
                                     </Container>
                                     <Container class="javax.swing.JPanel" name="jPanel21">
-                                      <Properties>
-                                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                          <Color blue="f5" green="ee" red="ef" type="rgb"/>
-                                        </Property>
-                                      </Properties>
 
                                       <Layout>
                                         <DimensionLayout dim="0">
@@ -780,11 +755,6 @@
                                       </SubComponents>
                                     </Container>
                                     <Container class="javax.swing.JPanel" name="jPanel22">
-                                      <Properties>
-                                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                          <Color blue="f5" green="ee" red="ef" type="rgb"/>
-                                        </Property>
-                                      </Properties>
 
                                       <Layout>
                                         <DimensionLayout dim="0">

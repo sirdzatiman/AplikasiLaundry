@@ -367,8 +367,6 @@ public class Pengaturan extends javax.swing.JPanel {
 
         jPanel16.setMinimumSize(new java.awt.Dimension(320, 145));
 
-        jPanel17.setBackground(new java.awt.Color(239, 238, 245));
-
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel14.setText("No Nota                  :");
 
@@ -393,8 +391,6 @@ public class Pengaturan extends javax.swing.JPanel {
                     .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        jPanel18.setBackground(new java.awt.Color(239, 238, 245));
-
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel18.setText("No. Hp                     :");
 
@@ -417,8 +413,6 @@ public class Pengaturan extends javax.swing.JPanel {
                 .addComponent(jLabel18))
             .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        jPanel19.setBackground(new java.awt.Color(239, 238, 245));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel15.setText("Tanggal                   :");
@@ -443,8 +437,6 @@ public class Pengaturan extends javax.swing.JPanel {
             .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel20.setBackground(new java.awt.Color(239, 238, 245));
-
         jLabel19.setText("Asal                          :");
 
         jLabel26.setText("PPP.KH.A.BASTHOMI");
@@ -466,8 +458,6 @@ public class Pengaturan extends javax.swing.JPanel {
                 .addComponent(jLabel19))
             .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        jPanel21.setBackground(new java.awt.Color(239, 238, 245));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel16.setText("Jam Masu                :");
@@ -491,8 +481,6 @@ public class Pengaturan extends javax.swing.JPanel {
                 .addComponent(jLabel16))
             .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        jPanel22.setBackground(new java.awt.Color(239, 238, 245));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel17.setText("Pelanggan               :");
