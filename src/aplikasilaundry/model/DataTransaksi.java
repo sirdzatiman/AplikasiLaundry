@@ -61,5 +61,17 @@ public List<ItemLaundry> getDaftarItem() {
 public void tambahItem(ItemLaundry item) {
     daftarItem.add(item);
 }
+//Method untuk mengosongkan seluruh data transaksi sementara
+public void clear(){
 
+    //Menghapus data pelanggan
+    pelanggan = null;
+
+    //Menghapus seluruh item laundry sementara
+    daftarItem.clear();
+
+    //Menghapus seluruh detail transaksi
+    detailList.clear();
+
+}
 }

@@ -7,6 +7,9 @@ import java.awt.Color;
 import java.awt.Container;
 import javax.swing.JToggleButton;
 import javax.swing.SwingUtilities;
+import aplikasilaundry.view.dialog.detailLaundry;
+import javax.swing.JTable;
+import javax.swing.JOptionPane;
 
 
 public class DataLaundry extends javax.swing.JPanel {
@@ -134,7 +137,7 @@ private SelesaiBelumDiambil panelSelesai;
         jPanel1 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
+        btnLihat = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel18 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
@@ -253,8 +256,9 @@ private SelesaiBelumDiambil panelSelesai;
         jPanel13.setMinimumSize(new java.awt.Dimension(150, 50));
         jPanel13.setPreferredSize(new java.awt.Dimension(150, 50));
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (4).png"))); // NOI18N
-        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLihat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (4).png"))); // NOI18N
+        btnLihat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLihat.addActionListener(this::btnLihatActionPerformed);
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (5).png"))); // NOI18N
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -268,7 +272,7 @@ private SelesaiBelumDiambil panelSelesai;
                 .addContainerGap(10, Short.MAX_VALUE)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLihat, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -276,7 +280,7 @@ private SelesaiBelumDiambil panelSelesai;
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLihat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -403,9 +407,67 @@ private SelesaiBelumDiambil panelSelesai;
         tampilPanel("selesai");
         setButtonAktif(btnSelesai);
     }//GEN-LAST:event_btnSelesaiActionPerformed
+
+    private void btnLihatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLihatActionPerformed
+        // TODO add your handling code here:
+      //Menyimpan tabel yang sedang aktif
+JTable tabel;
+
+//Menentukan tabel berdasarkan tab yang dipilih
+if(btnSemua.isSelected()){
+
+    tabel = panelSemua.getTblSemua();
+
+}else if(btnMasuk.isSelected()){
+
+    tabel = panelMasuk.getTblMasuk();
+
+}else if(btnProses.isSelected()){
+
+    tabel = panelProses.getTblDiproses();
+
+}else{
+
+    tabel = panelSelesai.getTblSelesai();
+
+}
+System.out.println("Tab Semua : " + btnSemua.isSelected());
+System.out.println("Tab Masuk : " + btnMasuk.isSelected());
+System.out.println("Tab Proses : " + btnProses.isSelected());
+System.out.println("Tab Selesai : " + btnSelesai.isSelected());
+
+System.out.println("Baris terpilih = " + tabel.getSelectedRow());
+
+//Jika belum memilih data
+if(tabel.getSelectedRow() == -1){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Silakan pilih data terlebih dahulu.");
+
+    return;
+
+}
+//Mengambil nomor nota dari baris yang dipilih
+String noNota =
+        tabel.getValueAt(
+                tabel.getSelectedRow(),
+                0).toString();
+
+//Membuka dialog Detail Laundry
+detailLaundry dialog =
+        new detailLaundry(
+                (java.awt.Frame)
+                SwingUtilities.getWindowAncestor(this),
+                true,
+                noNota);
+
+dialog.setLocationRelativeTo(this);
+dialog.setVisible(true);
+    }//GEN-LAST:event_btnLihatActionPerformed
 //Method untuk memperbarui seluruh panel Data Laundry
 public void refreshSemuaPanel(){
-
+    
     //Memperbarui panel Semua
     panelSemua.refreshData();
 
@@ -421,12 +483,12 @@ public void refreshSemuaPanel(){
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLihat;
     private javax.swing.JToggleButton btnMasuk;
     private javax.swing.JToggleButton btnProses;
     private javax.swing.JToggleButton btnSelesai;
     private javax.swing.JToggleButton btnSemua;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private com.toedter.calendar.JDateChooser jDateChooser3;
     private javax.swing.JLabel jLabel2;

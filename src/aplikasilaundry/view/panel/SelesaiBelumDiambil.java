@@ -87,6 +87,20 @@ public void refreshData(){
     tampilData();
 
 }
+//Method untuk mengambil JTable Selesai
+public javax.swing.JTable getTblSelesai(){
+
+    //Mengembalikan tabel Selesai
+    return tblSelesai;
+
+}
+//Method untuk mengambil JTable Laundry Masuk
+public javax.swing.JTable getTblMasuk(){
+
+    //Mengembalikan tabel Laundry Masuk
+    return tblSelesai;
+
+}
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -3,6 +3,7 @@ package aplikasilaundry.model;
 
 import java.math.BigDecimal;
 
+
 //Class untuk menyimpan data item laundry
 public class DetailTransaksi {
     //ID transaksi
@@ -13,6 +14,10 @@ private int idTransaksi;
 
     //Nama layanan
     private String namaLayanan;
+    
+    //Nama proses laundry
+private String namaProses;
+private String satuan;
 
     //Jumlah Kg/Biji
     private double qty;
@@ -72,5 +77,26 @@ public void setIdTransaksi(int idTransaksi) {
     public void setSubtotal(BigDecimal subtotal) {
         this.subtotal = subtotal;
     }
+//Mengambil nama proses
+public String getNamaProses() {
+    return namaProses;
+}
 
+//Mengubah nama proses
+public void setNamaProses(String namaProses) {
+    this.namaProses = namaProses;
+}
+//Mengambil satuan layanan
+public String getSatuan() {
+
+    return satuan;
+
+}
+
+//Mengubah satuan layanan
+public void setSatuan(String satuan) {
+
+    this.satuan = satuan;
+
+}
 }

@@ -12,7 +12,7 @@ import aplikasilaundry.view.panel.LaporanPemasukan;
 import aplikasilaundry.view.panel.Pengaturan;
 import aplikasilaundry.view.panel.RiwayatLaundry;
 import aplikasilaundry.view.panel.TambahLaundry;
-import aplikasilaundry.view.panel.popUpLogout;
+import aplikasilaundry.view.dialog.popUpLogout;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.CardLayout;

@@ -41,7 +41,22 @@ panelContentPelanggan.add(panelKonfirmasi,"kartuKonfirmasi");
         //Menampilkan tahap pertama saat panel dibuka
     panggilTahap("kartuPelanggan");
     }
-    
+    //Method untuk mereset seluruh form Tambah Laundry
+public void resetForm(){
+
+    //Mereset panel pelanggan
+    panelPelanggan.resetForm();
+
+    //Mereset panel item laundry
+    panelItem.resetForm();
+
+    //Mereset panel konfirmasi
+    panelKonfirmasi.resetForm();
+
+    //Menampilkan kembali panel pelanggan
+    panggilTahap("kartuPelanggan");
+
+}
     //Method mengambil controller transaksi
 public TransaksiController getController() {
 
