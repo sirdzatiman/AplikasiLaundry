@@ -1,10 +1,9 @@
 
 package aplikasilaundry.view.panel;
-import aplikasilaundry.view.panel.TambahLaundry;
 import aplikasilaundry.controller.TransaksiController;
-import javax.swing.JPanel;
 import aplikasilaundry.model.Pelanggan;
 import aplikasilaundry.model.ItemLaundry;
+import aplikasilaundry.util.TableStyle;
 
 public class Konfirmasi extends javax.swing.JPanel {
 
@@ -21,6 +20,7 @@ public class Konfirmasi extends javax.swing.JPanel {
 
     //Mengambil controller dari panel induk
     controller = induk.getController();
+    TableStyle.TableStyle(tblItemLaundryy);
     
   
 
@@ -50,7 +50,7 @@ public void tampilDataPelanggan(Pelanggan pelanggan){
 public void tampilItem(java.util.List<ItemLaundry> daftarItem){
 
     javax.swing.table.DefaultTableModel model =
-            (javax.swing.table.DefaultTableModel) tblDetailLaundry.getModel();
+            (javax.swing.table.DefaultTableModel) tblItemLaundryy.getModel();
 
     model.setRowCount(0);
 
@@ -191,7 +191,7 @@ public void hitungRingkasan(java.util.List<ItemLaundry> daftarItem){
         jLabel50 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDetailLaundry = new javax.swing.JTable();
+        tblItemLaundryy = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(240, 243, 247));
         setLayout(new java.awt.BorderLayout());
@@ -736,7 +736,7 @@ public void hitungRingkasan(java.util.List<ItemLaundry> daftarItem){
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
         jPanel10.setLayout(new java.awt.CardLayout());
 
-        tblDetailLaundry.setModel(new javax.swing.table.DefaultTableModel(
+        tblItemLaundryy.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "Baju/Dll", "Cuci Kering", "2.0", "Rp 4000", "Rp 8000"},
                 {"2", "Bed Cover", "-", "1", "Rp 10000", null}
@@ -745,8 +745,8 @@ public void hitungRingkasan(java.util.List<ItemLaundry> daftarItem){
                 "No.", "Jenis Laundry", "Proses", "Kg / Biji", "Harga", "Subtotal"
             }
         ));
-        tblDetailLaundry.setShowGrid(true);
-        jScrollPane1.setViewportView(tblDetailLaundry);
+        tblItemLaundryy.setShowGrid(true);
+        jScrollPane1.setViewportView(tblItemLaundryy);
 
         jPanel10.add(jScrollPane1, "card2");
 
@@ -830,7 +830,7 @@ public void resetForm(){
     //Mengambil model tabel
     javax.swing.table.DefaultTableModel model =
             (javax.swing.table.DefaultTableModel)
-            tblDetailLaundry.getModel();
+            tblItemLaundryy.getModel();
 
     //Menghapus seluruh isi tabel
     model.setRowCount(0);
@@ -892,6 +892,6 @@ public void resetForm(){
     private javax.swing.JLabel lblTotalBerat;
     private javax.swing.JLabel lblTotalBiji;
     private javax.swing.JLabel lblTotalItem;
-    private javax.swing.JTable tblDetailLaundry;
+    private javax.swing.JTable tblItemLaundryy;
     // End of variables declaration//GEN-END:variables
 }

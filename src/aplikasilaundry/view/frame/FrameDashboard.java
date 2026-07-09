@@ -44,7 +44,7 @@ private RiwayatLaundry riwayatLaundry;
         initComponents();
         inisiasiPanel();
         resetMenu();
-        
+
         setMenuAktif(pnlDasboard);
 //        System.out.println(Session.getNamaPengguna());
 //        System.out.println(Session.getRole());
@@ -70,6 +70,7 @@ panelContent.add(riwayatLaundry, "riwayat");
         panelContent.revalidate();
         panelContent.repaint();
     }
+
     public DataLaundry getDataLaundry() {
     return dataLaundry;
 }
@@ -547,12 +548,12 @@ public RiwayatLaundry getRiwayatLaundry() {
     private void pnlLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLogoutMouseClicked
         // TODO add your handling code here:
         popUpLogout dialog = new popUpLogout(
-            (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
-            true
-    );
+                (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
+                true
+        );
 
-    dialog.setLocationRelativeTo(this); // tampil di tengah frame
-    dialog.setVisible(true);
+        dialog.setLocationRelativeTo(this); // tampil di tengah frame
+        dialog.setVisible(true);
     }//GEN-LAST:event_pnlLogoutMouseClicked
 
     /**
