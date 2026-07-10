@@ -1,5 +1,3 @@
-package aplikasilaundry.view.panel;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -13,12 +11,12 @@ import aplikasilaundry.view.dialog.popUpPensil;
 import aplikasilaundry.view.dialog.popUpTambahKonfigurasiLayanan;
 import aplikasilaundry.view.dialog.popUpTambahpengguna;
 
-public class Pengaturan extends javax.swing.JPanel {
+public class Pengaturanp extends javax.swing.JPanel {
 
     /**
      * Creates new form Pengaturan
      */
-    public Pengaturan() {
+    public Pengaturanp() {
         initComponents();
         TableStyle.TableStyle(tblPengguna);
         TableStyle.TableStyle(tblJenisLayanan);
@@ -52,26 +50,15 @@ public class Pengaturan extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel40 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jPanel45 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnPensil = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        btnTambahPengguna = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblPengguna = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        btnTambahPengguna = new javax.swing.JButton();
-        jPanel46 = new javax.swing.JPanel();
-        jPanel47 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        btnPensil1 = new javax.swing.JButton();
-        btnHapus1 = new javax.swing.JButton();
-        jPanel48 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tblPengguna1 = new javax.swing.JTable();
-        jPanel49 = new javax.swing.JPanel();
-        btnTambahPengguna1 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -163,9 +150,6 @@ public class Pengaturan extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         editKonfigurasiLayanan = new javax.swing.JButton();
         btnHapusKonfigurasi = new javax.swing.JButton();
-        jPanel38 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tblJenisLayanan = new javax.swing.JTable();
         jPanel37 = new javax.swing.JPanel();
         jPanel39 = new javax.swing.JPanel();
         jPanel41 = new javax.swing.JPanel();
@@ -175,24 +159,23 @@ public class Pengaturan extends javax.swing.JPanel {
         btnTambahKonfigurasiLAyanan = new javax.swing.JToggleButton();
         jToggleButton6 = new javax.swing.JToggleButton();
         jPanel44 = new javax.swing.JPanel();
+        jPanel38 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblJenisLayanan = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(240, 243, 247));
         setMinimumSize(new java.awt.Dimension(1006, 728));
         setLayout(new java.awt.CardLayout());
 
-        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
         jPanel40.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 20));
         jPanel40.setMinimumSize(new java.awt.Dimension(1006, 1500));
-        jPanel40.setPreferredSize(new java.awt.Dimension(1006, 1600));
+        jPanel40.setPreferredSize(new java.awt.Dimension(1006, 1500));
         jPanel40.setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 10));
         jPanel1.setMinimumSize(new java.awt.Dimension(1006, 273));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1006, 546));
-        jPanel1.setLayout(new java.awt.GridLayout(2, 1, 2, 20));
-
-        jPanel45.setLayout(new java.awt.BorderLayout());
+        jPanel1.setPreferredSize(new java.awt.Dimension(1006, 273));
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10));
@@ -216,7 +199,7 @@ public class Pengaturan extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 767, Short.MAX_VALUE)
                 .addComponent(btnPensil)
                 .addGap(18, 18, 18)
                 .addComponent(btnHapus))
@@ -233,7 +216,36 @@ public class Pengaturan extends javax.swing.JPanel {
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
-        jPanel45.add(jPanel2, java.awt.BorderLayout.PAGE_START);
+        jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_START);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setMinimumSize(new java.awt.Dimension(1006, 65));
+
+        btnTambahPengguna.setBackground(new java.awt.Color(51, 0, 204));
+        btnTambahPengguna.setForeground(new java.awt.Color(255, 255, 255));
+        btnTambahPengguna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/IonPlus.png"))); // NOI18N
+        btnTambahPengguna.setText("Tambah Pengguna");
+        btnTambahPengguna.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnTambahPengguna.addActionListener(this::btnTambahPenggunaActionPerformed);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(776, Short.MAX_VALUE)
+                .addComponent(btnTambahPengguna, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(btnTambahPengguna, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
         jPanel4.setLayout(new java.awt.CardLayout());
@@ -265,144 +277,7 @@ public class Pengaturan extends javax.swing.JPanel {
 
         jPanel4.add(jScrollPane2, "card2");
 
-        jPanel45.add(jPanel4, java.awt.BorderLayout.CENTER);
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setMinimumSize(new java.awt.Dimension(1006, 65));
-
-        btnTambahPengguna.setBackground(new java.awt.Color(51, 0, 204));
-        btnTambahPengguna.setForeground(new java.awt.Color(255, 255, 255));
-        btnTambahPengguna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/IonPlus.png"))); // NOI18N
-        btnTambahPengguna.setText("Tambah Pengguna");
-        btnTambahPengguna.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnTambahPengguna.addActionListener(this::btnTambahPenggunaActionPerformed);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnTambahPengguna, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(btnTambahPengguna, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-
-        jPanel45.add(jPanel3, java.awt.BorderLayout.PAGE_END);
-
-        jPanel1.add(jPanel45);
-
-        jPanel46.setLayout(new java.awt.BorderLayout());
-
-        jPanel47.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel47.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10));
-        jPanel47.setMinimumSize(new java.awt.Dimension(1006, 50));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("1. Pengguna");
-
-        btnPensil1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/LucidePencil.png"))); // NOI18N
-        btnPensil1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnPensil1.addActionListener(this::btnPensil1ActionPerformed);
-
-        btnHapus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/SolarTrashBinTrashOutline.png"))); // NOI18N
-        btnHapus1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnHapus1.addActionListener(this::btnHapus1ActionPerformed);
-
-        javax.swing.GroupLayout jPanel47Layout = new javax.swing.GroupLayout(jPanel47);
-        jPanel47.setLayout(jPanel47Layout);
-        jPanel47Layout.setHorizontalGroup(
-            jPanel47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel47Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnPensil1)
-                .addGap(18, 18, 18)
-                .addComponent(btnHapus1))
-        );
-        jPanel47Layout.setVerticalGroup(
-            jPanel47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel47Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnPensil1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnHapus1))
-                    .addComponent(jLabel3))
-                .addContainerGap(7, Short.MAX_VALUE))
-        );
-
-        jPanel46.add(jPanel47, java.awt.BorderLayout.PAGE_START);
-
-        jPanel48.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
-        jPanel48.setLayout(new java.awt.CardLayout());
-
-        tblPengguna1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        tblPengguna1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"1", "Owner", "Owner"},
-                {"2", "Kasir", "Kasir"}
-            },
-            new String [] {
-                "No", "Nama", "Role"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblPengguna1.setGridColor(new java.awt.Color(204, 204, 204));
-        tblPengguna1.setRowHeight(50);
-        tblPengguna1.setSelectionBackground(new java.awt.Color(0, 51, 204));
-        tblPengguna1.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        tblPengguna1.setShowGrid(true);
-        jScrollPane5.setViewportView(tblPengguna1);
-
-        jPanel48.add(jScrollPane5, "card2");
-
-        jPanel46.add(jPanel48, java.awt.BorderLayout.CENTER);
-
-        jPanel49.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel49.setMinimumSize(new java.awt.Dimension(1006, 65));
-
-        btnTambahPengguna1.setBackground(new java.awt.Color(51, 0, 204));
-        btnTambahPengguna1.setForeground(new java.awt.Color(255, 255, 255));
-        btnTambahPengguna1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/IonPlus.png"))); // NOI18N
-        btnTambahPengguna1.setText("Tambah Pengguna");
-        btnTambahPengguna1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnTambahPengguna1.addActionListener(this::btnTambahPengguna1ActionPerformed);
-
-        javax.swing.GroupLayout jPanel49Layout = new javax.swing.GroupLayout(jPanel49);
-        jPanel49.setLayout(jPanel49Layout);
-        jPanel49Layout.setHorizontalGroup(
-            jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel49Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnTambahPengguna1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
-        );
-        jPanel49Layout.setVerticalGroup(
-            jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel49Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(btnTambahPengguna1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-
-        jPanel46.add(jPanel49, java.awt.BorderLayout.PAGE_END);
-
-        jPanel1.add(jPanel46);
+        jPanel1.add(jPanel4, java.awt.BorderLayout.CENTER);
 
         jPanel40.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
@@ -410,7 +285,7 @@ public class Pengaturan extends javax.swing.JPanel {
 
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 10));
         jPanel12.setMinimumSize(new java.awt.Dimension(1006, 585));
-        jPanel12.setPreferredSize(new java.awt.Dimension(1006, 635));
+        jPanel12.setPreferredSize(new java.awt.Dimension(1006, 585));
         jPanel12.setLayout(new java.awt.BorderLayout());
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
@@ -453,7 +328,7 @@ public class Pengaturan extends javax.swing.JPanel {
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
         jPanel5.setForeground(new java.awt.Color(204, 204, 204));
         jPanel5.setMinimumSize(new java.awt.Dimension(320, 500));
-        jPanel5.setPreferredSize(new java.awt.Dimension(320, 535));
+        jPanel5.setPreferredSize(new java.awt.Dimension(320, 500));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
         jPanel8.setLayout(new java.awt.BorderLayout());
@@ -1053,13 +928,13 @@ public class Pengaturan extends javax.swing.JPanel {
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 127, Short.MAX_VALUE)
+            .addGap(0, 100, Short.MAX_VALUE)
             .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel10Layout.createSequentialGroup()
                     .addGap(7, 7, 7)
                     .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -1070,7 +945,6 @@ public class Pengaturan extends javax.swing.JPanel {
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 10));
         jPanel6.setMinimumSize(new java.awt.Dimension(686, 500));
-        jPanel6.setPreferredSize(new java.awt.Dimension(626, 535));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("Footer Sruk");
@@ -1211,7 +1085,7 @@ public class Pengaturan extends javax.swing.JPanel {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jPanel15.add(jPanel6, java.awt.BorderLayout.CENTER);
@@ -1265,40 +1139,6 @@ public class Pengaturan extends javax.swing.JPanel {
         );
 
         jPanel13.add(jPanel36, java.awt.BorderLayout.PAGE_START);
-
-        jPanel38.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
-        jPanel38.setMinimumSize(new java.awt.Dimension(1006, 512));
-        jPanel38.setLayout(new java.awt.CardLayout());
-
-        tblJenisLayanan.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"1", "Baju / Dll", "Cuci Kering", "Kg", "Rp 4.000/kg", "Berat"},
-                {"2", "Baju / Dll", "Cuci Kering Setrika", "Kg", "Rp 6.000/kg", "Berat"},
-                {"3", "Selimut / Dll", "Cuci Kering", "Kg", "Rp 6.000/kg", "Berat"},
-                {"4", "Selimut / Dll", "Cuci Kering Setrika", "Kg", "Rp 8.000/kg", "Berat"},
-                {"5", "Bed Cover", "-", "biji", "Rp 10.000/kg", "Harga per item"}
-            },
-            new String [] {
-                "No", "Nama Layanan", "Proses", "Satuan", "Harga", "Keterangan"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblJenisLayanan.setRowHeight(50);
-        tblJenisLayanan.setSelectionBackground(new java.awt.Color(0, 51, 204));
-        tblJenisLayanan.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        tblJenisLayanan.setShowGrid(true);
-        jScrollPane4.setViewportView(tblJenisLayanan);
-
-        jPanel38.add(jScrollPane4, "card2");
-
-        jPanel13.add(jPanel38, java.awt.BorderLayout.CENTER);
 
         jPanel37.setBackground(new java.awt.Color(255, 255, 255));
         jPanel37.setMinimumSize(new java.awt.Dimension(1006, 80));
@@ -1370,7 +1210,7 @@ public class Pengaturan extends javax.swing.JPanel {
         jPanel44.setLayout(jPanel44Layout);
         jPanel44Layout.setHorizontalGroup(
             jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 508, Short.MAX_VALUE)
+            .addGap(0, 518, Short.MAX_VALUE)
         );
         jPanel44Layout.setVerticalGroup(
             jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1382,6 +1222,40 @@ public class Pengaturan extends javax.swing.JPanel {
         jPanel37.add(jPanel42, java.awt.BorderLayout.CENTER);
 
         jPanel13.add(jPanel37, java.awt.BorderLayout.PAGE_END);
+
+        jPanel38.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
+        jPanel38.setMinimumSize(new java.awt.Dimension(1006, 512));
+        jPanel38.setLayout(new java.awt.CardLayout());
+
+        tblJenisLayanan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"1", "Baju / Dll", "Cuci Kering", "Kg", "Rp 4.000/kg", "Berat"},
+                {"2", "Baju / Dll", "Cuci Kering Setrika", "Kg", "Rp 6.000/kg", "Berat"},
+                {"3", "Selimut / Dll", "Cuci Kering", "Kg", "Rp 6.000/kg", "Berat"},
+                {"4", "Selimut / Dll", "Cuci Kering Setrika", "Kg", "Rp 8.000/kg", "Berat"},
+                {"5", "Bed Cover", "-", "biji", "Rp 10.000/kg", "Harga per item"}
+            },
+            new String [] {
+                "No", "Nama Layanan", "Proses", "Satuan", "Harga", "Keterangan"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblJenisLayanan.setRowHeight(50);
+        tblJenisLayanan.setSelectionBackground(new java.awt.Color(0, 51, 204));
+        tblJenisLayanan.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tblJenisLayanan.setShowGrid(true);
+        jScrollPane4.setViewportView(tblJenisLayanan);
+
+        jPanel38.add(jScrollPane4, "card2");
+
+        jPanel13.add(jPanel38, java.awt.BorderLayout.CENTER);
 
         jPanel7.add(jPanel13, java.awt.BorderLayout.CENTER);
 
@@ -1416,11 +1290,11 @@ public class Pengaturan extends javax.swing.JPanel {
 
     private void btnHapusKonfigurasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusKonfigurasiActionPerformed
         // TODO add your handling code here:
-        popUpKonfirmasiHapus popup =
-            new popUpKonfirmasiHapus(getParentFrame(), true);
-
-    popup.setLocationRelativeTo(getParentFrame());
-    popup.setVisible(true);
+//        popUpSampah popup =
+//            new popUpSampah(getParentFrame(), true);
+//
+//    popup.setLocationRelativeTo(getParentFrame());
+//    popup.setVisible(true);
     }//GEN-LAST:event_btnHapusKonfigurasiActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
@@ -1445,35 +1319,20 @@ public class Pengaturan extends javax.swing.JPanel {
 
     private void btnTambahPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPenggunaActionPerformed
         // TODO add your handling code here:
-        popUpTambahpengguna popup
-        = new popUpTambahpengguna(getParentFrame(), true, this);
-
-        popup.setLocationRelativeTo(getParentFrame());
-        popup.setVisible(true);
+//        popUpTambahpengguna popup
+//        = new popUpTambahpengguna(getParentFrame(), true, this);
+//
+//        popup.setLocationRelativeTo(getParentFrame());
+//        popup.setVisible(true);
     }//GEN-LAST:event_btnTambahPenggunaActionPerformed
-
-    private void btnPensil1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPensil1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPensil1ActionPerformed
-
-    private void btnHapus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapus1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHapus1ActionPerformed
-
-    private void btnTambahPengguna1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPengguna1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTambahPengguna1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnHapus1;
     private javax.swing.JButton btnHapusKonfigurasi;
     private javax.swing.JButton btnPensil;
-    private javax.swing.JButton btnPensil1;
     private javax.swing.JToggleButton btnTambahKonfigurasiLAyanan;
     private javax.swing.JButton btnTambahPengguna;
-    private javax.swing.JButton btnTambahPengguna1;
     private javax.swing.JButton editKonfigurasiLayanan;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -1498,7 +1357,6 @@ public class Pengaturan extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -1568,11 +1426,6 @@ public class Pengaturan extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel42;
     private javax.swing.JPanel jPanel43;
     private javax.swing.JPanel jPanel44;
-    private javax.swing.JPanel jPanel45;
-    private javax.swing.JPanel jPanel46;
-    private javax.swing.JPanel jPanel47;
-    private javax.swing.JPanel jPanel48;
-    private javax.swing.JPanel jPanel49;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -1581,7 +1434,6 @@ public class Pengaturan extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -1591,6 +1443,5 @@ public class Pengaturan extends javax.swing.JPanel {
     private javax.swing.JToggleButton jToggleButton6;
     private javax.swing.JTable tblJenisLayanan;
     private static volatile javax.swing.JTable tblPengguna;
-    private static volatile javax.swing.JTable tblPengguna1;
     // End of variables declaration//GEN-END:variables
 }
