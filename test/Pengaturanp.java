@@ -1304,9 +1304,9 @@ public class Pengaturanp extends javax.swing.JPanel {
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         //        // TODO add your handling code here:
-        popUpKonfirmasiHapus popup = new popUpKonfirmasiHapus(getParentFrame(), true);
-        popup.setLocationRelativeTo(getParentFrame());
-        popup.setVisible(true);
+//        popUpKonfirmasiHapus popup = new popUpKonfirmasiHapus(getParentFrame(), true);
+//        popup.setLocationRelativeTo(getParentFrame());
+//        popup.setVisible(true);
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnPensilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPensilActionPerformed

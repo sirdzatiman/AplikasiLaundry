@@ -291,6 +291,20 @@ dispose();
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+   //Membuka popup konfirmasi hapus
+popUpKonfirmasiHapus dialog =
+        new popUpKonfirmasiHapus(
+                (java.awt.Frame)
+                SwingUtilities.getWindowAncestor(this),
+                true,
+                noNota,
+                this);
+
+//Menampilkan popup di tengah
+dialog.setLocationRelativeTo(this);
+
+//Menampilkan popup
+dialog.setVisible(true);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
