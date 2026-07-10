@@ -3,26 +3,116 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package aplikasilaundry.view.panel;
+
 import aplikasilaundry.util.TableStyle;
-import java.awt.Color;
-import java.awt.Font;
-import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import aplikasilaundry.controller.LaporanController;
+import aplikasilaundry.model.Laporan;
+import aplikasilaundry.util.FormatRupiah;
+
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 public class LaporanPemasukan extends javax.swing.JPanel {
+
+    private LaporanController controller;
+
     public LaporanPemasukan() {
         initComponents();
         TableStyle.TableStyle(tblLaporan);
 
-        DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
-        headerRenderer.setBackground(new Color(245, 247, 250)); // abu-abu muda
-        headerRenderer.setForeground(new Color(50, 50, 50));    // warna tulisan
-        headerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        headerRenderer.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        controller = new LaporanController();
 
+        tampilData();
+        tampilRingkasan();
 
+        // Renderer rata tengah
+        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+        center.setHorizontalAlignment(SwingConstants.CENTER);
 
-}
+        // Kolom Jumlah
+        tblLaporan.getColumnModel().getColumn(2).setCellRenderer(center);
+
+        // Mengatur lebar kolom
+        tblLaporan.getColumnModel().getColumn(0).setPreferredWidth(180);
+        tblLaporan.getColumnModel().getColumn(1).setPreferredWidth(210);
+        tblLaporan.getColumnModel().getColumn(2).setPreferredWidth(70);
+        tblLaporan.getColumnModel().getColumn(3).setPreferredWidth(110);
+
+        tblLaporan.getTableHeader().setResizingAllowed(false);
+        tblLaporan.getTableHeader().setReorderingAllowed(false);
+
+        // Renderer Rupiah
+        DefaultTableCellRenderer rupiahRenderer = new DefaultTableCellRenderer() {
+            @Override
+            protected void setValue(Object value) {
+
+                if (value != null) {
+                    setText(FormatRupiah.format(((Number) value).doubleValue()));
+                } else {
+                    setText("Rp0");
+                }
+
+                setHorizontalAlignment(SwingConstants.RIGHT);
+            }
+        };
+
+// Kolom Subtotal
+        tblLaporan.getColumnModel().getColumn(3).setCellRenderer(rupiahRenderer);
+    }
+
+    private void tampilData() {
+
+        DefaultTableModel model
+                = (DefaultTableModel) tblLaporan.getModel();
+
+        model.setRowCount(0);
+
+        List<Laporan> list = controller.getRincianPemasukan(
+                cPeriode.getSelectedItem().toString(),
+                cTanggal.getDate()
+        );
+
+        for (Laporan l : list) {
+
+            model.addRow(new Object[]{
+                l.getNamaLayanan(),
+                l.getProses(),
+                (int) l.getJumlah(),
+                l.getSubtotal()
+            });
+
+        }
+
+    }
+
+    private void tampilRingkasan() {
+
+        Laporan laporan = controller.getRingkasan(
+                cPeriode.getSelectedItem().toString(),
+                cTanggal.getDate()
+        );
+
+        lblTotalTransaksi.setText(
+                String.valueOf(laporan.getTotalTransaksi()));
+
+        lblTotalPemasukan.setText(
+                FormatRupiah.format(laporan.getTotalPemasukan()));
+
+        lblRataTransaksi.setText(
+                FormatRupiah.format(laporan.getRataRata()));
+
+        lblItem.setText(
+                String.valueOf((int) laporan.getTotalItem()));
+
+        // Bagian bawah tabel
+        lblTotalItem.setText((int) laporan.getTotalItem() + " Item");
+
+        lblTotalPendapatan.setText(
+                FormatRupiah.format(laporan.getTotalPemasukan()));
+        tblLaporan.getColumnModel().getColumn(3).setPreferredWidth(140);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,12 +149,16 @@ public class LaporanPemasukan extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         lblRata = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        lblRataTransaksi = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         lblTotalPemasukan = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        jPanel19 = new javax.swing.JPanel();
+        lblRata1 = new javax.swing.JLabel();
+        lblItem = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -163,6 +257,8 @@ public class LaporanPemasukan extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(240, 243, 247));
         jPanel3.setMinimumSize(new java.awt.Dimension(1006, 105));
 
+        cTanggal.addPropertyChangeListener(this::cTanggalPropertyChange);
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(101, 101, 101));
         jLabel3.setText("Tanggal");
@@ -172,6 +268,7 @@ public class LaporanPemasukan extends javax.swing.JPanel {
         jLabel7.setText("Periode Harian");
 
         cPeriode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Harian", "Mingguan", "Bulanan" }));
+        cPeriode.addActionListener(this::cPeriodeActionPerformed);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -274,9 +371,10 @@ public class LaporanPemasukan extends javax.swing.JPanel {
         jLabel8.setText("Total Transaksi");
 
         lblTotalTransaksi.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblTotalTransaksi.setForeground(new java.awt.Color(17, 24, 39));
         lblTotalTransaksi.setText("1");
 
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/IonCart.png"))); // NOI18N
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Total Transaksi.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -295,9 +393,9 @@ public class LaporanPemasukan extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblTotalTransaksi)))
@@ -313,11 +411,11 @@ public class LaporanPemasukan extends javax.swing.JPanel {
         lblRata.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblRata.setText("Rata-rata Transaksi");
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(159, 52, 182));
-        jLabel13.setText("Rp 18.000");
+        lblRataTransaksi.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblRataTransaksi.setForeground(new java.awt.Color(147, 51, 234));
+        lblRataTransaksi.setText("Rp 18.000");
 
-        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/CarbonGrowth.png"))); // NOI18N
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Rata Transaksi.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -328,20 +426,20 @@ public class LaporanPemasukan extends javax.swing.JPanel {
                 .addComponent(jLabel20)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(lblRata, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(94, Short.MAX_VALUE))
+                    .addComponent(lblRataTransaksi)
+                    .addComponent(lblRata))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(lblRata)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel13)))
+                        .addComponent(lblRataTransaksi)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -351,10 +449,10 @@ public class LaporanPemasukan extends javax.swing.JPanel {
         jLabel11.setText("Total Pemasukan");
 
         lblTotalPemasukan.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblTotalPemasukan.setForeground(new java.awt.Color(56, 150, 99));
+        lblTotalPemasukan.setForeground(new java.awt.Color(22, 163, 74));
         lblTotalPemasukan.setText("Rp 18.000");
 
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/BxBxsWallet.png"))); // NOI18N
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Total Pemasukan.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -373,13 +471,50 @@ public class LaporanPemasukan extends javax.swing.JPanel {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblTotalPemasukan)))
                 .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        jPanel19.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblRata1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblRata1.setText("Total Item");
+
+        lblItem.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblItem.setForeground(new java.awt.Color(217, 119, 6));
+        lblItem.setText("0");
+
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Total Item.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel23)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblItem)
+                    .addComponent(lblRata1))
+                .addContainerGap(91, Short.MAX_VALUE))
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addComponent(lblRata1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblItem)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -395,7 +530,8 @@ public class LaporanPemasukan extends javax.swing.JPanel {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(154, 154, 154))
         );
         jPanel6Layout.setVerticalGroup(
@@ -409,7 +545,9 @@ public class LaporanPemasukan extends javax.swing.JPanel {
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jPanel5.add(jPanel6, java.awt.BorderLayout.LINE_START);
@@ -563,6 +701,28 @@ public class LaporanPemasukan extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCetakActionPerformed
 
+    private void cPeriodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cPeriodeActionPerformed
+        // TODO add your handling code here:
+        lblPeriode.setText(cPeriode.getSelectedItem().toString());
+
+        tampilData();
+        tampilRingkasan();
+    }//GEN-LAST:event_cPeriodeActionPerformed
+
+    private void cTanggalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cTanggalPropertyChange
+        // TODO add your handling code here:
+        if (cTanggal.getDate() != null) {
+
+            java.text.SimpleDateFormat sdf
+                    = new java.text.SimpleDateFormat("dd/MM/yyyy");
+
+            lblTanggal.setText("(" + sdf.format(cTanggal.getDate()) + ")");
+
+            tampilData();
+            tampilRingkasan();
+        }
+    }//GEN-LAST:event_cTanggalPropertyChange
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCetak;
@@ -571,7 +731,6 @@ public class LaporanPemasukan extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -579,6 +738,7 @@ public class LaporanPemasukan extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
@@ -593,6 +753,7 @@ public class LaporanPemasukan extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -602,8 +763,11 @@ public class LaporanPemasukan extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblItem;
     private javax.swing.JLabel lblPeriode;
     private javax.swing.JLabel lblRata;
+    private javax.swing.JLabel lblRata1;
+    private javax.swing.JLabel lblRataTransaksi;
     private javax.swing.JLabel lblTanggal;
     private javax.swing.JLabel lblTotalItem;
     private javax.swing.JLabel lblTotalPemasukan;
@@ -611,4 +775,5 @@ public class LaporanPemasukan extends javax.swing.JPanel {
     private javax.swing.JLabel lblTotalTransaksi;
     private javax.swing.JTable tblLaporan;
     // End of variables declaration//GEN-END:variables
+
 }

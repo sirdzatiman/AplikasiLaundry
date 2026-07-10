@@ -1,11 +1,12 @@
-
 package aplikasilaundry.model;
 
 //Mengimpor BigDecimal untuk menyimpan nilai uang
 import java.math.BigDecimal;
 //Class model untuk menampung data transaksi
+
 public class Transaksi {
-     //Menyimpan nomor nota
+    //Menyimpan nomor nota
+
     private String noNota;
 
     //Menyimpan nama pelanggan
@@ -15,28 +16,27 @@ public class Transaksi {
     private String jamMasuk;
 
     //Menyimpan jam ambil laundry
-private String jamAmbil;
-    
+    private String jamAmbil;
+
     //Menyimpan jenis layanan
     private String jenis;
     //Menyimpan jumlah item laundry
-private int jumlahItem;
+    private int jumlahItem;
 
     //Menyimpan total harga
     private BigDecimal totalHarga;
 
     //Menyimpan status transaksi
     private String status;
-    
+
     //Tanggal masuk
-private String tanggalMasuk;
+    private String tanggalMasuk;
 
 //Nomor HP pelanggan
-private String noHp;
+    private String noHp;
 
 //Alamat pelanggan
-private String alamat;
-    
+    private String alamat;
 
     //Method untuk mengambil nomor nota
     public String getNoNota() {
@@ -68,14 +68,16 @@ private String alamat;
         this.jamMasuk = jamMasuk;
     }
 //Method untuk mengambil jam ambil
-public String getJamAmbil() {
-    return jamAmbil;
-}
+
+    public String getJamAmbil() {
+        return jamAmbil;
+    }
 
 //Method untuk mengisi jam ambil
-public void setJamAmbil(String jamAmbil) {
-    this.jamAmbil = jamAmbil;
-}
+    public void setJamAmbil(String jamAmbil) {
+        this.jamAmbil = jamAmbil;
+    }
+
     //Method untuk mengambil jenis layanan
     public String getJenis() {
         return jenis;
@@ -85,16 +87,16 @@ public void setJamAmbil(String jamAmbil) {
     public void setJenis(String jenis) {
         this.jenis = jenis;
     }
-    
+
     //Method untuk mengambil jumlah item laundry
-public int getJumlahItem() {
-    return jumlahItem;
-}
+    public int getJumlahItem() {
+        return jumlahItem;
+    }
 
 //Method untuk mengisi jumlah item laundry
-public void setJumlahItem(int jumlahItem) {
-    this.jumlahItem = jumlahItem;
-}
+    public void setJumlahItem(int jumlahItem) {
+        this.jumlahItem = jumlahItem;
+    }
 
     //Method untuk mengambil total harga
     public BigDecimal getTotalHarga() {
@@ -116,32 +118,33 @@ public void setJumlahItem(int jumlahItem) {
         this.status = status;
     }
     //Method mengambil tanggal masuk
-public String getTanggalMasuk() {
-    return tanggalMasuk;
-}
+
+    public String getTanggalMasuk() {
+        return tanggalMasuk;
+    }
 
 //Method mengisi tanggal masuk
-public void setTanggalMasuk(String tanggalMasuk) {
-    this.tanggalMasuk = tanggalMasuk;
-}
+    public void setTanggalMasuk(String tanggalMasuk) {
+        this.tanggalMasuk = tanggalMasuk;
+    }
 
 //Method mengambil nomor HP
-public String getNoHp() {
-    return noHp;
-}
+    public String getNoHp() {
+        return noHp;
+    }
 
 //Method mengisi nomor HP
-public void setNoHp(String noHp) {
-    this.noHp = noHp;
-}
+    public void setNoHp(String noHp) {
+        this.noHp = noHp;
+    }
 
 //Method mengambil alamat pelanggan
-public String getAlamat() {
-    return alamat;
-}
+    public String getAlamat() {
+        return alamat;
+    }
 
 //Method mengisi alamat pelanggan
-public void setAlamat(String alamat) {
-    this.alamat = alamat;
-}
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
 }

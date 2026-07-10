@@ -20,35 +20,26 @@ public class Koneksi {
     //Method untuk mendapatkan koneksi database
     public static Connection getKoneksi() {
 
-        //Jika koneksi belum dibuat
-        if (koneksi == null) {
+        try {
 
-            try {
+            if (koneksi == null || koneksi.isClosed()) {
 
-                //URL database
                 String url = "jdbc:mysql://localhost:3306/mojosari_laundry1";
-
-                //Username database
                 String user = "root";
-
-                //Password database
                 String password = "";
 
-                //Membuat koneksi
                 koneksi = DriverManager.getConnection(url, user, password);
 
                 System.out.println("Koneksi database berhasil.");
-
-            } catch (SQLException e) {
-
-                System.out.println("Koneksi database gagal!");
-                System.out.println(e.getMessage());
-
             }
+
+        } catch (SQLException e) {
+
+            System.out.println("Koneksi database gagal!");
+            System.out.println(e.getMessage());
 
         }
 
-        //Mengembalikan koneksi
         return koneksi;
     }
 

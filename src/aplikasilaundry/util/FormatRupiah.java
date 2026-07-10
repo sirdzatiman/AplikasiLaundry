@@ -4,16 +4,17 @@
  */
 package aplikasilaundry.util;
 
-
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+
 /**
  *
  * @author Sirdzat
  */
 public class FormatRupiah {
-     private static final DecimalFormat formatter;
+
+    private static final DecimalFormat formatter;
 
     static {
 
@@ -23,7 +24,7 @@ public class FormatRupiah {
         simbol.setGroupingSeparator('.');
         simbol.setMonetaryDecimalSeparator(',');
 
-        formatter = new DecimalFormat("'Rp'#,##0", simbol);
+        formatter = new DecimalFormat("'Rp ' #,##0", simbol);
 
     }
 
@@ -35,5 +36,9 @@ public class FormatRupiah {
 
         return formatter.format(nominal);
 
+    }
+
+    public static String format(double nominal) {
+        return formatter.format(nominal);
     }
 }
