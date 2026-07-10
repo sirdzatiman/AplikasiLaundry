@@ -28,6 +28,7 @@ private String satuan;
     //Subtotal
     private BigDecimal subtotal;
     
+    
     //Mengambil ID transaksi
 public int getIdTransaksi() {
     return idTransaksi;
