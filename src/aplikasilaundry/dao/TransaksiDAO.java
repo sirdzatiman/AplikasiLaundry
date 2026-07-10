@@ -832,6 +832,7 @@ public void hapusTransaksi(String noNota){
     }
 
 }
+
     //Method mengambil satu transaksi berdasarkan nomor nota
 public Transaksi getByNoNota(String noNota){
 
@@ -983,4 +984,75 @@ public void updateTransaksi(String noNota,
     }
 
 }
+//Method mengambil laporan pemasukan harian
+//public List<DetailTransaksi> getLaporanHarian(Date tanggal){
+//
+//    //Membuat list laporan
+//    List<DetailTransaksi> list =
+//            new ArrayList<>();
+//
+//    try{
+//
+//        //Query laporan
+//        String sql =
+//                "SELECT "
+//                + "l.nama_layanan, "
+//                + "l.proses, "
+//                + "SUM(dt.qty) AS jumlah, "
+//                + "SUM(dt.subtotal) AS subtotal "
+//                + "FROM transaksi t "
+//                + "JOIN detail_transaksi dt "
+//                + "ON t.id_transaksi = dt.id_transaksi "
+//                + "JOIN layanan l "
+//                + "ON dt.id_layanan = l.id_layanan "
+//                + "JOIN status_transaksi st "
+//                + "ON t.id_status = st.id_status "
+//                + "WHERE st.nama_status = 'Sudah Diambil' "
+//                + "AND t.tanggal_ambil = ? "
+//                + "GROUP BY "
+//                + "l.nama_layanan, "
+//                + "l.proses "
+//                + "ORDER BY l.nama_layanan";
+//
+//        PreparedStatement ps =
+//                conn.prepareStatement(sql);
+//
+//        ps.setDate(
+//                1,
+//                new java.sql.Date(
+//                        tanggal.getTime()));
+//
+//        ResultSet rs =
+//                ps.executeQuery();
+//
+//        while(rs.next()){
+//
+//            DetailTransaksi detail =
+//                    new DetailTransaksi();
+//
+//            detail.setNamaLayanan(
+//                    rs.getString("nama_layanan"));
+//
+//            detail.setProses(
+//                    rs.getString("proses"));
+//
+//            detail.setQty(
+//                    rs.getDouble("jumlah"));
+//
+//            detail.setSubtotal(
+//                    rs.getBigDecimal("subtotal"));
+//
+//            list.add(detail);
+//
+//        }
+//
+//    }catch(SQLException e){
+//
+//        e.printStackTrace();
+//
+//    }
+//
+//    return list;
+//
+//}
 }
