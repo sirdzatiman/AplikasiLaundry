@@ -4,10 +4,12 @@ import aplikasilaundry.controller.TransaksiController;
 import aplikasilaundry.model.Pelanggan;
 import aplikasilaundry.model.ItemLaundry;
 import aplikasilaundry.util.TableStyle;
+import aplikasilaundry.view.dialog.popUpCetakStruk;
 
 public class Konfirmasi extends javax.swing.JPanel {
 
- 
+ //Menyimpan nomor nota transaksi
+private String noNota;
     private TambahLaundry induk;
     private TransaksiController controller;
     public Konfirmasi(TambahLaundry induk) {
@@ -23,6 +25,13 @@ public class Konfirmasi extends javax.swing.JPanel {
     TableStyle.TableStyle(tblItemLaundryy);
     
   
+
+}
+    //Method menyimpan nomor nota
+public void setNoNota(String noNota){
+
+    //Menyimpan nomor nota
+    this.noNota = noNota;
 
 }
 ///Menampilkan data pelanggan
@@ -72,6 +81,7 @@ public void tampilItem(java.util.List<ItemLaundry> daftarItem){
     }
 
 }
+
 //Method menghitung ringkasan transaksi
 public void hitungRingkasan(java.util.List<ItemLaundry> daftarItem){
 
@@ -767,6 +777,25 @@ public void hitungRingkasan(java.util.List<ItemLaundry> daftarItem){
 
     private void btnCetakStrukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakStrukActionPerformed
         // TODO add your handling code here:
+        popUpCetakStruk dialog =
+        new popUpCetakStruk(
+                (java.awt.Frame)
+                javax.swing.SwingUtilities.getWindowAncestor(this),
+                true);
+
+dialog.setPreviewData(
+
+        lblNama.getText(),
+        lblNoHp.getText(),
+        lblAlaamat.getText(),
+        lblTotalBerat.getText(),
+        lblTotalBiji.getText(),
+        lblTotalBayar.getText(),
+        tblItemLaundryy);
+
+dialog.setLocationRelativeTo(this);
+
+dialog.setVisible(true);
     }//GEN-LAST:event_btnCetakStrukActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed

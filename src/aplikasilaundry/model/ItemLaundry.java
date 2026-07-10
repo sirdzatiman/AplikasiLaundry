@@ -22,17 +22,28 @@ private String proses;
 
     //Subtotal
     private BigDecimal subtotal;
+    //Satuan layanan (Kg/Biji)
+private String satuan;
 
     //Mengambil layanan
     public String getLayanan() {
         return layanan;
     }
 
+
     //Mengisi layanan
     public void setLayanan(String layanan) {
         this.layanan = layanan;
     }
     
+        //Method mengambil satuan
+public String getSatuan() {
+    return satuan;
+}
+//Method mengisi satuan
+public void setSatuan(String satuan) {
+    this.satuan = satuan;
+}
     //Mengambil ID layanan
 public int getIdLayanan() {
     return idLayanan;

@@ -3,55 +3,90 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package aplikasilaundry.view.dialog;
-import aplikasilaundry.controller.TransaksiController;
-import aplikasilaundry.model.Transaksi;
-/**
- *
- * @author HP 14s Ryzen
- */
+import javax.swing.table.DefaultTableModel;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 public class popUpCetakStruk extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpCetakStruk.class.getName());
-    //Menyimpan nomor nota
-private String noNota;
-
-//Controller transaksi
-private TransaksiController controller;
+ 
+//Model tabel detail struk
+private DefaultTableModel model;
     /**
      * Creates new form popUpCetakStruk
      */
     //Constructor popup cetak struk
 public popUpCetakStruk(java.awt.Frame parent,
-                       boolean modal,
-                       String noNota) {
+                       boolean modal) {
 
     super(parent, modal);
 
-    //Membuat komponen
     initComponents();
 
-    //Menyimpan nomor nota
-    this.noNota = noNota;
 
-    //Membuat controller transaksi
-    controller = new TransaksiController();
+    //Mengambil model tabel
+model =
+        (DefaultTableModel)
+        tblDetailStruk.getModel();
+
+   
+
+//Menampilkan detail transaksi
+//tampilDetail();
 
 }
-//Method menampilkan data struk
-private void tampilData(){
+//Method menerima data preview struk
+public void setPreviewData(
 
-    //Mengambil data transaksi
-    Transaksi transaksi =
-            controller.getTransaksiByNota(noNota);
+        String nama,
+        String noHp,
+        String alamat,
+        String totalBerat,
+        String totalBiji,
+        String totalHarga,
+        javax.swing.JTable tabel){
 
-    //Jika data tidak ditemukan
-    if(transaksi == null){
+    //Menampilkan data pelanggan
+    lblPelanggan.setText(nama);
+    lblNoHp.setText(noHp);
+    lblAsal.setText(alamat);
 
-        return;
+    //Menampilkan ringkasan
+    lblTotalBerat.setText(totalBerat);
+    lblTotalBiji.setText(totalBiji);
+    lblTotalHarga.setText(totalHarga);
+
+    //Mengambil model tabel popup
+    javax.swing.table.DefaultTableModel model =
+            (javax.swing.table.DefaultTableModel)
+            tblDetailStruk.getModel();
+
+    model.setRowCount(0);
+
+    //Mengambil model tabel konfirmasi
+    javax.swing.table.DefaultTableModel asal =
+            (javax.swing.table.DefaultTableModel)
+            tabel.getModel();
+
+    //Menyalin seluruh baris
+    for(int i = 0; i < asal.getRowCount(); i++){
+
+        Object[] row = new Object[asal.getColumnCount()];
+
+        for(int j = 0; j < asal.getColumnCount(); j++){
+
+            row[j] = asal.getValueAt(i, j);
+
+        }
+
+        model.addRow(row);
 
     }
 
 }
+
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -109,8 +144,8 @@ private void tampilData(){
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnCetak = new javax.swing.JButton();
+        btnTutup = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -578,14 +613,16 @@ private void tampilData(){
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton2.setBackground(new java.awt.Color(37, 99, 235));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Container (2).png"))); // NOI18N
-        jButton2.setText("Cetak");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCetak.setBackground(new java.awt.Color(37, 99, 235));
+        btnCetak.setForeground(new java.awt.Color(255, 255, 255));
+        btnCetak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Container (2).png"))); // NOI18N
+        btnCetak.setText("Cetak");
+        btnCetak.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCetak.addActionListener(this::btnCetakActionPerformed);
 
-        jButton1.setText("Tutup");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnTutup.setText("Tutup");
+        btnTutup.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnTutup.addActionListener(this::btnTutupActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -593,9 +630,9 @@ private void tampilData(){
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTutup, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCetak, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -603,8 +640,8 @@ private void tampilData(){
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCetak, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTutup, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -626,6 +663,73 @@ private void tampilData(){
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
+        // TODO add your handling code here:
+                                             
+
+    try{
+
+        //Membuat objek printer
+        PrinterJob printer =
+                PrinterJob.getPrinterJob();
+
+        //Memberikan nama pekerjaan cetak
+        printer.setJobName(
+                "Struk Laundry");
+
+        //Menentukan komponen yang akan dicetak
+        printer.setPrintable(
+                (graphics,
+                 pageFormat,
+                 pageIndex) -> {
+
+            //Hanya mencetak satu halaman
+            if(pageIndex > 0){
+
+                return java.awt.print.Printable.NO_SUCH_PAGE;
+
+            }
+
+            //Mengatur posisi cetak
+            graphics.translate(
+                    (int) pageFormat.getImageableX(),
+                    (int) pageFormat.getImageableY());
+
+            //Mencetak panel struk
+            jPanel3.printAll(graphics);
+
+            //Halaman berhasil dicetak
+            return java.awt.print.Printable.PAGE_EXISTS;
+
+        });
+
+        //Menampilkan dialog printer
+        if(printer.printDialog()){
+
+            //Mencetak struk
+            printer.print();
+
+        }
+
+    }catch(PrinterException e){
+
+        //Menampilkan pesan jika gagal mencetak
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Gagal mencetak struk!\n"
+                + e.getMessage());
+
+    }
+
+
+    }//GEN-LAST:event_btnCetakActionPerformed
+
+    private void btnTutupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTutupActionPerformed
+        // TODO add your handling code here:
+         //Menutup popup cetak struk
+    dispose();
+    }//GEN-LAST:event_btnTutupActionPerformed
 
     /**
      * @param args the command line arguments
@@ -665,8 +769,8 @@ private void tampilData(){
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnCetak;
+    private javax.swing.JButton btnTutup;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

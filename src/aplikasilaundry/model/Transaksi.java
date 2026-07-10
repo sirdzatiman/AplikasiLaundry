@@ -28,6 +28,14 @@ private int jumlahItem;
     //Menyimpan status transaksi
     private String status;
     
+    //Tanggal masuk
+private String tanggalMasuk;
+
+//Nomor HP pelanggan
+private String noHp;
+
+//Alamat pelanggan
+private String alamat;
     
 
     //Method untuk mengambil nomor nota
@@ -107,4 +115,33 @@ public void setJumlahItem(int jumlahItem) {
     public void setStatus(String status) {
         this.status = status;
     }
+    //Method mengambil tanggal masuk
+public String getTanggalMasuk() {
+    return tanggalMasuk;
+}
+
+//Method mengisi tanggal masuk
+public void setTanggalMasuk(String tanggalMasuk) {
+    this.tanggalMasuk = tanggalMasuk;
+}
+
+//Method mengambil nomor HP
+public String getNoHp() {
+    return noHp;
+}
+
+//Method mengisi nomor HP
+public void setNoHp(String noHp) {
+    this.noHp = noHp;
+}
+
+//Method mengambil alamat pelanggan
+public String getAlamat() {
+    return alamat;
+}
+
+//Method mengisi alamat pelanggan
+public void setAlamat(String alamat) {
+    this.alamat = alamat;
+}
 }

@@ -167,6 +167,31 @@ public Pelanggan getPelangganSementara() {
     return dataTransaksi.getPelanggan();
 
 }
+//Method mengambil seluruh item laundry sementara
+public List<ItemLaundry> getDaftarItemSementara(){
+
+    //Mengembalikan seluruh item laundry
+    return dataTransaksi.getDaftarItem();
+
+}
+//Method mengambil total berat sementara
+public double getTotalBeratSementara(){
+
+    double total = 0;
+
+    for(ItemLaundry item : dataTransaksi.getDaftarItem()){
+
+        if(item.getSatuan().equalsIgnoreCase("Kg")){
+
+            total += item.getQty();
+
+        }
+
+    }
+
+    return total;
+
+}
 //Method mengambil harga layanan
 public BigDecimal getHargaLayanan(String layanan,
                                   String proses){
@@ -174,6 +199,30 @@ public BigDecimal getHargaLayanan(String layanan,
     return layananDAO.getHarga(layanan, proses);
     
     
+}
+//Method mengambil total biji sementara
+public int getTotalBijiSementara(){
+
+    int total = 0;
+
+    for(ItemLaundry item : dataTransaksi.getDaftarItem()){
+
+        if(item.getSatuan().equalsIgnoreCase("Biji")){
+
+            total += (int)item.getQty();
+
+        }
+
+    }
+
+    return total;
+
+}
+//Method mengambil total harga sementara
+public BigDecimal getTotalHargaSementara(){
+
+    return hitungTotalHarga();
+
 }
 //Method mengambil ID layanan
 public int getIdLayanan(String layanan,
