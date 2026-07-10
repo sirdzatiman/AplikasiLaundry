@@ -773,6 +773,65 @@ System.out.println(
     return null;
 
 }
+//Method menghapus transaksi berdasarkan nomor nota
+public void hapusTransaksi(String noNota){
+
+    try{
+
+        //Mengambil ID transaksi berdasarkan nomor nota
+        String sqlCari =
+                "SELECT id_transaksi "
+                + "FROM transaksi "
+                + "WHERE no_nota = ?";
+
+        PreparedStatement psCari =
+                conn.prepareStatement(sqlCari);
+
+        psCari.setString(1, noNota);
+
+        ResultSet rs =
+                psCari.executeQuery();
+
+        //Jika transaksi ditemukan
+        if(rs.next()){
+
+            //Mengambil ID transaksi
+            int idTransaksi =
+                    rs.getInt("id_transaksi");
+
+            //Menghapus seluruh detail transaksi
+            String sqlDetail =
+                    "DELETE FROM detail_transaksi "
+                    + "WHERE id_transaksi = ?";
+
+            PreparedStatement psDetail =
+                    conn.prepareStatement(sqlDetail);
+
+            psDetail.setInt(1, idTransaksi);
+
+            psDetail.executeUpdate();
+
+            //Menghapus transaksi
+            String sqlTransaksi =
+                    "DELETE FROM transaksi "
+                    + "WHERE id_transaksi = ?";
+
+            PreparedStatement psTransaksi =
+                    conn.prepareStatement(sqlTransaksi);
+
+            psTransaksi.setInt(1, idTransaksi);
+
+            psTransaksi.executeUpdate();
+
+        }
+
+    }catch(SQLException e){
+
+        e.printStackTrace();
+
+    }
+
+}
     //Method mengambil satu transaksi berdasarkan nomor nota
 public Transaksi getByNoNota(String noNota){
 

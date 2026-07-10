@@ -358,5 +358,12 @@ public void resetTransaksi(){
     dataTransaksi.clear();
 
 }
+//Method menghapus transaksi
+public void hapusTransaksi(String noNota){
+
+    //Menghapus transaksi melalui DAO
+    dao.hapusTransaksi(noNota);
+
+}
 
 }

@@ -1416,11 +1416,11 @@ public class Pengaturan extends javax.swing.JPanel {
 
     private void btnHapusKonfigurasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusKonfigurasiActionPerformed
         // TODO add your handling code here:
-        popUpKonfirmasiHapus popup =
-            new popUpKonfirmasiHapus(getParentFrame(), true);
-
-    popup.setLocationRelativeTo(getParentFrame());
-    popup.setVisible(true);
+//        popUpKonfirmasiHapus popup =
+//            new popUpKonfirmasiHapus(getParentFrame(), true);
+//
+//    popup.setLocationRelativeTo(getParentFrame());
+//    popup.setVisible(true);
     }//GEN-LAST:event_btnHapusKonfigurasiActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
@@ -1429,10 +1429,10 @@ public class Pengaturan extends javax.swing.JPanel {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        //        // TODO add your handling code here:
-        popUpKonfirmasiHapus popup = new popUpKonfirmasiHapus(getParentFrame(), true);
-        popup.setLocationRelativeTo(getParentFrame());
-        popup.setVisible(true);
+//        //        // TODO add your handling code here:
+//        popUpKonfirmasiHapus popup = new popUpKonfirmasiHapus(getParentFrame(), true);
+//        popup.setLocationRelativeTo(getParentFrame());
+//        popup.setVisible(true);
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnPensilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPensilActionPerformed
