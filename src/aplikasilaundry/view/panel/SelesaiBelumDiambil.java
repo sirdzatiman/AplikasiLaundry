@@ -1,4 +1,3 @@
-
 package aplikasilaundry.view.panel;
 
 //Mengimpor controller transaksi
@@ -15,95 +14,94 @@ import javax.swing.table.DefaultTableModel;
 
 //Mengimpor collection
 import java.util.List;
+
 public class SelesaiBelumDiambil extends javax.swing.JPanel {
 
     private TransaksiController controller;
+
     public SelesaiBelumDiambil() {
         initComponents();
-        
-         //Membuat objek controller
-    controller = new TransaksiController();
-    TableStyle.TableStyle(tblSelesai);
-    //Menampilkan data
-    tampilData();
-    tblSelesai.getColumnModel()
-        .getColumn(5);
+
+        //Membuat objek controller
+        controller = new TransaksiController();
+        TableStyle.TableStyle(tblSelesai);
+        //Menampilkan data
+        tampilData();
+        tblSelesai.getColumnModel()
+                .getColumn(5);
     }
-    
+
     //Method untuk menampilkan data laundry selesai ke tabel
-private void tampilData() {
+    private void tampilData() {
 
-    //Mengambil model tabel
-    DefaultTableModel model =
-            (DefaultTableModel) tblSelesai.getModel();
+        //Mengambil model tabel
+        DefaultTableModel model
+                = (DefaultTableModel) tblSelesai.getModel();
 
-    //Menghapus seluruh isi tabel
-    model.setRowCount(0);
+        //Menghapus seluruh isi tabel
+        model.setRowCount(0);
 
-    //Mengambil data laundry selesai
-    List<Transaksi> list = controller.getSelesai();
+        //Mengambil data laundry selesai
+        List<Transaksi> list = controller.getSelesai();
 
-    //Menampilkan data satu per satu
-    for (Transaksi t : list) {
+        //Menampilkan data satu per satu
+        for (Transaksi t : list) {
 
-        //Menyimpan teks jenis layanan
-String jenis = t.getJenis();
+            //Menyimpan teks jenis layanan
+            String jenis = t.getJenis();
 
 //Jika jumlah item lebih dari satu
-if (t.getJumlahItem() > 1) {
+            if (t.getJumlahItem() > 1) {
 
-    //Menambahkan jumlah item lainnya
-    jenis = jenis + " +" + (t.getJumlahItem() - 1);
+                //Menambahkan jumlah item lainnya
+                jenis = jenis + " +" + (t.getJumlahItem() - 1);
 
-}
+            }
 
 //Menambahkan data ke tabel
-model.addRow(new Object[]{
+            model.addRow(new Object[]{
+                //Nomor nota
+                t.getNoNota(),
+                //Nama pelanggan
+                t.getNamaPelanggan(),
+                //Jam masuk
+                t.getJamMasuk(),
+                //Jenis layanan
+                jenis,
+                //Total harga
+                t.getTotalHarga(),
+                //Status transaksi
+                t.getStatus()
 
-    //Nomor nota
-    t.getNoNota(),
+            });
 
-    //Nama pelanggan
-    t.getNamaPelanggan(),
-
-    //Jam masuk
-    t.getJamMasuk(),
-
-    //Jenis layanan
-    jenis,
-
-    //Total harga
-    t.getTotalHarga(),
-
-    //Status transaksi
-    t.getStatus()
-
-});
+        }
 
     }
-
-}
 //Method untuk memperbarui data tabel
-public void refreshData(){
 
-    //Menampilkan ulang seluruh data transaksi
-    tampilData();
+    public void refreshData() {
 
-}
+        //Menampilkan ulang seluruh data transaksi
+        tampilData();
+
+    }
 //Method untuk mengambil JTable Selesai
-public javax.swing.JTable getTblSelesai(){
 
-    //Mengembalikan tabel Selesai
-    return tblSelesai;
+    public javax.swing.JTable getTblSelesai() {
 
-}
+        //Mengembalikan tabel Selesai
+        return tblSelesai;
+
+    }
 //Method untuk mengambil JTable Laundry Masuk
-public javax.swing.JTable getTblMasuk(){
 
-    //Mengembalikan tabel Laundry Masuk
-    return tblSelesai;
+    public javax.swing.JTable getTblMasuk() {
 
-}
+        //Mengembalikan tabel Laundry Masuk
+        return tblSelesai;
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

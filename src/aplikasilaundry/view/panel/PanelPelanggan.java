@@ -1,4 +1,3 @@
-
 package aplikasilaundry.view.panel;
 
 import aplikasilaundry.view.panel.TambahLaundry;
@@ -7,14 +6,16 @@ import aplikasilaundry.controller.TransaksiController;
 
 public class PanelPelanggan extends javax.swing.JPanel {
 //Controller transaksi
-private TransaksiController controller;
-    
+
+    private TransaksiController controller;
+
     private TambahLaundry induk;
+
     public PanelPelanggan(TambahLaundry induk) {
         this.induk = induk;
         initComponents();
-         //Mengambil controller dari panel induk
-controller = induk.getController();
+        //Mengambil controller dari panel induk
+        controller = induk.getController();
     }
 
     /**
@@ -53,8 +54,7 @@ controller = induk.getController();
         jLabel22 = new javax.swing.JLabel();
         jPanel25 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -97,7 +97,7 @@ controller = induk.getController();
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                .addContainerGap(832, Short.MAX_VALUE)
+                .addContainerGap(852, Short.MAX_VALUE)
                 .addComponent(btnLanjut, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
@@ -285,7 +285,7 @@ controller = induk.getController();
         jLabel21.setBackground(new java.awt.Color(255, 255, 255));
         jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (7).png"))); // NOI18N
-        jLabel21.setText("Laayar");
+        jLabel21.setText("Layanan");
         jLabel21.setIconTextGap(10);
 
         jLabel22.setBackground(new java.awt.Color(255, 255, 255));
@@ -301,7 +301,7 @@ controller = induk.getController();
             .addGroup(jPanel24Layout.createSequentialGroup()
                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
+                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
         );
         jPanel24Layout.setVerticalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,13 +320,7 @@ controller = induk.getController();
         jLabel23.setText("Alamat");
         jLabel23.setIconTextGap(10);
 
-        jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel25.setText("Kec. Loceret, Kab. Nganjuk.");
-        jLabel25.setIconTextGap(10);
-
-        jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel26.setText("Dsn. Mojosari, Ds. Ngepeh, ");
+        jLabel2.setText("Dsn. Mojosari, Ds. Ngepeh, Kec. Loceret, Kab. Nganjuk.");
 
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
         jPanel25.setLayout(jPanel25Layout);
@@ -335,22 +329,18 @@ controller = induk.getController();
             .addGroup(jPanel25Layout.createSequentialGroup()
                 .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
                 .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
-                        .addComponent(jLabel25))
+                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel25Layout.createSequentialGroup()
-                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -567,60 +557,54 @@ controller = induk.getController();
 
     private void btnLanjutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLanjutActionPerformed
         // TODO add your handling code here:
-        
-        
-       //Memeriksa apakah nama pelanggan masih kosong
-    if (tNama.getText().trim().isEmpty()) {
 
-        //Menampilkan pesan jika nama belum diisi
+        //Memeriksa apakah nama pelanggan masih kosong
+        if (tNama.getText().trim().isEmpty()) {
+
+            //Menampilkan pesan jika nama belum diisi
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Nama pelanggan harus diisi!");
+
+            //Menghentikan proses
+            return;
+        }
+
+        //Menyimpan data pelanggan ke transaksi sementara
+        controller.simpanPelanggan(
+                //Mengirim nama pelanggan
+                tNama.getText(),
+                //Mengirim nomor HP pelanggan
+                tNoHp.getText(),
+                //Mengirim alamat pelanggan
+                tAlamat.getText(),
+                //Mengirim catatan laundry
+                tCatatan.getText()
+        );
+
+        //Menampilkan pesan bahwa data berhasil disimpan
         javax.swing.JOptionPane.showMessageDialog(
                 this,
-                "Nama pelanggan harus diisi!");
+                "Data pelanggan berhasil disimpan.");
 
-   //Menghentikan proses
-    return;
-    }
-
-    //Menyimpan data pelanggan ke transaksi sementara
-    controller.simpanPelanggan(
-
-            //Mengirim nama pelanggan
-            tNama.getText(),
-
-            //Mengirim nomor HP pelanggan
-            tNoHp.getText(),
-
-            //Mengirim alamat pelanggan
-            tAlamat.getText(),
-
-            //Mengirim catatan laundry
-            tCatatan.getText()
-
-    );
-
-    //Menampilkan pesan bahwa data berhasil disimpan
-    javax.swing.JOptionPane.showMessageDialog(
-            this,
-            "Data pelanggan berhasil disimpan.");
-    
-    //Pindah ke tahap Item Laundry
-induk.panggilTahap("kartuItem");
+        //Pindah ke tahap Item Laundry
+        induk.panggilTahap("kartuItem");
 //Method untuk mereset seluruh form pelanggan
     }
-public void resetForm(){
 
-    //Mengosongkan nama pelanggan
-    tNama.setText("");
+    public void resetForm() {
 
-    //Mengosongkan nomor HP
-    tNoHp.setText("");
+        //Mengosongkan nama pelanggan
+        tNama.setText("");
 
-    //Mengosongkan alamat
-    tAlamat.setText("");
+        //Mengosongkan nomor HP
+        tNoHp.setText("");
 
-    //Mengosongkan catatan
-    tCatatan.setText("");
+        //Mengosongkan alamat
+        tAlamat.setText("");
 
+        //Mengosongkan catatan
+        tCatatan.setText("");
 
 
     }//GEN-LAST:event_btnLanjutActionPerformed
@@ -643,12 +627,11 @@ public void resetForm(){
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
