@@ -46,6 +46,8 @@ public class Pengaturan extends javax.swing.JPanel {
     public Pengaturan() {
 
         initComponents();
+        
+        jScrollPane3.getVerticalScrollBar().setUnitIncrement(35);
 //Membuat footer preview seperti struk asli
         tFooter1.setEditable(false);
         tFooter1.setOpaque(false);
