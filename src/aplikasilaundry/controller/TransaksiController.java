@@ -84,6 +84,13 @@ dataTransaksi = DataTransaksi.getInstance();
         return dao.getAll();
 
     }
+    //Method mengambil transaksi terbaru
+public List<Transaksi> getTransaksiTerbaru(){
+
+    //Mengembalikan transaksi terbaru dari DAO
+    return dao.getTransaksiTerbaru();
+
+}
     
     //Method mengambil transaksi berdasarkan nomor nota
 public Transaksi getByNoNota(String noNota){
