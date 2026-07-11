@@ -26,13 +26,14 @@ public class SelesaiBelumDiambil extends javax.swing.JPanel {
         controller = new TransaksiController();
         TableStyle.TableStyle(tblSelesai);
         //Menampilkan data
-        tampilData();
+        tampilData("", null);
         tblSelesai.getColumnModel()
                 .getColumn(5);
     }
 
     //Method untuk menampilkan data laundry selesai ke tabel
-    private void tampilData() {
+    public void tampilData(String keyword,
+        java.util.Date tanggal) {
 
         //Mengambil model tabel
         DefaultTableModel model
@@ -42,7 +43,8 @@ public class SelesaiBelumDiambil extends javax.swing.JPanel {
         model.setRowCount(0);
 
         //Mengambil data laundry selesai
-        List<Transaksi> list = controller.getSelesai();
+        List<Transaksi> list =
+        controller.getSelesai(keyword, tanggal);
 
         //Menampilkan data satu per satu
         for (Transaksi t : list) {
@@ -83,7 +85,7 @@ public class SelesaiBelumDiambil extends javax.swing.JPanel {
     public void refreshData() {
 
         //Menampilkan ulang seluruh data transaksi
-        tampilData();
+        tampilData("", null);
 
     }
 //Method untuk mengambil JTable Selesai

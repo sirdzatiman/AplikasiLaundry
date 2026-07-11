@@ -1,4 +1,3 @@
-
 package aplikasilaundry.view.panel;
 
 import aplikasilaundry.controller.TransaksiController;
@@ -10,88 +9,90 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class Diproses extends javax.swing.JPanel {
-private TransaksiController controller;
+
+    private TransaksiController controller;
 
     public Diproses() {
         initComponents();
-        
-         //Membuat objek controller
-    controller = new TransaksiController();
 
-    //Menampilkan data
-    tampilData();
-    tblProses.getColumnModel()
-        .getColumn(5);
-    TableStyle.TableStyle(tblProses);
+        //Membuat objek controller
+        controller = new TransaksiController();
+
+        //Menampilkan data
+        tampilData("", null);
+        tblProses.getColumnModel()
+                .getColumn(5);
+        TableStyle.TableStyle(tblProses);
     }
-    private void tampilData() {
 
-    DefaultTableModel model =
-            (DefaultTableModel) tblProses.getModel();
+    public void tampilData(String keyword,
+            java.util.Date tanggal) {
 
-    model.setRowCount(0);
+        DefaultTableModel model
+                = (DefaultTableModel) tblProses.getModel();
 
-    List<Transaksi> list = controller.getDiproses();
+        model.setRowCount(0);
 
-    for (Transaksi t : list) {
+        List<Transaksi> list
+                = controller.getDiproses(keyword, tanggal);
 
-        //Menyimpan teks jenis layanan
-String jenis = t.getJenis();
+        for (Transaksi t : list) {
+
+            //Menyimpan teks jenis layanan
+            String jenis = t.getJenis();
 
 //Jika jumlah item lebih dari satu
-if (t.getJumlahItem() > 1) {
+            if (t.getJumlahItem() > 1) {
 
-    //Menambahkan jumlah item lainnya
-    jenis = jenis + " +" + (t.getJumlahItem() - 1);
+                //Menambahkan jumlah item lainnya
+                jenis = jenis + " +" + (t.getJumlahItem() - 1);
 
-}
+            }
 
 //Menambahkan data ke tabel
-model.addRow(new Object[]{
+            model.addRow(new Object[]{
+                //Nomor nota
+                t.getNoNota(),
+                //Nama pelanggan
+                t.getNamaPelanggan(),
+                //Jam masuk
+                t.getJamMasuk(),
+                //Jenis layanan
+                jenis,
+                //Total harga
+                t.getTotalHarga(),
+                //Status transaksi
+                t.getStatus()
 
-    //Nomor nota
-    t.getNoNota(),
+            });
+        }
 
-    //Nama pelanggan
-    t.getNamaPelanggan(),
+    }
+    //Method untuk memperbarui data tabel
 
-    //Jam masuk
-    t.getJamMasuk(),
+    public void refreshData() {
 
-    //Jenis layanan
-    jenis,
+        //Menampilkan ulang seluruh data transaksi
+        tampilData("", null);
 
-    //Total harga
-    t.getTotalHarga(),
+    }
+//Method untuk mengambil JTable Diproses
 
-    //Status transaksi
-    t.getStatus()
+    public javax.swing.JTable getTblDiproses() {
 
-});
+        //Mengembalikan tabel Diproses
+        return tblProses;
+
+    }
+//Method untuk mengambil JTable Laundry Masuk
+
+    public javax.swing.JTable getTblMasuk() {
+
+        //Mengembalikan tabel Laundry Masuk
+        return tblProses;
+
     }
 
-}
-    //Method untuk memperbarui data tabel
-public void refreshData(){
-
-    //Menampilkan ulang seluruh data transaksi
-    tampilData();
-
-}
-//Method untuk mengambil JTable Diproses
-public javax.swing.JTable getTblDiproses(){
-
-    //Mengembalikan tabel Diproses
-    return tblProses;
-
-}
-//Method untuk mengambil JTable Laundry Masuk
-public javax.swing.JTable getTblMasuk(){
-
-    //Mengembalikan tabel Laundry Masuk
-    return tblProses;
-
-}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

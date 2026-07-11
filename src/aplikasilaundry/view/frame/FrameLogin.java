@@ -1,4 +1,3 @@
-
 package aplikasilaundry.view.frame;
 
 import aplikasilaundry.controller.LoginController;
@@ -23,40 +22,39 @@ import javax.swing.JPanel;
  * @author Sirdzat
  */
 public class FrameLogin extends javax.swing.JFrame {
-    
-   private LoginController controller;
 
-public FrameLogin() {
-    initComponents();
+    private LoginController controller;
 
-    controller = new LoginController(this);
+    public FrameLogin() {
+        initComponents();
 
-        
+        controller = new LoginController(this);
+
         panelLengkung(panelUser);
         panelLengkung(jPanel56);
         panelLengkung(tpas);
         panelLengkung(jPanel57);
-    
-        
-}
-      
-      // Mengambil username dari TextField
-public String getUsername() {
-    return tUserName.getText().trim();
-}
+
+    }
+
+    // Mengambil username dari TextField
+    public String getUsername() {
+        return tUserName.getText().trim();
+    }
 
 // Mengambil password dari PasswordField
-public String getPassword() {
-    return String.valueOf(tPassword.getPassword());
-}
-     
+    public String getPassword() {
+        return String.valueOf(tPassword.getPassword());
+    }
+
     void panelLengkung(JPanel p) {
         p.setBorder(new FlatLineBorder(
                 new Insets(0, 0, 0, 0),
                 Color.decode("#2563EB"),
                 0f,
-                10));  
+                10));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -796,7 +794,7 @@ public String getPassword() {
 //                // Query SQL untuk mencari user dengan username dan password (dihash dengan MD5)
 //                String sql = "SELECT * FROM pengguna WHERE username=? AND password=md5(?)";
 //
-////                // Buat koneksi ke database
+        ////                // Buat koneksi ke database
 //                Connection con = Koneksi.konek();
 //
 //                // Siapkan statement SQL dengan parameter
@@ -865,7 +863,7 @@ public String getPassword() {
             UIManager.put("TableHeader.background", new Color(238, 241, 247));
             UIManager.put("TableHeader.foreground", Color.BLACK);
             UIManager.put("TableHeader.font", new Font("Segoe UI", Font.BOLD, 14));
-            UIManager.put("TableHeader.height",35);
+            UIManager.put("TableHeader.height", 35);
             //semua komponen button akan berubah 
             UIManager.put("Button.arc", 15);
             UIManager.put("TextComponent.arc", 15);

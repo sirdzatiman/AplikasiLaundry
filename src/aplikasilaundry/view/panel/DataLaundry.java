@@ -1,4 +1,3 @@
-
 package aplikasilaundry.view.panel;
 
 import aplikasilaundry.view.dialog.popUpPensilEdit;
@@ -14,106 +13,125 @@ import aplikasilaundry.view.dialog.popUpPensilEdit;
 
 public class DataLaundry extends javax.swing.JPanel {
 //Menyimpan panel Semua
-private Semua panelSemua;
+
+    private Semua panelSemua;
 
 //Menyimpan panel Laundry Masuk
-private LaundryMasuk panelMasuk;
+    private LaundryMasuk panelMasuk;
 
 //Menyimpan panel Diproses
-private Diproses panelProses;
+    private Diproses panelProses;
 
 //Menyimpan panel Selesai Belum Diambil
-private SelesaiBelumDiambil panelSelesai;
-    
+    private SelesaiBelumDiambil panelSelesai;
 
-   
     public DataLaundry() {
 
-    //Membuat seluruh panel Data Laundry
-    initComponents();
+        //Membuat seluruh panel Data Laundry
+        initComponents();
 
-    //Membuat objek panel Semua
-    panelSemua = new Semua();
+        //Membuat objek panel Semua
+        panelSemua = new Semua();
 
-    //Membuat objek panel Laundry Masuk
-    panelMasuk = new LaundryMasuk();
+        //Membuat objek panel Laundry Masuk
+        panelMasuk = new LaundryMasuk();
 
-    //Membuat objek panel Diproses
-    panelProses = new Diproses();
+        //Membuat objek panel Diproses
+        panelProses = new Diproses();
 
-    //Membuat objek panel Selesai Belum Diambil
-    panelSelesai = new SelesaiBelumDiambil();
+        //Membuat objek panel Selesai Belum Diambil
+        panelSelesai = new SelesaiBelumDiambil();
 
-    //Menambahkan panel Semua ke CardLayout
-    panelContentDataLaundry.add(panelSemua, "semua");
+        //Menambahkan panel Semua ke CardLayout
+        panelContentDataLaundry.add(panelSemua, "semua");
 
-    //Menambahkan panel Laundry Masuk ke CardLayout
-    panelContentDataLaundry.add(panelMasuk, "masuk");
+        //Menambahkan panel Laundry Masuk ke CardLayout
+        panelContentDataLaundry.add(panelMasuk, "masuk");
 
-    //Menambahkan panel Diproses ke CardLayout
-    panelContentDataLaundry.add(panelProses, "proses");
+        //Menambahkan panel Diproses ke CardLayout
+        panelContentDataLaundry.add(panelProses, "proses");
 
-    //Menambahkan panel Selesai Belum Diambil ke CardLayout
-    panelContentDataLaundry.add(panelSelesai, "selesai");
+        //Menambahkan panel Selesai Belum Diambil ke CardLayout
+        panelContentDataLaundry.add(panelSelesai, "selesai");
 
-    //Menampilkan panel pertama
-    tampilPanel("semua");
+        //Menampilkan panel pertama
+        tampilPanel("semua");
 
-}
+    }
+
+    private void refreshPencarian() {
+
+        panelSemua.tampilData(
+                tPencarian.getText(),
+                tDate.getDate());
+
+        panelMasuk.tampilData(
+                tPencarian.getText(),
+                tDate.getDate());
+
+        panelSelesai.tampilData(
+                tPencarian.getText(),
+                tDate.getDate());
+
+        panelProses.tampilData(
+                tPencarian.getText(),
+                tDate.getDate());
+
+    }
+
     private void tampilPanel(String namaKartu) {
         CardLayout cl = (CardLayout) panelContentDataLaundry.getLayout();
         cl.show(panelContentDataLaundry, namaKartu);
     }
-    public void tampilStatus(String status){
 
-    switch(status){
+    public void tampilStatus(String status) {
 
-        case "semua":
-            tampilPanel("semua");
-            btnSemua.setSelected(true);
-            setButtonAktif(btnSemua);
-            break;
+        switch (status) {
 
-        case "masuk":
-            tampilPanel("masuk");
-            btnMasuk.setSelected(true);
-            setButtonAktif(btnMasuk);
-            break;
+            case "semua":
+                tampilPanel("semua");
+                btnSemua.setSelected(true);
+                setButtonAktif(btnSemua);
+                break;
 
-        case "proses":
-            tampilPanel("proses");
-            btnProses.setSelected(true);
-            setButtonAktif(btnProses);
-            break;
+            case "masuk":
+                tampilPanel("masuk");
+                btnMasuk.setSelected(true);
+                setButtonAktif(btnMasuk);
+                break;
 
-        case "selesai":
-            tampilPanel("selesai");
-            btnSelesai.setSelected(true);
-            setButtonAktif(btnSelesai);
-            break;
+            case "proses":
+                tampilPanel("proses");
+                btnProses.setSelected(true);
+                setButtonAktif(btnProses);
+                break;
+
+            case "selesai":
+                tampilPanel("selesai");
+                btnSelesai.setSelected(true);
+                setButtonAktif(btnSelesai);
+                break;
+        }
+
     }
 
-}
-    
-    
-    
-    private void setButtonAktif(JToggleButton btnAktif){
-    // Reset semua tombol
-    btnSemua.setBackground(Color.WHITE);
-    btnMasuk.setBackground(Color.WHITE);
-    btnProses.setBackground(Color.WHITE);
-    btnSelesai.setBackground(Color.WHITE);
+    private void setButtonAktif(JToggleButton btnAktif) {
+        // Reset semua tombol
+        btnSemua.setBackground(Color.WHITE);
+        btnMasuk.setBackground(Color.WHITE);
+        btnProses.setBackground(Color.WHITE);
+        btnSelesai.setBackground(Color.WHITE);
 
-    btnSemua.setForeground(Color.BLACK);
-    btnMasuk.setForeground(Color.BLACK);
-    btnProses.setForeground(Color.BLACK);
-    btnSelesai.setForeground(Color.BLACK);
+        btnSemua.setForeground(Color.BLACK);
+        btnMasuk.setForeground(Color.BLACK);
+        btnProses.setForeground(Color.BLACK);
+        btnSelesai.setForeground(Color.BLACK);
 
-    // Tombol aktif
-    btnAktif.setBackground(new Color(37, 99, 235)); 
-    btnAktif.setForeground(Color.WHITE);
+        // Tombol aktif
+        btnAktif.setBackground(new Color(37, 99, 235));
+        btnAktif.setForeground(Color.WHITE);
 
-}
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -142,8 +160,8 @@ private SelesaiBelumDiambil panelSelesai;
         jPanel18 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jDateChooser3 = new com.toedter.calendar.JDateChooser();
+        tPencarian = new javax.swing.JTextField();
+        tDate = new com.toedter.calendar.JDateChooser();
         jPanel12 = new javax.swing.JPanel();
         panelContentDataLaundry = new javax.swing.JPanel();
 
@@ -298,10 +316,14 @@ private SelesaiBelumDiambil panelSelesai;
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Frame (16).png"))); // NOI18N
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField3.setText("Cari nama / no nota / no hp");
-        jTextField3.setBorder(null);
-        jTextField3.addActionListener(this::jTextField3ActionPerformed);
+        tPencarian.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        tPencarian.setBorder(null);
+        tPencarian.addActionListener(this::tPencarianActionPerformed);
+        tPencarian.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tPencarianKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -310,16 +332,17 @@ private SelesaiBelumDiambil panelSelesai;
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tPencarian, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-            .addComponent(jTextField3)
+            .addComponent(tPencarian)
         );
 
-        jDateChooser3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(224, 226, 230)));
+        tDate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(224, 226, 230)));
+        tDate.addPropertyChangeListener(this::tDatePropertyChange);
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -329,7 +352,7 @@ private SelesaiBelumDiambil panelSelesai;
                 .addContainerGap()
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tDate, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
         jPanel18Layout.setVerticalGroup(
@@ -337,7 +360,7 @@ private SelesaiBelumDiambil panelSelesai;
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooser3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -372,63 +395,62 @@ private SelesaiBelumDiambil panelSelesai;
         add(panelContentDataLaundry, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void tPencarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tPencarianActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_tPencarianActionPerformed
 
     private void btnPensilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPensilActionPerformed
         // TODO add your handling code here:
         //Menyimpan tabel yang sedang aktif
-JTable tabel;
+        JTable tabel;
 
 //Menentukan tabel berdasarkan tab yang dipilih
-if(btnSemua.isSelected()){
+        if (btnSemua.isSelected()) {
 
-    tabel = panelSemua.getTblSemua();
+            tabel = panelSemua.getTblSemua();
 
-}else if(btnMasuk.isSelected()){
+        } else if (btnMasuk.isSelected()) {
 
-    tabel = panelMasuk.getTblMasuk();
+            tabel = panelMasuk.getTblMasuk();
 
-}else if(btnProses.isSelected()){
+        } else if (btnProses.isSelected()) {
 
-    tabel = panelProses.getTblDiproses();
+            tabel = panelProses.getTblDiproses();
 
-}else{
+        } else {
 
-    tabel = panelSelesai.getTblSelesai();
+            tabel = panelSelesai.getTblSelesai();
 
-}
+        }
 
 //Jika belum memilih data
-if(tabel.getSelectedRow() == -1){
+        if (tabel.getSelectedRow() == -1) {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Silakan pilih data terlebih dahulu.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Silakan pilih data terlebih dahulu.");
 
-    return;
+            return;
 
-}
+        }
 
 //Mengambil nomor nota
-String noNota =
-        tabel.getValueAt(
-                tabel.getSelectedRow(),
-                0).toString();
+        String noNota
+                = tabel.getValueAt(
+                        tabel.getSelectedRow(),
+                        0).toString();
 
 //Membuka popup Edit Laundry
-popUpPensilEdit dialog =
-        new popUpPensilEdit(
-                (java.awt.Frame)
-                SwingUtilities.getWindowAncestor(this),
-                true,
-                noNota);
+        popUpPensilEdit dialog
+                = new popUpPensilEdit(
+                        (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
+                        true,
+                        noNota);
 
-dialog.setLocationRelativeTo(this);
-dialog.setVisible(true);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
 //Memperbarui seluruh panel Data Laundry
-refreshSemuaPanel();
+        refreshSemuaPanel();
     }//GEN-LAST:event_btnPensilActionPerformed
 
     private void btnSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSemuaActionPerformed
@@ -457,77 +479,90 @@ refreshSemuaPanel();
 
     private void btnLihatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLihatActionPerformed
         // TODO add your handling code here:
-      //Menyimpan tabel yang sedang aktif
-JTable tabel;
+        //Menyimpan tabel yang sedang aktif
+        JTable tabel;
 
 //Menentukan tabel berdasarkan tab yang dipilih
-if(btnSemua.isSelected()){
+        if (btnSemua.isSelected()) {
 
-    tabel = panelSemua.getTblSemua();
+            tabel = panelSemua.getTblSemua();
 
-}else if(btnMasuk.isSelected()){
+        } else if (btnMasuk.isSelected()) {
 
-    tabel = panelMasuk.getTblMasuk();
+            tabel = panelMasuk.getTblMasuk();
 
-}else if(btnProses.isSelected()){
+        } else if (btnProses.isSelected()) {
 
-    tabel = panelProses.getTblDiproses();
+            tabel = panelProses.getTblDiproses();
 
-}else{
+        } else {
 
-    tabel = panelSelesai.getTblSelesai();
+            tabel = panelSelesai.getTblSelesai();
 
-}
-System.out.println("Tab Semua : " + btnSemua.isSelected());
-System.out.println("Tab Masuk : " + btnMasuk.isSelected());
-System.out.println("Tab Proses : " + btnProses.isSelected());
-System.out.println("Tab Selesai : " + btnSelesai.isSelected());
+        }
+        System.out.println("Tab Semua : " + btnSemua.isSelected());
+        System.out.println("Tab Masuk : " + btnMasuk.isSelected());
+        System.out.println("Tab Proses : " + btnProses.isSelected());
+        System.out.println("Tab Selesai : " + btnSelesai.isSelected());
 
-System.out.println("Baris terpilih = " + tabel.getSelectedRow());
+        System.out.println("Baris terpilih = " + tabel.getSelectedRow());
 
 //Jika belum memilih data
-if(tabel.getSelectedRow() == -1){
+        if (tabel.getSelectedRow() == -1) {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Silakan pilih data terlebih dahulu.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Silakan pilih data terlebih dahulu.");
 
-    return;
+            return;
 
-}
+        }
 //Mengambil nomor nota dari baris yang dipilih
-String noNota =
-        tabel.getValueAt(
-                tabel.getSelectedRow(),
-                0).toString();
+        String noNota
+                = tabel.getValueAt(
+                        tabel.getSelectedRow(),
+                        0).toString();
 
 //Membuka dialog Detail Laundry
-detailLaundry dialog =
-        new detailLaundry(
-                (java.awt.Frame)
-                SwingUtilities.getWindowAncestor(this),
-                true,
-                noNota);
+        detailLaundry dialog
+                = new detailLaundry(
+                        (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
+                        true,
+                        noNota);
 
-dialog.setLocationRelativeTo(this);
-dialog.setVisible(true);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
     }//GEN-LAST:event_btnLihatActionPerformed
-//Method untuk memperbarui seluruh panel Data Laundry
-public void refreshSemuaPanel(){
-    
-    //Memperbarui panel Semua
-    panelSemua.refreshData();
 
-    //Memperbarui panel Laundry Masuk
-    panelMasuk.refreshData();
+    private void tPencarianKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tPencarianKeyReleased
+        // TODO add your handling code here:
+        refreshPencarian();
+    }//GEN-LAST:event_tPencarianKeyReleased
 
-    //Memperbarui panel Diproses
-    panelProses.refreshData();
+    private void tDatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tDatePropertyChange
+        // TODO add your handling code here:
+        if ("date".equals(evt.getPropertyName())) {
 
-    //Memperbarui panel Selesai Belum Diambil
-    panelSelesai.refreshData();
+            refreshPencarian();
+        }
+    }//GEN-LAST:event_tDatePropertyChange
+    //Method untuk memperbarui seluruh panel Data Laundry
 
-}
+    public void refreshSemuaPanel() {
+
+        //Memperbarui panel Semua
+        panelSemua.refreshData();
+
+        //Memperbarui panel Laundry Masuk
+        panelMasuk.refreshData();
+
+        //Memperbarui panel Diproses
+        panelProses.refreshData();
+
+        //Memperbarui panel Selesai Belum Diambil
+        panelSelesai.refreshData();
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLihat;
@@ -537,7 +572,6 @@ public void refreshSemuaPanel(){
     private javax.swing.JToggleButton btnSelesai;
     private javax.swing.JToggleButton btnSemua;
     private javax.swing.ButtonGroup buttonGroup1;
-    private com.toedter.calendar.JDateChooser jDateChooser3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
@@ -550,40 +584,42 @@ public void refreshSemuaPanel(){
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel panelContentDataLaundry;
+    private com.toedter.calendar.JDateChooser tDate;
+    private javax.swing.JTextField tPencarian;
     // End of variables declaration//GEN-END:variables
 
-  //Method untuk menampilkan panel Diproses
-public void tampilDiproses() {
+    //Method untuk menampilkan panel Diproses
+    public void tampilDiproses() {
 
-    //Menampilkan panel Diproses
-    tampilPanel("proses");
+        //Menampilkan panel Diproses
+        tampilPanel("proses");
 
-    //Mengaktifkan tombol Diproses
-    setButtonAktif(btnProses);
+        //Mengaktifkan tombol Diproses
+        setButtonAktif(btnProses);
 
-}
-   //Method untuk menampilkan panel Selesai
-public void tampilSelesai() {
+    }
+    //Method untuk menampilkan panel Selesai
 
-    //Menampilkan panel Selesai
-    tampilPanel("selesai");
+    public void tampilSelesai() {
 
-    //Mengaktifkan tombol Selesai
-    setButtonAktif(btnSelesai);
+        //Menampilkan panel Selesai
+        tampilPanel("selesai");
 
-}
+        //Mengaktifkan tombol Selesai
+        setButtonAktif(btnSelesai);
+
+    }
     //Method untuk menampilkan panel Laundry Masuk
-public void tampilLaundryMasuk() {
 
-    //Menampilkan panel Laundry Masuk
-    tampilPanel("masuk");
+    public void tampilLaundryMasuk() {
 
-    //Mengaktifkan tombol Laundry Masuk
-    setButtonAktif(btnMasuk);
+        //Menampilkan panel Laundry Masuk
+        tampilPanel("masuk");
 
-}
+        //Mengaktifkan tombol Laundry Masuk
+        setButtonAktif(btnMasuk);
 
+    }
 
 }
