@@ -11,7 +11,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+//Mengimpor collection
+import java.util.ArrayList;
+import java.util.List;
 //Class untuk mengelola data pengguna pada database
 public class PenggunaDAO {
      //Menyimpan koneksi database
@@ -83,4 +85,118 @@ String sql = "SELECT * FROM pengguna WHERE username=? AND password=MD5(?)";
         return pengguna;
 
     }
+    //Method mengambil seluruh data pengguna
+public List<Pengguna> getAll(){
+
+    //Membuat list pengguna
+    List<Pengguna> list =
+            new ArrayList<>();
+
+    try{
+
+        //Query mengambil seluruh pengguna
+        String sql =
+                "SELECT * FROM pengguna "
+                + "ORDER BY id_pengguna DESC";
+
+        //Menyiapkan query
+        PreparedStatement ps =
+                conn.prepareStatement(sql);
+
+        //Menjalankan query
+        ResultSet rs =
+                ps.executeQuery();
+
+        //Mengulang seluruh data
+        while(rs.next()){
+
+            //Membuat objek pengguna
+            Pengguna pengguna =
+                    new Pengguna();
+
+            //Mengisi ID pengguna
+            pengguna.setIdPengguna(
+                    rs.getInt("id_pengguna"));
+
+            //Mengisi nama pengguna
+            pengguna.setNamaPengguna(
+                    rs.getString("nama_pengguna"));
+
+            //Mengisi username
+            pengguna.setUsername(
+                    rs.getString("username"));
+
+            //Mengisi role
+            pengguna.setRole(
+                    rs.getString("role"));
+
+            //Menambahkan ke list
+            list.add(pengguna);
+
+        }
+
+    }catch(SQLException e){
+
+        //Menampilkan error
+        e.printStackTrace();
+
+    }
+
+    //Mengembalikan seluruh data
+    return list;
+
+}
+    //Method menyimpan data pengguna
+public boolean simpan(Pengguna pengguna){
+
+    try{
+
+        //Query menyimpan pengguna
+        String sql =
+                "INSERT INTO pengguna "
+                + "(nama_pengguna,username,password,role) "
+                + "VALUES(?,?,MD5(?),?)";
+
+        //Menyiapkan query
+        PreparedStatement ps =
+                conn.prepareStatement(sql);
+
+        //Mengisi nama pengguna
+        ps.setString(
+                1,
+                pengguna.getNamaPengguna());
+
+        //Mengisi username
+        ps.setString(
+                2,
+                pengguna.getUsername());
+
+        //Mengisi password
+        ps.setString(
+                3,
+                pengguna.getPassword());
+
+        //Mengisi role
+        ps.setString(
+                4,
+                pengguna.getRole());
+
+        //Menjalankan query
+        ps.executeUpdate();
+
+        //Berhasil
+        return true;
+
+   }catch(SQLException e){
+
+    System.out.println("===== ERROR DAO PENGGUNA =====");
+    System.out.println(e.getMessage());
+    e.printStackTrace();
+
+}
+
+    //Gagal
+    return false;
+
+}
 }

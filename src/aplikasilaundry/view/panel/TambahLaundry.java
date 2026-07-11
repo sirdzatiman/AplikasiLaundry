@@ -23,6 +23,8 @@ private PanelItemLaundry panelItem;
 //Panel konfirmasi
 private Konfirmasi panelKonfirmasi;
 
+
+
     public TambahLaundry() {
         initComponents();
         //Membuat panel pelanggan

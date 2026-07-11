@@ -1,5 +1,10 @@
 package aplikasilaundry.view.panel;
+//Mengimpor controller pengaturan
 
+import aplikasilaundry.controller.PengaturanStrukController;
+
+//Mengimpor model pengaturan
+import aplikasilaundry.model.PengaturanStruk;
 import aplikasilaundry.view.panel.TambahLaundry;
 //Mengimpor controller transaksi
 import aplikasilaundry.controller.TransaksiController;
@@ -7,16 +12,52 @@ import aplikasilaundry.controller.TransaksiController;
 public class PanelPelanggan extends javax.swing.JPanel {
 //Controller transaksi
 
+    //Controller transaksi
     private TransaksiController controller;
 
-    private TambahLaundry induk;
+//Controller pengaturan
+    private PengaturanStrukController controllerPengaturan;
+
+//Data pengaturan
+    private PengaturanStruk pengaturan;
+    
+//Panel induk Tambah Laundry
+private TambahLaundry induk;
 
     public PanelPelanggan(TambahLaundry induk) {
-        this.induk = induk;
-        initComponents();
-        //Mengambil controller dari panel induk
-        controller = induk.getController();
-    }
+
+    initComponents();
+
+    //Menyimpan panel induk
+    this.induk = induk;
+
+    //Membuat controller transaksi
+    controller = new TransaksiController();
+
+    //Membuat controller pengaturan
+    controllerPengaturan = new PengaturanStrukController();
+
+    //Menampilkan informasi laundry
+    tampilInformasiLaundry();
+
+}
+//Method menampilkan informasi laundry
+
+   private void tampilInformasiLaundry(){
+
+    pengaturan =
+            controllerPengaturan.getPengaturan();
+
+    lblJamOperasional.setText(
+            pengaturan.getJamOperasional());
+
+    lblLayanan.setText(
+            pengaturan.getLayanan());
+
+    txtAlamat.setText(
+            pengaturan.getAlamat());
+
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,13 +89,14 @@ public class PanelPelanggan extends javax.swing.JPanel {
         jLabel18 = new javax.swing.JLabel();
         jPanel23 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        lblJamOperasional = new javax.swing.JLabel();
         jPanel24 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
+        lblLayanan = new javax.swing.JLabel();
         jPanel25 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtAlamat = new javax.swing.JTextArea();
         jPanel8 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -256,11 +298,11 @@ public class PanelPelanggan extends javax.swing.JPanel {
         jLabel19.setText("Jam Operasional");
         jLabel19.setIconTextGap(10);
 
-        jLabel20.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel20.setText("08:00 - 22:00");
-        jLabel20.setIconTextGap(10);
+        lblJamOperasional.setBackground(new java.awt.Color(255, 255, 255));
+        lblJamOperasional.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblJamOperasional.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblJamOperasional.setText("08:00 - 22:00");
+        lblJamOperasional.setIconTextGap(10);
 
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
@@ -269,14 +311,14 @@ public class PanelPelanggan extends javax.swing.JPanel {
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblJamOperasional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblJamOperasional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -288,11 +330,11 @@ public class PanelPelanggan extends javax.swing.JPanel {
         jLabel21.setText("Layanan");
         jLabel21.setIconTextGap(10);
 
-        jLabel22.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel22.setText("Kamis Libur");
-        jLabel22.setIconTextGap(10);
+        lblLayanan.setBackground(new java.awt.Color(255, 255, 255));
+        lblLayanan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblLayanan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblLayanan.setText("Kamis Libur");
+        lblLayanan.setIconTextGap(10);
 
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
         jPanel24.setLayout(jPanel24Layout);
@@ -301,14 +343,14 @@ public class PanelPelanggan extends javax.swing.JPanel {
             .addGroup(jPanel24Layout.createSequentialGroup()
                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
+                .addComponent(lblLayanan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel24Layout.setVerticalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel24Layout.createSequentialGroup()
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblLayanan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -320,7 +362,9 @@ public class PanelPelanggan extends javax.swing.JPanel {
         jLabel23.setText("Alamat");
         jLabel23.setIconTextGap(10);
 
-        jLabel2.setText("Dsn. Mojosari, Ds. Ngepeh, Kec. Loceret, Kab. Nganjuk.");
+        txtAlamat.setColumns(20);
+        txtAlamat.setRows(5);
+        jScrollPane1.setViewportView(txtAlamat);
 
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
         jPanel25.setLayout(jPanel25Layout);
@@ -328,19 +372,16 @@ public class PanelPelanggan extends javax.swing.JPanel {
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
                 .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
-                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel25Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -627,10 +668,7 @@ public class PanelPelanggan extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -658,10 +696,14 @@ public class PanelPelanggan extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblJamOperasional;
+    private javax.swing.JLabel lblLayanan;
     private javax.swing.JTextField tAlamat;
     private javax.swing.JTextField tCatatan;
     private javax.swing.JTextField tNama;
     private javax.swing.JTextField tNoHp;
+    private javax.swing.JTextArea txtAlamat;
     // End of variables declaration//GEN-END:variables
 
 }
