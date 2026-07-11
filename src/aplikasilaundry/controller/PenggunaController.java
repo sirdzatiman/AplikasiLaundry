@@ -30,6 +30,27 @@ public class PenggunaController {
         return dao.getAll();
 
     }
+    //Method mengambil pengguna berdasarkan ID
+public Pengguna getById(int idPengguna){
+
+    //Mengembalikan data dari DAO
+    return dao.getById(idPengguna);
+
+}
+//Method mengubah data pengguna
+public boolean update(Pengguna pengguna){
+
+    //Mengirim data ke DAO
+    return dao.update(pengguna);
+
+}
+//Method menghapus pengguna
+public boolean hapus(int idPengguna){
+
+    //Mengirim ID ke DAO
+    return dao.hapus(idPengguna);
+
+}
 //Method menyimpan pengguna baru
 public boolean simpan(Pengguna pengguna){
 

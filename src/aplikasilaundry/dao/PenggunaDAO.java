@@ -146,6 +146,119 @@ public List<Pengguna> getAll(){
     return list;
 
 }
+
+//Method mengambil data pengguna berdasarkan ID
+public Pengguna getById(int idPengguna){
+
+    //Membuat objek pengguna
+    Pengguna pengguna = null;
+
+    try{
+
+        //Query mengambil pengguna berdasarkan ID
+        String sql =
+                "SELECT * FROM pengguna "
+                + "WHERE id_pengguna=?";
+
+        //Menyiapkan query
+        PreparedStatement ps =
+                conn.prepareStatement(sql);
+
+        //Mengisi parameter ID
+        ps.setInt(1, idPengguna);
+
+        //Menjalankan query
+        ResultSet rs =
+                ps.executeQuery();
+
+        //Jika data ditemukan
+        if(rs.next()){
+
+            //Membuat objek pengguna
+            pengguna = new Pengguna();
+
+            //Mengisi ID
+            pengguna.setIdPengguna(
+                    rs.getInt("id_pengguna"));
+
+            //Mengisi nama
+            pengguna.setNamaPengguna(
+                    rs.getString("nama_pengguna"));
+
+            //Mengisi username
+            pengguna.setUsername(
+                    rs.getString("username"));
+
+            //Mengisi password
+            pengguna.setPassword(
+                    rs.getString("password"));
+
+            //Mengisi role
+            pengguna.setRole(
+                    rs.getString("role"));
+
+        }
+
+    }catch(SQLException e){
+
+        e.printStackTrace();
+
+    }
+
+    return pengguna;
+
+}
+//Method mengubah data pengguna
+public boolean update(Pengguna pengguna){
+
+    try{
+
+        //Query mengubah data pengguna
+        String sql =
+                "UPDATE pengguna SET "
+                + "nama_pengguna=?, "
+                + "username=?, "
+                + "password=MD5(?), "
+                + "role=? "
+                + "WHERE id_pengguna=?";
+
+        //Menyiapkan query
+        PreparedStatement ps =
+                conn.prepareStatement(sql);
+
+        //Mengisi nama pengguna
+        ps.setString(1,
+                pengguna.getNamaPengguna());
+
+        //Mengisi username
+        ps.setString(2,
+                pengguna.getUsername());
+
+        //Mengisi password
+        ps.setString(3,
+                pengguna.getPassword());
+
+        //Mengisi role
+        ps.setString(4,
+                pengguna.getRole());
+
+        //Mengisi ID pengguna
+        ps.setInt(5,
+                pengguna.getIdPengguna());
+
+        //Menjalankan query
+        return ps.executeUpdate() > 0;
+
+    }catch(SQLException e){
+
+        System.out.println("===== ERROR UPDATE PENGGUNA =====");
+        e.printStackTrace();
+
+    }
+
+    return false;
+
+}
     //Method menyimpan data pengguna
 public boolean simpan(Pengguna pengguna){
 
@@ -196,6 +309,36 @@ public boolean simpan(Pengguna pengguna){
 }
 
     //Gagal
+    return false;
+
+}
+//Method menghapus pengguna
+public boolean hapus(int idPengguna){
+
+    try{
+
+        //Query menghapus pengguna
+        String sql =
+                "DELETE FROM pengguna "
+                + "WHERE id_pengguna=?";
+
+        //Menyiapkan query
+        PreparedStatement ps =
+                conn.prepareStatement(sql);
+
+        //Mengisi ID pengguna
+        ps.setInt(1, idPengguna);
+
+        //Menjalankan query
+        return ps.executeUpdate() > 0;
+
+    }catch(SQLException e){
+
+        System.out.println("===== ERROR HAPUS PENGGUNA =====");
+        e.printStackTrace();
+
+    }
+
     return false;
 
 }

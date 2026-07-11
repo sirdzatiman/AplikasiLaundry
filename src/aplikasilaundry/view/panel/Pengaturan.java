@@ -25,262 +25,256 @@ import aplikasilaundry.model.Pengguna;
 //Mengimpor JOptionPane
 import javax.swing.JOptionPane;
 
-
 import aplikasilaundry.view.dialog.popUpEditKonfigurasiLayanan;
 import aplikasilaundry.view.dialog.popUpKonfirmasiHapus;
 import aplikasilaundry.view.dialog.popUpPensil;
 import aplikasilaundry.view.dialog.popUpTambahKonfigurasiLayanan;
 import aplikasilaundry.view.dialog.popUpTambahpengguna;
 
-
-
 public class Pengaturan extends javax.swing.JPanel {
 //Controller pengaturan
-private PengaturanStrukController controller;
+
+    private PengaturanStrukController controller;
 //Controller pengguna
-private PenggunaController controllerPengguna;
+    private PenggunaController controllerPengguna;
 //Controller transaksi
-private TransaksiController controllerTransaksi;
+    private TransaksiController controllerTransaksi;
 
 //Model pengaturan
-private PengaturanStruk pengaturan;
-    
+    private PengaturanStruk pengaturan;
+
     public Pengaturan() {
 
-    initComponents();
+        initComponents();
 //Membuat footer preview seperti struk asli
-tFooter1.setEditable(false);
-tFooter1.setOpaque(false);
-tFooter1.setBorder(null);
-tFooter1.setFocusable(false);
+        tFooter1.setEditable(false);
+        tFooter1.setOpaque(false);
+        tFooter1.setBorder(null);
+        tFooter1.setFocusable(false);
 //Preview tabel tidak boleh dipilih
-tblDetailStruk.setRowSelectionAllowed(false);
-tblDetailStruk.setCellSelectionEnabled(false);
-tblDetailStruk.setFocusable(false);
+        tblDetailStruk.setRowSelectionAllowed(false);
+        tblDetailStruk.setCellSelectionEnabled(false);
+        tblDetailStruk.setFocusable(false);
 //Tengah nama bisnis
-lblNamaBisnis.setHorizontalAlignment(
-        javax.swing.SwingConstants.CENTER);
+        lblNamaBisnis.setHorizontalAlignment(
+                javax.swing.SwingConstants.CENTER);
 
 //Tengah slogan
-lblKeterangan.setHorizontalAlignment(
-        javax.swing.SwingConstants.CENTER);
+        lblKeterangan.setHorizontalAlignment(
+                javax.swing.SwingConstants.CENTER);
 
 //Tengah alamat
-lblAlamatLaundry.setHorizontalAlignment(
-        javax.swing.SwingConstants.CENTER);
+        lblAlamatLaundry.setHorizontalAlignment(
+                javax.swing.SwingConstants.CENTER);
 
 //Tengah nomor HP
-lblNoHpLaundry.setHorizontalAlignment(
-        javax.swing.SwingConstants.CENTER);
-    //Membuat controller
-    controller =
-            new PengaturanStrukController();
-    //Membuat controller transaksi
-controllerTransaksi =
-        new TransaksiController();
+        lblNoHpLaundry.setHorizontalAlignment(
+                javax.swing.SwingConstants.CENTER);
+        //Membuat controller
+        controller
+                = new PengaturanStrukController();
+        //Membuat controller transaksi
+        controllerTransaksi
+                = new TransaksiController();
 //Membuat controller pengguna
-controllerPengguna =
-        new PenggunaController();
+        controllerPengguna
+                = new PenggunaController();
 
-    //Menampilkan data pengaturan
-    tampilPengaturan();
+        //Menampilkan data pengaturan
+        tampilPengaturan();
 //Menampilkan data pengguna
-tampilPengguna();
-}
+        tampilPengguna();
+    }
 //Method menampilkan data pengaturan
-private void tampilPengaturan(){
 
-    //Mengambil data pengaturan
-    pengaturan =
-            controller.getPengaturan();
+    private void tampilPengaturan() {
 
-    //Menampilkan nama bisnis
-    tNamaBisnis.setText(
-            pengaturan.getNamaBisnis());
+        //Mengambil data pengaturan
+        pengaturan
+                = controller.getPengaturan();
 
-    //Menampilkan alamat
-    tAlamat.setText(
-            pengaturan.getAlamat());
+        //Menampilkan nama bisnis
+        tNamaBisnis.setText(
+                pengaturan.getNamaBisnis());
 
-    //Menampilkan nomor HP
-    tNoHp.setText(
-            pengaturan.getNoHp());
-    //Menampilkan alamat pada preview struk
-lblAlamatLaundry.setText(
-        pengaturan.getAlamat());
+        //Menampilkan alamat
+        tAlamat.setText(
+                pengaturan.getAlamat());
+
+        //Menampilkan nomor HP
+        tNoHp.setText(
+                pengaturan.getNoHp());
+        //Menampilkan alamat pada preview struk
+        lblAlamatLaundry.setText(
+                pengaturan.getAlamat());
 
 //Menampilkan nomor HP pada preview struk
-lblNoHpLaundry.setText(
-        pengaturan.getNoHp());
-    
-    //Menampilkan nama bisnis pada preview struk
-lblNamaBisnis.setText(
-        pengaturan.getNamaBisnis());
+        lblNoHpLaundry.setText(
+                pengaturan.getNoHp());
+
+        //Menampilkan nama bisnis pada preview struk
+        lblNamaBisnis.setText(
+                pengaturan.getNamaBisnis());
 
 //Menampilkan slogan pada preview struk
-lblKeterangan.setText(
-        pengaturan.getKeterangan());
+        lblKeterangan.setText(
+                pengaturan.getKeterangan());
 
-    //Menampilkan jam operasional
-    tJamOperasional.setText(
-            pengaturan.getJamOperasional());
+        //Menampilkan jam operasional
+        tJamOperasional.setText(
+                pengaturan.getJamOperasional());
 
-    //Menampilkan layanan
-tLayanan.setText(
-        pengaturan.getLayanan());
+        //Menampilkan layanan
+        tLayanan.setText(
+                pengaturan.getLayanan());
 
 //Menampilkan slogan laundry
-tKeterangan.setText(
-        pengaturan.getKeterangan());
+        tKeterangan.setText(
+                pengaturan.getKeterangan());
 
 //Menampilkan footer struk
-tFooter.setText(
-        pengaturan.getFooterStruk());
+        tFooter.setText(
+                pengaturan.getFooterStruk());
 //Menampilkan footer pada preview struk
-tFooter1.setText(
-        pengaturan.getFooterStruk());
+        tFooter1.setText(
+                pengaturan.getFooterStruk());
 
 //Mengambil transaksi terbaru
-List<Transaksi> daftarTransaksi =
-        controllerTransaksi.getTransaksiTerbaru();
+        List<Transaksi> daftarTransaksi
+                = controllerTransaksi.getTransaksiTerbaru();
 
 //Jika terdapat transaksi
-if(!daftarTransaksi.isEmpty()){
+        if (!daftarTransaksi.isEmpty()) {
 
-    //Mengambil transaksi paling baru
-    Transaksi transaksi =
-            controllerTransaksi.getByNoNota(
-                    daftarTransaksi.get(0).getNoNota());
+            //Mengambil transaksi paling baru
+            Transaksi transaksi
+                    = controllerTransaksi.getByNoNota(
+                            daftarTransaksi.get(0).getNoNota());
 
-    //Menampilkan nomor nota
-    lblNoNota.setText(
-            transaksi.getNoNota());
+            //Menampilkan nomor nota
+            lblNoNota.setText(
+                    transaksi.getNoNota());
 
-    //Menampilkan tanggal masuk
-    lblTanggal.setText(
-            transaksi.getTanggalMasuk());
+            //Menampilkan tanggal masuk
+            lblTanggal.setText(
+                    transaksi.getTanggalMasuk());
 
-    //Menampilkan jam masuk
-    lblJamMasuk.setText(
-            transaksi.getJamMasuk());
+            //Menampilkan jam masuk
+            lblJamMasuk.setText(
+                    transaksi.getJamMasuk());
 
-    //Menampilkan nama pelanggan
-    lblPelanggan.setText(
-            transaksi.getNamaPelanggan());
+            //Menampilkan nama pelanggan
+            lblPelanggan.setText(
+                    transaksi.getNamaPelanggan());
 
-    //Menampilkan nomor HP pelanggan
-    lblNoHp.setText(
-            transaksi.getNoHp());
+            //Menampilkan nomor HP pelanggan
+            lblNoHp.setText(
+                    transaksi.getNoHp());
 
-    //Menampilkan alamat pelanggan
-    lblAsal.setText(
-            transaksi.getAlamat());
-    //Mengambil seluruh detail transaksi
-List<DetailTransaksi> daftarDetail =
-        controllerTransaksi.getDetailByNota(
-                transaksi.getNoNota());
+            //Menampilkan alamat pelanggan
+            lblAsal.setText(
+                    transaksi.getAlamat());
+            //Mengambil seluruh detail transaksi
+            List<DetailTransaksi> daftarDetail
+                    = controllerTransaksi.getDetailByNota(
+                            transaksi.getNoNota());
 
 //Mengambil model tabel yang sudah ada
-DefaultTableModel model =
-        (DefaultTableModel) tblDetailStruk.getModel();
+            DefaultTableModel model
+                    = (DefaultTableModel) tblDetailStruk.getModel();
 
 //Mengosongkan isi tabel
-model.setRowCount(0);
-
-
+            model.setRowCount(0);
 
 //Nilai awal total
-double totalBerat = 0;
-int totalBiji = 0;
-BigDecimal totalHarga = BigDecimal.ZERO;
+            double totalBerat = 0;
+            int totalBiji = 0;
+            BigDecimal totalHarga = BigDecimal.ZERO;
 
 //Mengulang seluruh detail
-for(DetailTransaksi detail : daftarDetail){
+            for (DetailTransaksi detail : daftarDetail) {
 
-    //Menambah baris tabel
-    model.addRow(new Object[]{
-        detail.getNamaLayanan()
-                + " - "
-                + detail.getNamaProses(),
-        detail.getQty()
-                + " "
-                + detail.getSatuan(),
-        FormatRupiah.format(
-                detail.getHarga()),
-        FormatRupiah.format(
-                detail.getSubtotal())
-    });
+                //Menambah baris tabel
+                model.addRow(new Object[]{
+                    detail.getNamaLayanan()
+                    + " - "
+                    + detail.getNamaProses(),
+                    detail.getQty()
+                    + " "
+                    + detail.getSatuan(),
+                    FormatRupiah.format(
+                    detail.getHarga()),
+                    FormatRupiah.format(
+                    detail.getSubtotal())
+                });
 
-    //Menghitung total berat
-    if(detail.getSatuan()
-            .equalsIgnoreCase("Kg")){
+                //Menghitung total berat
+                if (detail.getSatuan()
+                        .equalsIgnoreCase("Kg")) {
 
-        totalBerat += detail.getQty();
+                    totalBerat += detail.getQty();
 
-    }
+                }
 
-    //Menghitung total biji
-    if(detail.getSatuan()
-            .equalsIgnoreCase("Biji")){
+                //Menghitung total biji
+                if (detail.getSatuan()
+                        .equalsIgnoreCase("Biji")) {
 
-        totalBiji +=
-                (int)detail.getQty();
+                    totalBiji
+                            += (int) detail.getQty();
 
-    }
+                }
 
-    //Menghitung total harga
-    totalHarga =
-            totalHarga.add(
-                    detail.getSubtotal());
+                //Menghitung total harga
+                totalHarga
+                        = totalHarga.add(
+                                detail.getSubtotal());
 
-}
+            }
 
 //Menampilkan tabel
-tblDetailStruk.setModel(model);
+            tblDetailStruk.setModel(model);
 
 //Mengatur tampilan tabel
 //TableStyle.style(tblDetailStruk);
-TableStyle.TableStyle(tblDetailStruk);
+            TableStyle.TableStyle(tblDetailStruk);
 
 //Menampilkan total berat
-lblTotalBerat.setText(
-        totalBerat + " Kg");
+            lblTotalBerat.setText(
+                    totalBerat + " Kg");
 
 //Menampilkan total biji
-lblTotalBiji.setText(
-        totalBiji + " Biji");
+            lblTotalBiji.setText(
+                    totalBiji + " Biji");
 
 //Menampilkan total harga
-lblTotalHarga.setText(
-        FormatRupiah.format(
-                totalHarga));
+            lblTotalHarga.setText(
+                    FormatRupiah.format(
+                            totalHarga));
 
-}
-else{
+        } else {
 
-    //Mengosongkan informasi transaksi
-    lblNoNota.setText("-");
-    lblTanggal.setText("-");
-    lblJamMasuk.setText("-");
-    lblPelanggan.setText("-");
-    lblNoHp.setText("-");
-    lblAsal.setText("-");
+            //Mengosongkan informasi transaksi
+            lblNoNota.setText("-");
+            lblTanggal.setText("-");
+            lblJamMasuk.setText("-");
+            lblPelanggan.setText("-");
+            lblNoHp.setText("-");
+            lblAsal.setText("-");
 
-    //Mengosongkan total
-    lblTotalBerat.setText("0 Kg");
-    lblTotalBiji.setText("0 Biji");
-    lblTotalHarga.setText("Rp0");
+            //Mengosongkan total
+            lblTotalBerat.setText("0 Kg");
+            lblTotalBiji.setText("0 Biji");
+            lblTotalHarga.setText("Rp0");
 
-    //Mengosongkan tabel
-    DefaultTableModel model =
-            (DefaultTableModel) tblDetailStruk.getModel();
+            //Mengosongkan tabel
+            DefaultTableModel model
+                    = (DefaultTableModel) tblDetailStruk.getModel();
 
-    model.setRowCount(0);
+            model.setRowCount(0);
 
-}
-}
-
-   
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1459,12 +1453,12 @@ else{
 
     private void btnEditJenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditJenisActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btnEditJenisActionPerformed
 
     private void btnTambahKonfigurasiLAyananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahKonfigurasiLAyananActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_btnTambahKonfigurasiLAyananActionPerformed
 
     private void btnHapusJenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusJenisActionPerformed
@@ -1478,7 +1472,7 @@ else{
 
     private void btnSimpanPengaturanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanPengaturanActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btnSimpanPengaturanActionPerformed
 
     private void btnHappusPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHappusPenggunaActionPerformed
@@ -1490,91 +1484,148 @@ else{
 
     private void btnEditPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditPenggunaActionPerformed
         // TODO add your handling code here:
-     
+        //Mengambil baris yang dipilih
+int baris = tblPengguna.getSelectedRow();
+
+//Jika belum memilih data
+if(baris == -1){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Pilih pengguna yang akan diedit.");
+
+    return;
+
+}
+
+//Mengambil username dari tabel
+String username =
+        tblPengguna.getValueAt(
+                baris,
+                1).toString();
+
+//Mencari objek pengguna berdasarkan username
+Pengguna data = null;
+
+for(Pengguna p : controllerPengguna.getAll()){
+
+    if(p.getUsername().equals(username)){
+
+        data = controllerPengguna.getById(
+                p.getIdPengguna());
+
+        break;
+
+    }
+
+}
+
+//Jika data tidak ditemukan
+if(data == null){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Data pengguna tidak ditemukan.");
+
+    return;
+
+}
+
+//Membuka popup edit
+popUpPensil dialog =
+        new popUpPensil(
+                (java.awt.Frame)
+                javax.swing.SwingUtilities.getWindowAncestor(this),
+                true);
+
+//Mengirim data ke popup
+dialog.setPengguna(data);
+
+//Menampilkan popup
+dialog.setVisible(true);
     }//GEN-LAST:event_btnEditPenggunaActionPerformed
 
     private void btnTambahPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPenggunaActionPerformed
         // TODO add your handling code here:
-      //Membuka popup tambah pengguna
-    popUpTambahpengguna dialog =
-            new popUpTambahpengguna(
-                    (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this),
-                    true,
-                    this);
+        //Membuka popup tambah pengguna
+        popUpTambahpengguna dialog
+                = new popUpTambahpengguna(
+                        (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this),
+                        true,
+                        this);
 
-    //Menampilkan popup
-    dialog.setVisible(true);
+        //Menampilkan popup
+        dialog.setVisible(true);
     }//GEN-LAST:event_btnTambahPenggunaActionPerformed
 
     private void btnSimpanInformasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanInformasiActionPerformed
         // TODO add your handling code here:
         //Mengambil data dari form
-pengaturan.setNamaBisnis(
-        tNamaBisnis.getText().trim());
+        pengaturan.setNamaBisnis(
+                tNamaBisnis.getText().trim());
 
-pengaturan.setAlamat(
-        tAlamat.getText().trim());
+        pengaturan.setAlamat(
+                tAlamat.getText().trim());
 
-pengaturan.setNoHp(
-        tNoHp.getText().trim());
+        pengaturan.setNoHp(
+                tNoHp.getText().trim());
 
-pengaturan.setJamOperasional(
-        tJamOperasional.getText().trim());
+        pengaturan.setJamOperasional(
+                tJamOperasional.getText().trim());
 
 //Mengambil layanan laundry
-pengaturan.setLayanan(
-        tLayanan.getText().trim());
+        pengaturan.setLayanan(
+                tLayanan.getText().trim());
 
 //Mengambil slogan laundry
-pengaturan.setKeterangan(
-        tKeterangan.getText().trim());
+        pengaturan.setKeterangan(
+                tKeterangan.getText().trim());
 
 //Mengambil footer struk
-pengaturan.setFooterStruk(
-        tFooter.getText().trim());
+        pengaturan.setFooterStruk(
+                tFooter.getText().trim());
 
 //Menyimpan perubahan ke database
-controller.updatePengaturan(
-        pengaturan);
+        controller.updatePengaturan(
+                pengaturan);
 
 //Menampilkan pesan berhasil
-JOptionPane.showMessageDialog(
-        this,
-        "Informasi laundry berhasil diperbarui.");
+        JOptionPane.showMessageDialog(
+                this,
+                "Informasi laundry berhasil diperbarui.");
 
 //Menampilkan ulang data terbaru
-tampilPengaturan();
+        tampilPengaturan();
 
     }//GEN-LAST:event_btnSimpanInformasiActionPerformed
 
 //Method menampilkan seluruh data pengguna
-public void tampilPengguna(){
+    public void tampilPengguna() {
 
-    //Mengambil model tabel
-    DefaultTableModel model =
-            (DefaultTableModel) tblPengguna.getModel();
+        //Mengambil model tabel
+        DefaultTableModel model
+                = (DefaultTableModel) tblPengguna.getModel();
 
-    //Mengosongkan isi tabel
-    model.setRowCount(0);
+        //Mengosongkan isi tabel
+        model.setRowCount(0);
 
-    //Mengambil seluruh pengguna
-    List<Pengguna> daftar =
-            controllerPengguna.getAll();
+        //Mengambil seluruh pengguna
+        List<Pengguna> daftar
+                = controllerPengguna.getAll();
 
-    //Menampilkan seluruh pengguna
-    for(Pengguna pengguna : daftar){
+        //Menampilkan seluruh pengguna
+        for (Pengguna pengguna : daftar) {
 
-        model.addRow(new Object[]{
+            model.addRow(new Object[]{
+                pengguna.getNamaPengguna(),
+                pengguna.getUsername(),
+                pengguna.getRole()
 
-            pengguna.getNamaPengguna(),
-            pengguna.getUsername(),
-            pengguna.getRole()
+            });
 
-        });
+        }
 
     }
-
-}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditJenis;
