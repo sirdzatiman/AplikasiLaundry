@@ -1,21 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
+
 package aplikasilaundry.view.dialog;
 
 import aplikasilaundry.view.panel.Pengaturan;
+//Mengimpor controller pengguna
+import aplikasilaundry.controller.PenggunaController;
+
+//Mengimpor model pengguna
+import aplikasilaundry.model.Pengguna;
 import javax.swing.JOptionPane;
 
 public class popUpTambahpengguna extends javax.swing.JDialog {  
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpTambahpengguna.class.getName());
-    private Pengaturan pengaturan; // taruh di atas konstruktor
+    private Pengaturan pengaturan; 
+    //Controller pengguna
+private PenggunaController controller;
 
     public popUpTambahpengguna(java.awt.Frame parent, boolean modal, Pengaturan aThis) {
     super(parent, modal);
     initComponents();
     this.pengaturan = aThis;
-    
+    //Membuat controller pengguna
+controller = new PenggunaController();
     setLocationRelativeTo(parent);
 }
 
@@ -71,7 +76,7 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setPreferredSize(new java.awt.Dimension(403, 45));
 
-        cPeran.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Kasir" }));
+        cPeran.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Owner", "Kasir" }));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -118,7 +123,6 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (1).png"))); // NOI18N
 
         tUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tUsername.setText("Masukkan nama pengguna");
         tUsername.setBorder(null);
         tUsername.addActionListener(this::tUsernameActionPerformed);
 
@@ -179,7 +183,6 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (2).png"))); // NOI18N
         jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        tPassword.setText("jPasswordField1");
         tPassword.setBorder(null);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -238,7 +241,6 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (1).png"))); // NOI18N
 
         tNama.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tNama.setText("Masukkan nama pengguna");
         tNama.setBorder(null);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -366,6 +368,8 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
     String username = tUsername.getText(); 
     String password = new String(tPassword.getPassword());
     String peran = cPeran.getSelectedItem().toString(); 
+    //Debug role yang dipilih
+System.out.println("ROLE = [" + peran + "]");
     
    try {
     // Jalankan validasi agar inputan tidak kosong
@@ -374,14 +378,47 @@ public class popUpTambahpengguna extends javax.swing.JDialog {
         return;
     }
 
-    // === GANTI BLOK INI ===
-    // Panggil fungsi tambahDataKeTabel yang ada di objek pengaturan Anda
-    pengaturan.tambahDataKeTabel(nama, username, peran);
-    // ======================
+    //Membuat objek pengguna baru
+Pengguna pengguna = new Pengguna();
 
-    // Tutup pop-up setelah sukses
-    JOptionPane.showMessageDialog(this, "Data pengguna berhasil ditambahkan!");
-    this.dispose(); 
+//Mengisi nama pengguna
+pengguna.setNamaPengguna(nama);
+
+//Mengisi username
+pengguna.setUsername(username);
+
+//Mengisi password
+pengguna.setPassword(password);
+
+//Mengisi role
+pengguna.setRole(peran);
+
+//Menyimpan ke database
+boolean berhasil =
+        controller.simpan(pengguna);
+System.out.println("HASIL SIMPAN = " + berhasil);
+
+if(berhasil){
+
+    //Menampilkan pesan berhasil
+    JOptionPane.showMessageDialog(
+            this,
+            "Data pengguna berhasil disimpan.");
+
+    //Refresh tabel pada panel Pengaturan
+    pengaturan.tampilPengguna();
+
+    //Menutup popup
+    dispose();
+
+}else{
+
+    //Menampilkan pesan gagal
+    JOptionPane.showMessageDialog(
+            this,
+            "Data pengguna gagal disimpan!");
+
+}
     
 } catch (Exception e) {
     JOptionPane.showMessageDialog(this, "Gagal menyimpan data: " + e.getMessage());
