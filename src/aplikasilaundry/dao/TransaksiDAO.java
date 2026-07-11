@@ -949,25 +949,25 @@ ORDER BY
         StringBuilder sql = new StringBuilder();
 
         sql.append("""
-SELECT
-    t.no_nota,
-    p.nama_pelanggan,
-    t.jam_masuk,
-    MIN(l.nama_layanan) AS jenis,
-    COUNT(dt.id_detail) AS jumlah_item,
-    t.total_harga,
-    st.nama_status
-FROM transaksi t
-JOIN pelanggan p
-    ON t.id_pelanggan = p.id_pelanggan
-JOIN status_transaksi st
-    ON t.id_status = st.id_status
-JOIN detail_transaksi dt
-    ON t.id_transaksi = dt.id_transaksi
-JOIN layanan l
-    ON dt.id_layanan = l.id_layanan
-WHERE t.id_status = 1
-""");
+            SELECT
+                t.no_nota,
+                p.nama_pelanggan,
+                t.jam_masuk,
+                MIN(l.nama_layanan) AS jenis,
+                COUNT(dt.id_detail) AS jumlah_item,
+                t.total_harga,
+                st.nama_status
+            FROM transaksi t
+            JOIN pelanggan p
+                ON t.id_pelanggan = p.id_pelanggan
+            JOIN status_transaksi st
+                ON t.id_status = st.id_status
+            JOIN detail_transaksi dt
+                ON t.id_transaksi = dt.id_transaksi
+            JOIN layanan l
+                ON dt.id_layanan = l.id_layanan
+            WHERE t.id_status = 1
+            """);
 
         if (keyword != null && !keyword.isBlank()) {
 
@@ -989,16 +989,16 @@ WHERE t.id_status = 1
         }
 
         sql.append("""
-GROUP BY
-    t.id_transaksi,
-    t.no_nota,
-    p.nama_pelanggan,
-    t.jam_masuk,
-    t.total_harga,
-    st.nama_status
-ORDER BY
-    t.id_transaksi DESC
-""");
+            GROUP BY
+                t.id_transaksi,
+                t.no_nota,
+                p.nama_pelanggan,
+                t.jam_masuk,
+                t.total_harga,
+                st.nama_status
+            ORDER BY
+                t.id_transaksi DESC
+            """);
 
         try {
 

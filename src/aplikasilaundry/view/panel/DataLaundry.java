@@ -29,6 +29,7 @@ public class DataLaundry extends javax.swing.JPanel {
 
         //Membuat seluruh panel Data Laundry
         initComponents();
+        
 
         //Membuat objek panel Semua
         panelSemua = new Semua();
@@ -56,6 +57,7 @@ public class DataLaundry extends javax.swing.JPanel {
 
         //Menampilkan panel pertama
         tampilPanel("semua");
+        btnSemua.doClick();
 
     }
 
