@@ -5,7 +5,7 @@ import aplikasilaundry.controller.PenggunaController;
 
 //Mengimpor model pengguna
 import aplikasilaundry.model.Pengguna;
-
+import javax.swing.JOptionPane;
 //Mengimpor panel pengaturan
 import aplikasilaundry.view.panel.Pengaturan;
 public class popUpPensil extends javax.swing.JDialog {
@@ -29,6 +29,14 @@ private Pengguna pengguna;
 
     //Posisi popup di tengah
     setLocationRelativeTo(parent);
+}
+    //Method menerima panel Pengaturan
+public void setPengaturan(
+        Pengaturan pengaturan){
+
+    //Menyimpan panel Pengaturan
+    this.pengaturan = pengaturan;
+
 }
     //Method menerima data pengguna yang akan diedit
 public void setPengguna(Pengguna pengguna){
@@ -118,7 +126,7 @@ public popUpPensil(java.awt.Frame parent,
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setPreferredSize(new java.awt.Dimension(403, 45));
 
-        cPeran.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Kasir" }));
+        cPeran.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Owner", "Kasir" }));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -165,7 +173,7 @@ public popUpPensil(java.awt.Frame parent,
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (1).png"))); // NOI18N
 
         tUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tUsername.setText("admin123");
+        tUsername.setText(" ");
         tUsername.setBorder(null);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -287,7 +295,6 @@ public popUpPensil(java.awt.Frame parent,
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector (1).png"))); // NOI18N
 
         tNamaPengguna.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tNamaPengguna.setText("Admin");
         tNamaPengguna.setBorder(null);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -337,6 +344,7 @@ public popUpPensil(java.awt.Frame parent,
         btnSimpan.setText("Simpan");
         btnSimpan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSimpan.setPreferredSize(new java.awt.Dimension(125, 44));
+        btnSimpan.addActionListener(this::btnSimpanActionPerformed);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -416,6 +424,78 @@ public popUpPensil(java.awt.Frame parent,
             tPassword.setEchoChar('•');
         }
     }//GEN-LAST:event_btnMataActionPerformed
+
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        // TODO add your handling code here:
+        //Mengambil data dari form
+String nama =
+        tNamaPengguna.getText().trim();
+
+String username =
+        tUsername.getText().trim();
+
+String password =
+        new String(
+                tPassword.getPassword()).trim();
+
+String role =
+        cPeran.getSelectedItem().toString();
+
+//Validasi
+if(nama.isEmpty()
+        || username.isEmpty()){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Nama dan Username tidak boleh kosong.");
+
+    return;
+
+}
+
+//Mengubah data pengguna
+pengguna.setNamaPengguna(
+        nama);
+
+pengguna.setUsername(
+        username);
+
+//Password hanya diubah jika diisi
+pengguna.setPassword(
+        password);
+
+pengguna.setRole(
+        role);
+
+//Menyimpan perubahan
+boolean berhasil =
+        controller.update(
+                pengguna);
+
+if(berhasil){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Data pengguna berhasil diperbarui.");
+
+    //Refresh tabel pengguna
+    if(pengaturan != null){
+
+        pengaturan.tampilPengguna();
+
+    }
+
+    //Menutup popup
+    dispose();
+
+}else{
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Data pengguna gagal diperbarui.");
+
+}
+    }//GEN-LAST:event_btnSimpanActionPerformed
 
     /**
      * @param args the command line arguments

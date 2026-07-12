@@ -19,7 +19,11 @@ import java.util.List;
 import aplikasilaundry.controller.TransaksiController;
 //Mengimpor controller pengguna
 import aplikasilaundry.controller.PenggunaController;
+//Mengimpor controller layanan
+import aplikasilaundry.controller.LayananController;
 
+//Mengimpor model layanan
+import aplikasilaundry.model.Layanan;
 //Mengimpor model pengguna
 import aplikasilaundry.model.Pengguna;
 //Mengimpor JOptionPane
@@ -39,12 +43,13 @@ public class Pengaturan extends javax.swing.JPanel {
     private PenggunaController controllerPengguna;
 //Controller transaksi
     private TransaksiController controllerTransaksi;
-
+//Controller layanan
+private LayananController controllerLayanan;
 //Model pengaturan
     private PengaturanStruk pengaturan;
 
     public Pengaturan() {
-
+ 
         initComponents();
         
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(35);
@@ -75,20 +80,60 @@ public class Pengaturan extends javax.swing.JPanel {
         //Membuat controller
         controller
                 = new PengaturanStrukController();
+        //Membuat controller layanan
+controllerLayanan =
+        new LayananController();
         //Membuat controller transaksi
         controllerTransaksi
                 = new TransaksiController();
 //Membuat controller pengguna
         controllerPengguna
                 = new PenggunaController();
-
+//Membuat controller layanan
+controllerLayanan =
+        new LayananController();
         //Menampilkan data pengaturan
         tampilPengaturan();
 //Menampilkan data pengguna
         tampilPengguna();
+        //Menampilkan data layanan
+tampilLayanan();
     }
+    
 //Method menampilkan data pengaturan
+//Method menampilkan seluruh layanan
+public void tampilLayanan(){
 
+    //Mengambil model tabel
+    DefaultTableModel model =
+            (DefaultTableModel) tblJenis.getModel();
+
+    //Mengosongkan isi tabel
+    model.setRowCount(0);
+
+    //Mengambil seluruh layanan
+    List<Layanan> daftar =
+            controllerLayanan.getAll();
+
+   int no = 1;
+
+for(Layanan layanan : daftar){
+
+        model.addRow(new Object[]{
+
+    no++,
+    layanan.getNamaLayanan(),
+    layanan.getProses(),
+    layanan.getSatuan(),
+    FormatRupiah.format(
+            layanan.getHarga()),
+    layanan.getKeterangan()
+
+});
+
+    }
+
+}
     private void tampilPengaturan() {
 
         //Mengambil data pengaturan
@@ -1342,13 +1387,10 @@ public class Pengaturan extends javax.swing.JPanel {
 
         tblJenis.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "No", "Nama Layanan", "Proses", "Satuan", "Harga", "Keterangsn"
             }
         ));
         jScrollPane4.setViewportView(tblJenis);
@@ -1460,7 +1502,15 @@ public class Pengaturan extends javax.swing.JPanel {
 
     private void btnTambahKonfigurasiLAyananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahKonfigurasiLAyananActionPerformed
         // TODO add your handling code here:
+//Membuka popup tambah konfigurasi layanan
+popUpTambahKonfigurasiLayanan dialog =
+        new popUpTambahKonfigurasiLayanan(
+                (java.awt.Frame)
+                javax.swing.SwingUtilities.getWindowAncestor(this),
+                true);
 
+//Menampilkan popup
+dialog.setVisible(true);
     }//GEN-LAST:event_btnTambahKonfigurasiLAyananActionPerformed
 
     private void btnHapusJenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusJenisActionPerformed
@@ -1478,10 +1528,63 @@ public class Pengaturan extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSimpanPengaturanActionPerformed
 
     private void btnHappusPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHappusPenggunaActionPerformed
-//        //        // TODO add your handling code here:
-//        popUpKonfirmasiHapus popup = new popUpKonfirmasiHapus(getParentFrame(), true);
-//        popup.setLocationRelativeTo(getParentFrame());
-//        popup.setVisible(true);
+//Mengambil baris yang dipilih
+int baris = tblPengguna.getSelectedRow();
+
+//Validasi
+if(baris == -1){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Pilih pengguna yang akan dihapus.");
+
+    return;
+
+}
+
+//Mengambil username
+String username =
+        tblPengguna.getValueAt(
+                baris,
+                1).toString();
+
+//Mencari ID pengguna
+int idPengguna = 0;
+
+for(Pengguna p :
+        controllerPengguna.getAll()){
+
+    if(p.getUsername().equals(username)){
+
+        idPengguna =
+                p.getIdPengguna();
+
+        break;
+
+    }
+
+}
+//Jika ID tidak ditemukan
+if(idPengguna == 0){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Data pengguna tidak ditemukan.");
+
+    return;
+
+}
+//Membuka popup konfirmasi
+popUpKonfirmasiHapus dialog =
+        new popUpKonfirmasiHapus(
+                (java.awt.Frame)
+                javax.swing.SwingUtilities.getWindowAncestor(this),
+                true,
+                idPengguna,
+                this);
+
+//Menampilkan popup
+dialog.setVisible(true);
     }//GEN-LAST:event_btnHappusPenggunaActionPerformed
 
     private void btnEditPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditPenggunaActionPerformed
@@ -1539,6 +1642,8 @@ popUpPensil dialog =
                 (java.awt.Frame)
                 javax.swing.SwingUtilities.getWindowAncestor(this),
                 true);
+//Mengirim panel Pengaturan
+dialog.setPengaturan(this);
 
 //Mengirim data ke popup
 dialog.setPengguna(data);
@@ -1610,6 +1715,9 @@ dialog.setVisible(true);
 
         //Mengosongkan isi tabel
         model.setRowCount(0);
+        
+System.out.println("Jumlah pengguna = "
+        + controllerPengguna.getAll().size());
 
         //Mengambil seluruh pengguna
         List<Pengguna> daftar
@@ -1617,7 +1725,8 @@ dialog.setVisible(true);
 
         //Menampilkan seluruh pengguna
         for (Pengguna pengguna : daftar) {
-
+System.out.println(
+        pengguna.getNamaPengguna());
             model.addRow(new Object[]{
                 pengguna.getNamaPengguna(),
                 pengguna.getUsername(),
@@ -1628,6 +1737,7 @@ dialog.setVisible(true);
         }
 
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditJenis;

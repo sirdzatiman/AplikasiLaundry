@@ -213,38 +213,72 @@ public boolean update(Pengguna pengguna){
 
     try{
 
-        //Query mengubah data pengguna
-        String sql =
-                "UPDATE pengguna SET "
-                + "nama_pengguna=?, "
-                + "username=?, "
-                + "password=MD5(?), "
-                + "role=? "
-                + "WHERE id_pengguna=?";
+        PreparedStatement ps;
 
-        //Menyiapkan query
-        PreparedStatement ps =
-                conn.prepareStatement(sql);
+        //Jika password tidak diubah
+        if(pengguna.getPassword() == null
+                || pengguna.getPassword().trim().isEmpty()){
 
-        //Mengisi nama pengguna
-        ps.setString(1,
-                pengguna.getNamaPengguna());
+            //Query tanpa mengubah password
+            String sql =
+                    "UPDATE pengguna SET "
+                    + "nama_pengguna=?, "
+                    + "username=?, "
+                    + "role=? "
+                    + "WHERE id_pengguna=?";
 
-        //Mengisi username
-        ps.setString(2,
-                pengguna.getUsername());
+            ps = conn.prepareStatement(sql);
 
-        //Mengisi password
-        ps.setString(3,
-                pengguna.getPassword());
+            //Mengisi nama pengguna
+            ps.setString(1,
+                    pengguna.getNamaPengguna());
 
-        //Mengisi role
-        ps.setString(4,
-                pengguna.getRole());
+            //Mengisi username
+            ps.setString(2,
+                    pengguna.getUsername());
 
-        //Mengisi ID pengguna
-        ps.setInt(5,
-                pengguna.getIdPengguna());
+            //Mengisi role
+            ps.setString(3,
+                    pengguna.getRole());
+
+            //Mengisi ID pengguna
+            ps.setInt(4,
+                    pengguna.getIdPengguna());
+
+        }else{
+
+            //Query beserta password
+            String sql =
+                    "UPDATE pengguna SET "
+                    + "nama_pengguna=?, "
+                    + "username=?, "
+                    + "password=MD5(?), "
+                    + "role=? "
+                    + "WHERE id_pengguna=?";
+
+            ps = conn.prepareStatement(sql);
+
+            //Mengisi nama pengguna
+            ps.setString(1,
+                    pengguna.getNamaPengguna());
+
+            //Mengisi username
+            ps.setString(2,
+                    pengguna.getUsername());
+
+            //Mengisi password
+            ps.setString(3,
+                    pengguna.getPassword());
+
+            //Mengisi role
+            ps.setString(4,
+                    pengguna.getRole());
+
+            //Mengisi ID pengguna
+            ps.setInt(5,
+                    pengguna.getIdPengguna());
+
+        }
 
         //Menjalankan query
         return ps.executeUpdate() > 0;
@@ -338,8 +372,7 @@ public boolean hapus(int idPengguna){
         e.printStackTrace();
 
     }
-
     return false;
-
 }
+
 }

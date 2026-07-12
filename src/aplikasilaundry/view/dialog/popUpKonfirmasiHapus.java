@@ -6,11 +6,24 @@ import aplikasilaundry.view.frame.FrameDashboard;
 
 //Mengimpor SwingUtilities
 import javax.swing.SwingUtilities;
+//Mengimpor controller pengguna
+import aplikasilaundry.controller.PenggunaController;
+
+//Mengimpor panel Pengaturan
+import aplikasilaundry.view.panel.Pengaturan;
 public class popUpKonfirmasiHapus extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpKonfirmasiHapus.class.getName());
 //Controller transaksi
 private TransaksiController controller;
+//Controller pengguna
+private PenggunaController controllerPengguna;
+
+//ID pengguna yang akan dihapus
+private int idPengguna;
+
+//Panel Pengaturan
+private Pengaturan pengaturan;
 
 //Nomor nota yang akan dihapus
 private String noNota;
@@ -25,6 +38,7 @@ public popUpKonfirmasiHapus(
         String noNota,
         popUpPensilEdit popupEdit) {
 
+    
     super(parent, modal);
 
     initComponents();
@@ -37,6 +51,24 @@ public popUpKonfirmasiHapus(
 
     //Menyimpan popup edit
     this.popupEdit = popupEdit;
+
+}
+//Constructor pengguna
+public popUpKonfirmasiHapus(
+        java.awt.Frame parent,
+        boolean modal,
+        int idPengguna,
+        Pengaturan pengaturan){
+
+    super(parent, modal);
+
+    initComponents();
+
+    controllerPengguna =
+            new PenggunaController();
+
+    this.idPengguna = idPengguna;
+    this.pengaturan = pengaturan;
 
 }
 
@@ -138,22 +170,41 @@ public popUpKonfirmasiHapus(
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
-       //Menghapus transaksi
-controller.hapusTransaksi(noNota);
+       //Jika menghapus transaksi
+    if(noNota != null){
 
-//Mengambil FrameDashboard
-FrameDashboard frame =
-        (FrameDashboard)
-        SwingUtilities.getWindowAncestor(popupEdit);
+        //Menghapus transaksi
+        controller.hapusTransaksi(noNota);
 
-//Refresh seluruh panel
-frame.getDataLaundry().refreshSemuaPanel();
+        //Mengambil FrameDashboard
+        FrameDashboard frame =
+                (FrameDashboard)
+                SwingUtilities.getWindowAncestor(popupEdit);
 
-//Menutup popup edit
-popupEdit.dispose();
+        //Refresh seluruh panel
+        frame.getDataLaundry().refreshSemuaPanel();
 
-//Menutup popup konfirmasi
-dispose();
+        //Menutup popup edit
+        popupEdit.dispose();
+
+    }
+    //Jika menghapus pengguna
+    else if(idPengguna != 0){
+
+        //Menghapus pengguna
+        controllerPengguna.hapus(idPengguna);
+
+        //Refresh tabel pengguna
+        if(pengaturan != null){
+            pengaturan.tampilPengguna();
+        }
+
+    }
+
+    //Menutup popup konfirmasi
+    dispose();
+
+
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
