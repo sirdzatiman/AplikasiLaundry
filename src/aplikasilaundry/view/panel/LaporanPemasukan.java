@@ -318,7 +318,7 @@ public class LaporanPemasukan extends javax.swing.JPanel {
 
         jPanel16.setBackground(new java.awt.Color(240, 243, 247));
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jLabel17.setText("Laporan hanya menghitung transaksi yang sudah diambil pelanggan.");
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
@@ -367,7 +367,7 @@ public class LaporanPemasukan extends javax.swing.JPanel {
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel8.setText("Total Transaksi");
 
         lblTotalTransaksi.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -402,13 +402,13 @@ public class LaporanPemasukan extends javax.swing.JPanel {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 255));
         jLabel10.setText("Ringkasan");
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblRata.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblRata.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblRata.setText("Rata-rata Transaksi");
 
         lblRataTransaksi.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -445,7 +445,7 @@ public class LaporanPemasukan extends javax.swing.JPanel {
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel11.setText("Total Pemasukan");
 
         lblTotalPemasukan.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -464,7 +464,7 @@ public class LaporanPemasukan extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTotalPemasukan)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel11))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
@@ -482,7 +482,7 @@ public class LaporanPemasukan extends javax.swing.JPanel {
 
         jPanel19.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblRata1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblRata1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblRata1.setText("Total Item");
 
         lblItem.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -547,7 +547,7 @@ public class LaporanPemasukan extends javax.swing.JPanel {
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(5, Short.MAX_VALUE))
         );
 
         jPanel5.add(jPanel6, java.awt.BorderLayout.LINE_START);
@@ -559,7 +559,7 @@ public class LaporanPemasukan extends javax.swing.JPanel {
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setPreferredSize(new java.awt.Dimension(696, 50));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
         jLabel1.setText("Rincian Pemasukan");
 
@@ -592,10 +592,10 @@ public class LaporanPemasukan extends javax.swing.JPanel {
         jPanel17.setMinimumSize(new java.awt.Dimension(100, 37));
         jPanel17.setPreferredSize(new java.awt.Dimension(696, 37));
 
-        jLabel22.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Segoe UI Semibold", 1, 17)); // NOI18N
         jLabel22.setText("Total Pendapatan ");
 
-        lblTotalPendapatan.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        lblTotalPendapatan.setFont(new java.awt.Font("Segoe UI Semibold", 1, 17)); // NOI18N
         lblTotalPendapatan.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotalPendapatan.setText("Rp 18.000");
 
@@ -621,10 +621,10 @@ public class LaporanPemasukan extends javax.swing.JPanel {
         jPanel18.setMinimumSize(new java.awt.Dimension(696, 38));
         jPanel18.setPreferredSize(new java.awt.Dimension(696, 38));
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Segoe UI Semibold", 1, 17)); // NOI18N
         jLabel21.setText("Total Item ");
 
-        lblTotalItem.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        lblTotalItem.setFont(new java.awt.Font("Segoe UI Semibold", 1, 17)); // NOI18N
         lblTotalItem.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotalItem.setText("3");
 
