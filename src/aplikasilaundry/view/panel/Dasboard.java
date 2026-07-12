@@ -16,11 +16,9 @@ import javax.swing.SwingUtilities;
  * @author Sirdzat
  */
 public class Dasboard extends javax.swing.JPanel {
-    
-    //deklarasi variable untuk menginisiasi class transaksiDAO
+
     private TransaksiDAO transaksiDAO = new TransaksiDAO();
-    
-    //constructor
+
     public Dasboard() {
         initComponents();
         myDesign();
@@ -33,69 +31,81 @@ public class Dasboard extends javax.swing.JPanel {
         lblSelamatDatang.setText("Selamat Datang, " + Session.getNamaPengguna());
 
     }
+    
+    
 
     private void tampilJumlahTransaksi() {
 
-        lblMasuk.setText(String.valueOf(transaksiDAO.getLaundryMasuk().size()));
+        lblMasuk.setText(String.valueOf(
+                transaksiDAO.getLaundryMasuk().size()));
 
-        lblDiproses.setText(String.valueOf(transaksiDAO.getDiproses().size()));
+        lblDiproses.setText(String.valueOf(
+                transaksiDAO.getDiproses().size()));
 
-        lblSelesai.setText(String.valueOf(transaksiDAO.getSelesai().size()));
+        lblSelesai.setText(String.valueOf(
+                transaksiDAO.getSelesai().size()));
 
-        lblDiambil.setText(String.valueOf(transaksiDAO.getSudahDiambil().size()));
+        lblDiambil.setText(String.valueOf(
+                transaksiDAO.getSudahDiambil().size()));
 
     }
 
     //Method menampilkan transaksi terbaru pada tabel Dashboard
-    private void tampilTransaksiTerbaru() {
+private void tampilTransaksiTerbaru() {
 
-        //Mengambil model tabel
-        DefaultTableModel model
-                = (DefaultTableModel) tblDashboard.getModel();
+    //Mengambil model tabel
+    DefaultTableModel model =
+            (DefaultTableModel) tblDashboard.getModel();
 
-        //Menghapus seluruh isi tabel
-        model.setRowCount(0);
+    //Menghapus seluruh isi tabel
+    model.setRowCount(0);
 
-        //Mengambil daftar transaksi terbaru
-        List<Transaksi> list
-                = transaksiDAO.getTransaksiTerbaru();
+    //Mengambil daftar transaksi terbaru
+    List<Transaksi> list =
+            transaksiDAO.getTransaksiTerbaru();
 
-        //Menampilkan seluruh transaksi
-        for (Transaksi t : list) {
+    //Menampilkan seluruh transaksi
+    for (Transaksi t : list) {
 
-            //Menyimpan jenis layanan
-            String jenis = t.getJenis();
+        //Menyimpan jenis layanan
+        String jenis = t.getJenis();
 
-            //Jika terdapat lebih dari satu item laundry
-            if (t.getJumlahItem() > 1) {
+        //Jika terdapat lebih dari satu item laundry
+        if (t.getJumlahItem() > 1) {
 
-                //Menambahkan jumlah item lainnya
-                jenis = jenis + " +" + (t.getJumlahItem() - 1);
-
-            }
-
-            //Menambahkan data ke tabel
-            model.addRow(new Object[]{
-                //Nomor nota
-                t.getNoNota(),
-                //Nama pelanggan
-                t.getNamaPelanggan(),
-                //Jam masuk
-                FormatJam.format(
-                t.getJamMasuk()),
-                //Jenis layanan
-                jenis,
-                //Total harga
-                FormatRupiah.format(
-                t.getTotalHarga()),
-                //Status transaksi
-                t.getStatus()
-
-            });
+            //Menambahkan jumlah item lainnya
+            jenis = jenis + " +" + (t.getJumlahItem() - 1);
 
         }
 
+        //Menambahkan data ke tabel
+        model.addRow(new Object[]{
+
+            //Nomor nota
+            t.getNoNota(),
+
+            //Nama pelanggan
+            t.getNamaPelanggan(),
+
+            //Jam masuk
+            FormatJam.format(
+                    t.getJamMasuk()),
+
+            //Jenis layanan
+            jenis,
+
+            //Total harga
+            FormatRupiah.format(
+                    t.getTotalHarga()),
+
+            //Status transaksi
+            t.getStatus()
+
+        });
+
     }
+
+}
 
     void myDesign() {
         btnLihatSemua.putClientProperty("FlatLaf.style",

@@ -1,7 +1,10 @@
+
 package aplikasilaundry.view.panel;
 
+import aplikasilaundry.view.dialog.popUpPensilEdit;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Container;
 import javax.swing.JToggleButton;
 import javax.swing.SwingUtilities;
 import aplikasilaundry.view.dialog.detailLaundry;
@@ -10,106 +13,107 @@ import javax.swing.JOptionPane;
 import aplikasilaundry.view.dialog.popUpPensilEdit;
 
 public class DataLaundry extends javax.swing.JPanel {
+//Menyimpan panel Semua
+private Semua panelSemua;
 
-    //Menyimpan panel Semua
-    private Semua panelSemua;
+//Menyimpan panel Laundry Masuk
+private LaundryMasuk panelMasuk;
 
-    //Menyimpan panel Laundry Masuk
-    private LaundryMasuk panelMasuk;
+//Menyimpan panel Diproses
+private Diproses panelProses;
 
-    //Menyimpan panel Diproses
-    private Diproses panelProses;
+//Menyimpan panel Selesai Belum Diambil
+private SelesaiBelumDiambil panelSelesai;
+    
 
-    //Menyimpan panel Selesai Belum Diambil
-    private SelesaiBelumDiambil panelSelesai;
-
+   
     public DataLaundry() {
 
-        //Membuat seluruh panel Data Laundry
-        initComponents();
+    //Membuat seluruh panel Data Laundry
+    initComponents();
 
-        //Membuat objek panel Semua
-        panelSemua = new Semua();
+    //Membuat objek panel Semua
+    panelSemua = new Semua();
 
-        //Membuat objek panel Laundry Masuk
-        panelMasuk = new LaundryMasuk();
+    //Membuat objek panel Laundry Masuk
+    panelMasuk = new LaundryMasuk();
 
-        //Membuat objek panel Diproses
-        panelProses = new Diproses();
+    //Membuat objek panel Diproses
+    panelProses = new Diproses();
 
-        //Membuat objek panel Selesai Belum Diambil
-        panelSelesai = new SelesaiBelumDiambil();
+    //Membuat objek panel Selesai Belum Diambil
+    panelSelesai = new SelesaiBelumDiambil();
 
-        //Menambahkan panel Semua ke CardLayout
-        panelContentDataLaundry.add(panelSemua, "semua");
+    //Menambahkan panel Semua ke CardLayout
+    panelContentDataLaundry.add(panelSemua, "semua");
 
-        //Menambahkan panel Laundry Masuk ke CardLayout
-        panelContentDataLaundry.add(panelMasuk, "masuk");
+    //Menambahkan panel Laundry Masuk ke CardLayout
+    panelContentDataLaundry.add(panelMasuk, "masuk");
 
-        //Menambahkan panel Diproses ke CardLayout
-        panelContentDataLaundry.add(panelProses, "proses");
+    //Menambahkan panel Diproses ke CardLayout
+    panelContentDataLaundry.add(panelProses, "proses");
 
-        //Menambahkan panel Selesai Belum Diambil ke CardLayout
-        panelContentDataLaundry.add(panelSelesai, "selesai");
+    //Menambahkan panel Selesai Belum Diambil ke CardLayout
+    panelContentDataLaundry.add(panelSelesai, "selesai");
 
-        //Menampilkan panel pertama
-        tampilPanel("semua");
+    //Menampilkan panel pertama
+    tampilPanel("semua");
 
-    }
-
+}
     private void tampilPanel(String namaKartu) {
         CardLayout cl = (CardLayout) panelContentDataLaundry.getLayout();
         cl.show(panelContentDataLaundry, namaKartu);
     }
+    public void tampilStatus(String status){
 
-    public void tampilStatus(String status) {
+    switch(status){
 
-        switch (status) {
+        case "semua":
+            tampilPanel("semua");
+            btnSemua.setSelected(true);
+            setButtonAktif(btnSemua);
+            break;
 
-            case "semua":
-                tampilPanel("semua");
-                btnSemua.setSelected(true);
-                setButtonAktif(btnSemua);
-                break;
+        case "masuk":
+            tampilPanel("masuk");
+            btnMasuk.setSelected(true);
+            setButtonAktif(btnMasuk);
+            break;
 
-            case "masuk":
-                tampilPanel("masuk");
-                btnMasuk.setSelected(true);
-                setButtonAktif(btnMasuk);
-                break;
+        case "proses":
+            tampilPanel("proses");
+            btnProses.setSelected(true);
+            setButtonAktif(btnProses);
+            break;
 
-            case "proses":
-                tampilPanel("proses");
-                btnProses.setSelected(true);
-                setButtonAktif(btnProses);
-                break;
-
-            case "selesai":
-                tampilPanel("selesai");
-                btnSelesai.setSelected(true);
-                setButtonAktif(btnSelesai);
-                break;
-        }
-
+        case "selesai":
+            tampilPanel("selesai");
+            btnSelesai.setSelected(true);
+            setButtonAktif(btnSelesai);
+            break;
     }
 
-    private void setButtonAktif(JToggleButton btnAktif) {
-        // Reset semua tombol
-        btnSemua.setBackground(Color.WHITE);
-        btnMasuk.setBackground(Color.WHITE);
-        btnProses.setBackground(Color.WHITE);
-        btnSelesai.setBackground(Color.WHITE);
+}
+    
+    
+    
+    private void setButtonAktif(JToggleButton btnAktif){
+    // Reset semua tombol
+    btnSemua.setBackground(Color.WHITE);
+    btnMasuk.setBackground(Color.WHITE);
+    btnProses.setBackground(Color.WHITE);
+    btnSelesai.setBackground(Color.WHITE);
 
-        btnSemua.setForeground(Color.BLACK);
-        btnMasuk.setForeground(Color.BLACK);
-        btnProses.setForeground(Color.BLACK);
-        btnSelesai.setForeground(Color.BLACK);
+    btnSemua.setForeground(Color.BLACK);
+    btnMasuk.setForeground(Color.BLACK);
+    btnProses.setForeground(Color.BLACK);
+    btnSelesai.setForeground(Color.BLACK);
 
-        // Tombol aktif
-        btnAktif.setBackground(new Color(37, 99, 235));
-        btnAktif.setForeground(Color.WHITE);
+    // Tombol aktif
+    btnAktif.setBackground(new Color(37, 99, 235)); 
+    btnAktif.setForeground(Color.WHITE);
 
-    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -374,57 +378,57 @@ public class DataLaundry extends javax.swing.JPanel {
 
     private void btnPensilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPensilActionPerformed
         // TODO add your handling code here:
-
         //Menyimpan tabel yang sedang aktif
-        JTable tabel;
+JTable tabel;
 
-        //Menentukan tabel berdasarkan tab yang dipilih
-        if (btnSemua.isSelected()) {
+//Menentukan tabel berdasarkan tab yang dipilih
+if(btnSemua.isSelected()){
 
-            tabel = panelSemua.getTblSemua();
+    tabel = panelSemua.getTblSemua();
 
-        } else if (btnMasuk.isSelected()) {
+}else if(btnMasuk.isSelected()){
 
-            tabel = panelMasuk.getTblMasuk();
+    tabel = panelMasuk.getTblMasuk();
 
-        } else if (btnProses.isSelected()) {
+}else if(btnProses.isSelected()){
 
-            tabel = panelProses.getTblDiproses();
+    tabel = panelProses.getTblDiproses();
 
-        } else {
+}else{
 
-            tabel = panelSelesai.getTblSelesai();
+    tabel = panelSelesai.getTblSelesai();
 
-        }
+}
 
-        //Jika belum memilih data
-        if (tabel.getSelectedRow() == -1) {
+//Jika belum memilih data
+if(tabel.getSelectedRow() == -1){
 
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Silakan pilih data terlebih dahulu.");
+    JOptionPane.showMessageDialog(
+            this,
+            "Silakan pilih data terlebih dahulu.");
 
-            return;
+    return;
 
-        }
+}
 
-        //Mengambil nomor nota
-        String noNota
-                = tabel.getValueAt(
-                        tabel.getSelectedRow(),
-                        0).toString();
+//Mengambil nomor nota
+String noNota =
+        tabel.getValueAt(
+                tabel.getSelectedRow(),
+                0).toString();
 
-        //Membuka popup Edit Laundry
-        popUpPensilEdit dialog
-                = new popUpPensilEdit(
-                        (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
-                        true,
-                        noNota);
+//Membuka popup Edit Laundry
+popUpPensilEdit dialog =
+        new popUpPensilEdit(
+                (java.awt.Frame)
+                SwingUtilities.getWindowAncestor(this),
+                true,
+                noNota);
 
-        dialog.setLocationRelativeTo(this);
-        dialog.setVisible(true);        
-        //Memperbarui seluruh panel Data Laundry
-        refreshSemuaPanel();
+dialog.setLocationRelativeTo(this);
+dialog.setVisible(true);
+//Memperbarui seluruh panel Data Laundry
+refreshSemuaPanel();
     }//GEN-LAST:event_btnPensilActionPerformed
 
     private void btnSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSemuaActionPerformed
@@ -453,77 +457,77 @@ public class DataLaundry extends javax.swing.JPanel {
 
     private void btnLihatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLihatActionPerformed
         // TODO add your handling code here:
-        //Menyimpan tabel yang sedang aktif
-        JTable tabel;
+      //Menyimpan tabel yang sedang aktif
+JTable tabel;
 
-        //Menentukan tabel berdasarkan tab yang dipilih
-        if (btnSemua.isSelected()) {
+//Menentukan tabel berdasarkan tab yang dipilih
+if(btnSemua.isSelected()){
 
-            tabel = panelSemua.getTblSemua();
+    tabel = panelSemua.getTblSemua();
 
-        } else if (btnMasuk.isSelected()) {
+}else if(btnMasuk.isSelected()){
 
-            tabel = panelMasuk.getTblMasuk();
+    tabel = panelMasuk.getTblMasuk();
 
-        } else if (btnProses.isSelected()) {
+}else if(btnProses.isSelected()){
 
-            tabel = panelProses.getTblDiproses();
+    tabel = panelProses.getTblDiproses();
 
-        } else {
+}else{
 
-            tabel = panelSelesai.getTblSelesai();
+    tabel = panelSelesai.getTblSelesai();
 
-        }
-        System.out.println("Tab Semua : " + btnSemua.isSelected());
-        System.out.println("Tab Masuk : " + btnMasuk.isSelected());
-        System.out.println("Tab Proses : " + btnProses.isSelected());
-        System.out.println("Tab Selesai : " + btnSelesai.isSelected());
+}
+System.out.println("Tab Semua : " + btnSemua.isSelected());
+System.out.println("Tab Masuk : " + btnMasuk.isSelected());
+System.out.println("Tab Proses : " + btnProses.isSelected());
+System.out.println("Tab Selesai : " + btnSelesai.isSelected());
 
-        System.out.println("Baris terpilih = " + tabel.getSelectedRow());
+System.out.println("Baris terpilih = " + tabel.getSelectedRow());
 
-        //Jika belum memilih data
-        if (tabel.getSelectedRow() == -1) {
+//Jika belum memilih data
+if(tabel.getSelectedRow() == -1){
 
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Silakan pilih data terlebih dahulu.");
+    JOptionPane.showMessageDialog(
+            this,
+            "Silakan pilih data terlebih dahulu.");
 
-            return;
+    return;
 
-        }
-        //Mengambil nomor nota dari baris yang dipilih
-        String noNota
-                = tabel.getValueAt(
-                        tabel.getSelectedRow(),
-                        0).toString();
+}
+//Mengambil nomor nota dari baris yang dipilih
+String noNota =
+        tabel.getValueAt(
+                tabel.getSelectedRow(),
+                0).toString();
 
-        //Membuka dialog Detail Laundry
-        detailLaundry dialog
-                = new detailLaundry(
-                        (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
-                        true,
-                        noNota);
+//Membuka dialog Detail Laundry
+detailLaundry dialog =
+        new detailLaundry(
+                (java.awt.Frame)
+                SwingUtilities.getWindowAncestor(this),
+                true,
+                noNota);
 
-        dialog.setLocationRelativeTo(this);
-        dialog.setVisible(true);
+dialog.setLocationRelativeTo(this);
+dialog.setVisible(true);
     }//GEN-LAST:event_btnLihatActionPerformed
-        
-    //Method untuk memperbarui seluruh panel Data Laundry
-    public void refreshSemuaPanel() {
+//Method untuk memperbarui seluruh panel Data Laundry
+public void refreshSemuaPanel(){
+    
+    //Memperbarui panel Semua
+    panelSemua.refreshData();
 
-        //Memperbarui panel Semua
-        panelSemua.refreshData();
+    //Memperbarui panel Laundry Masuk
+    panelMasuk.refreshData();
 
-        //Memperbarui panel Laundry Masuk
-        panelMasuk.refreshData();
+    //Memperbarui panel Diproses
+    panelProses.refreshData();
 
-        //Memperbarui panel Diproses
-        panelProses.refreshData();
+    //Memperbarui panel Selesai Belum Diambil
+    panelSelesai.refreshData();
 
-        //Memperbarui panel Selesai Belum Diambil
-        panelSelesai.refreshData();
-
-    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLihat;
@@ -550,37 +554,36 @@ public class DataLaundry extends javax.swing.JPanel {
     private javax.swing.JPanel panelContentDataLaundry;
     // End of variables declaration//GEN-END:variables
 
-    //Method untuk menampilkan panel Diproses
-    public void tampilDiproses() {
+  //Method untuk menampilkan panel Diproses
+public void tampilDiproses() {
 
-        //Menampilkan panel Diproses
-        tampilPanel("proses");
+    //Menampilkan panel Diproses
+    tampilPanel("proses");
 
-        //Mengaktifkan tombol Diproses
-        setButtonAktif(btnProses);
+    //Mengaktifkan tombol Diproses
+    setButtonAktif(btnProses);
 
-    }
-    //Method untuk menampilkan panel Selesai
+}
+   //Method untuk menampilkan panel Selesai
+public void tampilSelesai() {
 
-    public void tampilSelesai() {
+    //Menampilkan panel Selesai
+    tampilPanel("selesai");
 
-        //Menampilkan panel Selesai
-        tampilPanel("selesai");
+    //Mengaktifkan tombol Selesai
+    setButtonAktif(btnSelesai);
 
-        //Mengaktifkan tombol Selesai
-        setButtonAktif(btnSelesai);
-
-    }
+}
     //Method untuk menampilkan panel Laundry Masuk
+public void tampilLaundryMasuk() {
 
-    public void tampilLaundryMasuk() {
+    //Menampilkan panel Laundry Masuk
+    tampilPanel("masuk");
 
-        //Menampilkan panel Laundry Masuk
-        tampilPanel("masuk");
+    //Mengaktifkan tombol Laundry Masuk
+    setButtonAktif(btnMasuk);
 
-        //Mengaktifkan tombol Laundry Masuk
-        setButtonAktif(btnMasuk);
+}
 
-    }
 
 }
