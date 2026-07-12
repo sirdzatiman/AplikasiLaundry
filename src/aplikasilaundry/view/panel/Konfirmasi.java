@@ -1,5 +1,5 @@
-
 package aplikasilaundry.view.panel;
+
 import aplikasilaundry.controller.TransaksiController;
 import aplikasilaundry.model.Pelanggan;
 import aplikasilaundry.model.ItemLaundry;
@@ -8,134 +8,132 @@ import aplikasilaundry.view.dialog.popUpCetakStruk;
 
 public class Konfirmasi extends javax.swing.JPanel {
 
- //Menyimpan nomor nota transaksi
-private String noNota;
+    //Menyimpan nomor nota transaksi
+    private String noNota;
     private TambahLaundry induk;
     private TransaksiController controller;
+
     public Konfirmasi(TambahLaundry induk) {
 
-    //Menyimpan panel induk
-    this.induk = induk;
+        //Menyimpan panel induk
+        this.induk = induk;
 
-    //Membuat komponen
-    initComponents();
+        //Membuat komponen
+        initComponents();
 
-    //Mengambil controller dari panel induk
-    controller = induk.getController();
-    TableStyle.TableStyle(tblItemLaundryy);
-    
-  
+        //Mengambil controller dari panel induk
+        controller = induk.getController();
+        TableStyle.TableStyle(tblItemLaundryy);
 
-}
+    }
+
     //Method menyimpan nomor nota
-public void setNoNota(String noNota){
+    public void setNoNota(String noNota) {
 
-    //Menyimpan nomor nota
-    this.noNota = noNota;
-
-}
-///Menampilkan data pelanggan
-public void tampilDataPelanggan(Pelanggan pelanggan){
-
-    //Jika data pelanggan belum ada
-    if (pelanggan == null) {
-        return;
-    }
-
-    //Menampilkan nama pelanggan
-    lblNama.setText(pelanggan.getNamaPelanggan());
-
-    //Menampilkan nomor HP
-    lblNoHp.setText(pelanggan.getNoHp());
-
-    //Menampilkan alamat
-    lblAlaamat.setText(pelanggan.getAlamat());
-
-    //Menampilkan catatan
-    lblCatatan.setText(pelanggan.getCatatan());
-
-}
-//Menampilkan daftar item laundry
-public void tampilItem(java.util.List<ItemLaundry> daftarItem){
-
-    javax.swing.table.DefaultTableModel model =
-            (javax.swing.table.DefaultTableModel) tblItemLaundryy.getModel();
-
-    model.setRowCount(0);
-
-    int no = 1;
-
-    for(ItemLaundry item : daftarItem){
-
-        model.addRow(new Object[]{
-
-            no++,
-            item.getLayanan(),
-            item.getProses(),
-            item.getQty(),
-            item.getHarga(),
-            item.getSubtotal()
-
-        });
+        //Menyimpan nomor nota
+        this.noNota = noNota;
 
     }
 
-}
+    ///Menampilkan data pelanggan
+    public void tampilDataPelanggan(Pelanggan pelanggan) {
 
-//Method menghitung ringkasan transaksi
-public void hitungRingkasan(java.util.List<ItemLaundry> daftarItem){
+        //Jika data pelanggan belum ada
+        if (pelanggan == null) {
+            return;
+        }
 
-    //Total berat
-    double totalBerat = 0;
+        //Menampilkan nama pelanggan
+        lblNama.setText(pelanggan.getNamaPelanggan());
 
-    //Total biji
-    int totalBiji = 0;
+        //Menampilkan nomor HP
+        lblNoHp.setText(pelanggan.getNoHp());
 
-    //Total item
-    int totalItem = daftarItem.size();
+        //Menampilkan alamat
+        lblAlaamat.setText(pelanggan.getAlamat());
 
-    //Subtotal
-    java.math.BigDecimal subtotal = java.math.BigDecimal.ZERO;
+        //Menampilkan catatan
+        lblCatatan.setText(pelanggan.getCatatan());
 
-    //Menghitung seluruh item
-    for(ItemLaundry item : daftarItem){
+    }
 
-        //Jika menggunakan kilogram
-        if(item.getProses() != null){
+    //Menampilkan daftar item laundry
+    public void tampilItem(java.util.List<ItemLaundry> daftarItem) {
 
-            totalBerat += item.getQty();
+        javax.swing.table.DefaultTableModel model
+                = (javax.swing.table.DefaultTableModel) tblItemLaundryy.getModel();
+
+        model.setRowCount(0);
+
+        int no = 1;
+
+        for (ItemLaundry item : daftarItem) {
+
+            model.addRow(new Object[]{
+                no++,
+                item.getLayanan(),
+                item.getProses(),
+                item.getQty(),
+                item.getHarga(),
+                item.getSubtotal()
+
+            });
 
         }
 
-        //Jika menggunakan satuan
-        else{
+    }
 
-            totalBiji += (int)item.getQty();
+    //Method menghitung ringkasan transaksi
+    public void hitungRingkasan(java.util.List<ItemLaundry> daftarItem) {
+
+        //Total berat
+        double totalBerat = 0;
+
+        //Total biji
+        int totalBiji = 0;
+
+        //Total item
+        int totalItem = daftarItem.size();
+
+        //Subtotal
+        java.math.BigDecimal subtotal = java.math.BigDecimal.ZERO;
+
+        //Menghitung seluruh item
+        for (ItemLaundry item : daftarItem) {
+
+            //Jika menggunakan kilogram
+            if (item.getProses() != null) {
+
+                totalBerat += item.getQty();
+
+            } //Jika menggunakan satuan
+            else {
+
+                totalBiji += (int) item.getQty();
+
+            }
+
+            //Menjumlah subtotal
+            subtotal = subtotal.add(item.getSubtotal());
 
         }
 
-        //Menjumlah subtotal
-        subtotal = subtotal.add(item.getSubtotal());
+        //Menampilkan total berat
+        lblTotalBerat.setText(totalBerat + " Kg");
+
+        //Menampilkan total biji
+        lblTotalBiji.setText(String.valueOf(totalBiji));
+
+        //Menampilkan total item
+        lblTotalItem.setText(totalItem + " Item");
+
+        //Menampilkan subtotal
+        lblSubtotal.setText("Rp " + subtotal);
+
+        //Menampilkan total bayar
+        lblTotalBayar.setText("Rp " + subtotal);
 
     }
-
-    //Menampilkan total berat
-    lblTotalBerat.setText(totalBerat + " Kg");
-
-    //Menampilkan total biji
-    lblTotalBiji.setText(String.valueOf(totalBiji));
-
-    //Menampilkan total item
-    lblTotalItem.setText(totalItem + " Item");
-
-    //Menampilkan subtotal
-    lblSubtotal.setText("Rp " + subtotal);
-
-    //Menampilkan total bayar
-    lblTotalBayar.setText("Rp " + subtotal);
-
-}
-//Method ketika tombol Simpan Transaksi ditekan
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -777,94 +775,91 @@ public void hitungRingkasan(java.util.List<ItemLaundry> daftarItem){
 
     private void btnCetakStrukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakStrukActionPerformed
         // TODO add your handling code here:
-        popUpCetakStruk dialog =
-        new popUpCetakStruk(
-                (java.awt.Frame)
-                javax.swing.SwingUtilities.getWindowAncestor(this),
-                true);
+        popUpCetakStruk dialog
+                = new popUpCetakStruk(
+                        (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this),
+                        true);
 
-dialog.setPreviewData(
+        dialog.setPreviewData(
+                lblNama.getText(),
+                lblNoHp.getText(),
+                lblAlaamat.getText(),
+                lblTotalBerat.getText(),
+                lblTotalBiji.getText(),
+                lblTotalBayar.getText(),
+                tblItemLaundryy);
 
-        lblNama.getText(),
-        lblNoHp.getText(),
-        lblAlaamat.getText(),
-        lblTotalBerat.getText(),
-        lblTotalBiji.getText(),
-        lblTotalBayar.getText(),
-        tblItemLaundryy);
+        dialog.setLocationRelativeTo(this);
 
-dialog.setLocationRelativeTo(this);
-
-dialog.setVisible(true);
+        dialog.setVisible(true);
     }//GEN-LAST:event_btnCetakStrukActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-  //Menyimpan transaksi ke database
-controller.simpanTransaksi();
-//Mengosongkan transaksi sementara
-controller.resetTransaksi();
-//Menampilkan pesan berhasil
-javax.swing.JOptionPane.showMessageDialog(
-        this,
-        "Transaksi berhasil disimpan.");
+        //Menyimpan transaksi ke database
+        controller.simpanTransaksi();
+        //Mengosongkan transaksi sementara
+        controller.resetTransaksi();
+        //Menampilkan pesan berhasil
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Transaksi berhasil disimpan.");
 
-//Mengambil FrameDashboard yang sedang aktif
-aplikasilaundry.view.frame.FrameDashboard frame =
-        (aplikasilaundry.view.frame.FrameDashboard)
-        javax.swing.SwingUtilities.getWindowAncestor(this);
+        //Mengambil FrameDashboard yang sedang aktif
+        aplikasilaundry.view.frame.FrameDashboard frame
+                = (aplikasilaundry.view.frame.FrameDashboard) javax.swing.SwingUtilities.getWindowAncestor(this);
 
-//Memperbarui seluruh panel Data Laundry
-frame.getDataLaundry().refreshSemuaPanel();
-//Mereset seluruh form Tambah Laundry
-induk.resetForm();
+        //Memperbarui seluruh panel Data Laundry
+        frame.getDataLaundry().refreshSemuaPanel();
+        //Mereset seluruh form Tambah Laundry
+        induk.resetForm();
 
-//Berpindah ke halaman Data Laundry
-frame.panggilHalaman("semua");
+        //Berpindah ke halaman Data Laundry
+        frame.panggilHalaman("semua");
 
-//Menampilkan tab Laundry Masuk
-frame.getDataLaundry().tampilLaundryMasuk();
+        //Menampilkan tab Laundry Masuk
+        frame.getDataLaundry().tampilLaundryMasuk();
 
     }//GEN-LAST:event_btnSimpanActionPerformed
-//Method untuk mereset seluruh tampilan konfirmasi
-public void resetForm(){
+    //Method untuk mereset seluruh tampilan konfirmasi
 
-    //Mengosongkan nama pelanggan
-    lblNama.setText("-");
+    public void resetForm() {
 
-    //Mengosongkan nomor HP
-    lblNoHp.setText("-");
+        //Mengosongkan nama pelanggan
+        lblNama.setText("-");
 
-    //Mengosongkan alamat
-    lblAlaamat.setText("-");
+        //Mengosongkan nomor HP
+        lblNoHp.setText("-");
 
-    //Mengosongkan catatan
-    lblCatatan.setText("-");
+        //Mengosongkan alamat
+        lblAlaamat.setText("-");
 
-    //Mengembalikan total berat menjadi nol
-    lblTotalBerat.setText("0 Kg");
+        //Mengosongkan catatan
+        lblCatatan.setText("-");
 
-    //Mengembalikan total biji menjadi nol
-    lblTotalBiji.setText("0");
+        //Mengembalikan total berat menjadi nol
+        lblTotalBerat.setText("0 Kg");
 
-    //Mengembalikan total item menjadi nol
-    lblTotalItem.setText("0");
+        //Mengembalikan total biji menjadi nol
+        lblTotalBiji.setText("0");
 
-    //Mengembalikan subtotal menjadi nol
-    lblSubtotal.setText("Rp0");
+        //Mengembalikan total item menjadi nol
+        lblTotalItem.setText("0");
 
-    //Mengembalikan total bayar menjadi nol
-    lblTotalBayar.setText("Rp0");
+        //Mengembalikan subtotal menjadi nol
+        lblSubtotal.setText("Rp0");
 
-    //Mengambil model tabel
-    javax.swing.table.DefaultTableModel model =
-            (javax.swing.table.DefaultTableModel)
-            tblItemLaundryy.getModel();
+        //Mengembalikan total bayar menjadi nol
+        lblTotalBayar.setText("Rp0");
 
-    //Menghapus seluruh isi tabel
-    model.setRowCount(0);
+        //Mengambil model tabel
+        javax.swing.table.DefaultTableModel model
+                = (javax.swing.table.DefaultTableModel) tblItemLaundryy.getModel();
 
-}
+        //Menghapus seluruh isi tabel
+        model.setRowCount(0);
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCetakStruk;
     private javax.swing.JButton btnKembali;
