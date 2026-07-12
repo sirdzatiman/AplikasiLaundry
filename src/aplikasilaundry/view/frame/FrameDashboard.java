@@ -507,6 +507,7 @@ public RiwayatLaundry getRiwayatLaundry() {
         getContentPane().add(panelContent, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void pnlDasboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDasboardMouseClicked
