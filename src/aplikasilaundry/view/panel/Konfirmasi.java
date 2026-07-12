@@ -796,7 +796,7 @@ public class Konfirmasi extends javax.swing.JPanel {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        //Menyimpan transaksi ke databases
+        //Menyimpan transaksi ke database
         controller.simpanTransaksi();
         //Mengosongkan transaksi sementara
         controller.resetTransaksi();
