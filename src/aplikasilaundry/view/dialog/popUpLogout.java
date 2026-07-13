@@ -4,6 +4,7 @@
  */
 package aplikasilaundry.view.dialog;
 
+import aplikasilaundry.config.Session;
 import aplikasilaundry.view.frame.FrameLogin;
 
 /**
@@ -148,17 +149,23 @@ public class popUpLogout extends javax.swing.JDialog {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        //Menghapus session login
+        //Menghapus session login
+        Session.logout();
 
-        // 2. Tutup frame utama (mainFrame) yang memanggil popup ini
-        if (this.getParent() != null) {
-            this.getParent().setVisible(false);
-            // Jika parent-nya adalah JFrame, kita dispose agar hemat memori
-            ((java.awt.Frame) this.getParent()).dispose();
+        //Mengambil frame pemilik dialog
+        java.awt.Window owner = getOwner();
+
+        //Menutup popup
+        dispose();
+
+        //Menutup dashboard
+        if (owner != null) {
+            owner.dispose();
         }
 
-        // 3. Buka kembali halaman Login Anda
-        new FrameLogin().setVisible(true);
+    //Membuka kembali halaman login
+    new FrameLogin().setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed

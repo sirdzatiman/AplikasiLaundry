@@ -3,6 +3,7 @@ package aplikasilaundry.view.frame;
 import aplikasilaundry.controller.LoginController;
 
 import aplikasilaundry.config.Koneksi;
+import aplikasilaundry.config.Session;
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -29,6 +30,20 @@ public class FrameLogin extends javax.swing.JFrame {
         initComponents();
 
         controller = new LoginController(this);
+
+        //Memuat session yang tersimpan
+        if (Session.muatSesi()) {
+
+            //Membuka dashboard
+            FrameDashboard dashboard = new FrameDashboard();
+            dashboard.setVisible(true);
+
+            //Menutup form login
+            dispose();
+
+            return;
+
+        }
 
         panelLengkung(panelUser);
         panelLengkung(jPanel56);
@@ -783,59 +798,8 @@ public class FrameLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-//        // TODO add your handling code here:
-//        String username = tUserName.getText();
-//
-//        // Ambil teks yang dimasukkan user pada field password
-//        String password = tPassword.getText();
-//
-//        // Periksa apakah username dan password tidak kosong
-//        if (username.length() != 0 && password.length() != 0) {
-//            try {
-//                // Query SQL untuk mencari user dengan username dan password (dihash dengan MD5)
-//                String sql = "SELECT * FROM pengguna WHERE username=? AND password=md5(?)";
-//
-        ////                // Buat koneksi ke database
-//                Connection con = Koneksi.konek();
-//
-//                // Siapkan statement SQL dengan parameter
-//                PreparedStatement ps = con.prepareStatement(sql);
-//
-//                // Isi parameter pertama (?) dengan username
-//                ps.setString(1, username);
-//
-//                // Isi parameter kedua (?) dengan password yang akan di-hash MD5 di sisi database
-//                ps.setString(2, password);
-//
-//                // Jalankan query dan ambil hasilnya
-//                ResultSet rs = ps.executeQuery();
-//
-//                // Jika hasil query memiliki baris (berarti login berhasil)
-//                if (rs.next()) {
-//                    //AMBIL DATA ROLE DARI DATABASE
-//                    String role = rs.getString("role");
-//                    // Tutup form login
-//                    dispose();
-//
-//                    //Buka form Dashboard dan kirim data role-nya
-//                    FrameDashboard dashboard = new FrameDashboard();
-//                    dashboard.setVisible(true);
-//                  
-//                } else {
-//                    // Jika data tidak ditemukan, tampilkan pesan error
-//                    JOptionPane.showMessageDialog(null, "Username/password salah");
-//                }
-//
-//            } catch (SQLException SQLException) {
-//                // Jika terjadi kesalahan SQL, tampilkan pesan error
-//                JOptionPane.showMessageDialog(null, SQLException.getMessage(),"Error SQL", JOptionPane.ERROR_MESSAGE);
-//            }
-//
-//        } else {
-//            // Jika username atau password kosong, beri peringatan ke user
-//            JOptionPane.showMessageDialog(null, "Username/password tidak boleh kosong");
-//        }
-  controller.login();
+
+        controller.login();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnMataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMataActionPerformed

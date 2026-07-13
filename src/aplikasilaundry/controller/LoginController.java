@@ -63,6 +63,25 @@ public void login() {
             pengguna.getUsername(),
             pengguna.getRole()
     );
+        //Menanyakan apakah session ingin disimpan
+        int pilihan = JOptionPane.showConfirmDialog(
+                frame,
+                "Simpan data login di perangkat ini?",
+                "Simpan Sesi",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        if (pilihan == JOptionPane.YES_OPTION) {
+
+            //Menyimpan session
+            Session.simpanSesi();
+
+        } else {
+
+            //Menghapus session yang mungkin tersimpan sebelumnya
+            Session.hapusSesi();
+
+        }
 
     JOptionPane.showMessageDialog(
             frame,
