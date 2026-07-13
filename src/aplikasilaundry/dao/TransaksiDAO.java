@@ -349,6 +349,123 @@ ORDER BY
         return list;
 
     }
+    
+    public List<Transaksi> getRiwayat(String keyword,
+            java.util.Date tanggal) {
+
+        List<Transaksi> list = new ArrayList<>();
+
+        StringBuilder sql = new StringBuilder();
+
+        sql.append("""
+                    SELECT
+                        t.no_nota,
+                        p.nama_pelanggan,
+                        t.jam_masuk,
+                        t.jam_ambil,
+                        MIN(l.nama_layanan) AS jenis,
+                        COUNT(dt.id_detail) AS jumlah_item,
+                        t.total_harga,
+                        st.nama_status
+                    FROM transaksi t
+                    JOIN pelanggan p
+                        ON t.id_pelanggan = p.id_pelanggan
+                    JOIN status_transaksi st
+                        ON t.id_status = st.id_status
+                    JOIN detail_transaksi dt
+                        ON t.id_transaksi = dt.id_transaksi
+                    JOIN layanan l
+                        ON dt.id_layanan = l.id_layanan
+                    WHERE t.id_status = 4
+                    """);
+
+        if (keyword != null && !keyword.isBlank()) {
+
+            sql.append("""
+        AND (
+            p.nama_pelanggan LIKE ?
+            OR t.no_nota LIKE ?
+            OR p.no_hp LIKE ?
+        )
+        """);
+
+        }
+        if (tanggal != null) {
+
+            sql.append("""
+        AND t.tanggal_ambil = ?
+        """);
+
+        }
+        sql.append("""
+                    GROUP BY
+                        t.id_transaksi,
+                        t.no_nota,
+                        p.nama_pelanggan,
+                        t.jam_masuk,
+                        t.jam_ambil,
+                        t.total_harga,
+                        st.nama_status
+                    ORDER BY
+                        t.id_transaksi DESC
+                    """);
+                try {
+
+            Connection conn = Koneksi.getKoneksi();
+
+            PreparedStatement ps
+                    = conn.prepareStatement(sql.toString());
+
+            int index = 1;
+
+            if (keyword != null && !keyword.isBlank()) {
+
+                ps.setString(index++, "%" + keyword + "%");
+                ps.setString(index++, "%" + keyword + "%");
+                ps.setString(index++, "%" + keyword + "%");
+
+            }
+
+            if (tanggal != null) {
+
+                ps.setDate(index++,
+                        new java.sql.Date(tanggal.getTime()));
+
+            }
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Transaksi t = new Transaksi();
+
+                t.setNoNota(rs.getString("no_nota"));
+                t.setNamaPelanggan(rs.getString("nama_pelanggan"));
+                t.setJamMasuk(rs.getString("jam_masuk"));
+                t.setJamAmbil(rs.getString("jam_ambil"));
+                t.setJenis(rs.getString("jenis"));
+                t.setJumlahItem(rs.getInt("jumlah_item"));
+                t.setTotalHarga(rs.getBigDecimal("total_harga"));
+                t.setStatus(rs.getString("nama_status"));
+
+                list.add(t);
+
+            }
+
+            rs.close();
+            ps.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return list;
+
+    }
+
+    
 
     //Method mengambil transaksi terbaru
     public List<Transaksi> getTransaksiTerbaru() {

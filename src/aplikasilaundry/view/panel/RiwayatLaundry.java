@@ -26,7 +26,7 @@ public class RiwayatLaundry extends javax.swing.JPanel {
         controller = new TransaksiController();
         TableStyle.TableStyle(tblRiwayat);
         //Menampilkan data ke tabel
-        tampilData();
+        tampilData("", null);
         tblRiwayat.getColumnModel()
                 .getColumn(6);
     }
@@ -35,12 +35,13 @@ public class RiwayatLaundry extends javax.swing.JPanel {
     public void refreshData() {
 
         //Menampilkan ulang seluruh data transaksi
-        tampilData();
+        tampilData("", null);
 
     }
 
     //Method untuk menampilkan data laundry yang sudah selesai
-    private void tampilData() {
+    private void tampilData(String keyword,
+        java.util.Date tanggal) {
 
         //Mengambil model tabel
         DefaultTableModel model
@@ -50,7 +51,8 @@ public class RiwayatLaundry extends javax.swing.JPanel {
         model.setRowCount(0);
 
         //Mengambil data laundry dengan status Selesai
-        List<Transaksi> list = controller.getSudahDiambil();
+        List<Transaksi> list
+                = controller.getRiwayat(keyword, tanggal);
 
         //Menampilkan data satu per satu
         for (Transaksi t : list) {
@@ -99,8 +101,8 @@ public class RiwayatLaundry extends javax.swing.JPanel {
         jPanel18 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jDateChooser3 = new com.toedter.calendar.JDateChooser();
+        tCariNama = new javax.swing.JTextField();
+        Dtanggal = new com.toedter.calendar.JDateChooser();
         jPanel12 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
@@ -203,9 +205,14 @@ public class RiwayatLaundry extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Frame (16).png"))); // NOI18N
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField3.setText("Cari nama / no nota / no hp");
-        jTextField3.setBorder(null);
+        tCariNama.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        tCariNama.setText("Cari nama / no nota / no hp");
+        tCariNama.setBorder(null);
+        tCariNama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tCariNamaKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -214,16 +221,17 @@ public class RiwayatLaundry extends javax.swing.JPanel {
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tCariNama, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-            .addComponent(jTextField3)
+            .addComponent(tCariNama)
         );
 
-        jDateChooser3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(224, 226, 230)));
+        Dtanggal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(224, 226, 230)));
+        Dtanggal.addPropertyChangeListener(this::DtanggalPropertyChange);
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -232,13 +240,13 @@ public class RiwayatLaundry extends javax.swing.JPanel {
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Dtanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jDateChooser3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Dtanggal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel11.add(jPanel18, java.awt.BorderLayout.LINE_START);
@@ -346,11 +354,28 @@ public class RiwayatLaundry extends javax.swing.JPanel {
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tCariNamaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tCariNamaKeyReleased
+        // TODO add your handling code here:
+        tampilData(
+            tCariNama.getText(),
+            Dtanggal.getDate());
+    }//GEN-LAST:event_tCariNamaKeyReleased
+
+    private void DtanggalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_DtanggalPropertyChange
+        // TODO add your handling code here:
+        if ("date".equals(evt.getPropertyName())) {
+
+        tampilData(
+                tCariNama.getText(),
+                Dtanggal.getDate());
+        }
+    }//GEN-LAST:event_DtanggalPropertyChange
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser Dtanggal;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private com.toedter.calendar.JDateChooser jDateChooser3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -370,7 +395,7 @@ public class RiwayatLaundry extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField tCariNama;
     private javax.swing.JTable tblRiwayat;
     // End of variables declaration//GEN-END:variables
 }

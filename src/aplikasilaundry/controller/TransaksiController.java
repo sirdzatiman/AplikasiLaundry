@@ -172,6 +172,15 @@ import java.time.LocalTime;
             return dao.getSudahDiambil();
 
         }
+        
+        //Method mengambil data riwayat laundry
+        public List<Transaksi> getRiwayat(String keyword,
+                java.util.Date tanggal) {
+
+            //Mengembalikan data dari DAO
+            return dao.getRiwayat(keyword, tanggal);
+
+        }
 
 //Method untuk menyimpan data pelanggan sementara
         public void simpanPelanggan(String nama,
