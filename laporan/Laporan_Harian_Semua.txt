@@ -1,0 +1,30 @@
+==============================================================
+                    MOJOSARI LAUNDRY
+==============================================================
+
+                     LAPORAN PEMASUKAN
+
+Periode : Harian
+Tanggal : Semua
+
+====================================================================
+Jenis Item         Proses Layanan           Jumlah        Subtotal
+====================================================================
+Baju/DLL           Cuci Kering                  35       140000.00
+Baju/DLL           Cuci Kering Setrika           8        48000.00
+Selimut/DLL        Cuci Kering Setrika           1         8000.00
+====================================================================
+
+Total Transaksi : 7
+Total Item      : 44
+Total Pendapatan: Rp  196.000
+Rata-rata       : Rp  28.000
+
+==============================================================
+
+Dicetak pada : 14-07-2026 01:55:24
+
+==============================================================
+           Terima Kasih Telah Menggunakan
+             Aplikasi Mojosari Laundry
+==============================================================

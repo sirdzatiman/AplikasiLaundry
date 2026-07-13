@@ -10,6 +10,11 @@ import javax.swing.table.DefaultTableCellRenderer;
 import aplikasilaundry.controller.LaporanController;
 import aplikasilaundry.model.Laporan;
 import aplikasilaundry.util.FormatRupiah;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import javax.swing.JOptionPane;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -699,6 +704,122 @@ public class LaporanPemasukan extends javax.swing.JPanel {
 
     private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
         // TODO add your handling code here:
+        try {
+            //Membuat folder laporan jika belum ada
+            File folder = new File("laporan");
+
+            if (!folder.exists()) {
+                folder.mkdirs();
+            }
+
+            //Format tanggal
+            java.text.SimpleDateFormat sdf
+                    = new java.text.SimpleDateFormat("dd-MM-yyyy");
+
+            //Menentukan tanggal untuk nama file
+            String tanggalFile = "Semua";
+
+            if (cTanggal.getDate() != null) {
+                tanggalFile = sdf.format(cTanggal.getDate());
+            }
+
+            //Membuat nama file
+            String namaFile
+                    = "Laporan_"
+                    + cPeriode.getSelectedItem()
+                    + "_"
+                    + tanggalFile
+                    + ".txt";
+
+            File file = new File(folder, namaFile);
+
+            //Membuat file laporan
+            PrintWriter out = new PrintWriter(new FileWriter(file));
+
+            out.println("==============================================================");
+            out.println("                    MOJOSARI LAUNDRY");
+            out.println("==============================================================");
+            out.println();
+            out.println("                     LAPORAN PEMASUKAN");
+            out.println();
+
+            out.println("Periode : " + cPeriode.getSelectedItem());
+
+            if (cTanggal.getDate() != null) {
+                out.println("Tanggal : " + sdf.format(cTanggal.getDate()));
+            } else {
+                out.println("Tanggal : Semua");
+            }
+
+            out.println();
+
+            out.println("====================================================================");
+            out.printf("%-18s %-22s %8s %15s%n",
+                    "Jenis Item",
+                    "Proses Layanan",
+                    "Jumlah",
+                    "Subtotal");
+            out.println("====================================================================");
+
+            //Mengambil data dari JTable
+            for (int i = 0; i < tblLaporan.getRowCount(); i++) {
+
+                String jenis = String.valueOf(tblLaporan.getValueAt(i, 0));
+                String proses = String.valueOf(tblLaporan.getValueAt(i, 1));
+                String jumlah = String.valueOf(tblLaporan.getValueAt(i, 2));
+                String subtotal = String.valueOf(tblLaporan.getValueAt(i, 3));
+
+                out.printf("%-18s %-22s %8s %15s%n",
+                        jenis,
+                        proses,
+                        jumlah,
+                        subtotal);
+
+            }
+
+            out.println("====================================================================");
+            out.println();
+
+            out.println("Total Transaksi : " + lblTotalTransaksi.getText());
+            out.println("Total Item      : " + lblItem.getText());
+            out.println("Total Pendapatan: " + lblTotalPemasukan.getText());
+            out.println("Rata-rata       : " + lblRataTransaksi.getText());
+
+            out.println();
+            out.println("==============================================================");
+            out.println();
+
+            out.println("Dicetak pada : "
+                    + new java.text.SimpleDateFormat(
+                            "dd-MM-yyyy HH:mm:ss")
+                            .format(new java.util.Date()));
+            
+            out.println();
+            out.println("==============================================================");
+            out.println("           Terima Kasih Telah Menggunakan");
+            out.println("             Aplikasi Mojosari Laundry");
+            out.println("==============================================================");
+            out.close();
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Laporan berhasil disimpan di:\n"
+                    + file.getAbsolutePath(),
+                    "Berhasil",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+            //Membuka file laporan
+            Desktop.getDesktop().open(file);
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Gagal mencetak laporan!\n\n"
+                    + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnCetakActionPerformed
 
     private void cPeriodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cPeriodeActionPerformed
