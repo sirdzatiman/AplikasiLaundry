@@ -835,11 +835,7 @@ public class FrameLogin extends javax.swing.JFrame {
             UIManager.put("Button.arc", 15);
             UIManager.put("Button.borderWidth", 0);
 
-            // TextField
-            UIManager.put("TextComponent.arc", 15);
-
             // Component
-            UIManager.put("Component.borderWidth", 0);
             UIManager.put("Component.focusWidth", 0);
             UIManager.put("Component.innerFocusWidth", 0);
 
