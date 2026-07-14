@@ -46,6 +46,8 @@ import aplikasilaundry.model.Layanan;
 
 //Mengimpor collection
 import java.util.List;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class Pengaturan extends javax.swing.JPanel {
 //Controller pengaturan
@@ -58,22 +60,99 @@ public class Pengaturan extends javax.swing.JPanel {
 
     //Model pengaturan
     private PengaturanStruk pengaturan;
-    
+
     //Controller layanan
-private LayananController controllerLayanan;
+    private LayananController controllerLayanan;
 
     public Pengaturan() {
 
         initComponents();
-        //Mengubah judul kolom tabel pengguna
-    DefaultTableModel model =
-            (DefaultTableModel) tblPengguna.getModel();
+        TableStyle.TableStyle(tblPengguna);
+        TableStyle.TableStyle(tblJenis);
+        TableStyle.TableStyle(tblDetailStruk);
 
-    model.setColumnIdentifiers(new Object[]{
-        "Nama",
-        "Username",
-        "Role"
-    });
+        //Mengubah judul kolom preview struk
+        DefaultTableModel modelPreview
+                = (DefaultTableModel) tblDetailStruk.getModel();
+
+        modelPreview.setColumnIdentifiers(new Object[]{
+            "Jenis",
+            "Jumlah",
+            "Harga",
+            "Subtotal"
+        });
+
+        //Mengatur posisi isi kolom preview struk
+//Kolom jumlah rata tengah
+        DefaultTableCellRenderer centerPreview = new DefaultTableCellRenderer();
+        centerPreview.setHorizontalAlignment(JLabel.CENTER);
+
+        tblDetailStruk.getColumnModel().getColumn(1)
+                .setCellRenderer(centerPreview);
+
+//Kolom harga dan subtotal rata kanan
+        DefaultTableCellRenderer rightPreview = new DefaultTableCellRenderer();
+        rightPreview.setHorizontalAlignment(JLabel.RIGHT);
+
+        tblDetailStruk.getColumnModel().getColumn(2)
+                .setCellRenderer(rightPreview);
+
+        tblDetailStruk.getColumnModel().getColumn(3)
+                .setCellRenderer(rightPreview);
+
+//Mengatur lebar kolom preview struk
+        tblDetailStruk.getColumnModel().getColumn(0).setPreferredWidth(170); // Jenis
+        tblDetailStruk.getColumnModel().getColumn(1).setPreferredWidth(70);  // Jumlah
+        tblDetailStruk.getColumnModel().getColumn(2).setPreferredWidth(90);  // Harga
+        tblDetailStruk.getColumnModel().getColumn(3).setPreferredWidth(100); // Subtotal
+
+        tblDetailStruk.getTableHeader().setBackground(
+                new java.awt.Color(240, 243, 247));
+
+        tblDetailStruk.getTableHeader().setForeground(
+                java.awt.Color.BLACK);
+
+        tblDetailStruk.getTableHeader().setFont(
+                new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 12));
+
+        // Mengubah judul kolom tblJenis
+        DefaultTableModel modelJenis
+                = (DefaultTableModel) tblJenis.getModel();
+
+        modelJenis.setColumnIdentifiers(new Object[]{
+            "No",
+            "Jenis Item",
+            "Proses Layanan",
+            "Satuan",
+            "Harga",
+            "Keterangan"
+        });
+
+        // Mengubah judul kolom tblPengguna
+        DefaultTableModel model
+                = (DefaultTableModel) tblPengguna.getModel();
+
+        model.setColumnIdentifiers(new Object[]{
+            "Nama",
+            "Username",
+            "Role"
+        });
+
+        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+        center.setHorizontalAlignment(JLabel.CENTER);
+
+        tblJenis.getColumnModel().getColumn(0).setCellRenderer(center);
+        tblJenis.getColumnModel().getColumn(2).setCellRenderer(center);
+        tblJenis.getColumnModel().getColumn(3).setCellRenderer(center);
+        tblJenis.getColumnModel().getColumn(4).setCellRenderer(center);
+
+        tblJenis.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblJenis.getColumnModel().getColumn(1).setPreferredWidth(220);
+        tblJenis.getColumnModel().getColumn(2).setPreferredWidth(220);
+        tblJenis.getColumnModel().getColumn(3).setPreferredWidth(80);
+        tblJenis.getColumnModel().getColumn(4).setPreferredWidth(120);
+        tblJenis.getColumnModel().getColumn(5).setPreferredWidth(180);
+
         //Membuat footer preview seperti struk asli
         tFooter2.setEditable(false);
         tFooter2.setOpaque(false);
@@ -108,53 +187,69 @@ private LayananController controllerLayanan;
         controllerPengguna
                 = new PenggunaController();
         //Membuat controller layanan
-controllerLayanan
-        = new LayananController();
+        controllerLayanan
+                = new LayananController();
 
         //Menampilkan data pengaturan
         tampilPengaturan();
         //Menampilkan data pengguna
         tampilPengguna();
         //Menampilkan data layanan
-tampilLayanan();
+        tampilLayanan();
+
+        //Mempercepat scroll mouse
+        jScrollPane3.getVerticalScrollBar().setUnitIncrement(25);
+
+        jPanelPengguna.setBorder(
+                javax.swing.BorderFactory.createLineBorder(
+                        new java.awt.Color(220, 223, 230), 1));
+
+        jPanelInformasiLaundry.setBorder(
+                javax.swing.BorderFactory.createLineBorder(
+                        new java.awt.Color(220, 223, 230), 1));
+
+        jPanelPengaturanStruk.setBorder(
+                javax.swing.BorderFactory.createLineBorder(
+                        new java.awt.Color(220, 223, 230), 1));
+
     }
+
     //Method menampilkan data layanan
-private void tampilLayanan(){
+    private void tampilLayanan() {
 
-    //Mengambil model tabel
-    DefaultTableModel model =
-            (DefaultTableModel) tblJenis.getModel();
+        //Mengambil model tabel
+        DefaultTableModel model
+                = (DefaultTableModel) tblJenis.getModel();
 
-    //Menghapus seluruh isi tabel
-    model.setRowCount(0);
+        //Menghapus seluruh isi tabel
+        model.setRowCount(0);
 
-    //Mengambil seluruh data layanan
-    List<Layanan> daftar =
-            controllerLayanan.getAll();
+        //Mengambil seluruh data layanan
+        List<Layanan> daftar
+                = controllerLayanan.getAll();
 
-    //Nomor urut
-    int no = 1;
+        //Nomor urut
+        int no = 1;
 
-    //Menampilkan seluruh data
-    for(Layanan layanan : daftar){
+        //Menampilkan seluruh data
+        for (Layanan layanan : daftar) {
 
-        //Menambahkan data ke tabel
-        model.addRow(new Object[]{
+            //Menambahkan data ke tabel
+            model.addRow(new Object[]{
+                no++,
+                layanan.getNamaLayanan(),
+                layanan.getProses(),
+                layanan.getSatuan(),
+                FormatRupiah.format(
+                layanan.getHarga()),
+                layanan.getKeterangan()
 
-            no++,
-            layanan.getNamaLayanan(),
-            layanan.getProses(),
-            layanan.getSatuan(),
-            FormatRupiah.format(
-                    layanan.getHarga()),
-            layanan.getKeterangan()
+            });
 
-        });
+        }
 
     }
 
-}
-    
     //Method menampilkan data pengaturan
     private void tampilPengaturan() {
 
@@ -169,7 +264,7 @@ private void tampilLayanan(){
 
         //Menampilkan nomor HP
         tNoHp.setText(pengaturan.getNoHp());
-        
+
         //Menampilkan alamat pada preview struk
         lblAlamatLaundry.setText(pengaturan.getAlamat());
 
@@ -332,7 +427,7 @@ private void tampilLayanan(){
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel40 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jPanel45 = new javax.swing.JPanel();
+        jPanelPengguna = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnEditPengguna = new javax.swing.JButton();
@@ -342,7 +437,7 @@ private void tampilLayanan(){
         tblPengguna = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         btnTambahPengguna = new javax.swing.JButton();
-        jPanel46 = new javax.swing.JPanel();
+        jPanelInformasiLaundry = new javax.swing.JPanel();
         jPanel47 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel50 = new javax.swing.JPanel();
@@ -358,7 +453,7 @@ private void tampilLayanan(){
         tAlamat = new javax.swing.JTextField();
         jLabel57 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        jPanel12 = new javax.swing.JPanel();
+        jPanelPengaturanStruk = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -460,7 +555,7 @@ private void tampilLayanan(){
         jPanel1.setPreferredSize(new java.awt.Dimension(1006, 546));
         jPanel1.setLayout(new java.awt.GridLayout(2, 1, 2, 20));
 
-        jPanel45.setLayout(new java.awt.BorderLayout());
+        jPanelPengguna.setLayout(new java.awt.BorderLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10));
@@ -501,7 +596,7 @@ private void tampilLayanan(){
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
-        jPanel45.add(jPanel2, java.awt.BorderLayout.PAGE_START);
+        jPanelPengguna.add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
         jPanel4.setLayout(new java.awt.CardLayout());
@@ -521,7 +616,7 @@ private void tampilLayanan(){
 
         jPanel4.add(jScrollPane5, "card2");
 
-        jPanel45.add(jPanel4, java.awt.BorderLayout.CENTER);
+        jPanelPengguna.add(jPanel4, java.awt.BorderLayout.CENTER);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setMinimumSize(new java.awt.Dimension(1006, 65));
@@ -550,11 +645,11 @@ private void tampilLayanan(){
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jPanel45.add(jPanel3, java.awt.BorderLayout.PAGE_END);
+        jPanelPengguna.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
-        jPanel1.add(jPanel45);
+        jPanel1.add(jPanelPengguna);
 
-        jPanel46.setLayout(new java.awt.BorderLayout());
+        jPanelInformasiLaundry.setLayout(new java.awt.BorderLayout());
 
         jPanel47.setBackground(new java.awt.Color(255, 255, 255));
         jPanel47.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10));
@@ -580,7 +675,7 @@ private void tampilLayanan(){
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jPanel46.add(jPanel47, java.awt.BorderLayout.PAGE_START);
+        jPanelInformasiLaundry.add(jPanel47, java.awt.BorderLayout.PAGE_START);
 
         jPanel50.setLayout(new java.awt.BorderLayout());
 
@@ -694,18 +789,18 @@ private void tampilLayanan(){
 
         jPanel50.add(jPanel52, java.awt.BorderLayout.CENTER);
 
-        jPanel46.add(jPanel50, java.awt.BorderLayout.CENTER);
+        jPanelInformasiLaundry.add(jPanel50, java.awt.BorderLayout.CENTER);
 
-        jPanel1.add(jPanel46);
+        jPanel1.add(jPanelInformasiLaundry);
 
         jPanel40.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
         jPanel7.setLayout(new java.awt.BorderLayout());
 
-        jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 10));
-        jPanel12.setMinimumSize(new java.awt.Dimension(1006, 585));
-        jPanel12.setPreferredSize(new java.awt.Dimension(1006, 635));
-        jPanel12.setLayout(new java.awt.BorderLayout());
+        jPanelPengaturanStruk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 10));
+        jPanelPengaturanStruk.setMinimumSize(new java.awt.Dimension(1006, 585));
+        jPanelPengaturanStruk.setPreferredSize(new java.awt.Dimension(1006, 635));
+        jPanelPengaturanStruk.setLayout(new java.awt.BorderLayout());
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
         jPanel14.setMinimumSize(new java.awt.Dimension(1006, 85));
@@ -740,7 +835,7 @@ private void tampilLayanan(){
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        jPanel12.add(jPanel14, java.awt.BorderLayout.PAGE_START);
+        jPanelPengaturanStruk.add(jPanel14, java.awt.BorderLayout.PAGE_START);
 
         jPanel15.setLayout(new java.awt.BorderLayout());
 
@@ -916,7 +1011,7 @@ private void tampilLayanan(){
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Jenis", "Jumlah", "Harga", "Subtotal"
             }
         ));
         jScrollPane1.setViewportView(tblDetailStruk);
@@ -1211,6 +1306,7 @@ private void tampilLayanan(){
 
         jPanel33.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel9.setText("Nama Bisnis");
 
         javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
@@ -1248,6 +1344,7 @@ private void tampilLayanan(){
 
         jPanel34.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel10.setText("Nama Bisnis");
 
         javax.swing.GroupLayout jPanel34Layout = new javax.swing.GroupLayout(jPanel34);
@@ -1273,6 +1370,7 @@ private void tampilLayanan(){
 
         jPanel35.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel11.setText("Keterangan");
 
         javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
@@ -1338,9 +1436,9 @@ private void tampilLayanan(){
 
         jPanel15.add(jPanel6, java.awt.BorderLayout.CENTER);
 
-        jPanel12.add(jPanel15, java.awt.BorderLayout.CENTER);
+        jPanelPengaturanStruk.add(jPanel15, java.awt.BorderLayout.CENTER);
 
-        jPanel7.add(jPanel12, java.awt.BorderLayout.PAGE_START);
+        jPanel7.add(jPanelPengaturanStruk, java.awt.BorderLayout.PAGE_START);
 
         jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 10));
         jPanel13.setMinimumSize(new java.awt.Dimension(1006, 642));
@@ -1513,20 +1611,19 @@ private void tampilLayanan(){
     private void btnTambahKonfigurasiLAyananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahKonfigurasiLAyananActionPerformed
         // TODO add your handling code here:
 //Membuka dialog tambah konfigurasi layanan
-popUpTambahKonfigurasiLayanan dialog =
-        new popUpTambahKonfigurasiLayanan(
-                (java.awt.Frame)
-                SwingUtilities.getWindowAncestor(this),
-                true);
+        popUpTambahKonfigurasiLayanan dialog
+                = new popUpTambahKonfigurasiLayanan(
+                        (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
+                        true);
 
 //Menampilkan dialog di tengah frame
-dialog.setLocationRelativeTo(this);
+        dialog.setLocationRelativeTo(this);
 
 //Menampilkan dialog
-dialog.setVisible(true);
+        dialog.setVisible(true);
 
 //Memperbarui tabel layanan
-tampilLayanan();
+        tampilLayanan();
     }//GEN-LAST:event_btnTambahKonfigurasiLAyananActionPerformed
 
     private void btnHapusJenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusJenisActionPerformed
@@ -1541,112 +1638,110 @@ tampilLayanan();
     private void btnSimpanPengaturanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanPengaturanActionPerformed
         // TODO add your handling code here:
 
-    //Mengambil nama bisnis dari form
-    pengaturan.setNamaBisnis(
-            tNamaBisnis.getText().trim());
+        //Mengambil nama bisnis dari form
+        pengaturan.setNamaBisnis(
+                tNamaBisnis.getText().trim());
 
-    //Mengambil alamat laundry dari form
-    pengaturan.setAlamat(
-            tAlamat.getText().trim());
+        //Mengambil alamat laundry dari form
+        pengaturan.setAlamat(
+                tAlamat.getText().trim());
 
-    //Mengambil nomor HP laundry
-    pengaturan.setNoHp(
-            tNoHp.getText().trim());
+        //Mengambil nomor HP laundry
+        pengaturan.setNoHp(
+                tNoHp.getText().trim());
 
-    //Mengambil jam operasional
-    pengaturan.setJamOperasional(
-            tJamOperasional.getText().trim());
+        //Mengambil jam operasional
+        pengaturan.setJamOperasional(
+                tJamOperasional.getText().trim());
 
-    //Mengambil informasi layanan
-    pengaturan.setLayanan(
-            tLayanan.getText().trim());
+        //Mengambil informasi layanan
+        pengaturan.setLayanan(
+                tLayanan.getText().trim());
 
-    //Mengambil slogan laundry
-    pengaturan.setKeterangan(
-            tKeterangan.getText().trim());
+        //Mengambil slogan laundry
+        pengaturan.setKeterangan(
+                tKeterangan.getText().trim());
 
-    //Mengambil footer struk
-    pengaturan.setFooterStruk(
-            tFooter.getText().trim());
+        //Mengambil footer struk
+        pengaturan.setFooterStruk(
+                tFooter.getText().trim());
 
-    //Menyimpan perubahan ke database
-    controller.updatePengaturan(
-            pengaturan);
+        //Menyimpan perubahan ke database
+        controller.updatePengaturan(
+                pengaturan);
 
-    //Memuat ulang data pengaturan
-    tampilPengaturan();
+        //Memuat ulang data pengaturan
+        tampilPengaturan();
 
-    //Menampilkan informasi berhasil
-    JOptionPane.showMessageDialog(
-            this,
-            "Pengaturan berhasil diperbarui.");
+        //Menampilkan informasi berhasil
+        JOptionPane.showMessageDialog(
+                this,
+                "Pengaturan berhasil diperbarui.");
 
 
     }//GEN-LAST:event_btnSimpanPengaturanActionPerformed
 
     private void btnHappusPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHappusPenggunaActionPerformed
 
+        //Mengambil baris yang dipilih
+        int baris = tblPengguna.getSelectedRow();
 
-    //Mengambil baris yang dipilih
-    int baris = tblPengguna.getSelectedRow();
+        //Jika belum memilih data
+        if (baris == -1) {
 
-    //Jika belum memilih data
-    if(baris == -1){
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Pilih pengguna yang akan dihapus.");
 
-        JOptionPane.showMessageDialog(
-                this,
-                "Pilih pengguna yang akan dihapus.");
-
-        return;
-
-    }
-
-    //Mengambil username dari tabel
-    String username =
-            tblPengguna.getValueAt(
-                    baris,
-                    1).toString();
-
-    //Mencari objek pengguna berdasarkan username
-    Pengguna data = null;
-
-    for(Pengguna p : controllerPengguna.getAll()){
-
-        if(p.getUsername().equals(username)){
-
-            data = controllerPengguna.getById(
-                    p.getIdPengguna());
-
-            break;
+            return;
 
         }
 
-    }
+        //Mengambil username dari tabel
+        String username
+                = tblPengguna.getValueAt(
+                        baris,
+                        1).toString();
 
-    //Jika data tidak ditemukan
-    if(data == null){
+        //Mencari objek pengguna berdasarkan username
+        Pengguna data = null;
 
-        JOptionPane.showMessageDialog(
-                this,
-                "Data pengguna tidak ditemukan.");
+        for (Pengguna p : controllerPengguna.getAll()) {
 
-        return;
+            if (p.getUsername().equals(username)) {
 
-    }
+                data = controllerPengguna.getById(
+                        p.getIdPengguna());
 
-    //Membuka popup konfirmasi
-    popUpKonfirmasiHapus dialog =
-            new popUpKonfirmasiHapus(
-                    (java.awt.Frame)
-                    javax.swing.SwingUtilities
-                            .getWindowAncestor(this),
-                    true,
-                    data.getIdPengguna(),
-                    this);
+                break;
 
-    //Menampilkan popup
-    dialog.setLocationRelativeTo(this);
-    dialog.setVisible(true);
+            }
+
+        }
+
+        //Jika data tidak ditemukan
+        if (data == null) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Data pengguna tidak ditemukan.");
+
+            return;
+
+        }
+
+        //Membuka popup konfirmasi
+        popUpKonfirmasiHapus dialog
+                = new popUpKonfirmasiHapus(
+                        (java.awt.Frame) javax.swing.SwingUtilities
+                                .getWindowAncestor(this),
+                        true,
+                        data.getIdPengguna(),
+                        this);
+
+        //Menampilkan popup
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
 
 
     }//GEN-LAST:event_btnHappusPenggunaActionPerformed
@@ -1654,66 +1749,65 @@ tampilLayanan();
     private void btnEditPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditPenggunaActionPerformed
         // TODO add your handling code here:
         //Mengambil baris yang dipilih
-int baris = tblPengguna.getSelectedRow();
+        int baris = tblPengguna.getSelectedRow();
 
 //Jika belum memilih data
-if(baris == -1){
+        if (baris == -1) {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Pilih pengguna yang akan diedit.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Pilih pengguna yang akan diedit.");
 
-    return;
+            return;
 
-}
+        }
 
 //Mengambil username dari tabel
-String username =
-        tblPengguna.getValueAt(
-                baris,
-                1).toString();
+        String username
+                = tblPengguna.getValueAt(
+                        baris,
+                        1).toString();
 
 //Mencari objek pengguna berdasarkan username
-Pengguna data = null;
+        Pengguna data = null;
 
-for(Pengguna p : controllerPengguna.getAll()){
+        for (Pengguna p : controllerPengguna.getAll()) {
 
-    if(p.getUsername().equals(username)){
+            if (p.getUsername().equals(username)) {
 
-        data = controllerPengguna.getById(
-                p.getIdPengguna());
+                data = controllerPengguna.getById(
+                        p.getIdPengguna());
 
-        break;
+                break;
 
-    }
+            }
 
-}
+        }
 
 //Jika data tidak ditemukan
-if(data == null){
+        if (data == null) {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Data pengguna tidak ditemukan.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Data pengguna tidak ditemukan.");
 
-    return;
+            return;
 
-}
+        }
 
 //Membuka popup edit
-popUpPensil dialog =
-        new popUpPensil(
-                (java.awt.Frame)
-                javax.swing.SwingUtilities.getWindowAncestor(this),
-                true);
+        popUpPensil dialog
+                = new popUpPensil(
+                        (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this),
+                        true);
 
 //Mengirim data ke popup
-dialog.setPengguna(data);
+        dialog.setPengguna(data);
 
 //Menampilkan popup
-dialog.setVisible(true);
+        dialog.setVisible(true);
 //Menampilkan kembali data pengguna
-tampilPengguna();
+        tampilPengguna();
     }//GEN-LAST:event_btnEditPenggunaActionPerformed
 
     private void btnTambahPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPenggunaActionPerformed
@@ -1772,54 +1866,54 @@ tampilPengguna();
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-         //Menampilkan kembali data pengaturan dari database
-    tampilPengaturan();
+        //Menampilkan kembali data pengaturan dari database
+        tampilPengaturan();
 
-    //Memberikan informasi kepada pengguna
-    JOptionPane.showMessageDialog( this, "Data berhasil dikembalikan ke pengaturan terakhir.");
+        //Memberikan informasi kepada pengguna
+        JOptionPane.showMessageDialog(this, "Data berhasil dikembalikan ke pengaturan terakhir.");
 
     }//GEN-LAST:event_btnResetActionPerformed
 
 //Method menampilkan seluruh data pengguna
     public void tampilPengguna() {
 
-    System.out.println("===== REFRESH PENGGUNA =====");
+        System.out.println("===== REFRESH PENGGUNA =====");
 
-    DefaultTableModel model =
-            (DefaultTableModel) tblPengguna.getModel();
+        DefaultTableModel model
+                = (DefaultTableModel) tblPengguna.getModel();
 
-    model.setRowCount(0);
+        model.setRowCount(0);
 
-    List<Pengguna> daftar =
-            controllerPengguna.getAll();
+        List<Pengguna> daftar
+                = controllerPengguna.getAll();
 
-    System.out.println("Jumlah Data = " + daftar.size());
+        System.out.println("Jumlah Data = " + daftar.size());
 
-    for (Pengguna pengguna : daftar) {
+        for (Pengguna pengguna : daftar) {
 
-        System.out.println(
-                pengguna.getNamaPengguna()
-                + " | "
-                + pengguna.getUsername()
-                + " | "
-                + pengguna.getRole());
+            System.out.println(
+                    pengguna.getNamaPengguna()
+                    + " | "
+                    + pengguna.getUsername()
+                    + " | "
+                    + pengguna.getRole());
 
-        model.addRow(new Object[]{
-            pengguna.getNamaPengguna(),
-            pengguna.getUsername(),
-            pengguna.getRole()
-        });
+            model.addRow(new Object[]{
+                pengguna.getNamaPengguna(),
+                pengguna.getUsername(),
+                pengguna.getRole()
+            });
+
+        }
+
+        System.out.println("Jumlah Baris JTable = "
+                + model.getRowCount());
+
+        tblPengguna.revalidate();
+        tblPengguna.repaint();
 
     }
 
-    System.out.println("Jumlah Baris JTable = "
-            + model.getRowCount());
-
-    tblPengguna.revalidate();
-    tblPengguna.repaint();
-
-}
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditJenis;
@@ -1859,7 +1953,6 @@ tampilPengguna();
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
@@ -1892,8 +1985,6 @@ tampilPengguna();
     private javax.swing.JPanel jPanel42;
     private javax.swing.JPanel jPanel43;
     private javax.swing.JPanel jPanel44;
-    private javax.swing.JPanel jPanel45;
-    private javax.swing.JPanel jPanel46;
     private javax.swing.JPanel jPanel47;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel50;
@@ -1905,6 +1996,9 @@ tampilPengguna();
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JPanel jPanelInformasiLaundry;
+    private javax.swing.JPanel jPanelPengaturanStruk;
+    private javax.swing.JPanel jPanelPengguna;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
