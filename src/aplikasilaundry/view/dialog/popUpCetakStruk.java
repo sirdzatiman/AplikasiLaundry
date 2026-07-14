@@ -198,6 +198,7 @@ public void setPreviewData(
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setUndecorated(true);
 
         jPanel3.setBackground(new java.awt.Color(239, 238, 245));
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(224, 226, 230), 2, true));
@@ -664,6 +665,7 @@ public void setPreviewData(
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed

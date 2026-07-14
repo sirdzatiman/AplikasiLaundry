@@ -47,8 +47,7 @@ public class detailLaundry extends javax.swing.JDialog {
         //Membuat seluruh komponen
         initComponents();
         //Mengambil model tabel
-        model
-                = (DefaultTableModel) tblDetail.getModel();
+        model = (DefaultTableModel) tblDetail.getModel();
 
         //Menyimpan nomor nota yang diterima
         this.noNota = noNota;
@@ -224,6 +223,7 @@ public class detailLaundry extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Container.png"))); // NOI18N
 
@@ -474,6 +474,7 @@ public class detailLaundry extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

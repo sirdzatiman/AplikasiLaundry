@@ -833,12 +833,6 @@ public class FrameLogin extends javax.swing.JFrame {
 
             // Button
             UIManager.put("Button.arc", 15);
-            UIManager.put("Button.borderWidth", 0);
-
-            // Component
-            UIManager.put("Component.focusWidth", 0);
-            UIManager.put("Component.innerFocusWidth", 0);
-
             UIManager.setLookAndFeel(new FlatLightLaf());
 
         } catch (UnsupportedLookAndFeelException e) {

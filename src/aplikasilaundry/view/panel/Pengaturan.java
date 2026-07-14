@@ -15,7 +15,6 @@ import aplikasilaundry.controller.PengaturanStrukController;
 import aplikasilaundry.model.Transaksi;
 //Mengimpor model pengaturan
 import aplikasilaundry.model.PengaturanStruk;
-import java.util.List;
 import aplikasilaundry.controller.TransaksiController;
 //Mengimpor controller pengguna
 import aplikasilaundry.controller.PenggunaController;
@@ -25,11 +24,6 @@ import aplikasilaundry.model.Pengguna;
 //Mengimpor JOptionPane
 import javax.swing.JOptionPane;
 //Mengimpor controller layanan
-import aplikasilaundry.controller.LayananController;
-//Mengimpor collection
-import java.util.List;
-//Mengimpor model layanan
-import aplikasilaundry.model.Layanan;
 import javax.swing.SwingUtilities;
 
 import aplikasilaundry.view.dialog.popUpEditKonfigurasiLayanan;
@@ -37,8 +31,6 @@ import aplikasilaundry.view.dialog.popUpKonfirmasiHapus;
 import aplikasilaundry.view.dialog.popUpPensil;
 import aplikasilaundry.view.dialog.popUpTambahKonfigurasiLayanan;
 import aplikasilaundry.view.dialog.popUpTambahpengguna;
-import aplikasilaundry.view.panel.Pengaturan;
-//Mengimpor controller layanan
 import aplikasilaundry.controller.LayananController;
 
 //Mengimpor model layanan

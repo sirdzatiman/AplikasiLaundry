@@ -33,31 +33,31 @@ public class ProsesDAO {
     public List<Proses> getAll() {
 
         //Menyimpan daftar proses
-        List<Proses> daftar =
-                new ArrayList<>();
+        List<Proses> daftar
+                = new ArrayList<>();
 
         try {
 
             //Query mengambil seluruh proses
-            String sql =
-                    "SELECT * FROM proses "
+            String sql
+                    = "SELECT * FROM proses "
                     + "ORDER BY nama_proses";
             System.out.println("BUTTON SIMPAN PROSES DIKLIK");
 
             //Menyiapkan query
-            PreparedStatement ps =
-                    conn.prepareStatement(sql);
+            PreparedStatement ps
+                    = conn.prepareStatement(sql);
 
             //Menjalankan query
-            ResultSet rs =
-                    ps.executeQuery();
+            ResultSet rs
+                    = ps.executeQuery();
 
             //Mengambil seluruh data
             while (rs.next()) {
 
                 //Membuat objek proses
-                Proses proses =
-                        new Proses();
+                Proses proses
+                        = new Proses();
 
                 //Mengisi ID proses
                 proses.setIdProses(
@@ -85,18 +85,18 @@ public class ProsesDAO {
 
     //Method menyimpan proses
     public boolean simpan(Proses proses) {
-System.out.println("MASUK DAO");
+        System.out.println("MASUK DAO");
         try {
 
             //Query menyimpan proses
-            String sql =
-                    "INSERT INTO proses(nama_proses) "
+            String sql
+                    = "INSERT INTO proses(nama_proses) "
                     + "VALUES(?)";
 
             //Menyiapkan query
-            PreparedStatement ps =
-                    conn.prepareStatement(sql);
-            
+            PreparedStatement ps
+                    = conn.prepareStatement(sql);
+
             System.out.println("SQL SIAP");
 
             //Mengisi nama proses
@@ -104,95 +104,97 @@ System.out.println("MASUK DAO");
                     1,
                     proses.getNamaProses());
 
-           System.out.println("PARAMETER = " + proses.getNamaProses());
+            System.out.println("PARAMETER = " + proses.getNamaProses());
 
 //Menjalankan query
-int hasil = ps.executeUpdate();
+            int hasil = ps.executeUpdate();
 
-System.out.println("HASIL INSERT = " + hasil);
+            System.out.println("HASIL INSERT = " + hasil);
 
-return hasil > 0;
-        }catch (Exception e) {
+            return hasil > 0;
+        } catch (Exception e) {
 
-    e.printStackTrace();
+            e.printStackTrace();
 
-    System.out.println("ERROR = " + e.getMessage());
+            System.out.println("ERROR = " + e.getMessage());
 
-    javax.swing.JOptionPane.showMessageDialog(
-            null,
-            e.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(
+                    null,
+                    e.getMessage());
 
-}
+        }
 
-return false;
+        return false;
 
     }
 //Method mengubah proses
-public boolean update(Proses proses){
 
-    try{
+    public boolean update(Proses proses) {
 
-        //Query mengubah proses
-        String sql =
-                "UPDATE proses "
-                + "SET nama_proses=? "
-                + "WHERE id_proses=?";
+        try {
 
-        //Menyiapkan query
-        PreparedStatement ps =
-                conn.prepareStatement(sql);
+            //Query mengubah proses
+            String sql
+                    = "UPDATE proses "
+                    + "SET nama_proses=? "
+                    + "WHERE id_proses=?";
 
-        //Mengisi nama proses
-        ps.setString(
-                1,
-                proses.getNamaProses());
+            //Menyiapkan query
+            PreparedStatement ps
+                    = conn.prepareStatement(sql);
 
-        //Mengisi ID proses
-        ps.setInt(
-                2,
-                proses.getIdProses());
+            //Mengisi nama proses
+            ps.setString(
+                    1,
+                    proses.getNamaProses());
 
-        //Menjalankan query
-        return ps.executeUpdate() > 0;
+            //Mengisi ID proses
+            ps.setInt(
+                    2,
+                    proses.getIdProses());
 
-    }catch(Exception e){
+            //Menjalankan query
+            return ps.executeUpdate() > 0;
 
-        e.printStackTrace();
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return false;
 
     }
-
-    return false;
-
-}
 //Method menghapus proses
-public boolean hapus(int idProses){
 
-    try{
+    public boolean hapus(int idProses) {
 
-        //Query menghapus proses
-        String sql =
-                "DELETE FROM proses "
-                + "WHERE id_proses=?";
+        try {
 
-        //Menyiapkan query
-        PreparedStatement ps =
-                conn.prepareStatement(sql);
+            //Query menghapus proses
+            String sql
+                    = "DELETE FROM proses "
+                    + "WHERE id_proses=?";
 
-        //Mengisi ID proses
-        ps.setInt(
-                1,
-                idProses);
+            //Menyiapkan query
+            PreparedStatement ps
+                    = conn.prepareStatement(sql);
 
-        //Menjalankan query
-        return ps.executeUpdate() > 0;
+            //Mengisi ID proses
+            ps.setInt(
+                    1,
+                    idProses);
 
-    }catch(Exception e){
+            //Menjalankan query
+            return ps.executeUpdate() > 0;
 
-        e.printStackTrace();
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return false;
 
     }
-
-    return false;
-
-}
 }

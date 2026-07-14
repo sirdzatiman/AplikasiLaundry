@@ -1,5 +1,5 @@
-
 package aplikasilaundry.view.dialog;
+
 import aplikasilaundry.controller.TransaksiController;
 //Mengimpor FrameDashboard
 import aplikasilaundry.view.frame.FrameDashboard;
@@ -14,97 +14,100 @@ import aplikasilaundry.view.panel.Pengaturan;
 
 import aplikasilaundry.controller.LayananController;
 import aplikasilaundry.model.Layanan;
+
 public class popUpKonfirmasiHapus extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpKonfirmasiHapus.class.getName());
 //Controller transaksi
-private TransaksiController controllerTransaksi;
+    private TransaksiController controllerTransaksi;
 //Controller pengguna
-private PenggunaController controllerPengguna;
+    private PenggunaController controllerPengguna;
 
 //ID pengguna yang akan dihapus
-private int idPengguna;
+    private int idPengguna;
 
 //Panel Pengaturan
-private Pengaturan pengaturan;
+    private Pengaturan pengaturan;
 
 //Nomor nota yang akan dihapus
-private String noNota;
+    private String noNota;
 
 //Popup edit yang membuka dialog ini
-private popUpPensilEdit popupEdit;
+    private popUpPensilEdit popupEdit;
 
 //Controller layanan
-private LayananController controllerLayanan;
+    private LayananController controllerLayanan;
 
 //Menyimpan data layanan
-private Layanan layanan;
+    private Layanan layanan;
 
 //Menyimpan panel Pengaturan
-private Pengaturan panel;
-    
-  //Constructor popup konfirmasi hapus
-public popUpKonfirmasiHapus(
-        java.awt.Frame parent,
-        boolean modal,
-        Pengaturan panel,
-        Layanan layanan) {
+    private Pengaturan panel;
 
-    super(parent, modal);
+    //Constructor popup konfirmasi hapus
+    public popUpKonfirmasiHapus(
+            java.awt.Frame parent,
+            boolean modal,
+            Pengaturan panel,
+            Layanan layanan) {
 
-    initComponents();
+        super(parent, modal);
 
-    //Membuat controller
-   controllerLayanan =
-        new LayananController();
+        initComponents();
 
-    //Menyimpan panel
-    this.panel = panel;
+        //Membuat controller
+        controllerLayanan
+                = new LayananController();
 
-    //Menyimpan layanan
-    this.layanan = layanan;
+        //Menyimpan panel
+        this.panel = panel;
 
-}
+        //Menyimpan layanan
+        this.layanan = layanan;
+
+    }
 //Constructor pengguna
-public popUpKonfirmasiHapus(
-        java.awt.Frame parent,
-        boolean modal,
-        int idPengguna,
-        Pengaturan pengaturan){
 
-    super(parent, modal);
+    public popUpKonfirmasiHapus(
+            java.awt.Frame parent,
+            boolean modal,
+            int idPengguna,
+            Pengaturan pengaturan) {
 
-    initComponents();
+        super(parent, modal);
 
-    controllerPengguna =
-            new PenggunaController();
+        initComponents();
 
-    this.idPengguna = idPengguna;
-    this.pengaturan = pengaturan;
+        controllerPengguna
+                = new PenggunaController();
 
-}
+        this.idPengguna = idPengguna;
+        this.pengaturan = pengaturan;
+
+    }
 //Constructor transaksi
-public popUpKonfirmasiHapus(
-        java.awt.Frame parent,
-        boolean modal,
-        String noNota,
-        popUpPensilEdit popupEdit) {
 
-    super(parent, modal);
+    public popUpKonfirmasiHapus(
+            java.awt.Frame parent,
+            boolean modal,
+            String noNota,
+            popUpPensilEdit popupEdit) {
 
-    initComponents();
+        super(parent, modal);
 
-    //Membuat controller transaksi
-    controllerTransaksi =
-            new TransaksiController();
+        initComponents();
 
-    //Menyimpan nomor nota
-    this.noNota = noNota;
+        //Membuat controller transaksi
+        controllerTransaksi
+                = new TransaksiController();
 
-    //Menyimpan popup edit
-    this.popupEdit = popupEdit;
+        //Menyimpan nomor nota
+        this.noNota = noNota;
 
-}
+        //Menyimpan popup edit
+        this.popupEdit = popupEdit;
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -123,6 +126,7 @@ public popUpKonfirmasiHapus(
         btnHapus = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -200,57 +204,53 @@ public popUpKonfirmasiHapus(
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
-       //Jika menghapus transaksi
-    if(noNota != null){
+        //Jika menghapus transaksi
+        if (noNota != null) {
 
-        //Menghapus transaksi
-        controllerTransaksi.hapusTransaksi(noNota);
+            //Menghapus transaksi
+            controllerTransaksi.hapusTransaksi(noNota);
 
-        //Mengambil FrameDashboard
-        FrameDashboard frame =
-                (FrameDashboard)
-                SwingUtilities.getWindowAncestor(popupEdit);
+            //Mengambil FrameDashboard
+            FrameDashboard frame
+                    = (FrameDashboard) SwingUtilities.getWindowAncestor(popupEdit);
 
-        //Refresh seluruh panel
-        frame.getDataLaundry().refreshSemuaPanel();
+            //Refresh seluruh panel
+            frame.getDataLaundry().refreshSemuaPanel();
 
-        //Menutup popup edit
-        popupEdit.dispose();
+            //Menutup popup edit
+            popupEdit.dispose();
 
-    }
-    //Jika menghapus pengguna
-    else if(idPengguna != 0){
+        } //Jika menghapus pengguna
+        else if (idPengguna != 0) {
 
-        //Menghapus pengguna
-        controllerPengguna.hapus(idPengguna);
+            //Menghapus pengguna
+            controllerPengguna.hapus(idPengguna);
 
-        //Refresh tabel pengguna
-        if(pengaturan != null){
-            pengaturan.tampilPengguna();
+            //Refresh tabel pengguna
+            if (pengaturan != null) {
+                pengaturan.tampilPengguna();
+            }
+        } //Jika menghapus layanan
+        else if (layanan != null) {
+
+            //Menghapus layanan
+            controllerLayanan.hapus(
+                    layanan.getIdLayanan());
+
+            //Refresh tabel layanan
+            if (panel != null) {
+                panel.tampilLayanan();
+            }
+
         }
-    }
-        //Jika menghapus layanan
-else if(layanan != null){
 
-    //Menghapus layanan
-    controllerLayanan.hapus(
-            layanan.getIdLayanan());
-
-    //Refresh tabel layanan
-    if(panel != null){
-        panel.tampilLayanan();
-    }
-
-
-
-    }
-
-    //Menutup popup konfirmasi
-    dispose();
+        //Menutup popup konfirmasi
+        dispose();
 
 
     }//GEN-LAST:event_btnHapusActionPerformed

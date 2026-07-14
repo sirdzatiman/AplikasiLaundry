@@ -1,4 +1,3 @@
-
 package aplikasilaundry.view.dialog;
 
 //Mengimpor controller transaksi
@@ -8,84 +7,86 @@ import aplikasilaundry.view.frame.FrameDashboard;
 import javax.swing.SwingUtilities;
 //Mengimpor model transaksi
 import aplikasilaundry.model.Transaksi;
+
 public class popUpPensilEdit extends javax.swing.JDialog {
-   //Controller transaksi
-private TransaksiController controller =
-        new TransaksiController();
+    //Controller transaksi
+
+    private TransaksiController controller
+            = new TransaksiController();
 
 //Nomor nota transaksi yang akan diedit
-private String noNota; 
+    private String noNota;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpPensilEdit.class.getName());
 
+    //Constructor popup Edit Laundry
+    public popUpPensilEdit(java.awt.Frame parent,
+            boolean modal,
+            String noNota) {
 
-   //Constructor popup Edit Laundry
-public popUpPensilEdit(java.awt.Frame parent,
-                       boolean modal,
-                       String noNota) {
+        super(parent, modal);
 
-    super(parent, modal);
+        initComponents();
 
-    initComponents();
+        //Menyimpan nomor nota
+        this.noNota = noNota;
 
-    //Menyimpan nomor nota
-    this.noNota = noNota;
-
-    //Menampilkan data transaksi
-    tampilData();
-
-}
-
-//Method menampilkan data transaksi
-private void tampilData(){
-
-    //Mengambil data transaksi berdasarkan nomor nota
-    Transaksi transaksi =
-            controller.getByNoNota(noNota);
-
-    //Jika data ditemukan
-    if(transaksi != null){
-
-        //Menampilkan nama pelanggan
-        tNama.setText(
-                transaksi.getNamaPelanggan());
-
-        //Menghapus seluruh isi ComboBox
-tStatus.removeAllItems();
-
-//Menentukan pilihan status sesuai status sekarang
-switch (transaksi.getStatus()) {
-
-    case "Baru Masuk":
-
-        tStatus.addItem("Baru Masuk");
-        tStatus.addItem("Diproses");
-        break;
-
-    case "Diproses":
-
-        tStatus.addItem("Diproses");
-        tStatus.addItem("Selesai");
-        break;
-
-    case "Selesai":
-
-        tStatus.addItem("Selesai");
-        tStatus.addItem("Sudah Diambil");
-        break;
-
-    case "Sudah Diambil":
-
-        tStatus.addItem("Sudah Diambil");
-        break;
-}
-
-//Memilih status saat ini
-tStatus.setSelectedItem(
-        transaksi.getStatus());
+        //Menampilkan data transaksi
+        tampilData();
 
     }
 
-}
+//Method menampilkan data transaksi
+    private void tampilData() {
+
+        //Mengambil data transaksi berdasarkan nomor nota
+        Transaksi transaksi
+                = controller.getByNoNota(noNota);
+
+        //Jika data ditemukan
+        if (transaksi != null) {
+
+            //Menampilkan nama pelanggan
+            tNama.setText(
+                    transaksi.getNamaPelanggan());
+
+            //Menghapus seluruh isi ComboBox
+            tStatus.removeAllItems();
+
+//Menentukan pilihan status sesuai status sekarang
+            switch (transaksi.getStatus()) {
+
+                case "Baru Masuk":
+
+                    tStatus.addItem("Baru Masuk");
+                    tStatus.addItem("Diproses");
+                    break;
+
+                case "Diproses":
+
+                    tStatus.addItem("Diproses");
+                    tStatus.addItem("Selesai");
+                    break;
+
+                case "Selesai":
+
+                    tStatus.addItem("Selesai");
+                    tStatus.addItem("Sudah Diambil");
+                    break;
+
+                case "Sudah Diambil":
+
+                    tStatus.addItem("Sudah Diambil");
+                    break;
+            }
+
+//Memilih status saat ini
+            tStatus.setSelectedItem(
+                    transaksi.getStatus());
+
+        }
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,6 +106,7 @@ tStatus.setSelectedItem(
         tStatus = new javax.swing.JComboBox<>();
         btnDelete = new javax.swing.JButton();
         btnSimpan = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -188,35 +190,48 @@ tStatus.setSelectedItem(
         btnSimpan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSimpan.addActionListener(this::btnSimpanActionPerformed);
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Close.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(44, 44, 44)))))))
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(44, 44, 44)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(32, 32, 32))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -240,6 +255,7 @@ tStatus.setSelectedItem(
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tNamaActionPerformed
@@ -249,74 +265,79 @@ tStatus.setSelectedItem(
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
         //Mengambil nama pelanggan
-String nama = tNama.getText().trim();
+        String nama = tNama.getText().trim();
 
 //Mengambil status
-String status = tStatus.getSelectedItem().toString();
+        String status = tStatus.getSelectedItem().toString();
 
 //Validasi nama pelanggan
-if(nama.isEmpty()){
+        if (nama.isEmpty()) {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Nama pelanggan tidak boleh kosong!");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Nama pelanggan tidak boleh kosong!");
 
-    return;
+            return;
 
-}
+        }
 
 //Mengubah data transaksi
-controller.updateTransaksi(
-        noNota,
-        nama,
-        status);
+        controller.updateTransaksi(
+                noNota,
+                nama,
+                status);
 
 //Menampilkan pesan berhasil
-JOptionPane.showMessageDialog(
-        this,
-        "Data berhasil diperbarui.");
+        JOptionPane.showMessageDialog(
+                this,
+                "Data berhasil diperbarui.");
 
 //Mengambil Frame Dashboard
-FrameDashboard frame =
-        (FrameDashboard) SwingUtilities.getWindowAncestor(this);
+        FrameDashboard frame
+                = (FrameDashboard) SwingUtilities.getWindowAncestor(this);
 
 //Memperbarui data laundry
-frame.getDataLaundry().refreshSemuaPanel();
+        frame.getDataLaundry().refreshSemuaPanel();
 
 //Memperbarui data riwayat laundry
-frame.getRiwayatLaundry().refreshData();
+        frame.getRiwayatLaundry().refreshData();
 
 //Menutup popup
-dispose();
+        dispose();
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-   //Membuka popup konfirmasi hapus
-popUpKonfirmasiHapus dialog =
-        new popUpKonfirmasiHapus(
-                (java.awt.Frame)
-                SwingUtilities.getWindowAncestor(this),
-                true,
-                noNota,
-                this);
+        //Membuka popup konfirmasi hapus
+        popUpKonfirmasiHapus dialog
+                = new popUpKonfirmasiHapus(
+                        (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
+                        true,
+                        noNota,
+                        this);
 
 //Menampilkan popup di tengah
-dialog.setLocationRelativeTo(this);
+        dialog.setLocationRelativeTo(this);
 
 //Menampilkan popup
-dialog.setVisible(true);
+        dialog.setVisible(true);
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
      * @param args the command line arguments
      */
-  
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

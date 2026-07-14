@@ -1,4 +1,3 @@
-
 package aplikasilaundry.view.dialog;
 
 import aplikasilaundry.controller.LayananController;
@@ -10,106 +9,110 @@ import java.math.BigDecimal;
 import aplikasilaundry.controller.ProsesController;
 import aplikasilaundry.model.Proses;
 import java.util.List;
+
 public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpEditKonfigurasiLayanan.class.getName());
 //Controller proses
-private ProsesController controllerProses;
-   //Popup asal
-private Pengaturan panel;
+    private ProsesController controllerProses;
+    //Popup asal
+    private Pengaturan panel;
 
 //Controller layanan
-private LayananController controller;
+    private LayananController controller;
 
 //Data layanan yang sedang diedit
-private Layanan layanan;
+    private Layanan layanan;
+
     public popUpEditKonfigurasiLayanan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
+
     public popUpEditKonfigurasiLayanan(
-        java.awt.Frame parent,
-        boolean modal,
-        Pengaturan panel,
-        Layanan layanan) {
+            java.awt.Frame parent,
+            boolean modal,
+            Pengaturan panel,
+            Layanan layanan) {
 
-    super(parent, modal);
+        super(parent, modal);
 
-    initComponents();
+        initComponents();
 
-    //Menyimpan panel asal
-    this.panel = panel;
+        //Menyimpan panel asal
+        this.panel = panel;
 
-    //Menyimpan data layanan
-    this.layanan = layanan;
+        //Menyimpan data layanan
+        this.layanan = layanan;
 
-    //Membuat controller
-    controller = new LayananController();
-    
-    controllerProses =
-        new ProsesController();
+        //Membuat controller
+        controller = new LayananController();
+
+        controllerProses
+                = new ProsesController();
 
 //Menampilkan seluruh proses
-tampilProses();
+        tampilProses();
 
-    //Mengisi jenis layanan
-    tJenisLayanan.setText(
-            layanan.getNamaLayanan());
+        //Mengisi jenis layanan
+        tJenisLayanan.setText(
+                layanan.getNamaLayanan());
 
-    //Mengisi satuan
-    if(layanan.getSatuan().equals("Kg")){
+        //Mengisi satuan
+        if (layanan.getSatuan().equals("Kg")) {
 
-        btnKg.setSelected(true);
+            btnKg.setSelected(true);
 
-    }else{
+        } else {
 
-        btnBiji.setSelected(true);
+            btnBiji.setSelected(true);
+
+        }
+
+        //Mengisi penggunaan proses
+        if (layanan.getPakaiProses().equals("Ya")) {
+
+            btnYa.setSelected(true);
+
+        } else {
+
+            btnTidak.setSelected(true);
+
+        }
+
+        //Mengisi ComboBox proses
+        cProses.setSelectedItem(
+                layanan.getProses());
+
+        //Mengisi harga
+        tHarga.setText(
+                layanan.getHarga().toPlainString());
+
+        //Mengisi keterangan
+        txtKeterangan.setText(
+                layanan.getKeterangan());
 
     }
-
-    //Mengisi penggunaan proses
-    if(layanan.getPakaiProses().equals("Ya")){
-
-        btnYa.setSelected(true);
-
-    }else{
-
-        btnTidak.setSelected(true);
-
-    }
-
-    //Mengisi ComboBox proses
-    cProses.setSelectedItem(
-            layanan.getProses());
-
-    //Mengisi harga
-    tHarga.setText(
-            layanan.getHarga().toPlainString());
-
-    //Mengisi keterangan
-    txtKeterangan.setText(
-            layanan.getKeterangan());
-
-}
     //Method menampilkan proses ke ComboBox
-private void tampilProses(){
 
-    //Mengosongkan ComboBox
-    cProses.removeAllItems();
+    private void tampilProses() {
 
-    //Mengambil seluruh proses
-    List<Proses> daftar =
-            controllerProses.getAll();
+        //Mengosongkan ComboBox
+        cProses.removeAllItems();
 
-    //Menambahkan ke ComboBox
-    for(Proses proses : daftar){
+        //Mengambil seluruh proses
+        List<Proses> daftar
+                = controllerProses.getAll();
 
-        cProses.addItem(
-                proses.getNamaProses());
+        //Menambahkan ke ComboBox
+        for (Proses proses : daftar) {
+
+            cProses.addItem(
+                    proses.getNamaProses());
+
+        }
 
     }
-
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -157,6 +160,7 @@ private void tampilProses(){
         btnSimpan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(431, 600));
 
         jPanel3.setPreferredSize(new java.awt.Dimension(431, 600));
@@ -521,6 +525,7 @@ private void tampilProses(){
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnKgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKgActionPerformed
@@ -557,10 +562,10 @@ private void tampilProses(){
 
         //Membatalkan tombol Ya
         btnYa.setSelected(false);
- //Menonaktifkan proses
-    cProses.setEnabled(false);
+        //Menonaktifkan proses
+        cProses.setEnabled(false);
         //Mengosongkan pilihan
-    cProses.setSelectedIndex(-1);
+        cProses.setSelectedIndex(-1);
 
 
     }//GEN-LAST:event_btnTidakActionPerformed
@@ -573,142 +578,142 @@ private void tampilProses(){
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
 //Validasi jenis layanan
-if(tJenisLayanan.getText().trim().isEmpty()){
+        if (tJenisLayanan.getText().trim().isEmpty()) {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Jenis layanan belum diisi.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Jenis layanan belum diisi.");
 
-    return;
+            return;
 
-}
+        }
 
 //Validasi satuan
-if(!btnKg.isSelected()
-        && !btnBiji.isSelected()){
+        if (!btnKg.isSelected()
+                && !btnBiji.isSelected()) {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Pilih satuan layanan.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Pilih satuan layanan.");
 
-    return;
+            return;
 
-}
+        }
 
 //Validasi penggunaan proses
-if(!btnYa.isSelected()
-        && !btnTidak.isSelected()){
+        if (!btnYa.isSelected()
+                && !btnTidak.isSelected()) {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Pilih penggunaan proses.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Pilih penggunaan proses.");
 
-    return;
+            return;
 
-}
+        }
 
 //Validasi proses
-if(btnYa.isSelected()
-        && cProses.getSelectedItem() == null){
+        if (btnYa.isSelected()
+                && cProses.getSelectedItem() == null) {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Pilih proses.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Pilih proses.");
 
-    return;
+            return;
 
-}
+        }
 
 //Validasi harga
-if(tHarga.getText().trim().isEmpty()){
+        if (tHarga.getText().trim().isEmpty()) {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Harga belum diisi.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Harga belum diisi.");
 
-    return;
+            return;
 
-}
+        }
 
-try{
+        try {
 
-    //Mengubah nama layanan
-    layanan.setNamaLayanan(
-            tJenisLayanan.getText().trim());
+            //Mengubah nama layanan
+            layanan.setNamaLayanan(
+                    tJenisLayanan.getText().trim());
 
-    //Mengubah penggunaan proses
-    layanan.setPakaiProses(
-            btnYa.isSelected()
-            ? "Ya"
-            : "Tidak");
+            //Mengubah penggunaan proses
+            layanan.setPakaiProses(
+                    btnYa.isSelected()
+                    ? "Ya"
+                    : "Tidak");
 
-    //Mengubah proses
-    if(btnYa.isSelected()){
+            //Mengubah proses
+            if (btnYa.isSelected()) {
 
-        layanan.setProses(
-                cProses.getSelectedItem().toString());
+                layanan.setProses(
+                        cProses.getSelectedItem().toString());
 
-    }else{
+            } else {
 
-        layanan.setProses(null);
+                layanan.setProses(null);
 
-    }
+            }
 
-    //Mengubah satuan
-    layanan.setSatuan(
-            btnKg.isSelected()
-            ? "Kg"
-            : "Biji");
+            //Mengubah satuan
+            layanan.setSatuan(
+                    btnKg.isSelected()
+                    ? "Kg"
+                    : "Biji");
 
-    //Mengubah harga
-    layanan.setHarga(
-            new BigDecimal(
-                    tHarga.getText().trim()));
+            //Mengubah harga
+            layanan.setHarga(
+                    new BigDecimal(
+                            tHarga.getText().trim()));
 
-    //Mengubah keterangan
-    layanan.setKeterangan(
-            txtKeterangan.getText().trim());
+            //Mengubah keterangan
+            layanan.setKeterangan(
+                    txtKeterangan.getText().trim());
 
-    //Update database
-    if(controller.update(layanan)){
+            //Update database
+            if (controller.update(layanan)) {
 
-        JOptionPane.showMessageDialog(
-                this,
-                "Konfigurasi layanan berhasil diubah.");
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Konfigurasi layanan berhasil diubah.");
 
-        //Refresh tabel pada panel Pengaturan
-        panel.tampilLayanan();
+                //Refresh tabel pada panel Pengaturan
+                panel.tampilLayanan();
 
-        //Menutup dialog
-        dispose();
+                //Menutup dialog
+                dispose();
 
-    }else{
+            } else {
 
-        JOptionPane.showMessageDialog(
-                this,
-                "Konfigurasi layanan gagal diubah.");
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Konfigurasi layanan gagal diubah.");
 
-    }
+            }
 
-}catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Harga harus berupa angka.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Harga harus berupa angka.");
 
-}   
+        }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnYaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYaActionPerformed
         // TODO add your handling code here:
         //Memilih tombol Ya
-    btnYa.setSelected(true);
+        btnYa.setSelected(true);
 
-    //Membatalkan tombol Tidak
-    btnTidak.setSelected(false);
+        //Membatalkan tombol Tidak
+        btnTidak.setSelected(false);
 
-    //Mengaktifkan ComboBox proses
-    cProses.setEnabled(true);
+        //Mengaktifkan ComboBox proses
+        cProses.setEnabled(true);
     }//GEN-LAST:event_btnYaActionPerformed
 
     /**

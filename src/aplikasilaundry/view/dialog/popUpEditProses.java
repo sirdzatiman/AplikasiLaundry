@@ -9,8 +9,8 @@ import javax.swing.JOptionPane;
 
 public class popUpEditProses extends javax.swing.JDialog {
 
-    private static final java.util.logging.Logger logger =
-            java.util.logging.Logger.getLogger(popUpEditProses.class.getName());
+    private static final java.util.logging.Logger logger
+            = java.util.logging.Logger.getLogger(popUpEditProses.class.getName());
 
     //Popup asal
     private popUpTambahKonfigurasiLayanan popup;
@@ -25,31 +25,32 @@ public class popUpEditProses extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-public popUpEditProses(
-        java.awt.Frame parent,
-        boolean modal,
-        popUpTambahKonfigurasiLayanan popup,
-        Proses proses){
 
-    super(parent, modal);
+    public popUpEditProses(
+            java.awt.Frame parent,
+            boolean modal,
+            popUpTambahKonfigurasiLayanan popup,
+            Proses proses) {
 
-    initComponents();
+        super(parent, modal);
 
-    //Menyimpan popup asal
-    this.popup = popup;
+        initComponents();
 
-    //Menyimpan data proses
-    this.proses = proses;
+        //Menyimpan popup asal
+        this.popup = popup;
 
-    //Membuat controller
-    controller =
-            new ProsesController();
+        //Menyimpan data proses
+        this.proses = proses;
 
-    //Menampilkan nama proses
-    tNamaProses.setText(
-            proses.getNamaProses());
+        //Membuat controller
+        controller
+                = new ProsesController();
 
-}
+        //Menampilkan nama proses
+        tNamaProses.setText(
+                proses.getNamaProses());
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,6 +73,7 @@ public popUpEditProses(
         btnBatal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -190,52 +192,53 @@ public popUpEditProses(
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
         //Validasi nama proses
-if(tNamaProses.getText().trim().isEmpty()){
+        if (tNamaProses.getText().trim().isEmpty()) {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Nama proses belum diisi.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Nama proses belum diisi.");
 
-    return;
+            return;
 
-}
+        }
 
 //Mengubah nama proses
-proses.setNamaProses(
-        tNamaProses.getText().trim());
+        proses.setNamaProses(
+                tNamaProses.getText().trim());
 
 //Mengubah data ke database
-if(controller.update(proses)){
+        if (controller.update(proses)) {
 
-    //Memperbarui tabel dan ComboBox
-    popup.tampilProses();
+            //Memperbarui tabel dan ComboBox
+            popup.tampilProses();
 
-    //Informasi berhasil
-    JOptionPane.showMessageDialog(
-            this,
-            "Data proses berhasil diubah.");
+            //Informasi berhasil
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Data proses berhasil diubah.");
 
-    //Menutup popup
-    dispose();
+            //Menutup popup
+            dispose();
 
-}else{
+        } else {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Data proses gagal diubah.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Data proses gagal diubah.");
 
-}
+        }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         // TODO add your handling code here:
-       //Menutup dialog edit proses
-dispose(); 
+        //Menutup dialog edit proses
+        dispose();
     }//GEN-LAST:event_btnBatalActionPerformed
 
     /**

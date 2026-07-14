@@ -110,6 +110,7 @@ public popUpPensil(java.awt.Frame parent,
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setUndecorated(true);
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -407,6 +408,7 @@ public popUpPensil(java.awt.Frame parent,
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
