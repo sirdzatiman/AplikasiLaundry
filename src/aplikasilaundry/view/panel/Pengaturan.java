@@ -30,6 +30,7 @@ import aplikasilaundry.controller.LayananController;
 import java.util.List;
 //Mengimpor model layanan
 import aplikasilaundry.model.Layanan;
+import javax.swing.SwingUtilities;
 
 import aplikasilaundry.view.dialog.popUpEditKonfigurasiLayanan;
 import aplikasilaundry.view.dialog.popUpKonfirmasiHapus;
@@ -1511,7 +1512,21 @@ private void tampilLayanan(){
 
     private void btnTambahKonfigurasiLAyananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahKonfigurasiLAyananActionPerformed
         // TODO add your handling code here:
+//Membuka dialog tambah konfigurasi layanan
+popUpTambahKonfigurasiLayanan dialog =
+        new popUpTambahKonfigurasiLayanan(
+                (java.awt.Frame)
+                SwingUtilities.getWindowAncestor(this),
+                true);
 
+//Menampilkan dialog di tengah frame
+dialog.setLocationRelativeTo(this);
+
+//Menampilkan dialog
+dialog.setVisible(true);
+
+//Memperbarui tabel layanan
+tampilLayanan();
     }//GEN-LAST:event_btnTambahKonfigurasiLAyananActionPerformed
 
     private void btnHapusJenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusJenisActionPerformed

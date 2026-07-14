@@ -124,13 +124,8 @@
                                       <Component id="jPanel30" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="jLabel62" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="btnTambah" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jPanel34" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="btnTambah" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jPanel34" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="13" max="32767" attributes="0"/>
                           </Group>
@@ -551,6 +546,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Kg (per kilogram)"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKgActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel62">
                   <Properties>
@@ -729,6 +727,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Hapus"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHapusActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
