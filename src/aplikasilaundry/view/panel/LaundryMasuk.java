@@ -14,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
 import java.util.List;
 import aplikasilaundry.util.FormatRupiah;
 import aplikasilaundry.util.TableStyle;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class LaundryMasuk extends javax.swing.JPanel {
 //Menyimpan controller transaksi
@@ -25,6 +27,35 @@ public class LaundryMasuk extends javax.swing.JPanel {
         //Membuat objek controller
         controller = new TransaksiController();
         TableStyle.TableStyle(tblMasuk);
+        
+        // ================= Alignment Tabel =================
+
+        // Renderer tengah
+        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+        center.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // Renderer kiri
+        DefaultTableCellRenderer left = new DefaultTableCellRenderer();
+        left.setHorizontalAlignment(SwingConstants.LEFT);
+
+        // No Nota
+        tblMasuk.getColumnModel().getColumn(0).setCellRenderer(left);
+
+        // Nama Pelanggan
+        tblMasuk.getColumnModel().getColumn(1).setCellRenderer(left);
+
+        // Jam Masuk
+        tblMasuk.getColumnModel().getColumn(2).setCellRenderer(center);
+
+        // Jenis
+        tblMasuk.getColumnModel().getColumn(3).setCellRenderer(center);
+
+        // Total
+        tblMasuk.getColumnModel().getColumn(4).setCellRenderer(center);
+
+        // Status
+        tblMasuk.getColumnModel().getColumn(5).setCellRenderer(center);
+        
         //Menampilkan data laundry masuk
         tampilData("", null);
 
@@ -59,23 +90,15 @@ public class LaundryMasuk extends javax.swing.JPanel {
 
             }
 
-//Menambahkan data ke tabel
-            model.addRow(new Object[]{
-                //Nomor nota
-                t.getNoNota(),
-                //Nama pelanggan
-                t.getNamaPelanggan(),
-                //Jam masuk
-                t.getJamMasuk(),
-                //Jenis layanan
-                jenis,
-                //Total harga
-                t.getTotalHarga(),
-                //Status transaksi
-                t.getStatus()
-
-            });
-
+                //Menambahkan data ke tabel
+                model.addRow(new Object[]{
+                    t.getNoNota(),
+                    t.getNamaPelanggan(),
+                    FormatJam.format(t.getJamMasuk()),
+                    jenis,
+                    FormatRupiah.format(t.getTotalHarga()),
+                    t.getStatus()
+                });
         }
 
     }

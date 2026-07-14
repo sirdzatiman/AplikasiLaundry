@@ -1,4 +1,3 @@
-
 package aplikasilaundry.view.dialog;
 
 //Mengimpor controller transaksi
@@ -11,29 +10,30 @@ import java.math.BigDecimal;
 import aplikasilaundry.view.panel.PanelItemLaundry;
 
 import javax.swing.JOptionPane;
+
 public class popUpTambahItemLaundry extends javax.swing.JDialog {
-    
+
 //Menyimpan panel yang membuka popup
-private PanelItemLaundry panelItem;
+    private PanelItemLaundry panelItem;
 //Menyimpan controller transaksi
-private TransaksiController controller;
+    private TransaksiController controller;
 
 //Constructor
-public popUpTambahItemLaundry(java.awt.Frame parent,
-                              boolean modal,
-                              PanelItemLaundry panelItem) {
+    public popUpTambahItemLaundry(java.awt.Frame parent,
+            boolean modal,
+            PanelItemLaundry panelItem) {
 
-    super(parent, modal);
+        super(parent, modal);
 
-    initComponents();
-    //Membuat controller transaksi
-controller = panelItem.getController();
-    //Menjalankan pengaturan awal komponen
-cJenisActionPerformed(null);
+        initComponents();
+        //Membuat controller transaksi
+        controller = panelItem.getController();
+        //Menjalankan pengaturan awal komponen
+        cJenisActionPerformed(null);
 
-    //Menyimpan panel asal
-    this.panelItem = panelItem;
-}
+        //Menyimpan panel asal
+        this.panelItem = panelItem;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -252,138 +252,144 @@ cJenisActionPerformed(null);
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-          //Validasi berat
-    if (tBerat.isEnabled() && tBerat.getText().trim().isEmpty()) {
-        JOptionPane.showMessageDialog(this,
-                "Berat belum diisi!");
-        return;
-    }
+        //Validasi berat
+        if (tBerat.isEnabled() && tBerat.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Berat belum diisi!");
+            return;
+        }
 
-    //Validasi satuan
-    if (tSatuan.isEnabled() && tSatuan.getText().trim().isEmpty()) {
-        JOptionPane.showMessageDialog(this,
-                "Jumlah satuan belum diisi!");
-        return;
-    }
+        //Validasi satuan
+        if (tSatuan.isEnabled() && tSatuan.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Jumlah satuan belum diisi!");
+            return;
+        }
 //Mengambil jenis laundry
-String layanan = cJenis.getSelectedItem().toString();
+        String layanan = cJenis.getSelectedItem().toString();
 
 //Variabel jumlah
-double qty;
+        double qty;
 
 //Menyimpan proses
-String proses = null;
+        String proses = null;
 
 //Jika combo proses aktif
-if (cProses.isEnabled()) {
+        if (cProses.isEnabled()) {
 
-    proses =
-        cProses.getSelectedItem().toString();
+            proses
+                    = cProses.getSelectedItem().toString();
 
-}
-
+        }
 
 //Jika berat aktif
-if (tBerat.isEnabled()) {
+        if (tBerat.isEnabled()) {
 
-    qty = Double.parseDouble(tBerat.getText());
+            qty = Double.parseDouble(tBerat.getText());
 
-}
+        } //Jika satuan aktif
+        else {
 
-//Jika satuan aktif
-else {
+            qty = Double.parseDouble(tSatuan.getText());
 
-    qty = Double.parseDouble(tSatuan.getText());
-
-}
-
+        }
 
 //Mengambil harga dari database
-BigDecimal harga =
-        controller.getHargaLayanan(
-                layanan,
-                proses);
-    
-    //Menghitung subtotal
-BigDecimal subtotal =
-        harga.multiply(
-                BigDecimal.valueOf(qty));
+        BigDecimal harga
+                = controller.getHargaLayanan(
+                        layanan,
+                        proses);
+
+        //Menghitung subtotal
+        BigDecimal subtotal
+                = harga.multiply(
+                        BigDecimal.valueOf(qty));
 //Membuat objek item laundry
-aplikasilaundry.model.ItemLaundry item =
-        new aplikasilaundry.model.ItemLaundry();
+        aplikasilaundry.model.ItemLaundry item
+                = new aplikasilaundry.model.ItemLaundry();
 
 //Mengambil ID layanan dari database
-int idLayanan =
-        controller.getIdLayanan(
-                layanan,
-                proses);
-//Mengisi data item laundry
-item.setLayanan(layanan);
-//Menyimpan ID layanan
-item.setIdLayanan(idLayanan);
-item.setProses(proses);
-item.setQty(qty);
-item.setHarga(harga);
-item.setSubtotal(subtotal);
+        int idLayanan
+                = controller.getIdLayanan(
+                        layanan,
+                        proses);
+            //Mengisi data item laundry
+            item.setLayanan(layanan);
+
+            //Menyimpan ID layanan
+            item.setIdLayanan(idLayanan);
+
+            item.setProses(proses);
+
+        if (tBerat.isEnabled()) {
+            item.setSatuan("Kg");
+        } else {
+            item.setSatuan("Biji");
+        }
+
+        item.setQty(qty);
+        item.setHarga(harga);
+        item.setSubtotal(subtotal);
+
+            item.setQty(qty);
+            item.setHarga(harga);
+            item.setSubtotal(subtotal);
 
 //Mengirim data ke Panel Item Laundry
-panelItem.tambahItemKeTabel(item);
+        panelItem.tambahItemKeTabel(item);
 
 //Menyimpan item ke transaksi sementara
-controller.tambahItem(item);
+        controller.tambahItem(item);
 
 //Menutup popup
-dispose();
+        dispose();
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void cJenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cJenisActionPerformed
         // TODO add your handling code here:
-      //Mengambil jenis laundry yang dipilih
-String jenis = cJenis.getSelectedItem().toString();
+        //Mengambil jenis laundry yang dipilih
+        String jenis = cJenis.getSelectedItem().toString();
 
 //Jika Baju atau Selimut
-if (jenis.equals("Baju/DLL")
-        || jenis.equals("Selimut/DLL")) {
+        if (jenis.equals("Baju/DLL")
+                || jenis.equals("Selimut/DLL")) {
 
-    //Berat aktif
-    tBerat.setEnabled(true);
+            //Berat aktif
+            tBerat.setEnabled(true);
 
-    //Satuan tidak aktif
-    tSatuan.setEnabled(false);
+            //Satuan tidak aktif
+            tSatuan.setEnabled(false);
 
-    //Proses aktif
-    cProses.setEnabled(true);
+            //Proses aktif
+            cProses.setEnabled(true);
 
-    //Mengosongkan satuan
-    tSatuan.setText("0");
+            //Mengosongkan satuan
+            tSatuan.setText("0");
 
-}
+        } //Jika Bed Cover atau Boneka
+        else {
 
-//Jika Bed Cover atau Boneka
-else {
+            //Berat tidak aktif
+            tBerat.setEnabled(false);
 
-    //Berat tidak aktif
-    tBerat.setEnabled(false);
+            //Satuan aktif
+            tSatuan.setEnabled(true);
 
-    //Satuan aktif
-    tSatuan.setEnabled(true);
+            //Proses tidak aktif
+            cProses.setEnabled(false);
 
-    //Proses tidak aktif
-    cProses.setEnabled(false);
+            //Kembalikan proses ke pilihan pertama
+            cProses.setSelectedIndex(0);
 
-    //Kembalikan proses ke pilihan pertama
-    cProses.setSelectedIndex(0);
+            //Mengosongkan berat
+            tBerat.setText("0");
 
-    //Mengosongkan berat
-    tBerat.setText("0");
-
-}
+        }
     }//GEN-LAST:event_cJenisActionPerformed
 
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;

@@ -825,19 +825,27 @@ public class FrameLogin extends javax.swing.JFrame {
         try {
             FlatLightLaf.setup();
 
+            // Header JTable
             UIManager.put("TableHeader.background", new Color(238, 241, 247));
             UIManager.put("TableHeader.foreground", Color.BLACK);
             UIManager.put("TableHeader.font", new Font("Segoe UI", Font.BOLD, 14));
             UIManager.put("TableHeader.height", 35);
-            //semua komponen button akan berubah 
+
+            // Button
             UIManager.put("Button.arc", 15);
-            UIManager.put("TextComponent.arc", 15);
             UIManager.put("Button.borderWidth", 0);
+
+            // TextField
+            UIManager.put("TextComponent.arc", 15);
+
+            // Component
             UIManager.put("Component.borderWidth", 0);
             UIManager.put("Component.focusWidth", 0);
             UIManager.put("Component.innerFocusWidth", 0);
+
             UIManager.setLookAndFeel(new FlatLightLaf());
-        } catch (UnsupportedLookAndFeelException unsupportedLookAndFeelException) {
+
+        } catch (UnsupportedLookAndFeelException e) {
         }
         //</editor-fold>
 

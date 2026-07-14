@@ -6,6 +6,8 @@ import aplikasilaundry.util.FormatJam;
 import aplikasilaundry.util.FormatRupiah;
 import aplikasilaundry.util.TableStyle;
 import java.util.List;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class Diproses extends javax.swing.JPanel {
@@ -17,12 +19,40 @@ public class Diproses extends javax.swing.JPanel {
 
         //Membuat objek controller
         controller = new TransaksiController();
+        TableStyle.TableStyle(tblProses);
+        
+        // ================= Alignment Tabel =================
+
+        // Renderer tengah
+        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+        center.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // Renderer kiri
+        DefaultTableCellRenderer left = new DefaultTableCellRenderer();
+        left.setHorizontalAlignment(SwingConstants.LEFT);
+
+        // No Nota
+        tblProses.getColumnModel().getColumn(0).setCellRenderer(left);
+
+        // Nama Pelanggan
+        tblProses.getColumnModel().getColumn(1).setCellRenderer(left);
+
+        // Jam Masuk
+        tblProses.getColumnModel().getColumn(2).setCellRenderer(center);
+
+        // Jenis
+        tblProses.getColumnModel().getColumn(3).setCellRenderer(center);
+
+        // Total
+        tblProses.getColumnModel().getColumn(4).setCellRenderer(center);
+
+        // Status
+        tblProses.getColumnModel().getColumn(5).setCellRenderer(center);
 
         //Menampilkan data
         tampilData("", null);
         tblProses.getColumnModel()
                 .getColumn(5);
-        TableStyle.TableStyle(tblProses);
     }
 
     public void tampilData(String keyword,
@@ -56,11 +86,11 @@ public class Diproses extends javax.swing.JPanel {
                 //Nama pelanggan
                 t.getNamaPelanggan(),
                 //Jam masuk
-                t.getJamMasuk(),
+                FormatJam.format(t.getJamMasuk()),
                 //Jenis layanan
                 jenis,
                 //Total harga
-                t.getTotalHarga(),
+                FormatRupiah.format(t.getTotalHarga()),
                 //Status transaksi
                 t.getStatus()
 

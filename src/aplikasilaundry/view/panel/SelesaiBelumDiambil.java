@@ -14,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
 
 //Mengimpor collection
 import java.util.List;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class SelesaiBelumDiambil extends javax.swing.JPanel {
 
@@ -25,6 +27,34 @@ public class SelesaiBelumDiambil extends javax.swing.JPanel {
         //Membuat objek controller
         controller = new TransaksiController();
         TableStyle.TableStyle(tblSelesai);
+        
+        // ================= Alignment Tabel =================
+
+        // Renderer rata tengah
+        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+        center.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // Renderer rata kiri
+        DefaultTableCellRenderer left = new DefaultTableCellRenderer();
+        left.setHorizontalAlignment(SwingConstants.LEFT);
+
+        // No Nota
+        tblSelesai.getColumnModel().getColumn(0).setCellRenderer(left);
+
+        // Nama Pelanggan
+        tblSelesai.getColumnModel().getColumn(1).setCellRenderer(left);
+
+        // Jam Masuk
+        tblSelesai.getColumnModel().getColumn(2).setCellRenderer(center);
+
+        // Jenis
+        tblSelesai.getColumnModel().getColumn(3).setCellRenderer(center);
+
+        // Total
+        tblSelesai.getColumnModel().getColumn(4).setCellRenderer(center);
+
+        // Status
+        tblSelesai.getColumnModel().getColumn(5).setCellRenderer(center);
         //Menampilkan data
         tampilData("", null);
         tblSelesai.getColumnModel()
@@ -67,11 +97,11 @@ public class SelesaiBelumDiambil extends javax.swing.JPanel {
                 //Nama pelanggan
                 t.getNamaPelanggan(),
                 //Jam masuk
-                t.getJamMasuk(),
+                FormatJam.format(t.getJamMasuk()),
                 //Jenis layanan
                 jenis,
                 //Total harga
-                t.getTotalHarga(),
+                FormatRupiah.format(t.getTotalHarga()),
                 //Status transaksi
                 t.getStatus()
 

@@ -14,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
 
 //Mengimpor collection
 import java.util.List;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class RiwayatLaundry extends javax.swing.JPanel {
 
@@ -25,6 +27,40 @@ public class RiwayatLaundry extends javax.swing.JPanel {
         //Membuat objek controller
         controller = new TransaksiController();
         TableStyle.TableStyle(tblRiwayat);
+        
+        // ================= Alignment Tabel Riwayat =================
+
+// ================= Alignment Tabel Riwayat =================
+
+        // Renderer rata tengah
+        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+        center.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // Renderer rata kiri
+        DefaultTableCellRenderer left = new DefaultTableCellRenderer();
+        left.setHorizontalAlignment(SwingConstants.LEFT);
+
+        // No Nota
+        tblRiwayat.getColumnModel().getColumn(0).setCellRenderer(left);
+
+        // Nama Pelanggan
+        tblRiwayat.getColumnModel().getColumn(1).setCellRenderer(left);
+
+        // Jam Masuk
+        tblRiwayat.getColumnModel().getColumn(2).setCellRenderer(center);
+
+        // Jam Ambil
+        tblRiwayat.getColumnModel().getColumn(3).setCellRenderer(center);
+
+        // Jenis
+        tblRiwayat.getColumnModel().getColumn(4).setCellRenderer(center);
+
+        // Total
+        tblRiwayat.getColumnModel().getColumn(5).setCellRenderer(center);
+
+        // Status
+        tblRiwayat.getColumnModel().getColumn(6).setCellRenderer(center);
+        
         //Menampilkan data ke tabel
         tampilData("", null);
         tblRiwayat.getColumnModel()
@@ -66,7 +102,7 @@ public class RiwayatLaundry extends javax.swing.JPanel {
                 FormatJam.format(
                 t.getJamMasuk()),
                 //Jam Ambil
-                t.getJamAmbil(),
+                FormatJam.format(t.getJamAmbil()),
                 //Jenis
                 t.getJenis(),
                 //Total

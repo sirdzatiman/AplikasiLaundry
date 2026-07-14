@@ -1,4 +1,3 @@
-
 package aplikasilaundry.view.panel;
 
 //Mengimpor Frame
@@ -21,7 +20,10 @@ import aplikasilaundry.controller.TransaksiController;
 
 //Mengimpor model pelanggan
 import aplikasilaundry.model.Pelanggan;
+import aplikasilaundry.util.FormatRupiah;
 import aplikasilaundry.util.TableStyle;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class PanelItemLaundry extends javax.swing.JPanel {
 
@@ -39,6 +41,41 @@ public class PanelItemLaundry extends javax.swing.JPanel {
         //Menampilkan data pelanggan yang sudah dipilih
         tampilDataPelanggan();
         TableStyle.TableStyle(tblItem);
+        
+        // Lebar kolom tabel
+        tblItem.getColumnModel().getColumn(0).setPreferredWidth(50);   // No
+        tblItem.getColumnModel().getColumn(1).setPreferredWidth(180);  // Jenis Laundry
+        tblItem.getColumnModel().getColumn(2).setPreferredWidth(180);  // Proses
+        tblItem.getColumnModel().getColumn(3).setPreferredWidth(100);  // Kg / Biji
+        tblItem.getColumnModel().getColumn(4).setPreferredWidth(120);  // Harga
+        tblItem.getColumnModel().getColumn(5).setPreferredWidth(120);  // Subtotal
+
+        // ================= Alignment Tabel Item Laundry =================
+        // Renderer rata tengah
+        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+        center.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // Renderer rata kiri
+        DefaultTableCellRenderer left = new DefaultTableCellRenderer();
+        left.setHorizontalAlignment(SwingConstants.LEFT);
+
+        // No
+        tblItem.getColumnModel().getColumn(0).setCellRenderer(center);
+
+        // Jenis Laundry
+        tblItem.getColumnModel().getColumn(1).setCellRenderer(left);
+
+        // Proses
+        tblItem.getColumnModel().getColumn(2).setCellRenderer(center);
+
+        // Kg / Biji
+        tblItem.getColumnModel().getColumn(3).setCellRenderer(center);
+
+        // Harga
+        tblItem.getColumnModel().getColumn(4).setCellRenderer(center);
+
+        // Subtotal
+        tblItem.getColumnModel().getColumn(5).setCellRenderer(center);
 
         //Menyiapkan tabel item laundry
         aturTabel();
@@ -64,48 +101,63 @@ public class PanelItemLaundry extends javax.swing.JPanel {
                 = new javax.swing.table.DefaultTableModel();
 
         model.addColumn("No.");
-    model.addColumn("Jenis Laundry");
-    model.addColumn("Proses");
-    model.addColumn("Kg / Biji");
-    model.addColumn("Harga");
-    model.addColumn("Subtotal");
-
+        model.addColumn("Jenis Laundry");
+        model.addColumn("Proses");
+        model.addColumn("Kg / Biji");
+        model.addColumn("Harga");
+        model.addColumn("Subtotal");
 
         tblItem.setModel(model);
 
+        }
+    //Method untuk menambahkan item laundry ke tabel
+
+    //Method untuk menambahkan item laundry ke tabel
+    public void tambahItemKeTabel(ItemLaundry item) {
+
+        //Mengambil model tabel
+        javax.swing.table.DefaultTableModel model
+                = (javax.swing.table.DefaultTableModel) tblItem.getModel();
+
+        //Nomor urut
+        int no = model.getRowCount() + 1;
+
+        String qty;
+
+        if ("Kg".equalsIgnoreCase(item.getSatuan())) {
+
+            if (item.getQty() == (int) item.getQty()) {
+                qty = (int) item.getQty() + " Kg";
+            } else {
+                qty = item.getQty() + " Kg";
+            }
+
+        } else {
+
+            qty = (int) item.getQty() + " Biji";
+
+        }
+
+        //Menambahkan data ke tabel
+        model.addRow(new Object[]{
+            no,
+            item.getLayanan(),
+            item.getProses(),
+            qty,
+            FormatRupiah.format(item.getHarga()),
+            FormatRupiah.format(item.getSubtotal())
+        });
+
     }
-//Method untuk menambahkan item laundry ke tabel
-public void tambahItemKeTabel(ItemLaundry item) {
-
-
-    //Mengambil model tabel
-    javax.swing.table.DefaultTableModel model =
-            (javax.swing.table.DefaultTableModel) tblItem.getModel();
-
-    //Nomor urut
-    int no = model.getRowCount() + 1;
-
-    //Menambahkan data ke tabel
-    model.addRow(new Object[]{
-
-        no,
-        item.getLayanan(),
-        item.getProses(),
-        item.getQty(),
-        item.getHarga(),
-        item.getSubtotal()
-
-    });
-}
     //Method mengambil controller transaksi
-public TransaksiController getController() {
 
-    //Mengembalikan controller
-    return controller;
+    public TransaksiController getController() {
 
+        //Mengembalikan controller
+        return controller;
 
+    }
 
-}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -406,88 +458,87 @@ public TransaksiController getController() {
 
     private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jPanel9MouseClicked
 
     private void pnlTambahItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTambahItemMouseClicked
         // TODO add your handling code here:
-       
 
-    //Mengambil frame utama yang sedang aktif
-    Frame frame = (Frame) SwingUtilities.getWindowAncestor(this);
+        //Mengambil frame utama yang sedang aktif
+        Frame frame = (Frame) SwingUtilities.getWindowAncestor(this);
 
-    //Membuat popup tambah item laundry
-    popUpTambahItemLaundry dialog =
-           new popUpTambahItemLaundry(frame, true, PanelItemLaundry.this);
+        //Membuat popup tambah item laundry
+        popUpTambahItemLaundry dialog
+                = new popUpTambahItemLaundry(frame, true, PanelItemLaundry.this);
 
-    //Menampilkan popup di tengah panel
-    dialog.setLocationRelativeTo(this);
+        //Menampilkan popup di tengah panel
+        dialog.setLocationRelativeTo(this);
 
-    //Menampilkan popup
-    dialog.setVisible(true);
+        //Menampilkan popup
+        dialog.setVisible(true);
 
 
     }//GEN-LAST:event_pnlTambahItemMouseClicked
 
     private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jPanel11MouseClicked
 
     private void btnLanjutKonfirmasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLanjutKonfirmasiActionPerformed
         // TODO add your handling code here:
-       //Jika belum ada item
-if (tblItem.getRowCount() == 0) {
+        //Jika belum ada item
+        if (tblItem.getRowCount() == 0) {
 
-    javax.swing.JOptionPane.showMessageDialog(
-            this,
-            "Tambahkan minimal satu item laundry!");
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Tambahkan minimal satu item laundry!");
 
-    return;
-}
+            return;
+        }
 
 //Mengambil panel konfirmasi
-Konfirmasi konfirmasi = induk.getPanelKonfirmasi();
+        Konfirmasi konfirmasi = induk.getPanelKonfirmasi();
 
 //Menampilkan data pelanggan
-konfirmasi.tampilDataPelanggan(
-        controller.getPelangganSementara());
+        konfirmasi.tampilDataPelanggan(
+                controller.getPelangganSementara());
 
 //Menampilkan daftar item
-konfirmasi.tampilItem(
-        controller.getDaftarItem());
+        konfirmasi.tampilItem(
+                controller.getDaftarItem());
 
 //Menghitung ringkasan transaksi
-konfirmasi.hitungRingkasan(
-        controller.getDaftarItem());
+        konfirmasi.hitungRingkasan(
+                controller.getDaftarItem());
 
 //Menampilkan pesan berhasil
-javax.swing.JOptionPane.showMessageDialog(
-        this,
-        "Item laundry berhasil disimpan.");
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Item laundry berhasil disimpan.");
 
 //Berpindah ke halaman konfirmasi
-induk.panggilTahap("kartuKonfirmasi");
-    
+        induk.panggilTahap("kartuKonfirmasi");
+
     }//GEN-LAST:event_btnLanjutKonfirmasiActionPerformed
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
         // TODO add your handling code here:
-           //Kembali ke panel pelanggan
-    induk.panggilTahap("kartuPelanggan");
+        //Kembali ke panel pelanggan
+        induk.panggilTahap("kartuPelanggan");
     }//GEN-LAST:event_btnKembaliActionPerformed
 //Method untuk mereset tabel item laundry
-public void resetForm(){
 
-    //Mengambil model tabel
-    javax.swing.table.DefaultTableModel model =
-            (javax.swing.table.DefaultTableModel)
-            tblItem.getModel();
+    public void resetForm() {
 
-    //Menghapus seluruh isi tabel
-    model.setRowCount(0);
+        //Mengambil model tabel
+        javax.swing.table.DefaultTableModel model
+                = (javax.swing.table.DefaultTableModel) tblItem.getModel();
 
-}
+        //Menghapus seluruh isi tabel
+        model.setRowCount(0);
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnKembali;

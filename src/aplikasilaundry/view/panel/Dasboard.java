@@ -9,7 +9,9 @@ import aplikasilaundry.util.FormatJam;
 import aplikasilaundry.util.FormatRupiah;
 import aplikasilaundry.util.TableStyle;
 import aplikasilaundry.view.frame.FrameDashboard;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -25,14 +27,38 @@ public class Dasboard extends javax.swing.JPanel {
 
         tampilJumlahTransaksi();
         tampilTransaksiTerbaru();
+
         TableStyle.TableStyle(tblDashboard);
+
+        // ================= Alignment Dashboard =================
+        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+        center.setHorizontalAlignment(SwingConstants.CENTER);
+
+        DefaultTableCellRenderer left = new DefaultTableCellRenderer();
+        left.setHorizontalAlignment(SwingConstants.LEFT);
+
+        // No Nota
+        tblDashboard.getColumnModel().getColumn(0).setCellRenderer(left);
+
+        // Nama Pelanggan
+        tblDashboard.getColumnModel().getColumn(1).setCellRenderer(left);
+
+        // Jam Masuk
+        tblDashboard.getColumnModel().getColumn(2).setCellRenderer(center);
+
+        // Jenis
+        tblDashboard.getColumnModel().getColumn(3).setCellRenderer(center);
+
+        // Total
+        tblDashboard.getColumnModel().getColumn(4).setCellRenderer(center);
+
+        // Status
+        tblDashboard.getColumnModel().getColumn(5).setCellRenderer(center);
+        // =======================================================
 
         System.out.println("Nama Session = " + Session.getNamaPengguna());
         lblSelamatDatang.setText("Selamat Datang, " + Session.getNamaPengguna());
-
     }
-    
-    
 
     private void tampilJumlahTransaksi() {
 
@@ -51,61 +77,55 @@ public class Dasboard extends javax.swing.JPanel {
     }
 
     //Method menampilkan transaksi terbaru pada tabel Dashboard
-private void tampilTransaksiTerbaru() {
+    private void tampilTransaksiTerbaru() {
 
-    //Mengambil model tabel
-    DefaultTableModel model =
-            (DefaultTableModel) tblDashboard.getModel();
+        //Mengambil model tabel
+        DefaultTableModel model
+                = (DefaultTableModel) tblDashboard.getModel();
 
-    //Menghapus seluruh isi tabel
-    model.setRowCount(0);
+        //Menghapus seluruh isi tabel
+        model.setRowCount(0);
 
-    //Mengambil daftar transaksi terbaru
-    List<Transaksi> list =
-            transaksiDAO.getTransaksiTerbaru();
+        //Mengambil daftar transaksi terbaru
+        List<Transaksi> list
+                = transaksiDAO.getTransaksiTerbaru();
 
-    //Menampilkan seluruh transaksi
-    for (Transaksi t : list) {
+        //Menampilkan seluruh transaksi
+        for (Transaksi t : list) {
 
-        //Menyimpan jenis layanan
-        String jenis = t.getJenis();
+            //Menyimpan jenis layanan
+            String jenis = t.getJenis();
 
-        //Jika terdapat lebih dari satu item laundry
-        if (t.getJumlahItem() > 1) {
+            //Jika terdapat lebih dari satu item laundry
+            if (t.getJumlahItem() > 1) {
 
-            //Menambahkan jumlah item lainnya
-            jenis = jenis + " +" + (t.getJumlahItem() - 1);
+                //Menambahkan jumlah item lainnya
+                jenis = jenis + " +" + (t.getJumlahItem() - 1);
+
+            }
+
+            //Menambahkan data ke tabel
+            model.addRow(new Object[]{
+                //Nomor nota
+                t.getNoNota(),
+                //Nama pelanggan
+                t.getNamaPelanggan(),
+                //Jam masuk
+                FormatJam.format(
+                t.getJamMasuk()),
+                //Jenis layanan
+                jenis,
+                //Total harga
+                FormatRupiah.format(
+                t.getTotalHarga()),
+                //Status transaksi
+                t.getStatus()
+
+            });
 
         }
 
-        //Menambahkan data ke tabel
-        model.addRow(new Object[]{
-
-            //Nomor nota
-            t.getNoNota(),
-
-            //Nama pelanggan
-            t.getNamaPelanggan(),
-
-            //Jam masuk
-            FormatJam.format(
-                    t.getJamMasuk()),
-
-            //Jenis layanan
-            jenis,
-
-            //Total harga
-            FormatRupiah.format(
-                    t.getTotalHarga()),
-
-            //Status transaksi
-            t.getStatus()
-
-        });
-
     }
-
-}
 
     void myDesign() {
         btnLihatSemua.putClientProperty("FlatLaf.style",
