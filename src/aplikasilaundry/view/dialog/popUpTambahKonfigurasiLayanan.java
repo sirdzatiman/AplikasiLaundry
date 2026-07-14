@@ -581,6 +581,63 @@ dispose();
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
+        //Validasi jenis layanan
+if(tJenisLayanan.getText().trim().isEmpty()){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Jenis layanan belum diisi.");
+
+    return;
+
+}
+
+//Validasi satuan
+if(!btnKg.isSelected()
+        && !btnBiji.isSelected()){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Pilih satuan layanan.");
+
+    return;
+
+}
+
+//Validasi pakai proses
+if(!btnYa.isSelected()
+        && !btnTidak.isSelected()){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Pilih penggunaan proses.");
+
+    return;
+
+}
+
+//Validasi harga
+if(tHarga.getText().trim().isEmpty()){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Harga belum diisi.");
+
+    return;
+
+}
+
+//Jika memakai proses
+if(btnYa.isSelected()
+        && cProses.getSelectedItem() == null){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Pilih proses.");
+
+    return;
+
+}
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
