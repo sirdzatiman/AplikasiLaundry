@@ -426,5 +426,12 @@ import java.time.LocalTime;
         dao.hapusTransaksi(noNota);
 
     }
+    
+        //Mengambil detail transaksi berdasarkan nomor nota
+        public List<Object[]> getDetailByNoNota(String noNota) {
+
+            return dao.getDetailByNoNota(noNota);
+
+        }
 
 }

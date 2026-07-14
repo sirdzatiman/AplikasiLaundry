@@ -140,10 +140,10 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblPeriode" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="lblPeriode" min="-2" pref="64" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblTanggal" min="-2" pref="93" max="-2" attributes="0"/>
-                          <EmptySpace pref="676" max="32767" attributes="0"/>
+                          <EmptySpace pref="744" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
