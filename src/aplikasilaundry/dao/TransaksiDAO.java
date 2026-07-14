@@ -142,25 +142,25 @@ public class TransaksiDAO {
         StringBuilder sql = new StringBuilder();
 
         sql.append("""
-SELECT
-    t.no_nota,
-    p.nama_pelanggan,
-    t.jam_masuk,
-    MIN(l.nama_layanan) AS jenis,
-    COUNT(dt.id_detail) AS jumlah_item,
-    t.total_harga,
-    st.nama_status
-FROM transaksi t
-JOIN pelanggan p
-    ON t.id_pelanggan = p.id_pelanggan
-JOIN status_transaksi st
-    ON t.id_status = st.id_status
-JOIN detail_transaksi dt
-    ON t.id_transaksi = dt.id_transaksi
-JOIN layanan l
-    ON dt.id_layanan = l.id_layanan
-WHERE 1=1
-""");
+            SELECT
+                t.no_nota,
+                p.nama_pelanggan,
+                t.jam_masuk,
+                MIN(l.nama_layanan) AS jenis,
+                COUNT(dt.id_detail) AS jumlah_item,
+                t.total_harga,
+                st.nama_status
+            FROM transaksi t
+            JOIN pelanggan p
+                ON t.id_pelanggan = p.id_pelanggan
+            JOIN status_transaksi st
+                ON t.id_status = st.id_status
+            JOIN detail_transaksi dt
+                ON t.id_transaksi = dt.id_transaksi
+            JOIN layanan l
+                ON dt.id_layanan = l.id_layanan
+            WHERE 1=1
+            """);
         if (keyword != null && !keyword.isBlank()) {
 
             sql.append("""
@@ -174,22 +174,22 @@ WHERE 1=1
         if (tanggal != null) {
 
             sql.append("""
-        AND t.tanggal_masuk = ?
-    """);
+                    AND t.tanggal_masuk = ?
+                """);
 
         }
         sql.append("""
-GROUP BY
-    t.id_transaksi,
-    t.no_nota,
-    p.nama_pelanggan,
-    t.jam_masuk,
-    t.total_harga,
-    st.nama_status
+            GROUP BY
+                t.id_transaksi,
+                t.no_nota,
+                p.nama_pelanggan,
+                t.jam_masuk,
+                t.total_harga,
+                st.nama_status
 
-ORDER BY
-    t.id_transaksi DESC
-""");
+            ORDER BY
+                t.id_transaksi DESC
+            """);
 
         try {
 
@@ -349,7 +349,7 @@ ORDER BY
         return list;
 
     }
-    
+
     public List<Transaksi> getRiwayat(String keyword,
             java.util.Date tanggal) {
 
@@ -409,7 +409,7 @@ ORDER BY
                     ORDER BY
                         t.id_transaksi DESC
                     """);
-                try {
+        try {
 
             Connection conn = Koneksi.getKoneksi();
 
@@ -464,8 +464,6 @@ ORDER BY
         return list;
 
     }
-
-    
 
     //Method mengambil transaksi terbaru
     public List<Transaksi> getTransaksiTerbaru() {
@@ -1550,75 +1548,62 @@ ORDER BY
 
     }
 
-//Method mengambil laporan pemasukan harian
-//public List<DetailTransaksi> getLaporanHarian(Date tanggal){
-//
-//    //Membuat list laporan
-//    List<DetailTransaksi> list =
-//            new ArrayList<>();
-//
-//    try{
-//
-//        //Query laporan
-//        String sql =
-//                "SELECT "
-//                + "l.nama_layanan, "
-//                + "l.proses, "
-//                + "SUM(dt.qty) AS jumlah, "
-//                + "SUM(dt.subtotal) AS subtotal "
-//                + "FROM transaksi t "
-//                + "JOIN detail_transaksi dt "
-//                + "ON t.id_transaksi = dt.id_transaksi "
-//                + "JOIN layanan l "
-//                + "ON dt.id_layanan = l.id_layanan "
-//                + "JOIN status_transaksi st "
-//                + "ON t.id_status = st.id_status "
-//                + "WHERE st.nama_status = 'Sudah Diambil' "
-//                + "AND t.tanggal_ambil = ? "
-//                + "GROUP BY "
-//                + "l.nama_layanan, "
-//                + "l.proses "
-//                + "ORDER BY l.nama_layanan";
-//
-//        PreparedStatement ps =
-//                conn.prepareStatement(sql);
-//
-//        ps.setDate(
-//                1,
-//                new java.sql.Date(
-//                        tanggal.getTime()));
-//
-//        ResultSet rs =
-//                ps.executeQuery();
-//
-//        while(rs.next()){
-//
-//            DetailTransaksi detail =
-//                    new DetailTransaksi();
-//
-//            detail.setNamaLayanan(
-//                    rs.getString("nama_layanan"));
-//
-//            detail.setProses(
-//                    rs.getString("proses"));
-//
-//            detail.setQty(
-//                    rs.getDouble("jumlah"));
-//
-//            detail.setSubtotal(
-//                    rs.getBigDecimal("subtotal"));
-//
-//            list.add(detail);
-//
-//        }
-//
-//    }catch(SQLException e){
-//
-//        e.printStackTrace();
-//
-//    }
-//
-//    return list;
-//
-//}
+//Method mengambil detail transaksi berdasarkan nomor nota
+    public List<Object[]> getDetailByNoNota(String noNota) {
+
+        //Membuat list detail
+        List<Object[]> list = new ArrayList<>();
+
+        try {
+
+            //Query mengambil detail transaksi
+            String sql
+                    = "SELECT "
+                    + "l.nama_layanan, "
+                    + "l.proses, "
+                    + "CONCAT(dt.qty,' ',l.satuan) AS qty, "
+                    + "l.harga, "
+                    + "dt.subtotal "
+                    + "FROM transaksi t "
+                    + "JOIN detail_transaksi dt "
+                    + "ON t.id_transaksi = dt.id_transaksi "
+                    + "JOIN layanan l "
+                    + "ON dt.id_layanan = l.id_layanan "
+                    + "WHERE t.no_nota = ?";
+
+            //Menyiapkan query
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            //Mengisi parameter
+            ps.setString(1, noNota);
+
+            //Menjalankan query
+            ResultSet rs = ps.executeQuery();
+
+            //Membaca data
+            while (rs.next()) {
+
+                list.add(new Object[]{
+                    rs.getString("nama_layanan"),
+                    rs.getString("proses"),
+                    rs.getString("qty"),
+                    rs.getBigDecimal("harga"),
+                    rs.getBigDecimal("subtotal")
+                });
+
+            }
+
+            rs.close();
+            ps.close();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+
+        return list;
+
+    }
+
 }

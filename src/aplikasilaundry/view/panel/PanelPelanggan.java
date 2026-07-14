@@ -20,44 +20,47 @@ public class PanelPelanggan extends javax.swing.JPanel {
 
 //Data pengaturan
     private PengaturanStruk pengaturan;
-    
+
 //Panel induk Tambah Laundry
-private TambahLaundry induk;
+    private TambahLaundry induk;
 
     public PanelPelanggan(TambahLaundry induk) {
 
-    initComponents();
+        initComponents();
 
-    //Menyimpan panel induk
-    this.induk = induk;
+        txtAlamat.setLineWrap(true);
+        txtAlamat.setWrapStyleWord(true);
 
-    //Membuat controller transaksi
-    controller = new TransaksiController();
+        //Menyimpan panel induk
+        this.induk = induk;
 
-    //Membuat controller pengaturan
-    controllerPengaturan = new PengaturanStrukController();
+        //Membuat controller transaksi
+        controller = new TransaksiController();
 
-    //Menampilkan informasi laundry
-    tampilInformasiLaundry();
+        //Membuat controller pengaturan
+        controllerPengaturan = new PengaturanStrukController();
 
-}
+        //Menampilkan informasi laundry
+        tampilInformasiLaundry();
+
+    }
 //Method menampilkan informasi laundry
 
-   private void tampilInformasiLaundry(){
+    private void tampilInformasiLaundry() {
 
-    pengaturan =
-            controllerPengaturan.getPengaturan();
+        pengaturan
+                = controllerPengaturan.getPengaturan();
 
-    lblJamOperasional.setText(
-            pengaturan.getJamOperasional());
+        lblJamOperasional.setText(
+                pengaturan.getJamOperasional());
 
-    lblLayanan.setText(
-            pengaturan.getLayanan());
+        lblLayanan.setText(
+                pengaturan.getLayanan());
 
-    txtAlamat.setText(
-            pengaturan.getAlamat());
+        txtAlamat.setText(
+                pengaturan.getAlamat());
 
-}
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

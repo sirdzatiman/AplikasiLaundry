@@ -229,6 +229,7 @@ public class LaporanPemasukan extends javax.swing.JPanel {
         lblPeriode.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblPeriode.setForeground(new java.awt.Color(101, 101, 101));
         lblPeriode.setText("Harian");
+        lblPeriode.setPreferredSize(new java.awt.Dimension(120, 20));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(101, 101, 101));
@@ -242,17 +243,17 @@ public class LaporanPemasukan extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblPeriode, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblPeriode, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(756, Short.MAX_VALUE))
+                .addContainerGap(744, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(lblPeriode)
+                    .addComponent(lblPeriode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTanggal))
                 .addGap(0, 25, Short.MAX_VALUE))
         );
@@ -793,7 +794,7 @@ public class LaporanPemasukan extends javax.swing.JPanel {
                     + new java.text.SimpleDateFormat(
                             "dd-MM-yyyy HH:mm:ss")
                             .format(new java.util.Date()));
-            
+
             out.println();
             out.println("==============================================================");
             out.println("           Terima Kasih Telah Menggunakan");

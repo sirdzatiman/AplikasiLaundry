@@ -1,4 +1,3 @@
-
 package aplikasilaundry.view.dialog;
 
 import aplikasilaundry.view.dialog.detailLaundry;
@@ -25,157 +24,159 @@ import aplikasilaundry.model.DetailTransaksi;
 //Mengimpor Format Rupiah
 import aplikasilaundry.util.FormatRupiah;
 import java.math.BigDecimal;
+
 public class detailLaundry extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(detailLaundry.class.getName());
 //Menyimpan nomor nota transaksi yang dipilih
-private String noNota;
+    private String noNota;
 //Controller transaksi
-private TransaksiController controller =
-        new TransaksiController();
+    private TransaksiController controller
+            = new TransaksiController();
 //Model tabel detail laundry
-private DefaultTableModel model;
+    private DefaultTableModel model;
 //Constructor dialog Detail Laundry
-public detailLaundry(java.awt.Frame parent,
-                     boolean modal,
-                     String noNota) {
 
-    //Memanggil constructor JDialog
-    super(parent, modal);
+    public detailLaundry(java.awt.Frame parent,
+            boolean modal,
+            String noNota) {
 
-    //Membuat seluruh komponen
-    initComponents();
-    //Mengambil model tabel
-model =
-        (DefaultTableModel)
-        tblDetail.getModel();
+        //Memanggil constructor JDialog
+        super(parent, modal);
 
-    //Menyimpan nomor nota yang diterima
-this.noNota = noNota;
+        //Membuat seluruh komponen
+        initComponents();
+        //Mengambil model tabel
+        model
+                = (DefaultTableModel) tblDetail.getModel();
 
-//Menampilkan data transaksi
-tampilData();
+        //Menyimpan nomor nota yang diterima
+        this.noNota = noNota;
 
-}
-//Method menampilkan data transaksi
-private void tampilData(){
+        //Menampilkan data transaksi
+        tampilData();
 
-    //Mengambil data transaksi berdasarkan nomor nota
-    Transaksi transaksi =
-            controller.getByNoNota(noNota);
-
-    //Jika data ditemukan
-    if(transaksi != null){
-
-        //Menampilkan nomor nota
-        lblNoNota.setText(
-                transaksi.getNoNota());
-
-        //Menampilkan nama pelanggan
-        lblNama.setText(
-                transaksi.getNamaPelanggan());
-
-        //Menampilkan status
-        lblStatus.setText(
-                transaksi.getStatus());
-
-        //Menampilkan jam masuk
-        lblJamMasuk.setText(
-                FormatJam.format(
-                        transaksi.getJamMasuk()));
-
-        //Menampilkan jam ambil
-        //Jika jam ambil masih kosong
-if(transaksi.getJamAmbil() == null){
-
-    lblJamAmbil.setText("-");
-
-}else{
-
-    lblJamAmbil.setText(
-            FormatJam.format(
-                    transaksi.getJamAmbil()));
-
-}
-        
-//Menampilkan detail item laundry
-tampilDetail();
     }
+//Method menampilkan data transaksi
 
-}
+    private void tampilData() { {
+
+        this.noNota = noNota;
+
+        List<Object[]> detail
+                = controller.getDetailByNoNota(noNota);
+
+        //Mengambil data transaksi berdasarkan nomor nota
+        Transaksi transaksi
+                = controller.getByNoNota(noNota);
+
+        //Jika data ditemukan
+        if (transaksi != null) {
+
+            //Menampilkan nomor nota
+            lblNoNota.setText(
+                    transaksi.getNoNota());
+
+            //Menampilkan nama pelanggan
+            lblNama.setText(
+                    transaksi.getNamaPelanggan());
+
+            //Menampilkan status
+            lblStatus.setText(
+                    transaksi.getStatus());
+
+            //Menampilkan jam masuk
+            lblJamMasuk.setText(
+                    FormatJam.format(
+                            transaksi.getJamMasuk()));
+
+            //Menampilkan jam ambil
+            //Jika jam ambil masih kosong
+            if (transaksi.getJamAmbil() == null) {
+
+                lblJamAmbil.setText("-");
+
+            } else {
+
+                lblJamAmbil.setText(
+                        FormatJam.format(
+                                transaksi.getJamAmbil()));
+
+            }
+
+            //Menampilkan detail item laundry
+            tampilDetail();
+        }
+
+    }
+    }
 //Method menampilkan detail laundry
-private void tampilDetail(){
+    private void tampilDetail() {
 
-    //Menghapus isi tabel
-    model.setRowCount(0);
+        //Menghapus isi tabel
+        model.setRowCount(0);
 
-    //Mengambil seluruh detail transaksi
-    List<DetailTransaksi> list =
-            controller.getDetailByNota(noNota);
+        //Mengambil seluruh detail transaksi
+        List<DetailTransaksi> list
+                = controller.getDetailByNota(noNota);
 
-    //Total berat
-double totalBerat = 0;
+        //Total berat
+        double totalBerat = 0;
 
 //Total biji
-double totalBiji = 0;
+        double totalBiji = 0;
 
 //Total bayar
-BigDecimal totalBayar = BigDecimal.ZERO;
+        BigDecimal totalBayar = BigDecimal.ZERO;
 
-    //Menampilkan satu per satu
-    for(DetailTransaksi detail : list){
+        //Menampilkan satu per satu
+        for (DetailTransaksi detail : list) {
 
-        model.addRow(new Object[]{
-            
+            model.addRow(new Object[]{
+                //Jenis Laundry
+                detail.getNamaLayanan(),
+                //Proses
+                detail.getNamaProses(),
+                //Kg / Biji
+                detail.getQty(),
+                //Harga
+                FormatRupiah.format(
+                detail.getHarga()),
+                //Subtotal
+                FormatRupiah.format(
+                detail.getSubtotal())
 
-            //Jenis Laundry
-            detail.getNamaLayanan(),
-
-            //Proses
-            detail.getNamaProses(),
-
-            //Kg / Biji
-            detail.getQty(),
-
-            //Harga
-            FormatRupiah.format(
-                    detail.getHarga()),
-
-            //Subtotal
-            FormatRupiah.format(
-                    detail.getSubtotal())
-
-        });
+            });
 //Jika satuan Kg
-if(detail.getSatuan().equalsIgnoreCase("Kg")){
+            if (detail.getSatuan().equalsIgnoreCase("Kg")) {
 
-    totalBerat += detail.getQty();
+                totalBerat += detail.getQty();
 
-}else{
+            } else {
 
-    totalBiji += detail.getQty();
+                totalBiji += detail.getQty();
 
-}
+            }
 
 //Menjumlahkan total bayar
-totalBayar =
-        totalBayar.add(
-                detail.getSubtotal());
-    }
-    //Menampilkan total berat
-lblTotalBerat.setText(
-        totalBerat + " Kg");
+            totalBayar
+                    = totalBayar.add(
+                            detail.getSubtotal());
+        }
+        //Menampilkan total berat
+        lblTotalBerat.setText(
+                totalBerat + " Kg");
 
 //Menampilkan total biji
-lblTotalBiji.setText(
-        (int) totalBiji + " Biji");
+        lblTotalBiji.setText(
+                (int) totalBiji + " Biji");
 
 //Menampilkan total bayar
-lblBayar.setText(
-        FormatRupiah.format(
-                totalBayar));
+        lblBayar.setText(
+                FormatRupiah.format(
+                        totalBayar));
 
-}
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -483,7 +484,6 @@ lblBayar.setText(
     /**
      * @param args the command line arguments
      */
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
