@@ -34,6 +34,7 @@ public popUpPensilEdit(java.awt.Frame parent,
     tampilData();
 
 }
+
 //Method menampilkan data transaksi
 private void tampilData(){
 

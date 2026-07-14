@@ -11,11 +11,14 @@ import aplikasilaundry.controller.PenggunaController;
 
 //Mengimpor panel Pengaturan
 import aplikasilaundry.view.panel.Pengaturan;
+
+import aplikasilaundry.controller.LayananController;
+import aplikasilaundry.model.Layanan;
 public class popUpKonfirmasiHapus extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpKonfirmasiHapus.class.getName());
 //Controller transaksi
-private TransaksiController controller;
+private TransaksiController controllerTransaksi;
 //Controller pengguna
 private PenggunaController controllerPengguna;
 
@@ -30,27 +33,36 @@ private String noNota;
 
 //Popup edit yang membuka dialog ini
 private popUpPensilEdit popupEdit;
+
+//Controller layanan
+private LayananController controllerLayanan;
+
+//Menyimpan data layanan
+private Layanan layanan;
+
+//Menyimpan panel Pengaturan
+private Pengaturan panel;
     
   //Constructor popup konfirmasi hapus
 public popUpKonfirmasiHapus(
         java.awt.Frame parent,
         boolean modal,
-        String noNota,
-        popUpPensilEdit popupEdit) {
+        Pengaturan panel,
+        Layanan layanan) {
 
-    
     super(parent, modal);
 
     initComponents();
 
     //Membuat controller
-    controller = new TransaksiController();
+   controllerLayanan =
+        new LayananController();
 
-    //Menyimpan nomor nota
-    this.noNota = noNota;
+    //Menyimpan panel
+    this.panel = panel;
 
-    //Menyimpan popup edit
-    this.popupEdit = popupEdit;
+    //Menyimpan layanan
+    this.layanan = layanan;
 
 }
 //Constructor pengguna
@@ -69,6 +81,28 @@ public popUpKonfirmasiHapus(
 
     this.idPengguna = idPengguna;
     this.pengaturan = pengaturan;
+
+}
+//Constructor transaksi
+public popUpKonfirmasiHapus(
+        java.awt.Frame parent,
+        boolean modal,
+        String noNota,
+        popUpPensilEdit popupEdit) {
+
+    super(parent, modal);
+
+    initComponents();
+
+    //Membuat controller transaksi
+    controllerTransaksi =
+            new TransaksiController();
+
+    //Menyimpan nomor nota
+    this.noNota = noNota;
+
+    //Menyimpan popup edit
+    this.popupEdit = popupEdit;
 
 }
 
@@ -174,7 +208,7 @@ public popUpKonfirmasiHapus(
     if(noNota != null){
 
         //Menghapus transaksi
-        controller.hapusTransaksi(noNota);
+        controllerTransaksi.hapusTransaksi(noNota);
 
         //Mengambil FrameDashboard
         FrameDashboard frame =
@@ -198,6 +232,20 @@ public popUpKonfirmasiHapus(
         if(pengaturan != null){
             pengaturan.tampilPengguna();
         }
+    }
+        //Jika menghapus layanan
+else if(layanan != null){
+
+    //Menghapus layanan
+    controllerLayanan.hapus(
+            layanan.getIdLayanan());
+
+    //Refresh tabel layanan
+    if(panel != null){
+        panel.tampilLayanan();
+    }
+
+
 
     }
 

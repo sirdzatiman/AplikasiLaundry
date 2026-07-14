@@ -1,24 +1,115 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
+
 package aplikasilaundry.view.dialog;
 
-/**
- *
- * @author HP 14s Ryzen
- */
+import aplikasilaundry.controller.LayananController;
+import aplikasilaundry.model.Layanan;
+import aplikasilaundry.view.panel.Pengaturan;
+import javax.swing.JOptionPane;
+import java.math.BigDecimal;
+
+import aplikasilaundry.controller.ProsesController;
+import aplikasilaundry.model.Proses;
+import java.util.List;
 public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpEditKonfigurasiLayanan.class.getName());
+//Controller proses
+private ProsesController controllerProses;
+   //Popup asal
+private Pengaturan panel;
 
-    /**
-     * Creates new form popUpEditKonfigurasiLayanan
-     */
+//Controller layanan
+private LayananController controller;
+
+//Data layanan yang sedang diedit
+private Layanan layanan;
     public popUpEditKonfigurasiLayanan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
+    public popUpEditKonfigurasiLayanan(
+        java.awt.Frame parent,
+        boolean modal,
+        Pengaturan panel,
+        Layanan layanan) {
+
+    super(parent, modal);
+
+    initComponents();
+
+    //Menyimpan panel asal
+    this.panel = panel;
+
+    //Menyimpan data layanan
+    this.layanan = layanan;
+
+    //Membuat controller
+    controller = new LayananController();
+    
+    controllerProses =
+        new ProsesController();
+
+//Menampilkan seluruh proses
+tampilProses();
+
+    //Mengisi jenis layanan
+    tJenisLayanan.setText(
+            layanan.getNamaLayanan());
+
+    //Mengisi satuan
+    if(layanan.getSatuan().equals("Kg")){
+
+        btnKg.setSelected(true);
+
+    }else{
+
+        btnBiji.setSelected(true);
+
+    }
+
+    //Mengisi penggunaan proses
+    if(layanan.getPakaiProses().equals("Ya")){
+
+        btnYa.setSelected(true);
+
+    }else{
+
+        btnTidak.setSelected(true);
+
+    }
+
+    //Mengisi ComboBox proses
+    cProses.setSelectedItem(
+            layanan.getProses());
+
+    //Mengisi harga
+    tHarga.setText(
+            layanan.getHarga().toPlainString());
+
+    //Mengisi keterangan
+    txtKeterangan.setText(
+            layanan.getKeterangan());
+
+}
+    //Method menampilkan proses ke ComboBox
+private void tampilProses(){
+
+    //Mengosongkan ComboBox
+    cProses.removeAllItems();
+
+    //Mengambil seluruh proses
+    List<Proses> daftar =
+            controllerProses.getAll();
+
+    //Menambahkan ke ComboBox
+    for(Proses proses : daftar){
+
+        cProses.addItem(
+                proses.getNamaProses());
+
+    }
+
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,24 +126,25 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
         jLabel67 = new javax.swing.JLabel();
         jLabel68 = new javax.swing.JLabel();
         jPanel30 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
+        tJenisLayanan = new javax.swing.JTextField();
         jLabel58 = new javax.swing.JLabel();
         jPanel28 = new javax.swing.JPanel();
         jLabel56 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btnKg = new javax.swing.JToggleButton();
+        jPanel34 = new javax.swing.JPanel();
+        btnBiji = new javax.swing.JToggleButton();
         jPanel29 = new javax.swing.JPanel();
         jLabel57 = new javax.swing.JLabel();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        btnYa = new javax.swing.JToggleButton();
+        btnTidak = new javax.swing.JToggleButton();
         jPanel32 = new javax.swing.JPanel();
         jLabel64 = new javax.swing.JLabel();
         jPanel33 = new javax.swing.JPanel();
         jLabel65 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        tHarga = new javax.swing.JTextField();
         jLabel66 = new javax.swing.JLabel();
         jLabel63 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtKeterangan = new javax.swing.JTextField();
         jPanel31 = new javax.swing.JPanel();
         jLabel59 = new javax.swing.JLabel();
         jLabel60 = new javax.swing.JLabel();
@@ -60,15 +152,20 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
         jLabel62 = new javax.swing.JLabel();
         jPanel41 = new javax.swing.JPanel();
         jLabel73 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox<>();
+        cProses = new javax.swing.JComboBox<>();
+        btnBatal = new javax.swing.JButton();
+        btnSimpan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(431, 600));
 
-        jPanel3.setPreferredSize(new java.awt.Dimension(431, 610));
+        jPanel3.setPreferredSize(new java.awt.Dimension(431, 600));
+
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(431, 600));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 20));
-        jPanel1.setMinimumSize(new java.awt.Dimension(431, 773));
+        jPanel1.setMinimumSize(new java.awt.Dimension(456, 825));
 
         jLabel67.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel67.setText("Edit Konfigurasi Layanan");
@@ -79,9 +176,7 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
 
         jPanel30.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField2.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField2.setText("Contoh: Baju, dll");
-        jTextField2.setPreferredSize(new java.awt.Dimension(392, 37));
+        tJenisLayanan.setPreferredSize(new java.awt.Dimension(392, 37));
 
         jLabel58.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel58.setText("Jenis Layanan");
@@ -93,7 +188,7 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
             .addGroup(jPanel30Layout.createSequentialGroup()
                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel58)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tJenisLayanan, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19))
         );
         jPanel30Layout.setVerticalGroup(
@@ -102,7 +197,7 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
                 .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(jLabel58)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tJenisLayanan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -111,37 +206,53 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
         jLabel56.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel56.setText("Jenis Layanan");
 
-        jButton7.setText("Biji (per item)");
-        jButton7.setPreferredSize(new java.awt.Dimension(142, 25));
+        btnKg.setText("Kg (per kilogram)");
+        btnKg.addActionListener(this::btnKgActionPerformed);
 
-        jButton8.setBackground(new java.awt.Color(29, 78, 216));
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("Kg (per kilogram)");
-        jButton8.setPreferredSize(new java.awt.Dimension(142, 25));
+        jPanel34.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnBiji.setText("Biji (per item)");
+        btnBiji.addActionListener(this::btnBijiActionPerformed);
+
+        javax.swing.GroupLayout jPanel34Layout = new javax.swing.GroupLayout(jPanel34);
+        jPanel34.setLayout(jPanel34Layout);
+        jPanel34Layout.setHorizontalGroup(
+            jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel34Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnBiji, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(122, Short.MAX_VALUE))
+        );
+        jPanel34Layout.setVerticalGroup(
+            jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel34Layout.createSequentialGroup()
+                .addGap(0, 6, Short.MAX_VALUE)
+                .addComponent(btnBiji))
+        );
 
         javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
         jPanel28.setLayout(jPanel28Layout);
         jPanel28Layout.setHorizontalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel28Layout.createSequentialGroup()
-                .addComponent(jLabel56)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel28Layout.createSequentialGroup()
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel56)
+                    .addGroup(jPanel28Layout.createSequentialGroup()
+                        .addComponent(btnKg, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         jPanel28Layout.setVerticalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel56)
-                .addGap(7, 7, 7)
-                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnKg))
+                .addGap(74, 74, 74))
         );
 
         jPanel29.setBackground(new java.awt.Color(255, 255, 255));
@@ -149,37 +260,35 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
         jLabel57.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel57.setText("Pakai Proses?");
 
-        jButton9.setText("Tidak, tanpa proses");
-        jButton9.setPreferredSize(new java.awt.Dimension(142, 25));
+        btnYa.setText("Ya, pakai proses");
+        btnYa.addActionListener(this::btnYaActionPerformed);
 
-        jButton10.setBackground(new java.awt.Color(29, 78, 216));
-        jButton10.setForeground(new java.awt.Color(255, 255, 255));
-        jButton10.setText("Ya, pakai proses");
-        jButton10.setPreferredSize(new java.awt.Dimension(142, 25));
+        btnTidak.setText("Tidak, tanpa proses");
+        btnTidak.addActionListener(this::btnTidakActionPerformed);
 
         javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
         jPanel29.setLayout(jPanel29Layout);
         jPanel29Layout.setHorizontalGroup(
             jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel29Layout.createSequentialGroup()
-                .addComponent(jLabel57)
+                .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel57)
+                    .addGroup(jPanel29Layout.createSequentialGroup()
+                        .addComponent(btnYa, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnTidak, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel29Layout.createSequentialGroup()
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel29Layout.setVerticalGroup(
             jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel29Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel57)
-                .addGap(7, 7, 7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
+                    .addComponent(btnYa)
+                    .addComponent(btnTidak))
+                .addGap(16, 16, 16))
         );
 
         jPanel32.setBackground(new java.awt.Color(255, 255, 255));
@@ -194,8 +303,6 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
         jLabel65.setText("Rp.");
         jLabel65.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
-        jTextField7.setText("Contoh: 6000");
-
         jLabel66.setForeground(new java.awt.Color(153, 153, 153));
         jLabel66.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel66.setText("/kg");
@@ -208,7 +315,7 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
             .addGroup(jPanel33Layout.createSequentialGroup()
                 .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -218,7 +325,7 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
                 .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel65, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel66, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                    .addComponent(tHarga, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -246,9 +353,7 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
         jLabel63.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel63.setText("Keterangan");
 
-        jTextField6.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField6.setText("Contoh: Baju, dll");
-        jTextField6.setPreferredSize(new java.awt.Dimension(392, 37));
+        txtKeterangan.setPreferredSize(new java.awt.Dimension(392, 37));
 
         jPanel31.setBackground(new java.awt.Color(239, 246, 255));
         jPanel31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(190, 219, 255)));
@@ -298,8 +403,6 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
         jLabel73.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel73.setText("Proses");
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuci Kering", "Cuci Kering etrika" }));
-
         javax.swing.GroupLayout jPanel41Layout = new javax.swing.GroupLayout(jPanel41);
         jPanel41.setLayout(jPanel41Layout);
         jPanel41Layout.setHorizontalGroup(
@@ -307,7 +410,7 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
             .addGroup(jPanel41Layout.createSequentialGroup()
                 .addGroup(jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel73)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cProses, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel41Layout.setVerticalGroup(
@@ -316,9 +419,23 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel73)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cProses, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(137, 137, 137))
         );
+
+        btnBatal.setBackground(new java.awt.Color(239, 239, 239));
+        btnBatal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBatal.setForeground(new java.awt.Color(102, 102, 102));
+        btnBatal.setText("Batal");
+        btnBatal.setPreferredSize(new java.awt.Dimension(125, 44));
+        btnBatal.addActionListener(this::btnBatalActionPerformed);
+
+        btnSimpan.setBackground(new java.awt.Color(0, 86, 210));
+        btnSimpan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
+        btnSimpan.setText("Simpan");
+        btnSimpan.setPreferredSize(new java.awt.Dimension(125, 44));
+        btnSimpan.addActionListener(this::btnSimpanActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -334,10 +451,15 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
                         .addComponent(jPanel30, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel28, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel41, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel31, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel32, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(121, 121, 121)
+                            .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel31, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                            .addComponent(txtKeterangan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jPanel32, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -349,7 +471,7 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
                 .addComponent(jLabel68)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -360,10 +482,14 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel63)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel31, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(jPanel1);
@@ -372,7 +498,7 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -391,11 +517,199 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 770, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnKgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKgActionPerformed
+        // TODO add your handling code here:
+        //Memilih tombol Kg
+        btnKg.setSelected(true);
+
+        //Membatalkan pilihan Biji
+        btnBiji.setSelected(false);
+
+        //Mengubah label satuan harga menjadi per kilogram
+        jLabel66.setText("/kg");
+    }//GEN-LAST:event_btnKgActionPerformed
+
+    private void btnBijiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBijiActionPerformed
+        // TODO add your handling code here:
+
+        //Memilih tombol Biji
+        btnBiji.setSelected(true);
+
+        //Membatalkan pilihan Kg
+        btnKg.setSelected(false);
+
+        //Mengubah label satuan harga menjadi per biji
+        jLabel66.setText("/biji");
+
+    }//GEN-LAST:event_btnBijiActionPerformed
+
+    private void btnTidakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTidakActionPerformed
+        // TODO add your handling code here:
+
+        //Memilih tombol Tidak
+        btnTidak.setSelected(true);
+
+        //Membatalkan tombol Ya
+        btnYa.setSelected(false);
+ //Menonaktifkan proses
+    cProses.setEnabled(false);
+        //Mengosongkan pilihan
+    cProses.setSelectedIndex(-1);
+
+
+    }//GEN-LAST:event_btnTidakActionPerformed
+
+    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
+        // TODO add your handling code here:
+        //Menutup dialog konfigurasi layanan
+        dispose();
+    }//GEN-LAST:event_btnBatalActionPerformed
+
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+//Validasi jenis layanan
+if(tJenisLayanan.getText().trim().isEmpty()){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Jenis layanan belum diisi.");
+
+    return;
+
+}
+
+//Validasi satuan
+if(!btnKg.isSelected()
+        && !btnBiji.isSelected()){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Pilih satuan layanan.");
+
+    return;
+
+}
+
+//Validasi penggunaan proses
+if(!btnYa.isSelected()
+        && !btnTidak.isSelected()){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Pilih penggunaan proses.");
+
+    return;
+
+}
+
+//Validasi proses
+if(btnYa.isSelected()
+        && cProses.getSelectedItem() == null){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Pilih proses.");
+
+    return;
+
+}
+
+//Validasi harga
+if(tHarga.getText().trim().isEmpty()){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Harga belum diisi.");
+
+    return;
+
+}
+
+try{
+
+    //Mengubah nama layanan
+    layanan.setNamaLayanan(
+            tJenisLayanan.getText().trim());
+
+    //Mengubah penggunaan proses
+    layanan.setPakaiProses(
+            btnYa.isSelected()
+            ? "Ya"
+            : "Tidak");
+
+    //Mengubah proses
+    if(btnYa.isSelected()){
+
+        layanan.setProses(
+                cProses.getSelectedItem().toString());
+
+    }else{
+
+        layanan.setProses(null);
+
+    }
+
+    //Mengubah satuan
+    layanan.setSatuan(
+            btnKg.isSelected()
+            ? "Kg"
+            : "Biji");
+
+    //Mengubah harga
+    layanan.setHarga(
+            new BigDecimal(
+                    tHarga.getText().trim()));
+
+    //Mengubah keterangan
+    layanan.setKeterangan(
+            txtKeterangan.getText().trim());
+
+    //Update database
+    if(controller.update(layanan)){
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Konfigurasi layanan berhasil diubah.");
+
+        //Refresh tabel pada panel Pengaturan
+        panel.tampilLayanan();
+
+        //Menutup dialog
+        dispose();
+
+    }else{
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Konfigurasi layanan gagal diubah.");
+
+    }
+
+}catch(NumberFormatException e){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Harga harus berupa angka.");
+
+}   
+    }//GEN-LAST:event_btnSimpanActionPerformed
+
+    private void btnYaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYaActionPerformed
+        // TODO add your handling code here:
+        //Memilih tombol Ya
+    btnYa.setSelected(true);
+
+    //Membatalkan tombol Tidak
+    btnTidak.setSelected(false);
+
+    //Mengaktifkan ComboBox proses
+    cProses.setEnabled(true);
+    }//GEN-LAST:event_btnYaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -435,11 +749,13 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox6;
+    private javax.swing.JButton btnBatal;
+    private javax.swing.JToggleButton btnBiji;
+    private javax.swing.JToggleButton btnKg;
+    private javax.swing.JButton btnSimpan;
+    private javax.swing.JToggleButton btnTidak;
+    private javax.swing.JToggleButton btnYa;
+    private javax.swing.JComboBox<String> cProses;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
@@ -462,10 +778,11 @@ public class popUpEditKonfigurasiLayanan extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel31;
     private javax.swing.JPanel jPanel32;
     private javax.swing.JPanel jPanel33;
+    private javax.swing.JPanel jPanel34;
     private javax.swing.JPanel jPanel41;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField tHarga;
+    private javax.swing.JTextField tJenisLayanan;
+    private javax.swing.JTextField txtKeterangan;
     // End of variables declaration//GEN-END:variables
 }

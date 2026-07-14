@@ -37,7 +37,7 @@ import aplikasilaundry.view.dialog.popUpKonfirmasiHapus;
 import aplikasilaundry.view.dialog.popUpPensil;
 import aplikasilaundry.view.dialog.popUpTambahKonfigurasiLayanan;
 import aplikasilaundry.view.dialog.popUpTambahpengguna;
-
+import aplikasilaundry.view.panel.Pengaturan;
 //Mengimpor controller layanan
 import aplikasilaundry.controller.LayananController;
 
@@ -63,24 +63,50 @@ public class Pengaturan extends javax.swing.JPanel {
 
     //Controller layanan
     private LayananController controllerLayanan;
-
+//Menyimpan daftar layanan
+private List<Layanan> daftarLayanan;
     public Pengaturan() {
 
-        initComponents();
-        TableStyle.TableStyle(tblPengguna);
-        TableStyle.TableStyle(tblJenis);
-        TableStyle.TableStyle(tblDetailStruk);
+    initComponents();
 
-        //Mengubah judul kolom preview struk
-        DefaultTableModel modelPreview
-                = (DefaultTableModel) tblDetailStruk.getModel();
+    TableStyle.TableStyle(tblPengguna);
+    TableStyle.TableStyle(tblJenis);
+    TableStyle.TableStyle(tblDetailStruk);
 
-        modelPreview.setColumnIdentifiers(new Object[]{
-            "Jenis",
-            "Jumlah",
-            "Harga",
-            "Subtotal"
-        });
+    //Membuat controller pengaturan struk
+    controller =
+            new PengaturanStrukController();
+
+    //Membuat controller transaksi
+    controllerTransaksi =
+            new TransaksiController();
+
+    //Membuat controller pengguna
+    controllerPengguna =
+            new PenggunaController();
+
+    //Membuat controller layanan
+    controllerLayanan =
+            new LayananController();
+
+    //Mengubah judul kolom preview struk
+    DefaultTableModel modelPreview =
+            (DefaultTableModel) tblDetailStruk.getModel();
+
+    modelPreview.setColumnIdentifiers(new Object[]{
+        "Jenis",
+        "Jumlah",
+        "Harga",
+        "Subtotal"
+    });
+
+    //Method-method yang sudah ada
+    tampilPengaturan();
+    tampilPengguna();
+
+    //Menampilkan data layanan
+    tampilLayanan();
+
 
         //Mengatur posisi isi kolom preview struk
 //Kolom jumlah rata tengah
@@ -215,7 +241,7 @@ public class Pengaturan extends javax.swing.JPanel {
     }
 
     //Method menampilkan data layanan
-    private void tampilLayanan() {
+    public void tampilLayanan() {
 
         //Mengambil model tabel
         DefaultTableModel model
@@ -224,15 +250,15 @@ public class Pengaturan extends javax.swing.JPanel {
         //Menghapus seluruh isi tabel
         model.setRowCount(0);
 
-        //Mengambil seluruh data layanan
-        List<Layanan> daftar
-                = controllerLayanan.getAll();
+       //Mengambil seluruh data layanan
+daftarLayanan =
+        controllerLayanan.getAll();
 
         //Nomor urut
         int no = 1;
 
         //Menampilkan seluruh data
-        for (Layanan layanan : daftar) {
+        for (Layanan layanan : daftarLayanan) {
 
             //Menambahkan data ke tabel
             model.addRow(new Object[]{
@@ -1605,6 +1631,42 @@ public class Pengaturan extends javax.swing.JPanel {
 
     private void btnEditJenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditJenisActionPerformed
         // TODO add your handling code here:
+        //Mengambil baris yang dipilih
+int baris =
+        tblJenis.getSelectedRow();
+
+//Jika belum memilih baris
+if(baris == -1){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Pilih data layanan yang akan diedit.");
+
+    return;
+
+}
+
+//Mengambil data layanan
+Layanan layanan =
+        daftarLayanan.get(baris);
+
+//Membuka popup edit
+popUpEditKonfigurasiLayanan dialog =
+        new popUpEditKonfigurasiLayanan(
+                (java.awt.Frame)
+                SwingUtilities.getWindowAncestor(this),
+                true,
+                this,
+                layanan);
+
+//Menampilkan popup di tengah
+dialog.setLocationRelativeTo(this);
+
+//Menampilkan popup
+dialog.setVisible(true);
+
+//Memperbarui tabel layanan
+tampilLayanan();
 
     }//GEN-LAST:event_btnEditJenisActionPerformed
 
@@ -1628,11 +1690,41 @@ public class Pengaturan extends javax.swing.JPanel {
 
     private void btnHapusJenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusJenisActionPerformed
         // TODO add your handling code here:
-//        popUpKonfirmasiHapus popup =
-//            new popUpKonfirmasiHapus(getParentFrame(), true);
-//
-//    popup.setLocationRelativeTo(getParentFrame());
-//    popup.setVisible(true);
+//Mengambil baris yang dipilih
+int baris =
+        tblJenis.getSelectedRow();
+
+//Validasi
+if(baris == -1){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Pilih konfigurasi layanan yang akan dihapus.");
+
+    return;
+
+}
+
+//Mengambil data layanan
+Layanan layanan =
+        daftarLayanan.get(baris);
+
+//Membuka popup hapus
+//Membuka popup hapus
+popUpKonfirmasiHapus dialog =
+        new popUpKonfirmasiHapus(
+                (java.awt.Frame)
+                SwingUtilities.getWindowAncestor(this),
+                true,
+                this,
+                layanan);
+
+//Menampilkan popup
+dialog.setLocationRelativeTo(this);
+dialog.setVisible(true);
+
+//Refresh tabel
+tampilLayanan();
     }//GEN-LAST:event_btnHapusJenisActionPerformed
 
     private void btnSimpanPengaturanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanPengaturanActionPerformed

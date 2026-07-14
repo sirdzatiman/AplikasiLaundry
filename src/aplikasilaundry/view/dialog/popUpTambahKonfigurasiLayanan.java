@@ -192,6 +192,8 @@ for (Proses proses : daftarMasterProses) {
                 .addComponent(btnBiji))
         );
 
+        btnTambah.setBackground(new java.awt.Color(0, 51, 204));
+        btnTambah.setForeground(new java.awt.Color(255, 255, 255));
         btnTambah.setText("Tambah");
         btnTambah.addActionListener(this::btnTambahActionPerformed);
 
@@ -228,8 +230,6 @@ for (Proses proses : daftarMasterProses) {
                 .addGap(142, 142, 142))
         );
 
-        txtKeterangan.setForeground(new java.awt.Color(153, 153, 153));
-        txtKeterangan.setText("Contoh: Baju, dll");
         txtKeterangan.setPreferredSize(new java.awt.Dimension(392, 37));
 
         jPanel31.setBackground(new java.awt.Color(239, 246, 255));
@@ -281,6 +281,7 @@ for (Proses proses : daftarMasterProses) {
         jLabel57.setText("Pakai Proses?");
 
         btnYa.setText("Ya, pakai proses");
+        btnYa.addActionListener(this::btnYaActionPerformed);
 
         btnTidak.setText("Tidak, tanpa proses");
         btnTidak.addActionListener(this::btnTidakActionPerformed);
@@ -312,8 +313,6 @@ for (Proses proses : daftarMasterProses) {
 
         jPanel30.setBackground(new java.awt.Color(255, 255, 255));
 
-        tJenisLayanan.setForeground(new java.awt.Color(153, 153, 153));
-        tJenisLayanan.setText("Contoh: Baju, dll");
         tJenisLayanan.setPreferredSize(new java.awt.Dimension(392, 37));
         tJenisLayanan.addActionListener(this::tJenisLayananActionPerformed);
 
@@ -353,8 +352,6 @@ for (Proses proses : daftarMasterProses) {
         jLabel65.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel65.setText("Rp.");
         jLabel65.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-
-        tHarga.setText("Contoh: 6000");
 
         jLabel66.setForeground(new java.awt.Color(153, 153, 153));
         jLabel66.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -429,6 +426,8 @@ for (Proses proses : daftarMasterProses) {
         btnSimpan.setPreferredSize(new java.awt.Dimension(125, 44));
         btnSimpan.addActionListener(this::btnSimpanActionPerformed);
 
+        btnHapus.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
+        btnHapus.setForeground(new java.awt.Color(255, 255, 255));
         btnHapus.setText("Hapus");
         btnHapus.addActionListener(this::btnHapusActionPerformed);
 
@@ -575,7 +574,8 @@ for (Proses proses : daftarMasterProses) {
 
     //Menonaktifkan pilihan proses
     cProses.setEnabled(false);
-
+//Mengosongkan pilihan
+    cProses.setSelectedIndex(-1);
 
     }//GEN-LAST:event_btnTidakActionPerformed
 
@@ -853,6 +853,18 @@ if(controllerProses.hapus(
 
 }
     }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void btnYaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYaActionPerformed
+        // TODO add your handling code here:
+         //Memilih tombol Ya
+    btnYa.setSelected(true);
+
+    //Membatalkan tombol Tidak
+    btnTidak.setSelected(false);
+
+    //Mengaktifkan ComboBox proses
+    cProses.setEnabled(true);
+    }//GEN-LAST:event_btnYaActionPerformed
 
     /**
      * @param args the command line arguments
