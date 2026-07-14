@@ -142,7 +142,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel1" pref="376" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="cNamaProses" max="32767" attributes="0"/>
+                          <Component id="tNamaProses" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -152,7 +152,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cNamaProses" pref="40" max="32767" attributes="0"/>
+                          <Component id="tNamaProses" pref="34" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -166,18 +167,7 @@
                     <Property name="text" type="java.lang.String" value="Nama Proses"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="cNamaProses">
-                  <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="2">
-                        <StringItem index="0" value="Cuci Kering"/>
-                        <StringItem index="1" value="Cuci Kering etrika"/>
-                      </StringArray>
-                    </Property>
-                  </Properties>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                  </AuxValues>
+                <Component class="javax.swing.JTextField" name="tNamaProses">
                 </Component>
               </SubComponents>
             </Container>
@@ -185,11 +175,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Simpan"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSimpanActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnBatal">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Batal"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBatalActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

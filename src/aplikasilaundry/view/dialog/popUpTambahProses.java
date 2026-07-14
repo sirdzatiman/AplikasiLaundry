@@ -3,19 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package aplikasilaundry.view.dialog;
+//Mengimpor controller proses
+import aplikasilaundry.controller.ProsesController;
 
-/**
- *
- * @author Sirdzat
- */
+//Mengimpor model proses
+import aplikasilaundry.model.Proses;
+
+//Mengimpor JOptionPane
+import javax.swing.JOptionPane;
 public class popUpTambahProses extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpTambahProses.class.getName());
 //Popup yang membuka dialog ini
 private popUpTambahKonfigurasiLayanan popup;
-    /**
-     * Creates new form popUpTambahProses
-     */
+    //Controller proses
+private ProsesController controller;
     public popUpTambahProses(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -31,6 +33,8 @@ private popUpTambahKonfigurasiLayanan popup;
 
     //Menyimpan popup asal
     this.popup = popup;
+    //Membuat controller proses
+controller = new ProsesController();
 
 }
     
@@ -51,7 +55,7 @@ private popUpTambahKonfigurasiLayanan popup;
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        cNamaProses = new javax.swing.JComboBox<>();
+        tNamaProses = new javax.swing.JTextField();
         btnSimpan = new javax.swing.JButton();
         btnBatal = new javax.swing.JButton();
 
@@ -84,15 +88,13 @@ private popUpTambahKonfigurasiLayanan popup;
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Nama Proses");
 
-        cNamaProses.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuci Kering", "Cuci Kering etrika" }));
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(cNamaProses, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tNamaProses)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -100,12 +102,15 @@ private popUpTambahKonfigurasiLayanan popup;
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cNamaProses, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                .addComponent(tNamaProses, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         btnSimpan.setText("Simpan");
+        btnSimpan.addActionListener(this::btnSimpanActionPerformed);
 
         btnBatal.setText("Batal");
+        btnBatal.addActionListener(this::btnBatalActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -165,6 +170,59 @@ private popUpTambahKonfigurasiLayanan popup;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        // TODO add your handling code here:
+     
+        //Validasi nama proses
+    if(tNamaProses.getText().trim().isEmpty()){
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Nama proses belum diisi.");
+
+        return;
+
+    }
+
+    //Membuat objek proses
+    Proses proses =
+            new Proses();
+
+    //Mengisi nama proses
+    proses.setNamaProses(
+            tNamaProses.getText().trim());
+  System.out.println("Nama proses = " + proses.getNamaProses());
+System.out.println("Masuk ke controller..."); 
+   //Menyimpan ke database
+if(controller.simpan(proses)){
+
+    //Memperbarui daftar proses pada popup utama
+    popup.tampilProses();
+
+    //Menampilkan informasi berhasil
+    JOptionPane.showMessageDialog(
+            this,
+            "Proses berhasil ditambahkan.");
+
+    //Menutup dialog
+    dispose();
+
+}else{
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Data gagal disimpan.");
+
+}
+
+    }//GEN-LAST:event_btnSimpanActionPerformed
+
+    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
+        // TODO add your handling code here:
+        //Menutup dialog tambah proses
+dispose();
+    }//GEN-LAST:event_btnBatalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -205,7 +263,6 @@ private popUpTambahKonfigurasiLayanan popup;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnSimpan;
-    private javax.swing.JComboBox<String> cNamaProses;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -213,5 +270,6 @@ private popUpTambahKonfigurasiLayanan popup;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField tNamaProses;
     // End of variables declaration//GEN-END:variables
 }

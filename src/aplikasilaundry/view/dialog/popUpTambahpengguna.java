@@ -362,66 +362,70 @@ controller = new PenggunaController();
     }//GEN-LAST:event_tUsernameActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
-        // TODO add your handling code here:
-        // 1. Ambil data dari inputan form pop-up
-    String nama = tNama.getText();        
-    String username = tUsername.getText(); 
+    
+
+    String nama = tNama.getText();
+    String username = tUsername.getText();
     String password = new String(tPassword.getPassword());
-    String peran = cPeran.getSelectedItem().toString(); 
-    //Debug role yang dipilih
-System.out.println("ROLE = [" + peran + "]");
+    String peran = cPeran.getSelectedItem().toString();
+
+    System.out.println("ROLE = [" + peran + "]");
+
+    try {
+
+        if (nama.isEmpty() || username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Semua kolom harus diisi!",
+                    "Peringatan",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Pengguna pengguna = new Pengguna();
+
+        pengguna.setNamaPengguna(nama);
+        pengguna.setUsername(username);
+        pengguna.setPassword(password);
+        pengguna.setRole(peran);
+
+        boolean berhasil = controller.simpan(pengguna);
+
+        System.out.println("HASIL SIMPAN = " + berhasil);
+        System.out.println("Objek Pengaturan = " + pengaturan);
+
+        if (berhasil) {
+
+            if (pengaturan != null) {
+                System.out.println("Memanggil tampilPengguna()");
+                pengaturan.tampilPengguna();
+            } else {
+                System.out.println("Pengaturan = NULL");
+            }
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Data pengguna berhasil disimpan.");
+
+            dispose();
+
+        } else {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Data pengguna gagal disimpan!");
+
+        }
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Gagal menyimpan data : " + e.getMessage());
+
     
-   try {
-    // Jalankan validasi agar inputan tidak kosong
-    if (nama.isEmpty() || username.isEmpty() || password.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Semua kolom harus diisi!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-
-    //Membuat objek pengguna baru
-Pengguna pengguna = new Pengguna();
-
-//Mengisi nama pengguna
-pengguna.setNamaPengguna(nama);
-
-//Mengisi username
-pengguna.setUsername(username);
-
-//Mengisi password
-pengguna.setPassword(password);
-
-//Mengisi role
-pengguna.setRole(peran);
-
-//Menyimpan ke database
-boolean berhasil =
-        controller.simpan(pengguna);
-System.out.println("HASIL SIMPAN = " + berhasil);
-
-if(berhasil){
-
-    //Menampilkan pesan berhasil
-    JOptionPane.showMessageDialog(
-            this,
-            "Data pengguna berhasil disimpan.");
-
-    //Refresh tabel pada panel Pengaturan
-    pengaturan.tampilPengguna();
-
-    //Menutup popup
-    dispose();
-
-}else{
-
-    //Menampilkan pesan gagal
-    JOptionPane.showMessageDialog(
-            this,
-            "Data pengguna gagal disimpan!");
-
-}
-    
-} catch (Exception e) {
-    JOptionPane.showMessageDialog(this, "Gagal menyimpan data: " + e.getMessage());
 }
     }//GEN-LAST:event_btnSimpanActionPerformed
 

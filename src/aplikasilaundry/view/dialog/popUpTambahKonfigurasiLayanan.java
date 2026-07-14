@@ -3,11 +3,33 @@ package aplikasilaundry.view.dialog;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import aplikasilaundry.util.FormatRupiah;
+//Mengimpor collection
+import java.util.ArrayList;
+import java.util.List;
+//Mengimpor controller proses
+import aplikasilaundry.controller.ProsesController;
+
+//Mengimpor model proses
+import aplikasilaundry.model.Proses;
+//Mengimpor model layanan
+import aplikasilaundry.model.Layanan;
+
+//Mengimpor BigDecimal
+import java.math.BigDecimal;
 public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpTambahKonfigurasiLayanan.class.getName());
 
-    
+//Menyimpan daftar konfigurasi layanan sementara
+private List<Layanan> daftarProses =
+        new ArrayList<>();
+
+//Menyimpan seluruh data master proses
+private List<Proses> daftarMasterProses;
+
+//Controller proses
+private ProsesController controllerProses;
+
     public popUpTambahKonfigurasiLayanan(
         java.awt.Frame parent,
         boolean modal) {
@@ -15,19 +37,56 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
     super(parent, modal);
 
     initComponents();
+    
+    //Membuat controller proses
+controllerProses =
+        new ProsesController();
 
-    //Model tabel proses
-    tblDaftarProses.setModel(
-            new javax.swing.table.DefaultTableModel(
+   //Model tabel daftar proses
+tblDaftarProses.setModel(
+        new javax.swing.table.DefaultTableModel(
 
-                    new Object[][]{},
+                new Object[][]{},
 
-                    new String[]{
-                        "Proses",
-                        "Harga"
-                    }
+                new String[]{
+                    "Nama Proses"
+                        
+                }
 
-            ));
+        ));
+//Menampilkan daftar proses
+tampilProses();
+}
+    //Method menampilkan daftar proses
+public void tampilProses() {
+
+   //Mengambil model tabel
+    DefaultTableModel model =
+            (DefaultTableModel) tblDaftarProses.getModel();
+
+    //Menghapus seluruh isi tabel
+    model.setRowCount(0);
+
+    //Mengosongkan isi ComboBox
+    cProses.removeAllItems();
+
+  //Mengambil seluruh data master proses
+daftarMasterProses =
+        controllerProses.getAll();
+
+//Menampilkan seluruh data master proses
+for (Proses proses : daftarMasterProses) {
+
+        //Menambahkan ke tabel
+        model.addRow(new Object[]{
+            proses.getNamaProses()
+        });
+
+        //Menambahkan ke ComboBox
+        cProses.addItem(
+                proses.getNamaProses());
+
+    }
 
 }
  
@@ -80,6 +139,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         jLabel67 = new javax.swing.JLabel();
         btnBatal = new javax.swing.JButton();
         btnSimpan = new javax.swing.JButton();
+        btnHapus = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -122,7 +182,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         jPanel28Layout.setVerticalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
-                .addGap(0, 42, Short.MAX_VALUE)
+                .addGap(0, 6, Short.MAX_VALUE)
                 .addComponent(btnBiji))
         );
 
@@ -133,6 +193,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         jLabel63.setText("Keterangan");
 
         btnEdit.setText("Edit");
+        btnEdit.addActionListener(this::btnEditActionPerformed);
 
         jPanel36.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -248,6 +309,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         tJenisLayanan.setForeground(new java.awt.Color(153, 153, 153));
         tJenisLayanan.setText("Contoh: Baju, dll");
         tJenisLayanan.setPreferredSize(new java.awt.Dimension(392, 37));
+        tJenisLayanan.addActionListener(this::tJenisLayananActionPerformed);
 
         jLabel58.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel58.setText("Jenis Layanan");
@@ -274,6 +336,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         jLabel68.setText("Tambahkan jenis layanan dan prosesnya.");
 
         btnKg.setText("Kg (per kilogram)");
+        btnKg.addActionListener(this::btnKgActionPerformed);
 
         jLabel62.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel62.setText("Daftar Proses");
@@ -360,12 +423,19 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         btnSimpan.setPreferredSize(new java.awt.Dimension(125, 44));
         btnSimpan.addActionListener(this::btnSimpanActionPerformed);
 
+        btnHapus.setText("Hapus");
+        btnHapus.addActionListener(this::btnHapusActionPerformed);
+
         javax.swing.GroupLayout jPanel37Layout = new javax.swing.GroupLayout(jPanel37);
         jPanel37.setLayout(jPanel37Layout);
         jPanel37Layout.setHorizontalGroup(
             jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel37Layout.createSequentialGroup()
-                .addGap(454, 454, 454)
+                .addGap(129, 129, 129)
+                .addComponent(btnEdit)
+                .addGap(163, 163, 163)
+                .addComponent(btnHapus)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel37Layout.createSequentialGroup()
@@ -395,20 +465,19 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
                             .addComponent(jPanel29, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel30, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addComponent(jLabel62)
-                        .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel37Layout.createSequentialGroup()
-                                .addComponent(btnTambah)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnEdit)
-                                .addGap(90, 90, 90))
-                            .addComponent(jPanel34, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnTambah)
+                        .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(13, Short.MAX_VALUE)))
         );
         jPanel37Layout.setVerticalGroup(
             jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel37Layout.createSequentialGroup()
                 .addGap(404, 404, 404)
-                .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnEdit)
+                        .addComponent(btnHapus)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 481, Short.MAX_VALUE)
                 .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -433,9 +502,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
                     .addGap(18, 18, 18)
                     .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnTambah)
-                        .addComponent(btnEdit))
+                    .addComponent(btnTambah)
                     .addGap(29, 29, 29)
                     .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(41, 41, 41)
@@ -478,38 +545,78 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
 
     private void btnBijiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBijiActionPerformed
         // TODO add your handling code here:
+       
+    //Memilih tombol Biji
+    btnBiji.setSelected(true);
+
+    //Membatalkan pilihan Kg
+    btnKg.setSelected(false);
+
+    //Mengubah label satuan harga menjadi per biji
+    jLabel66.setText("/biji");
+
+
     }//GEN-LAST:event_btnBijiActionPerformed
 
     private void btnTidakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTidakActionPerformed
         // TODO add your handling code here:
+        
+    //Memilih tombol Tidak
+    btnTidak.setSelected(true);
+
+    //Membatalkan tombol Ya
+    btnYa.setSelected(false);
+
+    //Menonaktifkan pilihan proses
+    cProses.setEnabled(false);
+
+
     }//GEN-LAST:event_btnTidakActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         // TODO add your handling code here:
-
+//Menutup dialog konfigurasi layanan
+dispose();
     }//GEN-LAST:event_btnBatalActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSimpanActionPerformed
-
-    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        // TODO add your handling code here:
-        //Mengambil model tabel
-DefaultTableModel model =
-        (DefaultTableModel) tblDaftarProses.getModel();
-
-//Validasi
-if(cProses.getSelectedItem() == null){
+        //Validasi jenis layanan
+if(tJenisLayanan.getText().trim().isEmpty()){
 
     JOptionPane.showMessageDialog(
             this,
-            "Pilih proses terlebih dahulu.");
+            "Jenis layanan belum diisi.");
 
     return;
 
 }
 
+//Validasi satuan
+if(!btnKg.isSelected()
+        && !btnBiji.isSelected()){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Pilih satuan layanan.");
+
+    return;
+
+}
+
+//Validasi pakai proses
+if(!btnYa.isSelected()
+        && !btnTidak.isSelected()){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Pilih penggunaan proses.");
+
+    return;
+
+}
+
+//Validasi harga
 if(tHarga.getText().trim().isEmpty()){
 
     JOptionPane.showMessageDialog(
@@ -520,18 +627,146 @@ if(tHarga.getText().trim().isEmpty()){
 
 }
 
-//Menambah ke tabel
-model.addRow(new Object[]{
+//Jika memakai proses
+if(btnYa.isSelected()
+        && cProses.getSelectedItem() == null){
 
-    cProses.getSelectedItem().toString(),
-    tHarga.getText().trim()
+    JOptionPane.showMessageDialog(
+            this,
+            "Pilih proses.");
 
-});
+    return;
 
-//Reset input
-cProses.setSelectedIndex(0);
-tHarga.setText("");
+}
+    }//GEN-LAST:event_btnSimpanActionPerformed
+
+    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
+        // TODO add your handling code here:
+      //Membuka dialog tambah proses
+    popUpTambahProses dialog =
+            new popUpTambahProses(
+                    (java.awt.Frame) getOwner(),
+                    true,
+                    this);
+
+    //Menampilkan dialog di tengah popup
+    dialog.setLocationRelativeTo(this);
+
+    //Menampilkan dialog
+    dialog.setVisible(true);
     }//GEN-LAST:event_btnTambahActionPerformed
+
+    private void tJenisLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tJenisLayananActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tJenisLayananActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        //Mengambil baris yang dipilih
+int baris =
+        tblDaftarProses.getSelectedRow();
+
+//Jika belum memilih baris
+if(baris == -1){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Pilih proses yang akan diedit.");
+
+    return;
+
+}
+
+//Mengambil data proses yang dipilih
+Proses proses =
+        daftarMasterProses.get(baris);
+
+//Membuka dialog edit proses
+popUpEditProses dialog =
+        new popUpEditProses(
+                (java.awt.Frame) getOwner(),
+                true,
+                this,
+                proses);
+
+//Menampilkan dialog di tengah
+dialog.setLocationRelativeTo(this);
+
+//Menampilkan dialog
+dialog.setVisible(true);
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnKgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKgActionPerformed
+        // TODO add your handling code here:
+         //Memilih tombol Kg
+    btnKg.setSelected(true);
+
+    //Membatalkan pilihan Biji
+    btnBiji.setSelected(false);
+
+    //Mengubah label satuan harga menjadi per kilogram
+    jLabel66.setText("/kg");
+    }//GEN-LAST:event_btnKgActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        // TODO add your handling code here:
+        //Mengambil baris yang dipilih
+int baris =
+        tblDaftarProses.getSelectedRow();
+
+//Jika belum memilih baris
+if(baris == -1){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Pilih proses yang akan dihapus.");
+
+    return;
+
+}
+
+//Mengambil data proses yang dipilih
+Proses proses =
+        daftarMasterProses.get(baris);
+
+//Konfirmasi penghapusan
+int konfirmasi =
+        JOptionPane.showConfirmDialog(
+                this,
+                "Yakin ingin menghapus proses \""
+                + proses.getNamaProses()
+                + "\" ?",
+                "Konfirmasi Hapus",
+                JOptionPane.YES_NO_OPTION);
+
+//Jika pengguna memilih Tidak
+if(konfirmasi != JOptionPane.YES_OPTION){
+
+    return;
+
+}
+
+//Menghapus data
+if(controllerProses.hapus(
+        proses.getIdProses())){
+
+    //Memperbarui tabel dan ComboBox
+    tampilProses();
+
+    //Menampilkan informasi berhasil
+    JOptionPane.showMessageDialog(
+            this,
+            "Data proses berhasil dihapus.");
+
+}else{
+
+    //Menampilkan informasi gagal
+    JOptionPane.showMessageDialog(
+            this,
+            "Data proses gagal dihapus.");
+
+}
+    }//GEN-LAST:event_btnHapusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -574,6 +809,7 @@ tHarga.setText("");
     private javax.swing.JButton btnBatal;
     private javax.swing.JToggleButton btnBiji;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnHapus;
     private javax.swing.JToggleButton btnKg;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnTambah;

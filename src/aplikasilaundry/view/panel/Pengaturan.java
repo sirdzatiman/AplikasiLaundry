@@ -24,12 +24,28 @@ import aplikasilaundry.controller.PenggunaController;
 import aplikasilaundry.model.Pengguna;
 //Mengimpor JOptionPane
 import javax.swing.JOptionPane;
+//Mengimpor controller layanan
+import aplikasilaundry.controller.LayananController;
+//Mengimpor collection
+import java.util.List;
+//Mengimpor model layanan
+import aplikasilaundry.model.Layanan;
+import javax.swing.SwingUtilities;
 
 import aplikasilaundry.view.dialog.popUpEditKonfigurasiLayanan;
 import aplikasilaundry.view.dialog.popUpKonfirmasiHapus;
 import aplikasilaundry.view.dialog.popUpPensil;
 import aplikasilaundry.view.dialog.popUpTambahKonfigurasiLayanan;
 import aplikasilaundry.view.dialog.popUpTambahpengguna;
+
+//Mengimpor controller layanan
+import aplikasilaundry.controller.LayananController;
+
+//Mengimpor model layanan
+import aplikasilaundry.model.Layanan;
+
+//Mengimpor collection
+import java.util.List;
 
 public class Pengaturan extends javax.swing.JPanel {
 //Controller pengaturan
@@ -42,10 +58,22 @@ public class Pengaturan extends javax.swing.JPanel {
 
     //Model pengaturan
     private PengaturanStruk pengaturan;
+    
+    //Controller layanan
+private LayananController controllerLayanan;
 
     public Pengaturan() {
 
         initComponents();
+        //Mengubah judul kolom tabel pengguna
+    DefaultTableModel model =
+            (DefaultTableModel) tblPengguna.getModel();
+
+    model.setColumnIdentifiers(new Object[]{
+        "Nama",
+        "Username",
+        "Role"
+    });
         //Membuat footer preview seperti struk asli
         tFooter2.setEditable(false);
         tFooter2.setOpaque(false);
@@ -79,12 +107,53 @@ public class Pengaturan extends javax.swing.JPanel {
         //Membuat controller pengguna
         controllerPengguna
                 = new PenggunaController();
+        //Membuat controller layanan
+controllerLayanan
+        = new LayananController();
 
         //Menampilkan data pengaturan
         tampilPengaturan();
         //Menampilkan data pengguna
         tampilPengguna();
+        //Menampilkan data layanan
+tampilLayanan();
     }
+    //Method menampilkan data layanan
+private void tampilLayanan(){
+
+    //Mengambil model tabel
+    DefaultTableModel model =
+            (DefaultTableModel) tblJenis.getModel();
+
+    //Menghapus seluruh isi tabel
+    model.setRowCount(0);
+
+    //Mengambil seluruh data layanan
+    List<Layanan> daftar =
+            controllerLayanan.getAll();
+
+    //Nomor urut
+    int no = 1;
+
+    //Menampilkan seluruh data
+    for(Layanan layanan : daftar){
+
+        //Menambahkan data ke tabel
+        model.addRow(new Object[]{
+
+            no++,
+            layanan.getNamaLayanan(),
+            layanan.getProses(),
+            layanan.getSatuan(),
+            FormatRupiah.format(
+                    layanan.getHarga()),
+            layanan.getKeterangan()
+
+        });
+
+    }
+
+}
     
     //Method menampilkan data pengaturan
     private void tampilPengaturan() {
@@ -269,7 +338,7 @@ public class Pengaturan extends javax.swing.JPanel {
         btnEditPengguna = new javax.swing.JButton();
         btnHappusPengguna = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane5 = new javax.swing.JScrollPane();
         tblPengguna = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         btnTambahPengguna = new javax.swing.JButton();
@@ -350,7 +419,7 @@ public class Pengaturan extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         tNamaBisnis = new javax.swing.JTextField();
         btnSimpanPengaturan = new javax.swing.JToggleButton();
-        tReset = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         jPanel34 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         tNoHp = new javax.swing.JTextField();
@@ -437,32 +506,20 @@ public class Pengaturan extends javax.swing.JPanel {
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
         jPanel4.setLayout(new java.awt.CardLayout());
 
-        tblPengguna.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tblPengguna.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Owner", "Owner"},
-                {"2", "Kasir", "Kasir"}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "No", "Nama", "Role"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
+        ));
+        jScrollPane5.setViewportView(tblPengguna);
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblPengguna.setGridColor(new java.awt.Color(204, 204, 204));
-        tblPengguna.setRowHeight(50);
-        tblPengguna.setSelectionBackground(new java.awt.Color(0, 51, 204));
-        tblPengguna.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        tblPengguna.setShowGrid(true);
-        jScrollPane2.setViewportView(tblPengguna);
-
-        jPanel4.add(jScrollPane2, "card2");
+        jPanel4.add(jScrollPane5, "card2");
 
         jPanel45.add(jPanel4, java.awt.BorderLayout.CENTER);
 
@@ -1184,9 +1241,10 @@ public class Pengaturan extends javax.swing.JPanel {
         btnSimpanPengaturan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSimpanPengaturan.addActionListener(this::btnSimpanPengaturanActionPerformed);
 
-        tReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/SystemUiconsReset.png"))); // NOI18N
-        tReset.setText("Reset");
-        tReset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/SystemUiconsReset.png"))); // NOI18N
+        btnReset.setText("Reset");
+        btnReset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReset.addActionListener(this::btnResetActionPerformed);
 
         jPanel34.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1253,7 +1311,7 @@ public class Pengaturan extends javax.swing.JPanel {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(btnSimpanPengaturan, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
-                        .addComponent(tReset, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 321, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -1274,7 +1332,7 @@ public class Pengaturan extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSimpanPengaturan, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tReset, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
 
@@ -1454,7 +1512,21 @@ public class Pengaturan extends javax.swing.JPanel {
 
     private void btnTambahKonfigurasiLAyananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahKonfigurasiLAyananActionPerformed
         // TODO add your handling code here:
+//Membuka dialog tambah konfigurasi layanan
+popUpTambahKonfigurasiLayanan dialog =
+        new popUpTambahKonfigurasiLayanan(
+                (java.awt.Frame)
+                SwingUtilities.getWindowAncestor(this),
+                true);
 
+//Menampilkan dialog di tengah frame
+dialog.setLocationRelativeTo(this);
+
+//Menampilkan dialog
+dialog.setVisible(true);
+
+//Memperbarui tabel layanan
+tampilLayanan();
     }//GEN-LAST:event_btnTambahKonfigurasiLAyananActionPerformed
 
     private void btnHapusJenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusJenisActionPerformed
@@ -1469,13 +1541,114 @@ public class Pengaturan extends javax.swing.JPanel {
     private void btnSimpanPengaturanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanPengaturanActionPerformed
         // TODO add your handling code here:
 
+    //Mengambil nama bisnis dari form
+    pengaturan.setNamaBisnis(
+            tNamaBisnis.getText().trim());
+
+    //Mengambil alamat laundry dari form
+    pengaturan.setAlamat(
+            tAlamat.getText().trim());
+
+    //Mengambil nomor HP laundry
+    pengaturan.setNoHp(
+            tNoHp.getText().trim());
+
+    //Mengambil jam operasional
+    pengaturan.setJamOperasional(
+            tJamOperasional.getText().trim());
+
+    //Mengambil informasi layanan
+    pengaturan.setLayanan(
+            tLayanan.getText().trim());
+
+    //Mengambil slogan laundry
+    pengaturan.setKeterangan(
+            tKeterangan.getText().trim());
+
+    //Mengambil footer struk
+    pengaturan.setFooterStruk(
+            tFooter.getText().trim());
+
+    //Menyimpan perubahan ke database
+    controller.updatePengaturan(
+            pengaturan);
+
+    //Memuat ulang data pengaturan
+    tampilPengaturan();
+
+    //Menampilkan informasi berhasil
+    JOptionPane.showMessageDialog(
+            this,
+            "Pengaturan berhasil diperbarui.");
+
+
     }//GEN-LAST:event_btnSimpanPengaturanActionPerformed
 
     private void btnHappusPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHappusPenggunaActionPerformed
-//        //        // TODO add your handling code here:
-//        popUpKonfirmasiHapus popup = new popUpKonfirmasiHapus(getParentFrame(), true);
-//        popup.setLocationRelativeTo(getParentFrame());
-//        popup.setVisible(true);
+
+
+    //Mengambil baris yang dipilih
+    int baris = tblPengguna.getSelectedRow();
+
+    //Jika belum memilih data
+    if(baris == -1){
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Pilih pengguna yang akan dihapus.");
+
+        return;
+
+    }
+
+    //Mengambil username dari tabel
+    String username =
+            tblPengguna.getValueAt(
+                    baris,
+                    1).toString();
+
+    //Mencari objek pengguna berdasarkan username
+    Pengguna data = null;
+
+    for(Pengguna p : controllerPengguna.getAll()){
+
+        if(p.getUsername().equals(username)){
+
+            data = controllerPengguna.getById(
+                    p.getIdPengguna());
+
+            break;
+
+        }
+
+    }
+
+    //Jika data tidak ditemukan
+    if(data == null){
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Data pengguna tidak ditemukan.");
+
+        return;
+
+    }
+
+    //Membuka popup konfirmasi
+    popUpKonfirmasiHapus dialog =
+            new popUpKonfirmasiHapus(
+                    (java.awt.Frame)
+                    javax.swing.SwingUtilities
+                            .getWindowAncestor(this),
+                    true,
+                    data.getIdPengguna(),
+                    this);
+
+    //Menampilkan popup
+    dialog.setLocationRelativeTo(this);
+    dialog.setVisible(true);
+
+
     }//GEN-LAST:event_btnHappusPenggunaActionPerformed
 
     private void btnEditPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditPenggunaActionPerformed
@@ -1539,6 +1712,8 @@ dialog.setPengguna(data);
 
 //Menampilkan popup
 dialog.setVisible(true);
+//Menampilkan kembali data pengguna
+tampilPengguna();
     }//GEN-LAST:event_btnEditPenggunaActionPerformed
 
     private void btnTambahPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPenggunaActionPerformed
@@ -1595,39 +1770,63 @@ dialog.setVisible(true);
 
     }//GEN-LAST:event_btnSimpanInformasiActionPerformed
 
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+         //Menampilkan kembali data pengaturan dari database
+    tampilPengaturan();
+
+    //Memberikan informasi kepada pengguna
+    JOptionPane.showMessageDialog( this, "Data berhasil dikembalikan ke pengaturan terakhir.");
+
+    }//GEN-LAST:event_btnResetActionPerformed
+
 //Method menampilkan seluruh data pengguna
     public void tampilPengguna() {
 
-        //Mengambil model tabel
-        DefaultTableModel model
-                = (DefaultTableModel) tblPengguna.getModel();
+    System.out.println("===== REFRESH PENGGUNA =====");
 
-        //Mengosongkan isi tabel
-        model.setRowCount(0);
+    DefaultTableModel model =
+            (DefaultTableModel) tblPengguna.getModel();
 
-        //Mengambil seluruh pengguna
-        List<Pengguna> daftar
-                = controllerPengguna.getAll();
+    model.setRowCount(0);
 
-        //Menampilkan seluruh pengguna
-        for (Pengguna pengguna : daftar) {
+    List<Pengguna> daftar =
+            controllerPengguna.getAll();
 
-            model.addRow(new Object[]{
-                pengguna.getNamaPengguna(),
-                pengguna.getUsername(),
-                pengguna.getRole()
+    System.out.println("Jumlah Data = " + daftar.size());
 
-            });
+    for (Pengguna pengguna : daftar) {
 
-        }
+        System.out.println(
+                pengguna.getNamaPengguna()
+                + " | "
+                + pengguna.getUsername()
+                + " | "
+                + pengguna.getRole());
+
+        model.addRow(new Object[]{
+            pengguna.getNamaPengguna(),
+            pengguna.getUsername(),
+            pengguna.getRole()
+        });
 
     }
+
+    System.out.println("Jumlah Baris JTable = "
+            + model.getRowCount());
+
+    tblPengguna.revalidate();
+    tblPengguna.repaint();
+
+}
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditJenis;
     private javax.swing.JButton btnEditPengguna;
     private javax.swing.JButton btnHappusPengguna;
     private javax.swing.JButton btnHapusJenis;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSimpanInformasi;
     private javax.swing.JToggleButton btnSimpanPengaturan;
     private javax.swing.JToggleButton btnTambahKonfigurasiLAyanan;
@@ -1707,9 +1906,9 @@ dialog.setVisible(true);
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton6;
@@ -1734,9 +1933,8 @@ dialog.setVisible(true);
     private javax.swing.JTextField tLayanan;
     private javax.swing.JTextField tNamaBisnis;
     private javax.swing.JTextField tNoHp;
-    private javax.swing.JButton tReset;
     private javax.swing.JTable tblDetailStruk;
     private javax.swing.JTable tblJenis;
-    private static volatile javax.swing.JTable tblPengguna;
+    private javax.swing.JTable tblPengguna;
     // End of variables declaration//GEN-END:variables
 }
