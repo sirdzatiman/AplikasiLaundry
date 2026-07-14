@@ -13,7 +13,7 @@ import aplikasilaundry.controller.ProsesController;
 import aplikasilaundry.model.Proses;
 //Mengimpor model layanan
 import aplikasilaundry.model.Layanan;
-
+import aplikasilaundry.controller.LayananController;
 //Mengimpor BigDecimal
 import java.math.BigDecimal;
 public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
@@ -30,6 +30,8 @@ private List<Proses> daftarMasterProses;
 //Controller proses
 private ProsesController controllerProses;
 
+//Controller layanan
+private LayananController controllerLayanan;
     public popUpTambahKonfigurasiLayanan(
         java.awt.Frame parent,
         boolean modal) {
@@ -41,6 +43,10 @@ private ProsesController controllerProses;
     //Membuat controller proses
 controllerProses =
         new ProsesController();
+
+//Membuat controller layanan
+controllerLayanan =
+        new LayananController();
 
    //Model tabel daftar proses
 tblDaftarProses.setModel(
@@ -592,6 +598,17 @@ if(tJenisLayanan.getText().trim().isEmpty()){
 
 }
 
+//Validasi jenis layanan
+if(tJenisLayanan.getText().trim().isEmpty()){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Jenis layanan belum diisi.");
+
+    return;
+
+}
+
 //Validasi satuan
 if(!btnKg.isSelected()
         && !btnBiji.isSelected()){
@@ -604,13 +621,25 @@ if(!btnKg.isSelected()
 
 }
 
-//Validasi pakai proses
+//Validasi penggunaan proses
 if(!btnYa.isSelected()
         && !btnTidak.isSelected()){
 
     JOptionPane.showMessageDialog(
             this,
             "Pilih penggunaan proses.");
+
+    return;
+
+}
+
+//Validasi proses
+if(btnYa.isSelected()
+        && cProses.getSelectedItem() == null){
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Pilih proses.");
 
     return;
 
@@ -627,15 +656,72 @@ if(tHarga.getText().trim().isEmpty()){
 
 }
 
-//Jika memakai proses
-if(btnYa.isSelected()
-        && cProses.getSelectedItem() == null){
+try{
+
+    //Membuat objek layanan
+    Layanan layanan =
+            new Layanan();
+
+    //Mengisi nama layanan
+    layanan.setNamaLayanan(
+            tJenisLayanan.getText().trim());
+
+    //Mengisi penggunaan proses
+    layanan.setPakaiProses(
+            btnYa.isSelected()
+            ? "Ya"
+            : "Tidak");
+
+    //Mengisi proses
+    if(btnYa.isSelected()){
+
+        layanan.setProses(
+                cProses.getSelectedItem().toString());
+
+    }else{
+
+        layanan.setProses(null);
+
+    }
+
+    //Mengisi satuan
+    layanan.setSatuan(
+            btnKg.isSelected()
+            ? "Kg"
+            : "Biji");
+
+    //Mengisi harga
+    layanan.setHarga(
+            new BigDecimal(
+                    tHarga.getText().trim()));
+
+    //Mengisi keterangan
+    layanan.setKeterangan(
+            txtKeterangan.getText().trim());
+
+    //Menyimpan ke database
+    if(controllerLayanan.simpan(layanan)){
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Konfigurasi layanan berhasil disimpan.");
+
+        //Menutup dialog
+        dispose();
+
+    }else{
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Konfigurasi layanan gagal disimpan.");
+
+    }
+
+}catch(NumberFormatException e){
 
     JOptionPane.showMessageDialog(
             this,
-            "Pilih proses.");
-
-    return;
+            "Harga harus berupa angka.");
 
 }
     }//GEN-LAST:event_btnSimpanActionPerformed

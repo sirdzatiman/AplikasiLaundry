@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package aplikasilaundry.util;
 
 import java.awt.Color;
@@ -9,10 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JTable;
 
-/**
- *
- * @author Sirdzat
- */
+
 public class TableStyle {
 
     public static void TableStyle(JTable table) {

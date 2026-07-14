@@ -335,7 +335,7 @@ public void tampilDataPelanggan(Pelanggan pelanggan) {
 
         lblSubtotal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblSubtotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSubtotal.setText("Rp 18.000");
+        lblSubtotal.setText("Rp");
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
@@ -369,7 +369,7 @@ public void tampilDataPelanggan(Pelanggan pelanggan) {
         lblTotalBerat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTotalBerat.setForeground(new java.awt.Color(37, 99, 235));
         lblTotalBerat.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTotalBerat.setText("2.0 Kg");
+        lblTotalBerat.setText("Kg");
 
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
@@ -431,7 +431,7 @@ public void tampilDataPelanggan(Pelanggan pelanggan) {
         lblTotalItem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTotalItem.setForeground(new java.awt.Color(37, 99, 235));
         lblTotalItem.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTotalItem.setText("2 Item");
+        lblTotalItem.setText("Item");
 
         javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
         jPanel28.setLayout(jPanel28Layout);
@@ -465,7 +465,7 @@ public void tampilDataPelanggan(Pelanggan pelanggan) {
         lblTotalBayar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblTotalBayar.setForeground(new java.awt.Color(37, 99, 235));
         lblTotalBayar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTotalBayar.setText("Rp 18.000");
+        lblTotalBayar.setText("Rp");
 
         javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
         jPanel27.setLayout(jPanel27Layout);
@@ -630,7 +630,6 @@ public void tampilDataPelanggan(Pelanggan pelanggan) {
         jLabel11.setText("Alamat");
 
         lblAlaamat.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        lblAlaamat.setText("PPP.KH.A.BASTHOMI");
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/map.png"))); // NOI18N
 
@@ -672,7 +671,6 @@ public void tampilDataPelanggan(Pelanggan pelanggan) {
         jLabel45.setText("Nama Pelanggan");
 
         lblNama.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        lblNama.setText("Siti Aisyah");
 
         jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/nama.png"))); // NOI18N
 
@@ -718,7 +716,6 @@ public void tampilDataPelanggan(Pelanggan pelanggan) {
         jLabel14.setText("Catatan");
 
         lblCatatan.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        lblCatatan.setText("-");
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/catatan.png"))); // NOI18N
 
@@ -757,7 +754,6 @@ public void tampilDataPelanggan(Pelanggan pelanggan) {
         jLabel8.setText("No . Hp");
 
         lblNoHp.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        lblNoHp.setText("0857-9155-9991");
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/hp.png"))); // NOI18N
 

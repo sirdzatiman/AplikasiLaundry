@@ -5,24 +5,23 @@
                      LAPORAN PEMASUKAN
 
 Periode : Harian
-Tanggal : Semua
+Tanggal : 14-07-2026
 
 ====================================================================
 Jenis Item         Proses Layanan           Jumlah        Subtotal
 ====================================================================
-Baju/DLL           Cuci Kering                  35       140000.00
-Baju/DLL           Cuci Kering Setrika           8        48000.00
-Selimut/DLL        Cuci Kering Setrika           1         8000.00
+Baju/DLL           Cuci Kering                   3        12000.00
+Boneka/Tas         null                          2        20000.00
 ====================================================================
 
-Total Transaksi : 7
-Total Item      : 44
-Total Pendapatan: Rp  196.000
-Rata-rata       : Rp  28.000
+Total Transaksi : 1
+Total Item      : 5
+Total Pendapatan: Rp  32.000
+Rata-rata       : Rp  32.000
 
 ==============================================================
 
-Dicetak pada : 14-07-2026 21:40:30
+Dicetak pada : 14-07-2026 22:27:58
 
 ==============================================================
            Terima Kasih Telah Menggunakan

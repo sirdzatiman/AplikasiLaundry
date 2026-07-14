@@ -358,7 +358,7 @@
                               <Font name="Segoe UI" size="14" style="1"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="4"/>
-                            <Property name="text" type="java.lang.String" value="Rp 18.000"/>
+                            <Property name="text" type="java.lang.String" value="Rp"/>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -421,7 +421,7 @@
                               <Color blue="eb" green="63" red="25" type="rgb"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="4"/>
-                            <Property name="text" type="java.lang.String" value="2.0 Kg"/>
+                            <Property name="text" type="java.lang.String" value="Kg"/>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -531,7 +531,7 @@
                               <Color blue="eb" green="63" red="25" type="rgb"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="4"/>
-                            <Property name="text" type="java.lang.String" value="2 Item"/>
+                            <Property name="text" type="java.lang.String" value="Item"/>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -615,7 +615,7 @@
                                   <Color blue="eb" green="63" red="25" type="rgb"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="4"/>
-                                <Property name="text" type="java.lang.String" value="Rp 18.000"/>
+                                <Property name="text" type="java.lang.String" value="Rp"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -883,7 +883,6 @@
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Segoe UI Semibold" size="12" style="0"/>
                                     </Property>
-                                    <Property name="text" type="java.lang.String" value="PPP.KH.A.BASTHOMI"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel13">
@@ -963,7 +962,6 @@
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Segoe UI Semibold" size="12" style="0"/>
                                     </Property>
-                                    <Property name="text" type="java.lang.String" value="Siti Aisyah"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel47">
@@ -1032,7 +1030,6 @@
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Segoe UI Semibold" size="12" style="0"/>
                                     </Property>
-                                    <Property name="text" type="java.lang.String" value="-"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel16">
@@ -1106,7 +1103,6 @@
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Segoe UI Semibold" size="12" style="0"/>
                                     </Property>
-                                    <Property name="text" type="java.lang.String" value="0857-9155-9991"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel10">
