@@ -359,7 +359,7 @@ public class Pengaturan extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         tNamaBisnis = new javax.swing.JTextField();
         btnSimpanPengaturan = new javax.swing.JToggleButton();
-        tReset = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         jPanel34 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         tNoHp = new javax.swing.JTextField();
@@ -1181,9 +1181,10 @@ public class Pengaturan extends javax.swing.JPanel {
         btnSimpanPengaturan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSimpanPengaturan.addActionListener(this::btnSimpanPengaturanActionPerformed);
 
-        tReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/SystemUiconsReset.png"))); // NOI18N
-        tReset.setText("Reset");
-        tReset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/SystemUiconsReset.png"))); // NOI18N
+        btnReset.setText("Reset");
+        btnReset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReset.addActionListener(this::btnResetActionPerformed);
 
         jPanel34.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1250,7 +1251,7 @@ public class Pengaturan extends javax.swing.JPanel {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(btnSimpanPengaturan, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
-                        .addComponent(tReset, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 321, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -1271,7 +1272,7 @@ public class Pengaturan extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSimpanPengaturan, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tReset, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
 
@@ -1465,7 +1466,48 @@ public class Pengaturan extends javax.swing.JPanel {
 
     private void btnSimpanPengaturanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanPengaturanActionPerformed
         // TODO add your handling code here:
- System.out.println("BUTTON DIKLIK");
+
+    //Mengambil nama bisnis dari form
+    pengaturan.setNamaBisnis(
+            tNamaBisnis.getText().trim());
+
+    //Mengambil alamat laundry dari form
+    pengaturan.setAlamat(
+            tAlamat.getText().trim());
+
+    //Mengambil nomor HP laundry
+    pengaturan.setNoHp(
+            tNoHp.getText().trim());
+
+    //Mengambil jam operasional
+    pengaturan.setJamOperasional(
+            tJamOperasional.getText().trim());
+
+    //Mengambil informasi layanan
+    pengaturan.setLayanan(
+            tLayanan.getText().trim());
+
+    //Mengambil slogan laundry
+    pengaturan.setKeterangan(
+            tKeterangan.getText().trim());
+
+    //Mengambil footer struk
+    pengaturan.setFooterStruk(
+            tFooter.getText().trim());
+
+    //Menyimpan perubahan ke database
+    controller.updatePengaturan(
+            pengaturan);
+
+    //Memuat ulang data pengaturan
+    tampilPengaturan();
+
+    //Menampilkan informasi berhasil
+    JOptionPane.showMessageDialog(
+            this,
+            "Pengaturan berhasil diperbarui.");
+
+
     }//GEN-LAST:event_btnSimpanPengaturanActionPerformed
 
     private void btnHappusPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHappusPenggunaActionPerformed
@@ -1654,6 +1696,16 @@ tampilPengguna();
 
     }//GEN-LAST:event_btnSimpanInformasiActionPerformed
 
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+         //Menampilkan kembali data pengaturan dari database
+    tampilPengaturan();
+
+    //Memberikan informasi kepada pengguna
+    JOptionPane.showMessageDialog( this, "Data berhasil dikembalikan ke pengaturan terakhir.");
+
+    }//GEN-LAST:event_btnResetActionPerformed
+
 //Method menampilkan seluruh data pengguna
     public void tampilPengguna() {
 
@@ -1700,6 +1752,7 @@ tampilPengguna();
     private javax.swing.JButton btnEditPengguna;
     private javax.swing.JButton btnHappusPengguna;
     private javax.swing.JButton btnHapusJenis;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSimpanInformasi;
     private javax.swing.JToggleButton btnSimpanPengaturan;
     private javax.swing.JToggleButton btnTambahKonfigurasiLAyanan;
@@ -1806,7 +1859,6 @@ tampilPengguna();
     private javax.swing.JTextField tLayanan;
     private javax.swing.JTextField tNamaBisnis;
     private javax.swing.JTextField tNoHp;
-    private javax.swing.JButton tReset;
     private javax.swing.JTable tblDetailStruk;
     private javax.swing.JTable tblJenis;
     private javax.swing.JTable tblPengguna;
