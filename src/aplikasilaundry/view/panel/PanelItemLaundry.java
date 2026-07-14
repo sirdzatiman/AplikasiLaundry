@@ -41,7 +41,7 @@ public class PanelItemLaundry extends javax.swing.JPanel {
         //Menampilkan data pelanggan yang sudah dipilih
         tampilDataPelanggan();
         TableStyle.TableStyle(tblItem);
-        
+
         // Lebar kolom tabel
         tblItem.getColumnModel().getColumn(0).setPreferredWidth(50);   // No
         tblItem.getColumnModel().getColumn(1).setPreferredWidth(180);  // Jenis Laundry
@@ -109,7 +109,7 @@ public class PanelItemLaundry extends javax.swing.JPanel {
 
         tblItem.setModel(model);
 
-        }
+    }
     //Method untuk menambahkan item laundry ke tabel
 
     //Method untuk menambahkan item laundry ke tabel
