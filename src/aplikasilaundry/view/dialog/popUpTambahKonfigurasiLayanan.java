@@ -80,6 +80,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         jLabel67 = new javax.swing.JLabel();
         btnBatal = new javax.swing.JButton();
         btnSimpan = new javax.swing.JButton();
+        btnHapus = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -122,7 +123,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         jPanel28Layout.setVerticalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
-                .addGap(0, 42, Short.MAX_VALUE)
+                .addGap(0, 6, Short.MAX_VALUE)
                 .addComponent(btnBiji))
         );
 
@@ -133,6 +134,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         jLabel63.setText("Keterangan");
 
         btnEdit.setText("Edit");
+        btnEdit.addActionListener(this::btnEditActionPerformed);
 
         jPanel36.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -248,6 +250,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         tJenisLayanan.setForeground(new java.awt.Color(153, 153, 153));
         tJenisLayanan.setText("Contoh: Baju, dll");
         tJenisLayanan.setPreferredSize(new java.awt.Dimension(392, 37));
+        tJenisLayanan.addActionListener(this::tJenisLayananActionPerformed);
 
         jLabel58.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel58.setText("Jenis Layanan");
@@ -360,12 +363,18 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         btnSimpan.setPreferredSize(new java.awt.Dimension(125, 44));
         btnSimpan.addActionListener(this::btnSimpanActionPerformed);
 
+        btnHapus.setText("Hapus");
+
         javax.swing.GroupLayout jPanel37Layout = new javax.swing.GroupLayout(jPanel37);
         jPanel37.setLayout(jPanel37Layout);
         jPanel37Layout.setHorizontalGroup(
             jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel37Layout.createSequentialGroup()
-                .addGap(454, 454, 454)
+                .addGap(129, 129, 129)
+                .addComponent(btnEdit)
+                .addGap(163, 163, 163)
+                .addComponent(btnHapus)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel37Layout.createSequentialGroup()
@@ -395,11 +404,9 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
                             .addComponent(jPanel29, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel30, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addComponent(jLabel62)
-                        .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel37Layout.createSequentialGroup()
+                        .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel37Layout.createSequentialGroup()
                                 .addComponent(btnTambah)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnEdit)
                                 .addGap(90, 90, 90))
                             .addComponent(jPanel34, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap(13, Short.MAX_VALUE)))
@@ -408,7 +415,11 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
             jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel37Layout.createSequentialGroup()
                 .addGap(404, 404, 404)
-                .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnEdit)
+                        .addComponent(btnHapus)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 481, Short.MAX_VALUE)
                 .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -433,9 +444,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
                     .addGap(18, 18, 18)
                     .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnTambah)
-                        .addComponent(btnEdit))
+                    .addComponent(btnTambah)
                     .addGap(29, 29, 29)
                     .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(41, 41, 41)
@@ -533,6 +542,14 @@ cProses.setSelectedIndex(0);
 tHarga.setText("");
     }//GEN-LAST:event_btnTambahActionPerformed
 
+    private void tJenisLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tJenisLayananActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tJenisLayananActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -574,6 +591,7 @@ tHarga.setText("");
     private javax.swing.JButton btnBatal;
     private javax.swing.JToggleButton btnBiji;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnHapus;
     private javax.swing.JToggleButton btnKg;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnTambah;

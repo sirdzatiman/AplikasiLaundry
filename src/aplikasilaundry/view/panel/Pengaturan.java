@@ -24,12 +24,27 @@ import aplikasilaundry.controller.PenggunaController;
 import aplikasilaundry.model.Pengguna;
 //Mengimpor JOptionPane
 import javax.swing.JOptionPane;
+//Mengimpor controller layanan
+import aplikasilaundry.controller.LayananController;
+//Mengimpor collection
+import java.util.List;
+//Mengimpor model layanan
+import aplikasilaundry.model.Layanan;
 
 import aplikasilaundry.view.dialog.popUpEditKonfigurasiLayanan;
 import aplikasilaundry.view.dialog.popUpKonfirmasiHapus;
 import aplikasilaundry.view.dialog.popUpPensil;
 import aplikasilaundry.view.dialog.popUpTambahKonfigurasiLayanan;
 import aplikasilaundry.view.dialog.popUpTambahpengguna;
+
+//Mengimpor controller layanan
+import aplikasilaundry.controller.LayananController;
+
+//Mengimpor model layanan
+import aplikasilaundry.model.Layanan;
+
+//Mengimpor collection
+import java.util.List;
 
 public class Pengaturan extends javax.swing.JPanel {
 //Controller pengaturan
@@ -42,6 +57,9 @@ public class Pengaturan extends javax.swing.JPanel {
 
     //Model pengaturan
     private PengaturanStruk pengaturan;
+    
+    //Controller layanan
+private LayananController controllerLayanan;
 
     public Pengaturan() {
 
@@ -88,12 +106,53 @@ public class Pengaturan extends javax.swing.JPanel {
         //Membuat controller pengguna
         controllerPengguna
                 = new PenggunaController();
+        //Membuat controller layanan
+controllerLayanan
+        = new LayananController();
 
         //Menampilkan data pengaturan
         tampilPengaturan();
         //Menampilkan data pengguna
         tampilPengguna();
+        //Menampilkan data layanan
+tampilLayanan();
     }
+    //Method menampilkan data layanan
+private void tampilLayanan(){
+
+    //Mengambil model tabel
+    DefaultTableModel model =
+            (DefaultTableModel) tblJenis.getModel();
+
+    //Menghapus seluruh isi tabel
+    model.setRowCount(0);
+
+    //Mengambil seluruh data layanan
+    List<Layanan> daftar =
+            controllerLayanan.getAll();
+
+    //Nomor urut
+    int no = 1;
+
+    //Menampilkan seluruh data
+    for(Layanan layanan : daftar){
+
+        //Menambahkan data ke tabel
+        model.addRow(new Object[]{
+
+            no++,
+            layanan.getNamaLayanan(),
+            layanan.getProses(),
+            layanan.getSatuan(),
+            FormatRupiah.format(
+                    layanan.getHarga()),
+            layanan.getKeterangan()
+
+        });
+
+    }
+
+}
     
     //Method menampilkan data pengaturan
     private void tampilPengaturan() {
