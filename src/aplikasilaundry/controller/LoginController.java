@@ -1,111 +1,103 @@
- 
 package aplikasilaundry.controller;
 
+//Mengimpor DAO pengguna
 import aplikasilaundry.dao.PenggunaDAO;
+//Mengimpor model Pengguna
 import aplikasilaundry.model.Pengguna;
+//Mengimpor Frame Dashboard
 import aplikasilaundry.view.frame.FrameDashboard;
+//Mengimpor Frame Login
 import aplikasilaundry.view.frame.FrameLogin;
+//Mengimpor JOptionPane untuk menampilkan dialog
 import javax.swing.JOptionPane;
+//Mengimpor Session untuk mengelola data login pengguna
 import aplikasilaundry.config.Session;
 
+//Controller yang menangani proses login pengguna
 public class LoginController {
-     // Menyimpan objek FrameLogin
+    //Menyimpan objek FrameLogin
     private FrameLogin frame;
-
-    // Constructor
+    //Constructor untuk menghubungkan controller dengan FrameLogin
     public LoginController(FrameLogin frame) {
-
-        // Menghubungkan controller dengan FrameLogin
         this.frame = frame;
-
     }
 
-  // Method untuk proses login
-public void login() {
+    //Method untuk memproses login pengguna
+    public void login() {
+        //Mengambil data username dan password dari form login
+        String username = frame.getUsername();
+        String password = frame.getPassword();
 
-    // Mengambil username dari FrameLogin
-    String username = frame.getUsername();
-
-    // Mengambil password dari FrameLogin
-    String password = frame.getPassword();
-
-    // Mengecek apakah username masih kosong
-    if (username.isEmpty()) {
-        JOptionPane.showMessageDialog(
-                frame,
-                "Username tidak boleh kosong!"
-        );
-        return;
-    }
-
-    // Mengecek apakah password masih kosong
-    if (password.isEmpty()) {
-        JOptionPane.showMessageDialog(
-                frame,
-                "Password tidak boleh kosong!"
-        );
-        return;
-    }
-
-    // Membuat objek DAO
-    PenggunaDAO dao = new PenggunaDAO();
-
-    // Mencari data pengguna
-    Pengguna pengguna = dao.login(username, password);
-
-    // Jika data ditemukan
-    if (pengguna != null) {
-
-        // Menyimpan data pengguna ke Session
-    Session.login(
-            pengguna.getIdPengguna(),
-            pengguna.getNamaPengguna(),
-            pengguna.getUsername(),
-            pengguna.getRole()
-    );
-        //Menanyakan apakah session ingin disimpan
-        int pilihan = JOptionPane.showConfirmDialog(
-                frame,
-                "Simpan data login di perangkat ini?",
-                "Simpan Sesi",
-                JOptionPane.YES_NO_OPTION
-        );
-
-        if (pilihan == JOptionPane.YES_OPTION) {
-
-            //Menyimpan session
-            Session.simpanSesi();
-
-        } else {
-
-            //Menghapus session yang mungkin tersimpan sebelumnya
-            Session.hapusSesi();
-
+        //Memvalidasi agar username tidak kosong
+        if (username.isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    frame,
+                    "Username tidak boleh kosong!"
+            );
+            return;
         }
 
-    JOptionPane.showMessageDialog(
-            frame,
-            "Login Berhasil. Selamat datang "
-            + pengguna.getNamaPengguna()
-    );
+        //Memvalidasi agar password tidak kosong
+        if (password.isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    frame,
+                    "Password tidak boleh kosong!"
+            );
+            return;
+        }
 
-    // Membuka Dashboard
-    FrameDashboard dashboard = new FrameDashboard();
-    dashboard.setVisible(true);
+        //Membuat objek DAO untuk proses autentikasi pengguna
+        PenggunaDAO dao = new PenggunaDAO();
+        //Mencari data pengguna berdasarkan username dan password
+        Pengguna pengguna = dao.login(username, password);
+        //Jika data pengguna ditemukan
+        if (pengguna != null) {
 
-    // Menutup form login
-    frame.dispose();
+            //Menyimpan data pengguna ke dalam Session
+            Session.login(
+                    pengguna.getIdPengguna(),
+                    pengguna.getNamaPengguna(),
+                    pengguna.getUsername(),
+                    pengguna.getRole()
+            );
 
+            //Menanyakan apakah session ingin disimpan di perangkat
+            int pilihan = JOptionPane.showConfirmDialog(
+                    frame,
+                    "Simpan data login di perangkat ini?",
+                    "Simpan Sesi",
+                    JOptionPane.YES_NO_OPTION
+            );
 
-    } else {
+            //Menyimpan atau menghapus session sesuai pilihan pengguna
+            if (pilihan == JOptionPane.YES_OPTION) {
+                //Menyimpan session
+                Session.simpanSesi();
 
-        JOptionPane.showMessageDialog(
-                frame,
-                "Username atau Password salah!"
-        );
+            } else {
+                //Menghapus session yang tersimpan
+                Session.hapusSesi();
+            }
 
+            //Menampilkan pesan bahwa login berhasil
+            JOptionPane.showMessageDialog(
+                    frame,
+                    "Login Berhasil. Selamat datang "
+                    + pengguna.getNamaPengguna()
+            );
+
+            //Membuka halaman Dashboard
+            FrameDashboard dashboard = new FrameDashboard();
+            dashboard.setVisible(true);
+            //Menutup form login
+            frame.dispose();
+
+        } else {
+            //Menampilkan pesan jika login gagal
+            JOptionPane.showMessageDialog(
+                    frame,
+                    "Username atau Password salah!"
+            );
+        }
     }
-
-}
-
 }

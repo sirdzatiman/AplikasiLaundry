@@ -265,7 +265,7 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
                     "Jumlah satuan belum diisi!");
             return;
         }
-//Mengambil jenis laundry
+        //Mengambil jenis laundry
         String layanan = cJenis.getSelectedItem().toString();
 
 //Variabel jumlah

@@ -5,40 +5,31 @@ import java.math.BigDecimal;
 //Class model untuk menampung data transaksi
 
 public class Transaksi {
+    
     //Menyimpan nomor nota
-
     private String noNota;
-
     //Menyimpan nama pelanggan
     private String namaPelanggan;
-
     //Menyimpan jam masuk laundry
     private String jamMasuk;
-
     //Menyimpan jam ambil laundry
     private String jamAmbil;
-
     //Menyimpan jenis layanan
     private String jenis;
     //Menyimpan jumlah item laundry
     private int jumlahItem;
-
     //Menyimpan total harga
     private BigDecimal totalHarga;
-
     //Menyimpan status transaksi
     private String status;
-
     //Tanggal masuk
     private String tanggalMasuk;
-
-//Nomor HP pelanggan
+    //Nomor HP pelanggan
     private String noHp;
-
-//Alamat pelanggan
+    //Alamat pelanggan
     private String alamat;
 
-    //Method untuk mengambil nomor nota
+    //Method untuk memaca/ mengambil nomor nota
     public String getNoNota() {
         return noNota;
     }
