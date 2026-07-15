@@ -363,6 +363,7 @@ public class TransaksiDAO {
                         p.nama_pelanggan,
                         t.jam_masuk,
                         t.jam_ambil,
+                        t.tanggal_ambil,
                         MIN(l.nama_layanan) AS jenis,
                         COUNT(dt.id_detail) AS jumlah_item,
                         t.total_harga,
@@ -443,6 +444,7 @@ public class TransaksiDAO {
                 t.setNamaPelanggan(rs.getString("nama_pelanggan"));
                 t.setJamMasuk(rs.getString("jam_masuk"));
                 t.setJamAmbil(rs.getString("jam_ambil"));
+                t.setTanggalAmbil(rs.getString("tanggal_ambil"));
                 t.setJenis(rs.getString("jenis"));
                 t.setJumlahItem(rs.getInt("jumlah_item"));
                 t.setTotalHarga(rs.getBigDecimal("total_harga"));
@@ -1408,6 +1410,7 @@ public class TransaksiDAO {
                     = "SELECT "
                     + "t.no_nota, "
                     + "t.tanggal_masuk, "
+                    + "t.tanggal_ambil,"
                     + "t.jam_masuk, "
                     + "t.jam_ambil, "
                     + "p.nama_pelanggan, "
@@ -1461,6 +1464,9 @@ public class TransaksiDAO {
                 //Mengisi tanggal masuk
                 transaksi.setTanggalMasuk(
                         rs.getString("tanggal_masuk"));
+                
+                transaksi.setTanggalAmbil(
+                        rs.getString("tanggal_ambil"));
 
 //Mengisi nomor HP
                 transaksi.setNoHp(

@@ -32,10 +32,13 @@ public class Transaksi {
     //Tanggal masuk
     private String tanggalMasuk;
 
-//Nomor HP pelanggan
+    //Tanggal ambil
+    private String tanggalAmbil;
+
+    //Nomor HP pelanggan
     private String noHp;
 
-//Alamat pelanggan
+    //Alamat pelanggan
     private String alamat;
 
     //Method untuk mengambil nomor nota
@@ -67,13 +70,13 @@ public class Transaksi {
     public void setJamMasuk(String jamMasuk) {
         this.jamMasuk = jamMasuk;
     }
-//Method untuk mengambil jam ambil
 
+    //Method untuk mengambil jam ambil
     public String getJamAmbil() {
         return jamAmbil;
     }
 
-//Method untuk mengisi jam ambil
+    //Method untuk mengisi jam ambil
     public void setJamAmbil(String jamAmbil) {
         this.jamAmbil = jamAmbil;
     }
@@ -123,27 +126,37 @@ public class Transaksi {
         return tanggalMasuk;
     }
 
-//Method mengisi tanggal masuk
+    //Method mengambil tanggal ambil
+    public String getTanggalAmbil() {
+        return tanggalAmbil;
+    }
+
+    //Method mengisi tanggal ambil
+    public void setTanggalAmbil(String tanggalAmbil) {
+        this.tanggalAmbil = tanggalAmbil;
+    }
+
+    //Method mengisi tanggal masuk
     public void setTanggalMasuk(String tanggalMasuk) {
         this.tanggalMasuk = tanggalMasuk;
     }
 
-//Method mengambil nomor HP
+    //Method mengambil nomor HP
     public String getNoHp() {
         return noHp;
     }
 
-//Method mengisi nomor HP
+    //Method mengisi nomor HP
     public void setNoHp(String noHp) {
         this.noHp = noHp;
     }
 
-//Method mengambil alamat pelanggan
+    //Method mengambil alamat pelanggan
     public String getAlamat() {
         return alamat;
     }
 
-//Method mengisi alamat pelanggan
+    //Method mengisi alamat pelanggan
     public void setAlamat(String alamat) {
         this.alamat = alamat;
     }

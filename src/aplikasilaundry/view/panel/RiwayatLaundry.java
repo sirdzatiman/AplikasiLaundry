@@ -7,6 +7,7 @@ import aplikasilaundry.controller.TransaksiController;
 import aplikasilaundry.model.Transaksi;
 import aplikasilaundry.util.FormatJam;
 import aplikasilaundry.util.FormatRupiah;
+import aplikasilaundry.util.FormatTanggal;
 import aplikasilaundry.util.TableStyle;
 import aplikasilaundry.view.dialog.detailLaundry;
 
@@ -105,7 +106,9 @@ public class RiwayatLaundry extends javax.swing.JPanel {
                 FormatJam.format(
                 t.getJamMasuk()),
                 //Jam Ambil
-                FormatJam.format(t.getJamAmbil()),
+                FormatTanggal.format(t.getTanggalAmbil())
+                + " "
+                + FormatJam.format(t.getJamAmbil()),
                 //Jenis
                 t.getJenis(),
                 //Total
