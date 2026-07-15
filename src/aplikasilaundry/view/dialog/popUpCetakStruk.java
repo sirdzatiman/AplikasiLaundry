@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package aplikasilaundry.view.dialog;
+
 import javax.swing.table.DefaultTableModel;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
@@ -11,154 +12,167 @@ import aplikasilaundry.controller.PengaturanStrukController;
 
 //Mengimpor model pengaturan
 import aplikasilaundry.model.PengaturanStruk;
+import aplikasilaundry.util.TableStyle;
 import java.awt.Graphics2D;
 import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.Printable;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+
 public class popUpCetakStruk extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpCetakStruk.class.getName());
- //Controller pengaturan
-private PengaturanStrukController controllerPengaturan;
+    //Controller pengaturan
+    private PengaturanStrukController controllerPengaturan;
 //Menyimpan slogan atau keterangan laundry
-private String keterangan;
+    private String keterangan;
 //Data pengaturan
-private PengaturanStruk pengaturan;
+    private PengaturanStruk pengaturan;
 //Model tabel detail struk
-private DefaultTableModel model;
+    private DefaultTableModel model;
+
     /**
      * Creates new form popUpCetakStruk
      */
     //Constructor popup cetak struk
-public popUpCetakStruk(java.awt.Frame parent,
-                       boolean modal) {
+    public popUpCetakStruk(java.awt.Frame parent,
+            boolean modal) {
 
-    super(parent, modal);
+        super(parent, modal);
 
-    initComponents();
-  
-    tblDetailStruk.setSize(printStruk.getPreferredSize());
+        initComponents();
+        
+        TableStyle.TableStyle(tblDetailStruk);
 
-    printStruk.doLayout();
-    printStruk.validate();
+        tblDetailStruk.setSize(printStruk.getPreferredSize());
+        //Membuat renderer rata tengah
+        DefaultTableCellRenderer centerRenderer =
+                new DefaultTableCellRenderer();
 
-    StyledDocument doc = tFooter.getStyledDocument();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 
-    SimpleAttributeSet center = new SimpleAttributeSet();
-    StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        //Kolom No
+        tblDetailStruk.getColumnModel()
+                .getColumn(0)
+                .setCellRenderer(centerRenderer);
 
-    doc.setParagraphAttributes(0, doc.getLength(), center, false);
+        //Kolom Total
+        tblDetailStruk.getColumnModel()
+                .getColumn(3)
+                .setCellRenderer(centerRenderer);
 
-//Membuat controller pengaturan
-controllerPengaturan =
-        new PengaturanStrukController();
+        printStruk.doLayout();
+        printStruk.validate();
 
-//Menampilkan informasi laundry
-tampilPengaturan();
-    //Mengambil model tabel
-model =
-        (DefaultTableModel)
-        tblDetailStruk.getModel();
+        StyledDocument doc = tFooter.getStyledDocument();
 
-   
+        SimpleAttributeSet center = new SimpleAttributeSet();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
 
-//Menampilkan detail transaksi
-//tampilDetail();
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
 
-}
-//Mengambil slogan laundry
-public String getKeterangan() {
-    return keterangan;
-}
+        //Membuat controller pengaturan
+        controllerPengaturan
+                = new PengaturanStrukController();
 
-//Mengubah slogan laundry
-public void setKeterangan(String keterangan) {
-    this.keterangan = keterangan;
-}
-//Method menampilkan informasi pengaturan struk
-private void tampilPengaturan(){
-
-    //Mengambil data pengaturan dari database
-    pengaturan = controllerPengaturan.getPengaturan();
-
-    //Jika data ditemukan
-    if(pengaturan != null){
-
-        //Menampilkan nama bisnis
-        lblNamaBisnis.setText(
-                pengaturan.getNamaBisnis());
-
-        //Menampilkan alamat laundry
-        lblAlamatLaundry.setText(
-                pengaturan.getAlamat());
-
-        //Menampilkan nomor HP laundry
-        lblNoHpLaundry.setText(
-                pengaturan.getNoHp());
-
-        //Menampilkan footer struk
-        tFooter.setText(
-                pengaturan.getFooterStruk());
+        //Menampilkan informasi laundry
+        tampilPengaturan();
+        //Mengambil model tabel
+        model
+                = (DefaultTableModel) tblDetailStruk.getModel();
 
     }
+//Mengambil slogan laundry
 
-}
-//Method menerima data preview struk
-public void setPreviewData(
+    public String getKeterangan() {
+        return keterangan;
+    }
 
-        String nama,
-        String noHp,
-        String alamat,
-        String totalBerat,
-        String totalBiji,
-        String totalHarga,
-        javax.swing.JTable tabel){
+//Mengubah slogan laundry
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
+    }
+//Method menampilkan informasi pengaturan struk
 
-    //Menampilkan data pelanggan
-    lblPelanggan.setText(nama);
-    lblNoHp.setText(noHp);
-    lblAsal.setText(alamat);
+    private void tampilPengaturan() {
 
-    //Menampilkan ringkasan
-    lblTotalBerat.setText(totalBerat);
-    lblTotalBiji.setText(totalBiji);
-    lblTotalHarga.setText(totalHarga);
+        //Mengambil data pengaturan dari database
+        pengaturan = controllerPengaturan.getPengaturan();
 
-    //Mengambil model tabel popup
-    javax.swing.table.DefaultTableModel model =
-            (javax.swing.table.DefaultTableModel)
-            tblDetailStruk.getModel();
+        //Jika data ditemukan
+        if (pengaturan != null) {
 
-    model.setRowCount(0);
+            //Menampilkan nama bisnis
+            lblNamaBisnis.setText(
+                    pengaturan.getNamaBisnis());
 
-    //Mengambil model tabel konfirmasi
-    javax.swing.table.DefaultTableModel asal =
-            (javax.swing.table.DefaultTableModel)
-            tabel.getModel();
+            //Menampilkan alamat laundry
+            lblAlamatLaundry.setText(
+                    pengaturan.getAlamat());
 
-    //Menyalin seluruh baris
-    for(int i = 0; i < asal.getRowCount(); i++){
+            //Menampilkan nomor HP laundry
+            lblNoHpLaundry.setText(
+                    pengaturan.getNoHp());
 
-        Object[] row = new Object[asal.getColumnCount()];
-
-        for(int j = 0; j < asal.getColumnCount(); j++){
-
-            row[j] = asal.getValueAt(i, j);
+            //Menampilkan footer struk
+            tFooter.setText(
+                    pengaturan.getFooterStruk());
 
         }
 
-        model.addRow(row);
+    }
+//Method menerima data preview struk
+
+    public void setPreviewData(
+            String nama,
+            String noHp,
+            String alamat,
+            String totalBerat,
+            String totalBiji,
+            String totalHarga,
+            javax.swing.JTable tabel) {
+
+        //Menampilkan data pelanggan
+        lblPelanggan.setText(nama);
+        lblNoHp.setText(noHp);
+        lblAsal.setText(alamat);
+
+        //Menampilkan ringkasan
+        lblTotalBerat.setText(totalBerat);
+        lblTotalBiji.setText(totalBiji);
+        lblTotalHarga.setText(totalHarga);
+
+        //Mengambil model tabel popup
+        javax.swing.table.DefaultTableModel model
+                = (javax.swing.table.DefaultTableModel) tblDetailStruk.getModel();
+
+        model.setRowCount(0);
+
+        //Mengambil model tabel konfirmasi
+        javax.swing.table.DefaultTableModel asal
+                = (javax.swing.table.DefaultTableModel) tabel.getModel();
+
+        //Menyalin seluruh baris
+        for (int i = 0; i < asal.getRowCount(); i++) {
+
+            Object[] row = new Object[asal.getColumnCount()];
+
+            for (int j = 0; j < asal.getColumnCount(); j++) {
+
+                row[j] = asal.getValueAt(i, j);
+
+            }
+
+            model.addRow(row);
+
+        }
 
     }
-
-}
-
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -209,20 +223,21 @@ public void setPreviewData(
         jLabel35 = new javax.swing.JLabel();
         jPanel19 = new javax.swing.JPanel();
         jPanel20 = new javax.swing.JPanel();
-        lblTotalBerat = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
-        lblTotalBiji = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
         jPanel22 = new javax.swing.JPanel();
-        lblTotalHarga = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
         jPanel23 = new javax.swing.JPanel();
         tFooter = new javax.swing.JTextPane();
         jPanel6 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         tblDetailStruk = new javax.swing.JTable();
         jLabel20 = new javax.swing.JLabel();
+        lblTotalHarga = new javax.swing.JLabel();
+        lblTotalBiji = new javax.swing.JLabel();
+        lblTotalBerat = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnCetak = new javax.swing.JButton();
         btnTutup = new javax.swing.JButton();
@@ -240,10 +255,13 @@ public void setPreviewData(
         lblNamaBisnis.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNamaBisnis.setText("MOJOSARI LAUNDRY");
 
+        lblAlamatLaundry.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblAlamatLaundry.setText("Bersih, Suci, Wangi");
 
+        lblNoHpLaundry.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblNoHpLaundry.setText("Bersih, Suci, Wangi");
 
+        lblKeterangan.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblKeterangan.setText("Bersih, Suci, Wangi");
 
         jPanel4.setBackground(new java.awt.Color(239, 238, 245));
@@ -255,18 +273,18 @@ public void setPreviewData(
         jPanel5.setBackground(new java.awt.Color(239, 238, 245));
         jPanel5.setLayout(new java.awt.BorderLayout(13, 0));
 
-        lblNoNota.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        lblNoNota.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblNoNota.setText("INV-260508-001");
         jPanel5.add(lblNoNota, java.awt.BorderLayout.CENTER);
 
         jPanel17.setPreferredSize(new java.awt.Dimension(85, 15));
         jPanel17.setLayout(new java.awt.BorderLayout());
 
-        jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel32.setText("No Nota");
         jPanel17.add(jLabel32, java.awt.BorderLayout.LINE_START);
 
-        jLabel33.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jLabel33.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel33.setText(":");
         jLabel33.setPreferredSize(new java.awt.Dimension(5, 14));
@@ -279,18 +297,18 @@ public void setPreviewData(
         jPanel9.setBackground(new java.awt.Color(239, 238, 245));
         jPanel9.setLayout(new java.awt.BorderLayout(13, 0));
 
-        lblTanggal.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        lblTanggal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblTanggal.setText("08/05/2026");
         jPanel9.add(lblTanggal, java.awt.BorderLayout.CENTER);
 
         jPanel16.setPreferredSize(new java.awt.Dimension(85, 15));
         jPanel16.setLayout(new java.awt.BorderLayout());
 
-        jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel30.setText("Tanggal");
         jPanel16.add(jLabel30, java.awt.BorderLayout.LINE_START);
 
-        jLabel31.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jLabel31.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel31.setText(":");
         jLabel31.setPreferredSize(new java.awt.Dimension(5, 14));
@@ -303,18 +321,18 @@ public void setPreviewData(
         jPanel10.setBackground(new java.awt.Color(239, 238, 245));
         jPanel10.setLayout(new java.awt.BorderLayout(13, 0));
 
-        lblJamMasuk.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        lblJamMasuk.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblJamMasuk.setText("10:30:45");
         jPanel10.add(lblJamMasuk, java.awt.BorderLayout.CENTER);
 
         jPanel8.setPreferredSize(new java.awt.Dimension(85, 15));
         jPanel8.setLayout(new java.awt.BorderLayout());
 
-        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel24.setText("Jam Masuk");
         jPanel8.add(jLabel24, java.awt.BorderLayout.LINE_START);
 
-        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jLabel25.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel25.setText(":");
         jLabel25.setPreferredSize(new java.awt.Dimension(5, 14));
@@ -327,18 +345,18 @@ public void setPreviewData(
         jPanel11.setBackground(new java.awt.Color(239, 238, 245));
         jPanel11.setLayout(new java.awt.BorderLayout(13, 0));
 
-        lblPelanggan.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        lblPelanggan.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblPelanggan.setText("Siti Aisyah");
         jPanel11.add(lblPelanggan, java.awt.BorderLayout.CENTER);
 
         jPanel14.setPreferredSize(new java.awt.Dimension(85, 15));
         jPanel14.setLayout(new java.awt.BorderLayout());
 
-        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel26.setText("Pelanggan");
         jPanel14.add(jLabel26, java.awt.BorderLayout.LINE_START);
 
-        jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jLabel27.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel27.setText(":");
         jLabel27.setPreferredSize(new java.awt.Dimension(5, 14));
@@ -351,18 +369,18 @@ public void setPreviewData(
         jPanel12.setBackground(new java.awt.Color(239, 238, 245));
         jPanel12.setLayout(new java.awt.BorderLayout(13, 0));
 
-        lblNoHp.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        lblNoHp.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblNoHp.setText("0857-9155-9991");
         jPanel12.add(lblNoHp, java.awt.BorderLayout.CENTER);
 
         jPanel15.setPreferredSize(new java.awt.Dimension(85, 15));
         jPanel15.setLayout(new java.awt.BorderLayout());
 
-        jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel28.setText("No HP");
         jPanel15.add(jLabel28, java.awt.BorderLayout.LINE_START);
 
-        jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jLabel29.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel29.setText(":");
         jLabel29.setPreferredSize(new java.awt.Dimension(5, 14));
@@ -375,18 +393,18 @@ public void setPreviewData(
         jPanel13.setBackground(new java.awt.Color(239, 238, 245));
         jPanel13.setLayout(new java.awt.BorderLayout(13, 0));
 
-        lblAsal.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        lblAsal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblAsal.setText("PPP.KH.A.BASTHOMI");
         jPanel13.add(lblAsal, java.awt.BorderLayout.CENTER);
 
         jPanel18.setPreferredSize(new java.awt.Dimension(85, 15));
         jPanel18.setLayout(new java.awt.BorderLayout());
 
-        jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel34.setText("Asal");
         jPanel18.add(jLabel34, java.awt.BorderLayout.LINE_START);
 
-        jLabel35.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jLabel35.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel35.setText(":");
         jLabel35.setPreferredSize(new java.awt.Dimension(5, 14));
@@ -401,11 +419,7 @@ public void setPreviewData(
 
         jPanel20.setBackground(new java.awt.Color(239, 238, 245));
 
-        lblTotalBerat.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblTotalBerat.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTotalBerat.setText("2.0 Kg");
-
-        jLabel44.setFont(new java.awt.Font("Segoe UI", 1, 9)); // NOI18N
+        jLabel44.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel44.setText("TOTAL BERAT");
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
@@ -414,24 +428,17 @@ public void setPreviewData(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblTotalBerat, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel44)
+                .addGap(88, 88, 88))
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(lblTotalBerat)
-                .addComponent(jLabel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel44)
         );
 
         jPanel21.setBackground(new java.awt.Color(239, 238, 245));
 
-        lblTotalBiji.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblTotalBiji.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTotalBiji.setText("1 Biji");
-
-        jLabel46.setFont(new java.awt.Font("Segoe UI", 1, 9)); // NOI18N
+        jLabel46.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel46.setText("TOTAL BIJI");
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
@@ -441,23 +448,16 @@ public void setPreviewData(
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblTotalBiji, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(89, 89, 89))
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(lblTotalBiji)
-                .addComponent(jLabel46, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel46)
         );
 
         jPanel22.setBackground(new java.awt.Color(239, 238, 245));
 
-        lblTotalHarga.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        lblTotalHarga.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTotalHarga.setText("Rp 18.000");
-
-        jLabel48.setFont(new java.awt.Font("Segoe UI", 1, 9)); // NOI18N
+        jLabel48.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel48.setText("TOTAL HARGA");
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
@@ -466,15 +466,12 @@ public void setPreviewData(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblTotalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel48)
+                .addGap(83, 83, 83))
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(lblTotalHarga)
-                .addComponent(jLabel48, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel48)
         );
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
@@ -516,21 +513,25 @@ public void setPreviewData(
         jPanel23.setLayout(jPanel23Layout);
         jPanel23Layout.setHorizontalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tFooter, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(tFooter, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tFooter, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addComponent(tFooter, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 16, 0, 16));
         jPanel6.setPreferredSize(new java.awt.Dimension(304, 124));
         jPanel6.setLayout(new java.awt.CardLayout());
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
         tblDetailStruk.setBackground(new java.awt.Color(239, 238, 245));
+        tblDetailStruk.setFont(new java.awt.Font("Segoe UI Semibold", 1, 13)); // NOI18N
         tblDetailStruk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -539,15 +540,29 @@ public void setPreviewData(
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "No", "Jenis", "Proses", "Total"
             }
         ));
-        jPanel6.add(tblDetailStruk, "card3");
+        jScrollPane1.setViewportView(tblDetailStruk);
+
+        jPanel6.add(jScrollPane1, "card2");
 
         jLabel20.setBackground(new java.awt.Color(239, 238, 245));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel20.setText("------------------------------------------------------");
         jLabel20.setPreferredSize(new java.awt.Dimension(304, 16));
+
+        lblTotalHarga.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTotalHarga.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotalHarga.setText("Rp 18.000");
+
+        lblTotalBiji.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        lblTotalBiji.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotalBiji.setText("1 Biji");
+
+        lblTotalBerat.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        lblTotalBerat.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotalBerat.setText("2.0 Kg");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -555,7 +570,12 @@ public void setPreviewData(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(112, 112, 112))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTotalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTotalBiji, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTotalBerat, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -574,13 +594,21 @@ public void setPreviewData(
                 .addGap(0, 0, 0)
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(lblTotalBerat)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTotalBiji)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTotalHarga)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout printStrukLayout = new javax.swing.GroupLayout(printStruk);
@@ -598,7 +626,7 @@ public void setPreviewData(
                     .addComponent(lblKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(printStrukLayout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 296, Short.MAX_VALUE)
                 .addContainerGap())
         );
         printStrukLayout.setVerticalGroup(
@@ -665,8 +693,7 @@ public void setPreviewData(
             .addGroup(layout.createSequentialGroup()
                 .addComponent(printStruk, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -677,97 +704,95 @@ public void setPreviewData(
         // TODO add your handling code here:
         try {
 
-        // Mengambil printer yang tersedia
-        PrinterJob job = PrinterJob.getPrinterJob();
+            // Mengambil printer yang tersedia
+            PrinterJob job = PrinterJob.getPrinterJob();
 
-        // Mengambil pengaturan halaman bawaan
-        PageFormat format = job.defaultPage();
+            // Mengambil pengaturan halaman bawaan
+            PageFormat format = job.defaultPage();
 
-        // Membuat objek kertas
-        Paper paper = new Paper();
+            // Membuat objek kertas
+            Paper paper = new Paper();
 
-        // Lebar kertas 80 mm (dalam satuan point)
-        double width = 164.41;
+            // Lebar kertas 80 mm (dalam satuan point)
+            double width = 164.41;
 
-        // Tinggi kertas mengikuti tinggi panel struk
-        double height = printStruk.getPreferredSize().height * 72.0 / 96.0;
+            // Tinggi kertas mengikuti tinggi panel struk
+            double height = printStruk.getPreferredSize().height * 72.0 / 96.0;
 
-        // Mengatur ukuran kertas
-        paper.setSize(width, height);
+            // Mengatur ukuran kertas
+            paper.setSize(width, height);
 
-        // Seluruh area kertas dapat digunakan untuk mencetak
-        paper.setImageableArea(0, 0, width, height);
+            // Seluruh area kertas dapat digunakan untuk mencetak
+            paper.setImageableArea(0, 0, width, height);
 
-        // Menggunakan ukuran kertas yang telah dibuat
-        format.setPaper(paper);
+            // Menggunakan ukuran kertas yang telah dibuat
+            format.setPaper(paper);
 
-        // Menentukan isi yang akan dicetak
-        job.setPrintable((graphics, pageFormat, pageIndex) -> {
+            // Menentukan isi yang akan dicetak
+            job.setPrintable((graphics, pageFormat, pageIndex) -> {
 
-            // Printer hanya mencetak satu halaman
-            if (pageIndex > 0) {
-                return Printable.NO_SUCH_PAGE;
+                // Printer hanya mencetak satu halaman
+                if (pageIndex > 0) {
+                    return Printable.NO_SUCH_PAGE;
+                }
+
+                // Mengubah Graphics menjadi Graphics2D
+                Graphics2D g2 = (Graphics2D) graphics;
+
+                // Memindahkan titik awal cetak ke area yang dapat dicetak
+                g2.translate(
+                        pageFormat.getImageableX(),
+                        pageFormat.getImageableY()
+                );
+
+                // Memastikan layout panel sudah diperbarui
+                printStruk.doLayout();
+
+                // Menghitung skala agar lebar panel sesuai dengan lebar kertas
+                double scale = pageFormat.getImageableWidth()
+                        / printStruk.getPreferredSize().width;
+
+                // Menerapkan skala
+                g2.scale(scale, scale);
+
+                // Mencetak isi panel struk
+                printStruk.printAll(g2);
+
+                // Mengembalikan status bahwa halaman tersedia
+                return Printable.PAGE_EXISTS;
+
+            }, format);
+
+            // Menampilkan dialog pemilihan printer
+            if (job.printDialog()) {
+
+                // Mulai proses mencetak
+                job.print();
+
+                // Menutup form setelah selesai mencetak
+                dispose();
+
             }
 
-            // Mengubah Graphics menjadi Graphics2D
-            Graphics2D g2 = (Graphics2D) graphics;
+        } catch (PrinterException e) {
 
-            // Memindahkan titik awal cetak ke area yang dapat dicetak
-            g2.translate(
-                    pageFormat.getImageableX(),
-                    pageFormat.getImageableY()
+            // Menampilkan pesan jika terjadi kesalahan saat mencetak
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Gagal mencetak struk!\n" + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
             );
-
-            // Memastikan layout panel sudah diperbarui
-            printStruk.doLayout();
-
-            // Menghitung skala agar lebar panel sesuai dengan lebar kertas
-            double scale = pageFormat.getImageableWidth()
-                    / printStruk.getPreferredSize().width;
-
-            // Menerapkan skala
-            g2.scale(scale, scale);
-
-            // Mencetak isi panel struk
-            printStruk.printAll(g2);
-
-            // Mengembalikan status bahwa halaman tersedia
-            return Printable.PAGE_EXISTS;
-
-        }, format);
-
-        // Menampilkan dialog pemilihan printer
-        if (job.printDialog()) {
-
-            // Mulai proses mencetak
-            job.print();
-
-            // Menutup form setelah selesai mencetak
-            dispose();
 
         }
 
-    } catch (PrinterException e) {
-
-        // Menampilkan pesan jika terjadi kesalahan saat mencetak
-        JOptionPane.showMessageDialog(
-                this,
-                "Gagal mencetak struk!\n" + e.getMessage(),
-                "Error",
-                JOptionPane.ERROR_MESSAGE
-        );
-
-    }
-                                             
-
-  
 
     }//GEN-LAST:event_btnCetakActionPerformed
 
     private void btnTutupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTutupActionPerformed
         // TODO add your handling code here:
-         //Menutup popup cetak struk
-    dispose();
+        //Menutup popup cetak struk
+        dispose();
     }//GEN-LAST:event_btnTutupActionPerformed
 
     /**
@@ -849,6 +874,7 @@ public void setPreviewData(
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAlamatLaundry;
     private javax.swing.JLabel lblAsal;
     private javax.swing.JLabel lblJamMasuk;
