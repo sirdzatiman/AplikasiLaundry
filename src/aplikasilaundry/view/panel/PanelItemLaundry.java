@@ -12,9 +12,6 @@ import aplikasilaundry.view.dialog.popUpTambahItemLaundry;
 import aplikasilaundry.model.ItemLaundry;
 
 import aplikasilaundry.view.panel.TambahLaundry;
-
-import javax.swing.JPanel;
-
 //Mengimpor controller transaksi
 import aplikasilaundry.controller.TransaksiController;
 

@@ -914,31 +914,30 @@ public void tampilDataPelanggan(Pelanggan pelanggan) {
         // TODO add your handling code here:
         //Menyimpan transaksi ke database
         controller.simpanTransaksi();
-//Mengosongkan transaksi sementara
+        //Mengosongkan transaksi sementara
         controller.resetTransaksi();
-//Menampilkan pesan berhasil
+        //Menampilkan pesan berhasil
         javax.swing.JOptionPane.showMessageDialog(
                 this,
                 "Transaksi berhasil disimpan.");
 
-//Mengambil FrameDashboard yang sedang aktif
+        //Mengambil FrameDashboard yang sedang aktif
         aplikasilaundry.view.frame.FrameDashboard frame
                 = (aplikasilaundry.view.frame.FrameDashboard) javax.swing.SwingUtilities.getWindowAncestor(this);
 
-//Memperbarui seluruh panel Data Laundry
+        //Memperbarui seluruh panel Data Laundry
         frame.getDataLaundry().refreshSemuaPanel();
-//Mereset seluruh form Tambah Laundry
+        //Mereset seluruh form Tambah Laundry
         induk.resetForm();
 
-//Berpindah ke halaman Data Laundry
+        //Berpindah ke halaman Data Laundry
         frame.panggilHalaman("semua");
 
-//Menampilkan tab Laundry Masuk
+        //Menampilkan tab Laundry Masuk
         frame.getDataLaundry().tampilLaundryMasuk();
 
     }//GEN-LAST:event_btnSimpanActionPerformed
-//Method untuk mereset seluruh tampilan konfirmasi
-
+    //Method untuk mereset seluruh tampilan konfirmasi
     public void resetForm() {
 
         //Mengosongkan nama pelanggan

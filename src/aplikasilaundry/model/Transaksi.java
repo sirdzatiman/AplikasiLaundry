@@ -30,11 +30,7 @@ public class Transaksi {
 
     //Nomor HP pelanggan
     private String noHp;
-//<<<<<<< HEAD (b8b4372) - Menyempurnakan tampilan
-//
-//=======
-//
-//>>>>>>> origin/Betrin (7972781) - menambahkan ko
+
     //Alamat pelanggan
     private String alamat;
 
