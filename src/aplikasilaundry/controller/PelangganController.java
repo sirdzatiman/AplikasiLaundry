@@ -1,37 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package aplikasilaundry.controller;
 
-//Mengimpor DAO
+//Mengimpor DAO pelanggan
 import aplikasilaundry.dao.PelangganDAO;
-
-//Mengimpor model
+//Mengimpor model Pelanggan
 import aplikasilaundry.model.Pelanggan;
-
-//Mengimpor collection
+//Mengimpor List untuk menampung data pelanggan
 import java.util.List;
 
-//Class controller pelanggan
+//Class yang menghubungkan tampilan dengan DAO pada data pelanggan
 public class PelangganController {
-    //Menyimpan objek DAO
+    //Objek DAO untuk mengelola data pelanggan
     private PelangganDAO dao;
-
-    //Constructor
+    //Constructor untuk menginisialisasi objek PelangganDAO
     public PelangganController() {
-
-        //Membuat objek DAO
         dao = new PelangganDAO();
-
     }
 
-    //Mengambil seluruh data pelanggan
+    //Mengambil seluruh data pelanggan dari database
     public List<Pelanggan> getAll() {
-
-        //Mengembalikan data dari DAO
         return dao.getAll();
-
     }
 
 }

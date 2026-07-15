@@ -1,13 +1,8 @@
 package aplikasilaundry.controller;
 
-//Mengimpor DAO pengguna
-import aplikasilaundry.dao.PenggunaDAO;
-
-//Mengimpor model pengguna
-import aplikasilaundry.model.Pengguna;
-
-//Mengimpor collection
-import java.util.List;
+import aplikasilaundry.dao.PenggunaDAO;     //Mengimpor DAO pengguna
+import aplikasilaundry.model.Pengguna;      //Mengimpor model pengguna
+import java.util.List;                      //Mengimpor collection
 
 //Class controller pengguna
 public class PenggunaController {
@@ -16,52 +11,68 @@ public class PenggunaController {
     private PenggunaDAO dao;
 
     //Constructor
-    public PenggunaController(){
-
+    public PenggunaController() {
         //Membuat DAO pengguna
         dao = new PenggunaDAO();
-
     }
 
     //Method mengambil seluruh data pengguna
-    public List<Pengguna> getAll(){
-
+    public List<Pengguna> getAll() {
         //Mengembalikan data dari DAO
         return dao.getAll();
+    }
+
+    //Method mengambil pengguna berdasarkan ID
+    public Pengguna getById(int idPengguna) {
+        //Mengembalikan data dari DAO
+        return dao.getById(idPengguna);
+    }
+
+    //Method mengubah data pengguna
+    public boolean update(Pengguna pengguna) {
+        //Mengirim data ke DAO
+        return dao.update(pengguna);
+    }
+
+    //Method menghapus pengguna
+    public boolean hapus(int idPengguna) {
+        //Mengirim ID ke DAO
+        return dao.hapus(idPengguna);
+    }
+
+    //Method menyimpan pengguna baru
+    public boolean simpan(Pengguna pengguna) {
+        //Mengirim data ke DAO
+        return dao.simpan(pengguna);
 
     }
-    //Method mengambil pengguna berdasarkan ID
-public Pengguna getById(int idPengguna){
 
-    //Mengembalikan data dari DAO
-    return dao.getById(idPengguna);
-
-}
-//Method mengubah data pengguna
-public boolean update(Pengguna pengguna){
-
-    //Mengirim data ke DAO
-    return dao.update(pengguna);
-
-}
-//Method menghapus pengguna
-public boolean hapus(int idPengguna){
-
-    //Mengirim ID ke DAO
-    return dao.hapus(idPengguna);
-
-}
-//Method menyimpan pengguna baru
-public boolean simpan(Pengguna pengguna){
-
-    //Mengirim data ke DAO
-    return dao.simpan(pengguna);
-
-}
+////Method mengubah data pengguna
+//    public boolean update(Pengguna pengguna) {
+//
+//        //Mengirim data ke DAO
+//        return dao.update(pengguna);
+//
+//    }
+////Method menghapus pengguna
+//
+//    public boolean hapus(int idPengguna) {
+//
+//        //Mengirim ID ke DAO
+//        return dao.hapus(idPengguna);
+//
+//    }
+////Method menyimpan pengguna baru
+//
+//    public boolean simpan(Pengguna pengguna) {
+//
+//        //Mengirim data ke DAO
+//        return dao.simpan(pengguna);
+//
+//    }
 
     public Pengguna get(int baris) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
 
 }

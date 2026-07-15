@@ -1,437 +1,295 @@
 package aplikasilaundry.controller;
 
-//Mengimpor model data transaksi sementara
+//Mengimpor model transaksi sementara
 import aplikasilaundry.model.DataTransaksi;
+//Mengimpor model item laundry
 import aplikasilaundry.model.ItemLaundry;
+//Mengimpor model transaksi
 import aplikasilaundry.model.Transaksi;
 //Mengimpor model pelanggan
 import aplikasilaundry.model.Pelanggan;
-
 //Mengimpor panel Semua
 import aplikasilaundry.view.panel.Semua;
-
 //Mengimpor DAO transaksi
 import aplikasilaundry.dao.TransaksiDAO;
-
-//Mengimpor model transaksi
-import aplikasilaundry.model.Transaksi;
-
-//Mengimpor collection
+//Mengimpor List untuk menampung kumpulan data
 import java.util.List;
-
+//Mengimpor DAO layanan
 import aplikasilaundry.dao.LayananDAO;
+//Mengimpor BigDecimal untuk menyimpan nilai mata uang
 import java.math.BigDecimal;
-
 //Mengimpor DAO pelanggan
 import aplikasilaundry.dao.PelangganDAO;
-
 //Mengimpor DAO detail transaksi
 import aplikasilaundry.dao.DetailTransaksiDAO;
-
-//Mengimpor model transaksi simpan
+//Mengimpor model transaksi yang akan disimpan
 import aplikasilaundry.model.TransaksiSimpan;
-
 //Mengimpor model detail transaksi
 import aplikasilaundry.model.DetailTransaksi;
-
-//Mengimpor LocalDate
+//Mengimpor LocalDate untuk menyimpan tanggal
 import java.time.LocalDate;
-
-//Mengimpor LocalTime
+//Mengimpor LocalTime untuk menyimpan waktu
 import java.time.LocalTime;
 
-//Class controller transaksi
-  
+//Class yang menghubungkan tampilan dengan DAO pada proses transaksi laundry
+public class TransaksiController {
 
-    public class TransaksiController {
+    //Objek DAO untuk mengelola data transaksi
+    private TransaksiDAO dao;
+    //Objek DAO untuk mengelola data layanan
+    private LayananDAO layananDAO;
+    //Objek DAO untuk mengelola data pelanggan
+    private PelangganDAO pelangganDAO;
+    //Objek DAO untuk mengelola detail transaksi
+    private DetailTransaksiDAO detailDAO;
+    //Menyimpan data transaksi sementara selama proses input
+    private DataTransaksi dataTransaksi;
 
-        //Menyimpan objek DAO
-        private TransaksiDAO dao;
+    //Constructor untuk menginisialisasi seluruh objek DAO dan transaksi sementara
+    public TransaksiController() {
+        //Menginisialisasi DAO transaksi
+        dao = new TransaksiDAO();
+        //Menginisialisasi DAO pelanggan
+        pelangganDAO = new PelangganDAO();
+        //Menginisialisasi DAO detail transaksi
+        detailDAO = new DetailTransaksiDAO();
+        //Menginisialisasi DAO layanan
+        layananDAO = new LayananDAO();
+        //Mengambil objek transaksi sementara
+        dataTransaksi = DataTransaksi.getInstance();
+    }
 
-        //DAO layanan
-        private LayananDAO layananDAO;
+    //Mengambil seluruh data transaksi berdasarkan kata kunci dan tanggal
+    public List<Transaksi> getAll(String keyword,
+            java.util.Date tanggal) {
+        return dao.getAll(keyword, tanggal);
+    }
 
-//DAO pelanggan
-        private PelangganDAO pelangganDAO;
+    //Mengambil daftar transaksi terbaru
+    public List<Transaksi> getTransaksiTerbaru() {
+        return dao.getTransaksiTerbaru();
+    }
 
-//DAO detail transaksi
-        private DetailTransaksiDAO detailDAO;
+    //Mengambil data transaksi berdasarkan nomor nota
+    public Transaksi getByNoNota(String noNota) {
+        return dao.getByNoNota(noNota);
+    }
 
-        //Menyimpan data transaksi sementara
-        private DataTransaksi dataTransaksi;
+    //Mengambil data transaksi berdasarkan nomor nota
+    public Transaksi getTransaksiByNota(String noNota) {
+        return dao.getByNoNota(noNota);
+    }
 
-        //Constructor
-        public TransaksiController() {
+    //Mengambil seluruh detail transaksi berdasarkan nomor nota
+    public List<DetailTransaksi> getDetailByNota(String noNota) {
+        return detailDAO.getDetailByNota(noNota);
+    }
 
-            //Membuat DAO transaksi
-            dao = new TransaksiDAO();
+    //Mengambil seluruh data laundry dengan status Selesai
+    public List<Transaksi> getSelesai() {
+        return dao.getSelesai();
+    }
 
-//Membuat DAO pelanggan
-            pelangganDAO = new PelangganDAO();
+    //Mengambil data laundry berstatus Selesai berdasarkan kata kunci dan tanggal
+    public List<Transaksi> getSelesai(String keyword,
+            java.util.Date tanggal) {
+        return dao.getSelesai(keyword, tanggal);
+    }
 
-//Membuat DAO detail transaksi
-            detailDAO = new DetailTransaksiDAO();
+    //Mengambil seluruh data laundry dengan status Baru Masuk
+    public List<Transaksi> getLaundryMasuk() {
+        return dao.getLaundryMasuk();
+    }
 
-//Membuat DAO layanan
-            layananDAO = new LayananDAO();
+    //Mengambil data laundry berstatus Baru Masuk berdasarkan kata kunci dan tanggal
+    public List<Transaksi> getLaundryMasuk(String keyword,
+            java.util.Date tanggal) {
+        return dao.getLaundryMasuk(keyword, tanggal);
 
-            //Mengambil DataTransaksi yang sama
-            dataTransaksi = DataTransaksi.getInstance();
+    }
 
-        }
+    //Mengambil seluruh data laundry dengan status Diproses
+    public List<Transaksi> getDiproses() {
+        return dao.getDiproses();
 
-        //Method untuk mengambil seluruh data transaksi
-        public List<Transaksi> getAll(String keyword,
-                java.util.Date tanggal) {
+    }
 
-            return dao.getAll(keyword, tanggal);
+    //Mengambil data laundry berstatus Diproses berdasarkan kata kunci dan tanggal
+    public List<Transaksi> getDiproses(String keyword,
+            java.util.Date tanggal) {
+        return dao.getDiProses(keyword, tanggal);
 
-        }
+    }
 
-        //Method mengambil transaksi terbaru
-        public List<Transaksi> getTransaksiTerbaru() {
+    //Mengambil seluruh data laundry dengan status Sudah Diambil
+    public List<Transaksi> getSudahDiambil() {
+        return dao.getSudahDiambil();
 
-            //Mengembalikan transaksi terbaru dari DAO
-            return dao.getTransaksiTerbaru();
+    }
 
-        }
+    //Mengambil data riwayat laundry berdasarkan kata kunci dan tanggal
+    public List<Transaksi> getRiwayat(String keyword,
+            java.util.Date tanggal) {
+        return dao.getRiwayat(keyword, tanggal);
 
-        //Method mengambil transaksi berdasarkan nomor nota
-        public Transaksi getByNoNota(String noNota) {
+    }
 
-            //Mengembalikan data transaksi dari DAO
-            return dao.getByNoNota(noNota);
+    //Menyimpan data pelanggan sementara sebelum transaksi diproses
+    public void simpanPelanggan(String nama,
+            String hp,
+            String alamat,
+            String catatan) {
 
-        }
-//Method mengambil data transaksi berdasarkan nomor nota
-
-        public Transaksi getTransaksiByNota(String noNota) {
-
-            //Mengambil data dari DAO
-            return dao.getByNoNota(noNota);
-
-        }
-//Method mengambil seluruh detail transaksi berdasarkan nomor nota
-
-        public List<DetailTransaksi> getDetailByNota(String noNota) {
-
-            //Mengembalikan daftar detail transaksi dari DAO
-            return detailDAO.getDetailByNota(noNota);
-
-        }
-        //Method untuk mengambil data laundry dengan status Selesai
-
-        public List<Transaksi> getSelesai() {
-
-            //Mengembalikan data dari DAO
-            return dao.getSelesai();
-
-        }
-
-        public List<Transaksi> getSelesai(String keyword,
-                java.util.Date tanggal) {
-
-            return dao.getSelesai(keyword, tanggal);
-
-        }
-//Method untuk mengambil data laundry dengan status Baru Masuk
-
-        public List<Transaksi> getLaundryMasuk() {
-
-            //Mengembalikan data dari DAO
-            return dao.getLaundryMasuk();
-
-        }
-
-        public List<Transaksi> getLaundryMasuk(String keyword,
-                java.util.Date tanggal) {
-
-            return dao.getLaundryMasuk(keyword, tanggal);
-
-        }
-//Method untuk mengambil data laundry dengan status Diproses
-
-        public List<Transaksi> getDiproses() {
-
-            //Mengembalikan data dari DAO
-            return dao.getDiproses();
-
-        }
-
-        public List<Transaksi> getDiproses(String keyword,
-                java.util.Date tanggal) {
-
-            return dao.getDiProses(keyword, tanggal);
-
-        }
-//Method untuk mengambil data laundry dengan status Sudah Diambil
-
-        public List<Transaksi> getSudahDiambil() {
-
-            //Mengembalikan data dari DAO
-            return dao.getSudahDiambil();
-
-        }
+        //Membuat objek pelanggan baru
+        Pelanggan pelanggan = new Pelanggan();
+        //Mengisi data pelanggan
+        pelanggan.setNamaPelanggan(nama);
+        pelanggan.setNoHp(hp);
+        pelanggan.setAlamat(alamat);
+        pelanggan.setCatatan(catatan);
+        //Menyimpan pelanggan ke transaksi sementara
+        dataTransaksi.setPelanggan(pelanggan);
         
-        //Method mengambil data riwayat laundry
-        public List<Transaksi> getRiwayat(String keyword,
-                java.util.Date tanggal) {
+        System.out.println("===== SIMPAN PELANGGAN =====");
+        System.out.println("DataTransaksi : " + dataTransaksi);
+        System.out.println("Pelanggan : " + dataTransaksi.getPelanggan());
+        System.out.println("Nama : " + dataTransaksi.getPelanggan().getNamaPelanggan());
+    }
 
-            //Mengembalikan data dari DAO
-            return dao.getRiwayat(keyword, tanggal);
+    //Mengambil data pelanggan sementara
+    public Pelanggan getPelangganSementara() {
+        return dataTransaksi.getPelanggan();
+    }
 
-        }
+    //Mengambil seluruh item laundry sementara
+    public List<ItemLaundry> getDaftarItemSementara() {
+        return dataTransaksi.getDaftarItem();
+    }
 
-//Method untuk menyimpan data pelanggan sementara
-        public void simpanPelanggan(String nama,
-                String hp,
-                String alamat,
-                String catatan) {
-
-            //Membuat objek pelanggan baru
-            Pelanggan pelanggan = new Pelanggan();
-
-            //Menyimpan nama pelanggan
-            pelanggan.setNamaPelanggan(nama);
-
-            //Menyimpan nomor HP pelanggan
-            pelanggan.setNoHp(hp);
-
-            //Menyimpan alamat pelanggan
-            pelanggan.setAlamat(alamat);
-
-            //Menyimpan catatan pelanggan
-            pelanggan.setCatatan(catatan);
-
-            //Menyimpan objek pelanggan ke transaksi sementara
-            dataTransaksi.setPelanggan(pelanggan);
-            System.out.println("===== SIMPAN PELANGGAN =====");
-            System.out.println("DataTransaksi : " + dataTransaksi);
-            System.out.println("Pelanggan : " + dataTransaksi.getPelanggan());
-            System.out.println("Nama : " + dataTransaksi.getPelanggan().getNamaPelanggan());
-
-        }
-//Method untuk mengambil data pelanggan sementara
-
-        public Pelanggan getPelangganSementara() {
-
-            //Mengembalikan data pelanggan
-            return dataTransaksi.getPelanggan();
-
-        }
-//Method mengambil seluruh item laundry sementara
-
-        public List<ItemLaundry> getDaftarItemSementara() {
-
-            //Mengembalikan seluruh item laundry
-            return dataTransaksi.getDaftarItem();
-
-        }
-//Method mengambil total berat sementara
-
-        public double getTotalBeratSementara() {
-
-            double total = 0;
-
-            for (ItemLaundry item : dataTransaksi.getDaftarItem()) {
-
-                if (item.getSatuan().equalsIgnoreCase("Kg")) {
-
-                    total += item.getQty();
-
-                }
-
+    //Menghitung total berat laundry sementara
+    public double getTotalBeratSementara() {
+        double total = 0;
+        //Menjumlahkan seluruh item dengan satuan kilogram
+        for (ItemLaundry item : dataTransaksi.getDaftarItem()) {
+            if (item.getSatuan().equalsIgnoreCase("Kg")) {
+                total += item.getQty();
             }
-
-            return total;
-
         }
-//Method mengambil harga layanan
+        return total;
+    }
 
-        public BigDecimal getHargaLayanan(String layanan,
-                String proses) {
+    //Mengambil harga layanan berdasarkan jenis layanan dan proses
+    public BigDecimal getHargaLayanan(String layanan,
+            String proses) {
+        return layananDAO.getHarga(layanan, proses);
+    }
 
-            return layananDAO.getHarga(layanan, proses);
-
-        }
-//Method mengambil total biji sementara
-
-        public int getTotalBijiSementara() {
-
-            int total = 0;
-
-            for (ItemLaundry item : dataTransaksi.getDaftarItem()) {
-
-                if (item.getSatuan().equalsIgnoreCase("Biji")) {
-
-                    total += (int) item.getQty();
-
-                }
-
+    //Menghitung total jumlah item dengan satuan biji
+    public int getTotalBijiSementara() {
+        int total = 0;
+        //Menjumlahkan seluruh item dengan satuan biji
+        for (ItemLaundry item : dataTransaksi.getDaftarItem()) {
+            if (item.getSatuan().equalsIgnoreCase("Biji")) {
+                total += (int) item.getQty();
             }
-
-            return total;
-
         }
-//Method mengambil total harga sementara
+        return total;
+    }
 
-        public BigDecimal getTotalHargaSementara() {
+    //Mengambil total harga seluruh item laundry sementara
+    public BigDecimal getTotalHargaSementara() {
+        return hitungTotalHarga();
+    }
 
-            return hitungTotalHarga();
+    //Mengambil ID layanan berdasarkan jenis layanan dan proses
+    public int getIdLayanan(String layanan,
+            String proses) {
+        return layananDAO.getIdLayanan(
+                layanan,
+                proses);
+    }
 
+    //Menambahkan item laundry ke transaksi sementara
+    public void tambahItem(ItemLaundry item) {
+        dataTransaksi.tambahItem(item);
+    }
+
+    //Memperbarui data transaksi
+    public void updateTransaksi(String noNota,
+            String namaPelanggan,
+            String status) {
+
+        dao.updateTransaksi(
+                noNota,
+                namaPelanggan,
+                status);
+    }
+
+    //Mengambil daftar item laundry sementara
+    public List<ItemLaundry> getDaftarItem() {
+        return dataTransaksi.getDaftarItem();
+    }
+
+    //Menghitung total harga seluruh item laundry
+    private BigDecimal hitungTotalHarga() {
+        BigDecimal total = BigDecimal.ZERO;
+        //Menjumlahkan subtotal seluruh item laundry
+        for (ItemLaundry item : dataTransaksi.getDaftarItem()) {
+            total = total.add(item.getSubtotal());
         }
-//Method mengambil ID layanan
 
-        public int getIdLayanan(String layanan,
-                String proses) {
+        return total;
+    }
 
-            //Mengembalikan ID layanan dari DAO
-            return layananDAO.getIdLayanan(
-                    layanan,
-                    proses);
-
-        }
-//Method menyimpan item laundry sementara
-
-        public void tambahItem(ItemLaundry item) {
-
-            //Menyimpan item ke transaksi sementara
-            dataTransaksi.tambahItem(item);
-
-        }
-//Method mengubah data transaksi
-
-        public void updateTransaksi(String noNota,
-                String namaPelanggan,
-                String status) {
-
-            //Mengirim data ke DAO
-            dao.updateTransaksi(
-                    noNota,
-                    namaPelanggan,
-                    status);
-
-        }
-//Method mengambil seluruh item laundry sementara
-
-        public List<ItemLaundry> getDaftarItem() {
-
-            //Mengembalikan daftar item
-            return dataTransaksi.getDaftarItem();
-
-        }
-//Method menghitung total harga seluruh item laundry
-
-        private BigDecimal hitungTotalHarga() {
-
-            //Nilai awal total
-            BigDecimal total = BigDecimal.ZERO;
-
-            //Mengulang seluruh item laundry
-            for (ItemLaundry item : dataTransaksi.getDaftarItem()) {
-
-                //Menambahkan subtotal ke total
-                total = total.add(item.getSubtotal());
-
-            }
-
-            //Mengembalikan total harga
-            return total;
-
-        }
-//Method menyimpan seluruh transaksi ke database
-
-        public void simpanTransaksi() {
-
-            //Mengambil data pelanggan sementara
-            Pelanggan pelanggan
-                    = dataTransaksi.getPelanggan();
-
-            //Menyimpan pelanggan ke database
-            int idPelanggan
-                    = pelangganDAO.simpan(pelanggan);
-
-            //Membuat objek transaksi
-            TransaksiSimpan transaksi
-                    = new TransaksiSimpan();
-
-            //Mengisi id pelanggan
-            transaksi.setIdPelanggan(idPelanggan);
-
-            //Sementara menggunakan id pengguna = 1
-            transaksi.setIdPengguna(1);
-
-            //Status Laundry Masuk = 1
-            transaksi.setIdStatus(1);
-
-            //Tanggal masuk hari ini
-            transaksi.setTanggalMasuk(LocalDate.now());
-
-            //Jam masuk sekarang
-            transaksi.setJamMasuk(LocalTime.now());
-
-            //Catatan transaksi
-            transaksi.setCatatan(
-                    pelanggan.getCatatan());
-
-            //Total harga
-            transaksi.setTotalHarga(
-                    hitungTotalHarga());
-
-            //Menyimpan transaksi
-            int idTransaksi
-                    = dao.simpan(transaksi);
-
-            System.out.println("===== DEBUG =====");
-            System.out.println("Jumlah item : " + dataTransaksi.getDaftarItem().size());
-            //Menyimpan seluruh item laundry
-            for (ItemLaundry item
-                    : dataTransaksi.getDaftarItem()) {
-                System.out.println(
-                        "ID Layanan = " + item.getIdLayanan()
-                        + ", Layanan = " + item.getLayanan()
-                        + ", Qty = " + item.getQty());
-
-                DetailTransaksi detail
-                        = new DetailTransaksi();
-
-                detail.setIdTransaksi(idTransaksi);
-
-                detail.setIdLayanan(
-                        item.getIdLayanan());
-
-                detail.setQty(
-                        item.getQty());
-
-                detail.setSubtotal(
-                        item.getSubtotal());
-
-                detailDAO.simpan(detail);
-
-            }
-
-        }
+    //Menyimpan seluruh transaksi beserta detailnya ke database
+    public void simpanTransaksi() {
+        //Mengambil data pelanggan sementara
+        Pelanggan pelanggan = dataTransaksi.getPelanggan();
+        //Menyimpan pelanggan ke database
+        int idPelanggan = pelangganDAO.simpan(pelanggan);
+        //Membuat objek transaksi
+        TransaksiSimpan transaksi = new TransaksiSimpan();
+        //Mengisi data transaksi
+        transaksi.setIdPelanggan(idPelanggan);
+        //Menggunakan ID pengguna sementara sebelum login diintegrasikan
+        transaksi.setIdPengguna(1);
+        //Status awal laundry adalah Baru Masuk
+        transaksi.setIdStatus(1);
+        //Mengisi tanggal dan jam transaksi
+        transaksi.setTanggalMasuk(LocalDate.now());
+        transaksi.setJamMasuk(LocalTime.now());
+        //Mengisi catatan pelanggan
+        transaksi.setCatatan(pelanggan.getCatatan());
+        //Mengisi total harga transaksi
+        transaksi.setTotalHarga(hitungTotalHarga());
+        //Menyimpan transaksi dan mendapatkan ID transaksi
+        int idTransaksi = dao.simpan(transaksi);
         
+        //Menyimpan seluruh detail item laundry
+        for (ItemLaundry item : dataTransaksi.getDaftarItem()) {
+
+            DetailTransaksi detail = new DetailTransaksi();
+
+            detail.setIdTransaksi(idTransaksi);
+            detail.setIdLayanan(item.getIdLayanan());
+            detail.setQty(item.getQty());
+            detail.setSubtotal(item.getSubtotal());
+            detailDAO.simpan(detail);
+        }
+    }
+
+    //Mengosongkan seluruh data transaksi sementara
     public void resetTransaksi() {
-
-        //Mengosongkan seluruh data transaksi sementara
         dataTransaksi.clear();
-
     }
-//Method menghapus transaksi
 
+    //Menghapus transaksi berdasarkan nomor nota
     public void hapusTransaksi(String noNota) {
-
-        //Menghapus transaksi melalui DAO
         dao.hapusTransaksi(noNota);
-
     }
-    
-        //Mengambil detail transaksi berdasarkan nomor nota
-        public List<Object[]> getDetailByNoNota(String noNota) {
 
-            return dao.getDetailByNoNota(noNota);
-
-        }
-
+    //Mengambil detail transaksi berdasarkan nomor nota
+    public List<Object[]> getDetailByNoNota(String noNota) {
+        return dao.getDetailByNoNota(noNota);
+    }
 }

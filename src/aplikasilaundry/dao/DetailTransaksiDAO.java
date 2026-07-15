@@ -1,160 +1,115 @@
-
 package aplikasilaundry.dao;
 
 //Mengimpor class koneksi database
 import aplikasilaundry.config.Koneksi;
-
-//Mengimpor class JDBC
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 //Mengimpor model DetailTransaksi
 import aplikasilaundry.model.DetailTransaksi;
-//Mengimpor PreparedStatement
+//Mengimpor Connection untuk koneksi database
+import java.sql.Connection;
+//Mengimpor PreparedStatement untuk menjalankan query SQL
 import java.sql.PreparedStatement;
-
-//Mengimpor SQLException
+//Mengimpor ResultSet untuk membaca hasil query
+import java.sql.ResultSet;
+//Mengimpor SQLException untuk menangani kesalahan database
 import java.sql.SQLException;
-
-//Mengimpor collection
+//Mengimpor List dan ArrayList untuk menampung data detail transaksi
 import java.util.List;
 import java.util.ArrayList;
-//Mengimpor ResultSet
-import java.sql.ResultSet;
 
-//Class untuk mengelola data detail transaksi
+//Class untuk mengelola data detail transaksi pada database
 public class DetailTransaksiDAO {
-     //Menyimpan koneksi database
+    //Objek koneksi database
     private Connection conn;
-
-    //Constructor
+    //Constructor untuk menginisialisasi koneksi database
     public DetailTransaksiDAO() {
-
-        //Mengambil koneksi database
         conn = Koneksi.getKoneksi();
-
     }
 
-    //Method untuk menyimpan detail transaksi
-public void simpan(DetailTransaksi detail){
+    //Menyimpan data detail transaksi ke database
+    public void simpan(DetailTransaksi detail) {
+        try {
+            //Query untuk menyimpan detail transaksi
+            String sql
+                    = "INSERT INTO detail_transaksi "
+                    + "(id_transaksi,id_layanan,qty,subtotal) "
+                    + "VALUES (?,?,?,?)";
+            //Menyiapkan query SQL
+            PreparedStatement ps
+                    = conn.prepareStatement(sql);
+            //Mengisi parameter query
+            ps.setInt(1, detail.getIdTransaksi());
+            ps.setInt(2, detail.getIdLayanan());
+            ps.setDouble(3, detail.getQty());
+            ps.setBigDecimal(4, detail.getSubtotal());
 
-    try{
+            //Menjalankan proses penyimpanan data
+            ps.executeUpdate();
 
-        //Query menyimpan detail transaksi
-        String sql =
-                "INSERT INTO detail_transaksi "
-                + "(id_transaksi,id_layanan,qty,subtotal) "
-                + "VALUES (?,?,?,?)";
-
-        //Menyiapkan query
-        PreparedStatement ps =
-                conn.prepareStatement(sql);
-
-        //Mengisi id transaksi
-        ps.setInt(1,
-                detail.getIdTransaksi());
-
-        //Mengisi id layanan
-        ps.setInt(2,
-                detail.getIdLayanan());
-
-        //Mengisi jumlah
-        ps.setDouble(3,
-                detail.getQty());
-
-        //Mengisi subtotal
-        ps.setBigDecimal(4,
-                detail.getSubtotal());
-
-        //Menjalankan query
-        ps.executeUpdate();
-
-    }catch(SQLException e){
-
-        //Menampilkan error
-        System.out.println(e.getMessage());
-
-    }
-
-}
-//Method mengambil seluruh detail transaksi berdasarkan nomor nota
-public List<DetailTransaksi> getDetailByNota(String noNota){
-
-    //Membuat list detail transaksi
-    List<DetailTransaksi> list = new ArrayList<>();
-
-    try{
-
-        //Query mengambil detail transaksi
-        String sql =
-    "SELECT "
-    + "l.nama_layanan, "
-    + "l.proses, "
-    + "l.satuan, "
-    + "dt.qty, "
-    + "l.harga, "
-    + "dt.subtotal "
-    + "FROM detail_transaksi dt "
-    + "JOIN transaksi t "
-    + "ON dt.id_transaksi = t.id_transaksi "
-    + "JOIN layanan l "
-    + "ON dt.id_layanan = l.id_layanan "
-    + "WHERE t.no_nota = ?";
-
-        //Menyiapkan query
-        PreparedStatement ps =
-                conn.prepareStatement(sql);
-
-        //Mengisi nomor nota
-        ps.setString(1, noNota);
-
-        //Menjalankan query
-        ResultSet rs = ps.executeQuery();
-
-        //Membaca seluruh data
-        while(rs.next()){
-
-            //Membuat objek detail
-            DetailTransaksi detail =
-                    new DetailTransaksi();
-
-            //Nama layanan
-            detail.setNamaLayanan(
-                    rs.getString("nama_layanan"));
-
-            //Nama proses
-            detail.setNamaProses(
-        rs.getString("proses"));
-//Mengisi satuan layanan
-detail.setSatuan(
-        rs.getString("satuan"));
-            //Qty
-            detail.setQty(
-                    rs.getDouble("qty"));
-
-            //Harga
-            detail.setHarga(
-                    rs.getBigDecimal("harga"));
-
-            //Subtotal
-            detail.setSubtotal(
-                    rs.getBigDecimal("subtotal"));
-
-            //Menambahkan ke list
-            list.add(detail);
+        } catch (SQLException e) {
+            //Menampilkan pesan kesalahan jika proses gagal
+            System.out.println(e.getMessage());
 
         }
+    }
 
-    }catch(SQLException e){
+    //Mengambil seluruh detail transaksi berdasarkan nomor nota
+    public List<DetailTransaksi> getDetailByNota(String noNota) {
+        //Menampung seluruh data detail transaksi
+        List<DetailTransaksi> list = new ArrayList<>();
+        try {
+            //Query untuk mengambil detail transaksi berdasarkan nomor nota
+            String sql
+                    = "SELECT "
+                    + "l.nama_layanan, "
+                    + "l.proses, "
+                    + "l.satuan, "
+                    + "dt.qty, "
+                    + "l.harga, "
+                    + "dt.subtotal "
+                    + "FROM detail_transaksi dt "
+                    + "JOIN transaksi t "
+                    + "ON dt.id_transaksi = t.id_transaksi "
+                    + "JOIN layanan l "
+                    + "ON dt.id_layanan = l.id_layanan "
+                    + "WHERE t.no_nota = ?";
 
-    System.out.println("ERROR Detail DAO");
-    e.printStackTrace();
+            //Menyiapkan query SQL
+            PreparedStatement ps
+                    = conn.prepareStatement(sql);
+            //Mengisi parameter nomor nota
+            ps.setString(1, noNota);
+            //Menjalankan query
+            ResultSet rs = ps.executeQuery();
+            //Membaca seluruh data hasil query
+            while (rs.next()) {
+                //Membuat objek detail transaksi
+                DetailTransaksi detail
+                        = new DetailTransaksi();
+                //Mengisi data detail transaksi dari hasil query
+                detail.setNamaLayanan(
+                        rs.getString("nama_layanan"));
+                detail.setNamaProses(
+                        rs.getString("proses"));
+                detail.setSatuan(
+                        rs.getString("satuan"));
+                detail.setQty(
+                        rs.getDouble("qty"));
+                detail.setHarga(
+                        rs.getBigDecimal("harga"));
+                detail.setSubtotal(
+                        rs.getBigDecimal("subtotal"));
+                //Menambahkan data ke dalam list
+                list.add(detail);
+            }
 
-}
+        } catch (SQLException e) {
+            //Menampilkan informasi kesalahan jika proses gagal
+            System.out.println("ERROR Detail DAO");
+            e.printStackTrace();
 
-    //Mengembalikan list
-    return list;
+        }
+        //Mengembalikan daftar detail transaksi
+        return list;
 
-}
+    }
 }
