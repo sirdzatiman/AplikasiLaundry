@@ -1,9 +1,11 @@
+
 package aplikasilaundry.util;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JTable;
+
 
 public class TableStyle {
 
@@ -45,7 +47,7 @@ public class TableStyle {
 
         // Header tidak bisa diubah ukurannya
         table.getTableHeader().setResizingAllowed(false);
-
+        
         //Warna header tabel
         table.getTableHeader().setBackground(
                 new Color(240, 243, 247));

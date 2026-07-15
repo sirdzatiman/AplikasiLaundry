@@ -12,7 +12,6 @@ import aplikasilaundry.controller.PengaturanStrukController;
 
 //Mengimpor model pengaturan
 import aplikasilaundry.model.PengaturanStruk;
-import aplikasilaundry.util.TableStyle;
 import java.awt.Graphics2D;
 import java.awt.print.PageFormat;
 import java.awt.print.Paper;
@@ -46,8 +45,6 @@ public class popUpCetakStruk extends javax.swing.JDialog {
         super(parent, modal);
 
         initComponents();
-        
-        TableStyle.TableStyle(tblDetailStruk);
 
         tblDetailStruk.setSize(printStruk.getPreferredSize());
         //Membuat renderer rata tengah
@@ -87,17 +84,17 @@ public class popUpCetakStruk extends javax.swing.JDialog {
                 = (DefaultTableModel) tblDetailStruk.getModel();
 
     }
-//Mengambil slogan laundry
+    //Mengambil slogan laundry
 
     public String getKeterangan() {
         return keterangan;
     }
 
-//Mengubah slogan laundry
+    //Mengubah slogan laundry
     public void setKeterangan(String keterangan) {
         this.keterangan = keterangan;
     }
-//Method menampilkan informasi pengaturan struk
+    //Method menampilkan informasi pengaturan struk
 
     private void tampilPengaturan() {
 
@@ -531,7 +528,7 @@ public class popUpCetakStruk extends javax.swing.JDialog {
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         tblDetailStruk.setBackground(new java.awt.Color(239, 238, 245));
-        tblDetailStruk.setFont(new java.awt.Font("Segoe UI Semibold", 1, 13)); // NOI18N
+        tblDetailStruk.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         tblDetailStruk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
