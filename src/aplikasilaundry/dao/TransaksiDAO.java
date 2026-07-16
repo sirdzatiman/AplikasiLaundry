@@ -1596,7 +1596,6 @@ public class TransaksiDAO {
                     rs.getBigDecimal("harga"),
                     rs.getBigDecimal("subtotal")
                 });
-
             }
 
             rs.close();

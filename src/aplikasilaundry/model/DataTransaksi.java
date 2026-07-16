@@ -1,4 +1,3 @@
-
 package aplikasilaundry.model;
 
 import java.util.ArrayList;
@@ -8,43 +7,44 @@ import aplikasilaundry.model.ItemLaundry;
 
 //Mengimpor BigDecimal
 //import java.math.BigDecimal;
-
 //Class untuk menyimpan data transaksi sementara
 public class DataTransaksi {
     //Objek tunggal DataTransaksi
-private static DataTransaksi instance;
+    private static DataTransaksi instance;      //satudata
+    
     //Data pelanggan
     private Pelanggan pelanggan;
 
-    //Daftar item laundry
+    //Daftar item laundry       // DetailTransaksi detail;
     private List<DetailTransaksi> detailList = new ArrayList<>();
-    
+
     //Menyimpan daftar item laundry
-private List<ItemLaundry> daftarItem = new ArrayList<>();
+    private List<ItemLaundry> daftarItem = new ArrayList<>();
 
 //Method untuk mengambil satu-satunya objek DataTransaksi
-public static DataTransaksi getInstance(){
+    public static DataTransaksi getInstance() {
 
-    //Jika belum pernah dibuat
-    if(instance == null){
+        //Jika belum pernah dibuat
+        if (instance == null) {
 
-        //Membuat objek baru
-        instance = new DataTransaksi();
+            //Membuat objek baru
+            instance = new DataTransaksi();
+
+        }
+
+        //Mengembalikan objek yang sama
+        return instance;
 
     }
-
-    //Mengembalikan objek yang sama
-    return instance;
-
-}
 
     public Pelanggan getPelanggan() {
         return pelanggan;
     }
     //Mengambil seluruh item laundry
-public List<ItemLaundry> getDaftarItem() {
-    return daftarItem;
-}
+
+    public List<ItemLaundry> getDaftarItem() {
+        return daftarItem;
+    }
 
     public void setPelanggan(Pelanggan pelanggan) {
         this.pelanggan = pelanggan;
@@ -57,21 +57,23 @@ public List<ItemLaundry> getDaftarItem() {
     public void setDetailList(List<DetailTransaksi> detailList) {
         this.detailList = detailList;
     }
+    
 //Menambah item laundry
-public void tambahItem(ItemLaundry item) {
-    daftarItem.add(item);
-}
+    public void tambahItem(ItemLaundry item) {
+        daftarItem.add(item);
+    }
 //Method untuk mengosongkan seluruh data transaksi sementara
-public void clear(){
 
-    //Menghapus data pelanggan
-    pelanggan = null;
+    public void clear() {
 
-    //Menghapus seluruh item laundry sementara
-    daftarItem.clear();
+        //Menghapus data pelanggan
+        pelanggan = null;
 
-    //Menghapus seluruh detail transaksi
-    detailList.clear();
+        //Menghapus seluruh item laundry sementara
+        daftarItem.clear();
 
-}
+        //Menghapus seluruh detail transaksi
+        detailList.clear();
+
+    }
 }

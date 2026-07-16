@@ -2,11 +2,11 @@ package aplikasilaundry.model;
 
 //Mengimpor BigDecimal untuk menyimpan nilai uang
 import java.math.BigDecimal;
-//Class model untuk menampung data transaksi
 
+//Class model untuk menampung data transaksi
 public class Transaksi {
     
-    //Menyimpan nomor nota
+    //tempat Menyimpan nomor nota
     private String noNota;
     //Menyimpan nama pelanggan
     private String namaPelanggan;

@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
+
 package aplikasilaundry.view.dialog;
 
 import aplikasilaundry.config.Session;
 import aplikasilaundry.view.frame.FrameLogin;
 
-/**
- *
- * @author HP 14s Ryzen
- */
+
 public class popUpLogout extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpLogout.class.getName());
@@ -150,20 +144,20 @@ public class popUpLogout extends javax.swing.JDialog {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        //Menghapus session login
-        //Menghapus session login
-        Session.logout();
+       
+         //Menghapus session login
+    Session.logout();
 
-        //Mengambil frame pemilik dialog
-        java.awt.Window owner = getOwner();
+    //Mengambil frame dashboard
+    java.awt.Window owner = getOwner();
 
-        //Menutup popup
-        dispose();
+    //Menutup dashboard
+    if (owner != null) {
+        owner.dispose();
+    }
 
-        //Menutup dashboard
-        if (owner != null) {
-            owner.dispose();
-        }
+    //Menutup popup
+    dispose();
 
     //Membuka kembali halaman login
     new FrameLogin().setVisible(true);
@@ -174,9 +168,7 @@ public class popUpLogout extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnBatalActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

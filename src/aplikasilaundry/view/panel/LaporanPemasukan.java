@@ -271,7 +271,7 @@ public class LaporanPemasukan extends javax.swing.JPanel {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(101, 101, 101));
-        jLabel7.setText("Periode Harian");
+        jLabel7.setText("Periode :");
 
         cPeriode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Harian", "Mingguan", "Bulanan" }));
         cPeriode.addActionListener(this::cPeriodeActionPerformed);

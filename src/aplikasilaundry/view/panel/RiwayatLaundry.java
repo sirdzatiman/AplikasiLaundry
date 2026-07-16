@@ -239,7 +239,6 @@ public class RiwayatLaundry extends javax.swing.JPanel {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Frame (16).png"))); // NOI18N
 
         tCariNama.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        tCariNama.setText("Cari nama / no nota / no hp");
         tCariNama.setBorder(null);
         tCariNama.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {

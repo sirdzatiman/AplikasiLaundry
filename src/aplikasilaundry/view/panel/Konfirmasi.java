@@ -293,6 +293,7 @@ public void tampilDataPelanggan(Pelanggan pelanggan) {
         btnKembali.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Kiri.png"))); // NOI18N
         btnKembali.setText("Kembali");
         btnKembali.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnKembali.addActionListener(this::btnKembaliActionPerformed);
 
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
         jPanel24.setLayout(jPanel24Layout);
@@ -937,6 +938,12 @@ public void tampilDataPelanggan(Pelanggan pelanggan) {
         frame.getDataLaundry().tampilLaundryMasuk();
 
     }//GEN-LAST:event_btnSimpanActionPerformed
+
+    private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
+        // TODO add your handling code here:
+         //Kembali ke panel item
+        induk.panggilTahap("kartuItem");
+    }//GEN-LAST:event_btnKembaliActionPerformed
     //Method untuk mereset seluruh tampilan konfirmasi
     public void resetForm() {
 

@@ -154,7 +154,7 @@ public class TransaksiController {
         System.out.println("DataTransaksi : " + dataTransaksi);
         System.out.println("Pelanggan : " + dataTransaksi.getPelanggan());
         System.out.println("Nama : " + dataTransaksi.getPelanggan().getNamaPelanggan());
-    }
+    } 
 
     //Mengambil data pelanggan sementara
     public Pelanggan getPelangganSementara() {
