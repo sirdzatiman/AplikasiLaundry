@@ -7,10 +7,7 @@ package aplikasilaundry.view.dialog;
 import javax.swing.table.DefaultTableModel;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
-//Mengimpor controller pengaturan
 import aplikasilaundry.controller.PengaturanStrukController;
-
-//Mengimpor model pengaturan
 import aplikasilaundry.model.PengaturanStruk;
 import java.awt.Graphics2D;
 import java.awt.print.PageFormat;

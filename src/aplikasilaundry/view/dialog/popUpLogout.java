@@ -150,6 +150,8 @@ public class popUpLogout extends javax.swing.JDialog {
 
     //Mengambil frame dashboard
     java.awt.Window owner = getOwner();
+    
+    
 
     //Menutup dashboard
     if (owner != null) {

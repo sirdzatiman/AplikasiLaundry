@@ -2,13 +2,10 @@ package aplikasilaundry.view.dialog;
 
 //Mengimpor controller transaksi
 import aplikasilaundry.controller.TransaksiController;
-
 //Mengimpor BigDecimal
 import java.math.BigDecimal;
-
 //Mengimpor panel item laundry
 import aplikasilaundry.view.panel.PanelItemLaundry;
-
 import javax.swing.JOptionPane;
 
 public class popUpTambahItemLaundry extends javax.swing.JDialog {

@@ -1,41 +1,26 @@
 package aplikasilaundry.view.dialog;
 
 import aplikasilaundry.view.dialog.detailLaundry;
-import javax.swing.JTable;
-import javax.swing.JOptionPane;
-//Mengimpor controller transaksi
 import aplikasilaundry.controller.TransaksiController;
-
-//Mengimpor model transaksi
 import aplikasilaundry.model.Transaksi;
-
-//Mengimpor util format jam
 import aplikasilaundry.util.FormatJam;
-
-//Mengimpor DefaultTableModel
 import javax.swing.table.DefaultTableModel;
-
-//Mengimpor collection
 import java.util.List;
-
-//Mengimpor model Detail Transaksi
 import aplikasilaundry.model.DetailTransaksi;
-
-//Mengimpor Format Rupiah
 import aplikasilaundry.util.FormatRupiah;
 import java.math.BigDecimal;
 
 public class detailLaundry extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(detailLaundry.class.getName());
-//Menyimpan nomor nota transaksi yang dipilih
+    //Menyimpan nomor nota transaksi yang dipilih
     private String noNota;
-//Controller transaksi
+    //Controller transaksi
     private TransaksiController controller
             = new TransaksiController();
-//Model tabel detail laundry
+    //Model tabel detail laundry
     private DefaultTableModel model;
-//Constructor dialog Detail Laundry
+    //Constructor dialog Detail Laundry
 
     public detailLaundry(java.awt.Frame parent,
             boolean modal,
@@ -56,60 +41,61 @@ public class detailLaundry extends javax.swing.JDialog {
         tampilData();
 
     }
-//Method menampilkan data transaksi
+    
+    //Method menampilkan data transaksi
+    private void tampilData() {
+        {
+            this.noNota = noNota;
 
-    private void tampilData() { {
+            List<Object[]> detail
+                    = controller.getDetailByNoNota(noNota);
 
-        this.noNota = noNota;
+            //Mengambil data transaksi berdasarkan nomor nota
+            Transaksi transaksi
+                    = controller.getByNoNota(noNota);
 
-        List<Object[]> detail
-                = controller.getDetailByNoNota(noNota);
+            //Jika data ditemukan
+            if (transaksi != null) {
 
-        //Mengambil data transaksi berdasarkan nomor nota
-        Transaksi transaksi
-                = controller.getByNoNota(noNota);
+                //Menampilkan nomor nota
+                lblNoNota.setText(
+                        transaksi.getNoNota());
 
-        //Jika data ditemukan
-        if (transaksi != null) {
+                //Menampilkan nama pelanggan
+                lblNama.setText(
+                        transaksi.getNamaPelanggan());
 
-            //Menampilkan nomor nota
-            lblNoNota.setText(
-                    transaksi.getNoNota());
+                //Menampilkan status
+                lblStatus.setText(
+                        transaksi.getStatus());
 
-            //Menampilkan nama pelanggan
-            lblNama.setText(
-                    transaksi.getNamaPelanggan());
-
-            //Menampilkan status
-            lblStatus.setText(
-                    transaksi.getStatus());
-
-            //Menampilkan jam masuk
-            lblJamMasuk.setText(
-                    FormatJam.format(
-                            transaksi.getJamMasuk()));
-
-            //Menampilkan jam ambil
-            //Jika jam ambil masih kosong
-            if (transaksi.getJamAmbil() == null) {
-
-                lblJamAmbil.setText("-");
-
-            } else {
-
-                lblJamAmbil.setText(
+                //Menampilkan jam masuk
+                lblJamMasuk.setText(
                         FormatJam.format(
-                                transaksi.getJamAmbil()));
+                                transaksi.getJamMasuk()));
 
+                //Menampilkan jam ambil
+                //Jika jam ambil masih kosong
+                if (transaksi.getJamAmbil() == null) {
+
+                    lblJamAmbil.setText("-");
+
+                } else {
+
+                    lblJamAmbil.setText(
+                            FormatJam.format(
+                                    transaksi.getJamAmbil()));
+
+                }
+
+                //Menampilkan detail item laundry
+                tampilDetail();
             }
 
-            //Menampilkan detail item laundry
-            tampilDetail();
         }
-
     }
-    }
-//Method menampilkan detail laundry
+    
+    //Method menampilkan detail laundry
     private void tampilDetail() {
 
         //Menghapus isi tabel
@@ -122,10 +108,10 @@ public class detailLaundry extends javax.swing.JDialog {
         //Total berat
         double totalBerat = 0;
 
-//Total biji
+        //Total biji
         double totalBiji = 0;
 
-//Total bayar
+        //Total bayar
         BigDecimal totalBayar = BigDecimal.ZERO;
 
         //Menampilkan satu per satu
@@ -146,7 +132,7 @@ public class detailLaundry extends javax.swing.JDialog {
                 detail.getSubtotal())
 
             });
-//Jika satuan Kg
+            //Jika satuan Kg
             if (detail.getSatuan().equalsIgnoreCase("Kg")) {
 
                 totalBerat += detail.getQty();
@@ -157,7 +143,7 @@ public class detailLaundry extends javax.swing.JDialog {
 
             }
 
-//Menjumlahkan total bayar
+            //Menjumlahkan total bayar
             totalBayar
                     = totalBayar.add(
                             detail.getSubtotal());
@@ -166,11 +152,11 @@ public class detailLaundry extends javax.swing.JDialog {
         lblTotalBerat.setText(
                 totalBerat + " Kg");
 
-//Menampilkan total biji
+        //Menampilkan total biji
         lblTotalBiji.setText(
                 (int) totalBiji + " Biji");
 
-//Menampilkan total bayar
+        //Menampilkan total bayar
         lblBayar.setText(
                 FormatRupiah.format(
                         totalBayar));

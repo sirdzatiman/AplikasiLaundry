@@ -661,6 +661,7 @@ public class FrameLogin extends javax.swing.JFrame {
 
         tUserName.setBackground(new java.awt.Color(217, 217, 217));
         tUserName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
+        tUserName.addActionListener(this::tUserNameActionPerformed);
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/icon user (1).png"))); // NOI18N
 
@@ -806,6 +807,10 @@ public class FrameLogin extends javax.swing.JFrame {
             tPassword.setEchoChar('•');
         }
     }//GEN-LAST:event_btnMataActionPerformed
+
+    private void tUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tUserNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tUserNameActionPerformed
 
     /**
      * @param args the command line arguments
