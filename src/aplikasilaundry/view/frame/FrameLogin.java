@@ -795,6 +795,7 @@ public class FrameLogin extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
 
         controller.login();
+        
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnMataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMataActionPerformed
