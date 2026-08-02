@@ -228,10 +228,6 @@ private List<Layanan> daftarLayanan;
                 javax.swing.BorderFactory.createLineBorder(
                         new java.awt.Color(220, 223, 230), 1));
 
-        jPanelInformasiLaundry.setBorder(
-                javax.swing.BorderFactory.createLineBorder(
-                        new java.awt.Color(220, 223, 230), 1));
-
         jPanelPengaturanStruk.setBorder(
                 javax.swing.BorderFactory.createLineBorder(
                         new java.awt.Color(220, 223, 230), 1));
@@ -283,9 +279,6 @@ daftarLayanan =
         //Menampilkan nama bisnis
         tNamaBisnis.setText(pengaturan.getNamaBisnis());
 
-        //Menampilkan alamat
-        tAlamat.setText(pengaturan.getAlamat());
-
         //Menampilkan nomor HP
         tNoHp.setText(pengaturan.getNoHp());
 
@@ -300,12 +293,6 @@ daftarLayanan =
 
         //Menampilkan slogan pada preview struk
         lblKeterangan.setText(pengaturan.getKeterangan());
-
-        //Menampilkan jam operasional
-        tJamOperasional.setText(pengaturan.getJamOperasional());
-
-        //Menampilkan layanan
-        tLayanan.setText(pengaturan.getLayanan());
 
         //Menampilkan slogan laundry
         tKeterangan.setText(pengaturan.getKeterangan());
@@ -461,21 +448,6 @@ daftarLayanan =
         tblPengguna = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         btnTambahPengguna = new javax.swing.JButton();
-        jPanelInformasiLaundry = new javax.swing.JPanel();
-        jPanel47 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel50 = new javax.swing.JPanel();
-        jPanel51 = new javax.swing.JPanel();
-        btnSimpanInformasi = new javax.swing.JButton();
-        jPanel52 = new javax.swing.JPanel();
-        jPanel28 = new javax.swing.JPanel();
-        tJamOperasional = new javax.swing.JTextField();
-        tLayanan = new javax.swing.JTextField();
-        jLabel55 = new javax.swing.JLabel();
-        jLabel54 = new javax.swing.JLabel();
-        jPanel29 = new javax.swing.JPanel();
-        tAlamat = new javax.swing.JTextField();
-        jLabel57 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jPanelPengaturanStruk = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -584,8 +556,7 @@ daftarLayanan =
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 10));
         jPanel1.setMinimumSize(new java.awt.Dimension(1006, 273));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1006, 546));
-        jPanel1.setLayout(new java.awt.GridLayout(2, 1, 2, 20));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1006, 278));
 
         jPanelPengguna.setLayout(new java.awt.BorderLayout());
 
@@ -679,151 +650,16 @@ daftarLayanan =
 
         jPanelPengguna.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
-        jPanel1.add(jPanelPengguna);
-
-        jPanelInformasiLaundry.setLayout(new java.awt.BorderLayout());
-
-        jPanel47.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel47.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10));
-        jPanel47.setMinimumSize(new java.awt.Dimension(1006, 50));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("2. Informasi Laundry");
-
-        javax.swing.GroupLayout jPanel47Layout = new javax.swing.GroupLayout(jPanel47);
-        jPanel47.setLayout(jPanel47Layout);
-        jPanel47Layout.setHorizontalGroup(
-            jPanel47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel47Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(791, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelPengguna, javax.swing.GroupLayout.PREFERRED_SIZE, 946, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-        jPanel47Layout.setVerticalGroup(
-            jPanel47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel47Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel3)
-                .addContainerGap(14, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelPengguna, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-
-        jPanelInformasiLaundry.add(jPanel47, java.awt.BorderLayout.PAGE_START);
-
-        jPanel50.setLayout(new java.awt.BorderLayout());
-
-        jPanel51.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel51.setMinimumSize(new java.awt.Dimension(100, 50));
-        jPanel51.setPreferredSize(new java.awt.Dimension(1006, 50));
-
-        btnSimpanInformasi.setBackground(new java.awt.Color(0, 51, 204));
-        btnSimpanInformasi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnSimpanInformasi.setForeground(new java.awt.Color(255, 255, 255));
-        btnSimpanInformasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Frame (7).png"))); // NOI18N
-        btnSimpanInformasi.setText("Simpan Informasi");
-        btnSimpanInformasi.setIconTextGap(10);
-        btnSimpanInformasi.addActionListener(this::btnSimpanInformasiActionPerformed);
-
-        javax.swing.GroupLayout jPanel51Layout = new javax.swing.GroupLayout(jPanel51);
-        jPanel51.setLayout(jPanel51Layout);
-        jPanel51Layout.setHorizontalGroup(
-            jPanel51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel51Layout.createSequentialGroup()
-                .addContainerGap(756, Short.MAX_VALUE)
-                .addComponent(btnSimpanInformasi)
-                .addContainerGap())
-        );
-        jPanel51Layout.setVerticalGroup(
-            jPanel51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel51Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnSimpanInformasi, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
-        );
-
-        jPanel50.add(jPanel51, java.awt.BorderLayout.PAGE_END);
-
-        jPanel52.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel52.setLayout(new java.awt.GridLayout(1, 2, 10, 0));
-
-        jPanel28.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel28.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10));
-
-        jLabel55.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel55.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/PixelCalenderSolid.png"))); // NOI18N
-        jLabel55.setText("Layanan");
-        jLabel55.setIconTextGap(15);
-
-        jLabel54.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/GravityUiClock.png"))); // NOI18N
-        jLabel54.setText("Jam Operasional");
-        jLabel54.setIconTextGap(15);
-
-        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
-        jPanel28.setLayout(jPanel28Layout);
-        jPanel28Layout.setHorizontalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel28Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel28Layout.createSequentialGroup()
-                        .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tLayanan, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
-                    .addGroup(jPanel28Layout.createSequentialGroup()
-                        .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tJamOperasional))))
-        );
-        jPanel28Layout.setVerticalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel28Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tJamOperasional, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tLayanan, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel52.add(jPanel28);
-
-        jPanel29.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel29.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10));
-
-        jLabel57.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel57.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/PixelLocationPin.png"))); // NOI18N
-        jLabel57.setText("Alamat Laundry");
-        jLabel57.setIconTextGap(15);
-
-        javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
-        jPanel29.setLayout(jPanel29Layout);
-        jPanel29Layout.setHorizontalGroup(
-            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel29Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel57, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tAlamat, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
-        );
-        jPanel29Layout.setVerticalGroup(
-            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel29Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel57, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(95, Short.MAX_VALUE))
-        );
-
-        jPanel52.add(jPanel29);
-
-        jPanel50.add(jPanel52, java.awt.BorderLayout.CENTER);
-
-        jPanelInformasiLaundry.add(jPanel50, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(jPanelInformasiLaundry);
 
         jPanel40.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
@@ -1691,21 +1527,9 @@ tampilLayanan();
         pengaturan.setNamaBisnis(
                 tNamaBisnis.getText().trim());
 
-        //Mengambil alamat laundry dari form
-        pengaturan.setAlamat(
-                tAlamat.getText().trim());
-
         //Mengambil nomor HP laundry
         pengaturan.setNoHp(
                 tNoHp.getText().trim());
-
-        //Mengambil jam operasional
-        pengaturan.setJamOperasional(
-                tJamOperasional.getText().trim());
-
-        //Mengambil informasi layanan
-        pengaturan.setLayanan(
-                tLayanan.getText().trim());
 
         //Mengambil slogan laundry
         pengaturan.setKeterangan(
@@ -1872,47 +1696,6 @@ tampilLayanan();
         dialog.setVisible(true);
     }//GEN-LAST:event_btnTambahPenggunaActionPerformed
 
-    private void btnSimpanInformasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanInformasiActionPerformed
-        // TODO add your handling code here:
-        //Mengambil data dari form
-        pengaturan.setNamaBisnis(
-                tNamaBisnis.getText().trim());
-
-        pengaturan.setAlamat(
-                tAlamat.getText().trim());
-
-        pengaturan.setNoHp(
-                tNoHp.getText().trim());
-
-        pengaturan.setJamOperasional(
-                tJamOperasional.getText().trim());
-
-//Mengambil layanan laundry
-        pengaturan.setLayanan(
-                tLayanan.getText().trim());
-
-//Mengambil slogan laundry
-        pengaturan.setKeterangan(
-                tKeterangan.getText().trim());
-
-//Mengambil footer struk
-        pengaturan.setFooterStruk(
-                tFooter.getText().trim());
-
-//Menyimpan perubahan ke database
-        controller.updatePengaturan(
-                pengaturan);
-
-//Menampilkan pesan berhasil
-        JOptionPane.showMessageDialog(
-                this,
-                "Informasi laundry berhasil diperbarui.");
-
-//Menampilkan ulang data terbaru
-        tampilPengaturan();
-
-    }//GEN-LAST:event_btnSimpanInformasiActionPerformed
-
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
         //Menampilkan kembali data pengaturan dari database
@@ -1970,7 +1753,6 @@ tampilLayanan();
     private javax.swing.JButton btnHappusPengguna;
     private javax.swing.JButton btnHapusJenis;
     private javax.swing.JButton btnReset;
-    private javax.swing.JButton btnSimpanInformasi;
     private javax.swing.JToggleButton btnSimpanPengaturan;
     private javax.swing.JToggleButton btnTambahKonfigurasiLAyanan;
     private javax.swing.JButton btnTambahPengguna;
@@ -1985,7 +1767,6 @@ tampilLayanan();
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -1998,9 +1779,6 @@ tampilLayanan();
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -2021,8 +1799,6 @@ tampilLayanan();
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel28;
-    private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel31;
@@ -2042,19 +1818,14 @@ tampilLayanan();
     private javax.swing.JPanel jPanel44;
     private javax.swing.JPanel jPanel45;
     private javax.swing.JPanel jPanel46;
-    private javax.swing.JPanel jPanel47;
     private javax.swing.JPanel jPanel48;
     private javax.swing.JPanel jPanel49;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel50;
-    private javax.swing.JPanel jPanel51;
-    private javax.swing.JPanel jPanel52;
     private javax.swing.JPanel jPanel53;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JPanel jPanelInformasiLaundry;
     private javax.swing.JPanel jPanelPengaturanStruk;
     private javax.swing.JPanel jPanelPengguna;
     private javax.swing.JScrollPane jScrollPane1;
@@ -2076,12 +1847,9 @@ tampilLayanan();
     private javax.swing.JLabel lblTotalBerat;
     private javax.swing.JLabel lblTotalBiji;
     private javax.swing.JLabel lblTotalHarga;
-    private javax.swing.JTextField tAlamat;
     private javax.swing.JTextField tFooter;
     private javax.swing.JTextPane tFooter1;
-    private javax.swing.JTextField tJamOperasional;
     private javax.swing.JTextField tKeterangan;
-    private javax.swing.JTextField tLayanan;
     private javax.swing.JTextField tNamaBisnis;
     private javax.swing.JTextField tNoHp;
     private javax.swing.JTable tblDetailStruk;

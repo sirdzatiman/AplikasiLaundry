@@ -47,6 +47,9 @@
       <SubComponents>
         <Container class="javax.swing.JPanel" name="jPanel4">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f7" green="f3" red="f0" type="rgb"/>
+            </Property>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[1006, 50]"/>
             </Property>
@@ -60,13 +63,13 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblSelamatDatang" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSelamatDatang" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="850" max="32767" attributes="0"/>
+                      <EmptySpace pref="854" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -107,10 +110,8 @@
               <Color blue="f7" green="f3" red="f0" type="rgb"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder thickness="15">
-                  <Color PropertyName="color" blue="f7" green="f3" red="f0" type="rgb"/>
-                </LineBorder>
+              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                <EmptyBorder bottom="20" left="0" right="0" top="20"/>
               </Border>
             </Property>
           </Properties>
@@ -242,7 +243,7 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel3" alignment="1" pref="156" max="32767" attributes="0"/>
+                              <Component id="jLabel3" alignment="1" pref="163" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
@@ -268,7 +269,7 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[50, 45]"/>
+                          <Dimension value="[50, 30]"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -297,12 +298,16 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel4" alignment="1" pref="156" max="32767" attributes="0"/>
+                                  <Component id="jLabel4" alignment="1" pref="163" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel4" alignment="1" pref="23" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel4" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                             </DimensionLayout>
                           </Layout>
@@ -340,7 +345,7 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblMasuk" alignment="1" pref="156" max="32767" attributes="0"/>
+                              <Component id="lblMasuk" alignment="1" pref="163" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
@@ -485,7 +490,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel7" pref="150" max="32767" attributes="0"/>
+                                  <Component id="jLabel7" pref="157" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -512,7 +517,7 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[50, 45]"/>
+                          <Dimension value="[50, 30]"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -541,7 +546,7 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel8" alignment="1" pref="156" max="32767" attributes="0"/>
+                                  <Component id="jLabel8" alignment="1" pref="163" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
@@ -584,7 +589,7 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblDiproses" alignment="1" pref="156" max="32767" attributes="0"/>
+                              <Component id="lblDiproses" alignment="1" pref="163" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
@@ -729,7 +734,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel11" pref="150" max="32767" attributes="0"/>
+                                  <Component id="jLabel11" pref="157" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -756,7 +761,7 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[50, 45]"/>
+                          <Dimension value="[50, 30]"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -785,7 +790,7 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel12" alignment="1" pref="156" max="32767" attributes="0"/>
+                                  <Component id="jLabel12" alignment="1" pref="163" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
@@ -828,7 +833,7 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblSelesai" alignment="1" pref="156" max="32767" attributes="0"/>
+                              <Component id="lblSelesai" alignment="1" pref="163" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
@@ -966,7 +971,7 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel15" alignment="1" pref="156" max="32767" attributes="0"/>
+                              <Component id="jLabel15" alignment="1" pref="163" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
@@ -992,7 +997,7 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[50, 45]"/>
+                          <Dimension value="[50, 30]"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -1021,7 +1026,7 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel16" alignment="1" pref="156" max="32767" attributes="0"/>
+                                  <Component id="jLabel16" alignment="1" pref="163" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
@@ -1064,7 +1069,7 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblDiambil" alignment="1" pref="156" max="32767" attributes="0"/>
+                              <Component id="lblDiambil" alignment="1" pref="163" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">

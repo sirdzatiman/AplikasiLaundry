@@ -501,7 +501,7 @@ public class TransaksiDAO {
                     + "t.jam_masuk, "
                     + "t.total_harga, "
                     + "st.nama_status "
-                    + "ORDER BY t.id_transaksi DESC";
+                    + "ORDER BY t.id_transaksi DESC LIMIT 12";
 
             //Menyiapkan query
             PreparedStatement ps

@@ -230,6 +230,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(1006, 210));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
+        jPanel4.setBackground(new java.awt.Color(240, 243, 247));
         jPanel4.setPreferredSize(new java.awt.Dimension(1006, 50));
 
         lblSelamatDatang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -243,11 +244,11 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(lblSelamatDatang))
-                .addContainerGap(850, Short.MAX_VALUE))
+                    .addComponent(lblSelamatDatang)
+                    .addComponent(jLabel1))
+                .addContainerGap(854, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,7 +263,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel1.add(jPanel4, java.awt.BorderLayout.PAGE_START);
 
         jPanel3.setBackground(new java.awt.Color(240, 243, 247));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 15));
+        jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 0, 20, 0));
         jPanel3.setLayout(new java.awt.GridLayout(1, 4, 20, 0));
 
         pnlLaundryMasuk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
@@ -316,7 +317,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -326,7 +327,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel7.add(jPanel8, java.awt.BorderLayout.PAGE_START);
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel9.setPreferredSize(new java.awt.Dimension(50, 45));
+        jPanel9.setPreferredSize(new java.awt.Dimension(50, 30));
         jPanel9.setLayout(new java.awt.BorderLayout());
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
@@ -341,11 +342,14 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel9.add(jPanel10, java.awt.BorderLayout.PAGE_START);
@@ -363,7 +367,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblMasuk, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(lblMasuk, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,7 +432,7 @@ public class Dasboard extends javax.swing.JPanel {
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -438,7 +442,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel15.add(jPanel16, java.awt.BorderLayout.PAGE_START);
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel17.setPreferredSize(new java.awt.Dimension(50, 45));
+        jPanel17.setPreferredSize(new java.awt.Dimension(50, 30));
         jPanel17.setLayout(new java.awt.BorderLayout());
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
@@ -453,7 +457,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel18.setLayout(jPanel18Layout);
         jPanel18Layout.setHorizontalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -475,7 +479,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblDiproses, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(lblDiproses, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -540,7 +544,7 @@ public class Dasboard extends javax.swing.JPanel {
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
         );
         jPanel24Layout.setVerticalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -550,7 +554,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel23.add(jPanel24, java.awt.BorderLayout.PAGE_START);
 
         jPanel25.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel25.setPreferredSize(new java.awt.Dimension(50, 45));
+        jPanel25.setPreferredSize(new java.awt.Dimension(50, 30));
         jPanel25.setLayout(new java.awt.BorderLayout());
 
         jPanel26.setBackground(new java.awt.Color(255, 255, 255));
@@ -565,7 +569,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel26.setLayout(jPanel26Layout);
         jPanel26Layout.setHorizontalGroup(
             jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
         );
         jPanel26Layout.setVerticalGroup(
             jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -587,7 +591,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel27.setLayout(jPanel27Layout);
         jPanel27Layout.setHorizontalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblSelesai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(lblSelesai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
         );
         jPanel27Layout.setVerticalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -647,7 +651,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel32.setLayout(jPanel32Layout);
         jPanel32Layout.setHorizontalGroup(
             jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
         );
         jPanel32Layout.setVerticalGroup(
             jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -657,7 +661,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel31.add(jPanel32, java.awt.BorderLayout.PAGE_START);
 
         jPanel33.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel33.setPreferredSize(new java.awt.Dimension(50, 45));
+        jPanel33.setPreferredSize(new java.awt.Dimension(50, 30));
         jPanel33.setLayout(new java.awt.BorderLayout());
 
         jPanel34.setBackground(new java.awt.Color(255, 255, 255));
@@ -672,7 +676,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel34.setLayout(jPanel34Layout);
         jPanel34Layout.setHorizontalGroup(
             jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
         );
         jPanel34Layout.setVerticalGroup(
             jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -694,7 +698,7 @@ public class Dasboard extends javax.swing.JPanel {
         jPanel35.setLayout(jPanel35Layout);
         jPanel35Layout.setHorizontalGroup(
             jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblDiambil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(lblDiambil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
         );
         jPanel35Layout.setVerticalGroup(
             jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
