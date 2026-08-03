@@ -549,12 +549,12 @@ public RiwayatLaundry getRiwayatLaundry() {
     private void pnlLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLogoutMouseClicked
         // TODO add your handling code here:
         popUpLogout dialog = new popUpLogout(
-                (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
-                true
-        );
+            this,
+            true
+    );
 
-        dialog.setLocationRelativeTo(this); // tampil di tengah frame
-        dialog.setVisible(true);
+    dialog.setLocationRelativeTo(this);
+    dialog.setVisible(true);
     }//GEN-LAST:event_pnlLogoutMouseClicked
 
     /**

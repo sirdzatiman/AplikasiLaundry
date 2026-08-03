@@ -3,17 +3,18 @@ package aplikasilaundry.view.dialog;
 
 import aplikasilaundry.config.Session;
 import aplikasilaundry.view.frame.FrameLogin;
-
+import aplikasilaundry.view.frame.FrameDashboard;
 
 public class popUpLogout extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpLogout.class.getName());
-
+private FrameDashboard dashboard;
     /**
      * Creates new form popUpLogout
      */
     public popUpLogout(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.dashboard = dashboard;
         initComponents();
         // Supaya popup muncul di tengah-tengah aplikasi utama
         setLocationRelativeTo(parent);
@@ -145,24 +146,23 @@ public class popUpLogout extends javax.swing.JDialog {
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
        
-         //Menghapus session login
+    
+    // Menghapus session login
     Session.logout();
 
-    //Mengambil frame dashboard
-    java.awt.Window owner = getOwner();
-    
-    
-
-    //Menutup dashboard
-    if (owner != null) {
-        owner.dispose();
-    }
-
-    //Menutup popup
+    // Menutup popup
     dispose();
 
-    //Membuka kembali halaman login
-    new FrameLogin().setVisible(true);
+    // Menutup dashboard
+    if (getParent() instanceof FrameDashboard dashboard) {
+        dashboard.dispose();
+    }
+
+    // Membuka login
+    FrameLogin login = new FrameLogin();
+    login.setLocationRelativeTo(null);
+    login.setVisible(true);
+
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
