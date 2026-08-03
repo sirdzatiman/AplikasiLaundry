@@ -1,4 +1,7 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package aplikasilaundry.view.frame;
 
 import aplikasilaundry.config.Session;
@@ -39,10 +42,6 @@ public class FrameDashboard extends javax.swing.JFrame {
 private RiwayatLaundry riwayatLaundry;
     public FrameDashboard() {
         initComponents();
-        
-        JPanel overlay = new JPanel();
-overlay.setBackground(new Color(0, 0, 0, 120));
-setGlassPane(overlay);
         inisiasiPanel();
         resetMenu();
 
@@ -67,6 +66,7 @@ riwayatLaundry = new RiwayatLaundry();
 panelContent.add(riwayatLaundry, "riwayat");
         panelContent.add(new LaporanPemasukan(), "laporanPemasukan");
         panelContent.add(new Pengaturan(), "pengaturan");
+
         panelContent.revalidate();
         panelContent.repaint();
     }
@@ -547,21 +547,19 @@ public RiwayatLaundry getRiwayatLaundry() {
     }//GEN-LAST:event_pnlPengaturanMouseClicked
 
     private void pnlLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLogoutMouseClicked
-       //Menggelapkan background
-    getGlassPane().setVisible(true);
+        // TODO add your handling code here:
+        popUpLogout dialog = new popUpLogout(
+                (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
+                true
+        );
 
-    popUpLogout dialog = new popUpLogout(
-            this,
-            true
-    );
-
-    dialog.setLocationRelativeTo(this);
-    dialog.setVisible(true);
-
-    //Mengembalikan normal setelah popup ditutup
-    getGlassPane().setVisible(false);
+        dialog.setLocationRelativeTo(this); // tampil di tengah frame
+        dialog.setVisible(true);
     }//GEN-LAST:event_pnlLogoutMouseClicked
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

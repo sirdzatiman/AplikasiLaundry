@@ -3,21 +3,22 @@ package aplikasilaundry.view.dialog;
 
 import aplikasilaundry.config.Session;
 import aplikasilaundry.view.frame.FrameLogin;
-import aplikasilaundry.view.frame.FrameDashboard;
+
 
 public class popUpLogout extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpLogout.class.getName());
-private FrameDashboard dashboard;
+
     /**
      * Creates new form popUpLogout
      */
-    public popUpLogout(FrameDashboard dashboard, boolean modal) {
-    super(dashboard, modal);
-    this.dashboard = dashboard;
-    initComponents();
-    setLocationRelativeTo(dashboard);
-}
+    public popUpLogout(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        // Supaya popup muncul di tengah-tengah aplikasi utama
+        setLocationRelativeTo(parent);
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -142,12 +143,26 @@ private FrameDashboard dashboard;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:
+       
+         //Menghapus session login
     Session.logout();
 
-dashboard.dispose();
-dispose();
+    //Mengambil frame dashboard
+    java.awt.Window owner = getOwner();
+    
+    
 
-new FrameLogin().setVisible(true);
+    //Menutup dashboard
+    if (owner != null) {
+        owner.dispose();
+    }
+
+    //Menutup popup
+    dispose();
+
+    //Membuka kembali halaman login
+    new FrameLogin().setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
@@ -156,7 +171,39 @@ new FrameLogin().setVisible(true);
     }//GEN-LAST:event_btnBatalActionPerformed
 
    
-   
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                popUpLogout dialog = new popUpLogout(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
