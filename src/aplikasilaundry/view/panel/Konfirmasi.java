@@ -5,6 +5,8 @@ import aplikasilaundry.model.Pelanggan;
 import aplikasilaundry.model.ItemLaundry;
 import aplikasilaundry.util.TableStyle;
 import aplikasilaundry.view.dialog.popUpCetakStruk;
+import aplikasilaundry.view.frame.FrameDashboard;
+import javax.swing.SwingUtilities;
 
 public class Konfirmasi extends javax.swing.JPanel {
 
@@ -892,6 +894,12 @@ public void tampilDataPelanggan(Pelanggan pelanggan) {
 
     private void btnCetakStrukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakStrukActionPerformed
         // TODO add your handling code here:
+         // Mengambil FrameDashboard sebagai parent popup
+    FrameDashboard frame =
+            (FrameDashboard) SwingUtilities.getWindowAncestor(this);
+
+    // Menampilkan overlay sebelum popup dibuka
+    frame.getOverlay().tampilkan();
         popUpCetakStruk dialog
                 = new popUpCetakStruk(
                         (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this),
@@ -909,6 +917,8 @@ public void tampilDataPelanggan(Pelanggan pelanggan) {
         dialog.setLocationRelativeTo(this);
 
         dialog.setVisible(true);
+         // Menyembunyikan overlay setelah popup ditutup
+    frame.getOverlay().sembunyikan();
     }//GEN-LAST:event_btnCetakStrukActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed

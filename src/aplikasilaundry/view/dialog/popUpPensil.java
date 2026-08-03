@@ -8,70 +8,72 @@ import aplikasilaundry.model.Pengguna;
 import javax.swing.JOptionPane;
 //Mengimpor panel pengaturan
 import aplikasilaundry.view.panel.Pengaturan;
+
 public class popUpPensil extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpPensil.class.getName());
-//Controller pengguna
-private PenggunaController controller;
+    //Controller pengguna
+    private PenggunaController controller;
 
-//Panel pengaturan
-private Pengaturan pengaturan;
+    //Panel pengaturan
+    private Pengaturan pengaturan;
 
-//Data pengguna yang sedang diedit
-private Pengguna pengguna;
-    
+    //Data pengguna yang sedang diedit
+    private Pengguna pengguna;
+
     public popUpPensil(java.awt.Frame parent, boolean modal) {
-    super(parent, modal);
-    initComponents();
+        super(parent, modal);
+        initComponents();
 
-    //Membuat controller
-    controller = new PenggunaController();
+        //Membuat controller
+        controller = new PenggunaController();
 
-    //Posisi popup di tengah
-    setLocationRelativeTo(parent);
-}
+        //Posisi popup di tengah
+        setLocationRelativeTo(parent);
+    }
     //Method menerima panel Pengaturan
-public void setPengaturan(
-        Pengaturan pengaturan){
 
-    //Menyimpan panel Pengaturan
-    this.pengaturan = pengaturan;
+    public void setPengaturan(
+            Pengaturan pengaturan) {
 
-}
+        //Menyimpan panel Pengaturan
+        this.pengaturan = pengaturan;
+
+    }
     //Method menerima data pengguna yang akan diedit
-public void setPengguna(Pengguna pengguna){
 
-    //Menyimpan objek pengguna
-    this.pengguna = pengguna;
+    public void setPengguna(Pengguna pengguna) {
 
-    //Menampilkan nama pengguna
-    tNamaPengguna.setText(
-            pengguna.getNamaPengguna());
+        //Menyimpan objek pengguna
+        this.pengguna = pengguna;
 
-    //Menampilkan username
-    tUsername.setText(
-            pengguna.getUsername());
+        //Menampilkan nama pengguna
+        tNamaPengguna.setText(
+                pengguna.getNamaPengguna());
 
-    //Password dikosongkan
-    tPassword.setText("");
+        //Menampilkan username
+        tUsername.setText(
+                pengguna.getUsername());
 
-    //Menampilkan role
-    cPeran.setSelectedItem(
-            pengguna.getRole());
+        //Password dikosongkan
+        tPassword.setText("");
 
-}
+        //Menampilkan role
+        cPeran.setSelectedItem(
+                pengguna.getRole());
+
+    }
     //Constructor untuk edit pengguna
-public popUpPensil(java.awt.Frame parent,
-                   boolean modal,
-                   aplikasilaundry.model.Pengguna pengguna) {
 
-    //Memanggil constructor utama
-    this(parent, modal);
+    public popUpPensil(java.awt.Frame parent,
+            boolean modal,
+            aplikasilaundry.model.Pengguna pengguna) {
 
-    //Sementara belum ada isi
-}
-    
-    
+        //Memanggil constructor utama
+        this(parent, modal);
+
+        //Sementara belum ada isi
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -430,73 +432,73 @@ public popUpPensil(java.awt.Frame parent,
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
         //Mengambil data dari form
-String nama =
-        tNamaPengguna.getText().trim();
+        String nama
+                = tNamaPengguna.getText().trim();
 
-String username =
-        tUsername.getText().trim();
+        String username
+                = tUsername.getText().trim();
 
-String password =
-        new String(
-                tPassword.getPassword()).trim();
+        String password
+                = new String(
+                        tPassword.getPassword()).trim();
 
-String role =
-        cPeran.getSelectedItem().toString();
+        String role
+                = cPeran.getSelectedItem().toString();
 
 //Validasi
-if(nama.isEmpty()
-        || username.isEmpty()){
+        if (nama.isEmpty()
+                || username.isEmpty()) {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Nama dan Username tidak boleh kosong.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Nama dan Username tidak boleh kosong.");
 
-    return;
+            return;
 
-}
+        }
 
 //Mengubah data pengguna
-pengguna.setNamaPengguna(
-        nama);
+        pengguna.setNamaPengguna(
+                nama);
 
-pengguna.setUsername(
-        username);
+        pengguna.setUsername(
+                username);
 
 //Password hanya diubah jika diisi
-pengguna.setPassword(
-        password);
+        pengguna.setPassword(
+                password);
 
-pengguna.setRole(
-        role);
+        pengguna.setRole(
+                role);
 
 //Menyimpan perubahan
-boolean berhasil =
-        controller.update(
-                pengguna);
+        boolean berhasil
+                = controller.update(
+                        pengguna);
 
-if(berhasil){
+        if (berhasil) {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Data pengguna berhasil diperbarui.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Data pengguna berhasil diperbarui.");
 
-    //Refresh tabel pengguna
-    if(pengaturan != null){
+            //Refresh tabel pengguna
+            if (pengaturan != null) {
 
-        pengaturan.tampilPengguna();
+                pengaturan.tampilPengguna();
 
-    }
+            }
 
-    //Menutup popup
-    dispose();
+            //Menutup popup
+            dispose();
 
-}else{
+        } else {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Data pengguna gagal diperbarui.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Data pengguna gagal diperbarui.");
 
-}
+        }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     /**

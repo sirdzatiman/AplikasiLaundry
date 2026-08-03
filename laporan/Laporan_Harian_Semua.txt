@@ -13,17 +13,18 @@ Jenis Item         Proses Layanan           Jumlah        Subtotal
 Baju/DLL           Cuci Kering                  43       172000.00
 Baju/DLL           Cuci Kering Setrika           8        48000.00
 Boneka/Tas         null                          3        30000.00
+Selimut/DLL        Cuci Kering                   4        24000.00
 Selimut/DLL        Cuci Kering Setrika           1         8000.00
 ====================================================================
 
-Total Transaksi : 10
-Total Item      : 55
-Total Pendapatan: Rp  258.000
-Rata-rata       : Rp  25.800
+Total Transaksi : 11
+Total Item      : 59
+Total Pendapatan: Rp  282.000
+Rata-rata       : Rp  25.636
 
 ==============================================================
 
-Dicetak pada : 16-07-2026 13:31:34
+Dicetak pada : 04-08-2026 00:50:58
 
 ==============================================================
            Terima Kasih Telah Menggunakan

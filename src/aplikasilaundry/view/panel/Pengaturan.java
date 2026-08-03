@@ -44,6 +44,8 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+import aplikasilaundry.view.frame.FrameDashboard;
+
 public class Pengaturan extends javax.swing.JPanel {
 //Controller pengaturan
 
@@ -557,6 +559,7 @@ daftarLayanan =
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 10));
         jPanel1.setMinimumSize(new java.awt.Dimension(1006, 273));
         jPanel1.setPreferredSize(new java.awt.Dimension(1006, 278));
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
         jPanelPengguna.setLayout(new java.awt.BorderLayout());
 
@@ -650,16 +653,7 @@ daftarLayanan =
 
         jPanelPengguna.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPengguna, javax.swing.GroupLayout.PREFERRED_SIZE, 946, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPengguna, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        jPanel1.add(jPanelPengguna, java.awt.BorderLayout.CENTER);
 
         jPanel40.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
@@ -1443,6 +1437,14 @@ if(baris == -1){
 Layanan layanan =
         daftarLayanan.get(baris);
 
+
+    // Mengambil FrameDashboard sebagai parent popup
+    FrameDashboard frame =
+            (FrameDashboard) SwingUtilities.getWindowAncestor(this);
+
+    // Menampilkan overlay sebelum popup dibuka
+    frame.getOverlay().tampilkan();
+    
 //Membuka popup edit
 popUpEditKonfigurasiLayanan dialog =
         new popUpEditKonfigurasiLayanan(
@@ -1457,6 +1459,10 @@ dialog.setLocationRelativeTo(this);
 
 //Menampilkan popup
 dialog.setVisible(true);
+
+// Menyembunyikan overlay setelah popup ditutup
+    frame.getOverlay().sembunyikan();
+
 
 //Memperbarui tabel layanan
 tampilLayanan();
@@ -1502,7 +1508,12 @@ if(baris == -1){
 Layanan layanan =
         daftarLayanan.get(baris);
 
-//Membuka popup hapus
+ // Mengambil FrameDashboard sebagai parent popup
+    FrameDashboard frame =
+            (FrameDashboard) SwingUtilities.getWindowAncestor(this);
+
+    // Menampilkan overlay sebelum popup dibuka
+    frame.getOverlay().tampilkan();
 //Membuka popup hapus
 popUpKonfirmasiHapus dialog =
         new popUpKonfirmasiHapus(
@@ -1516,6 +1527,9 @@ popUpKonfirmasiHapus dialog =
 dialog.setLocationRelativeTo(this);
 dialog.setVisible(true);
 
+ // Menyembunyikan overlay setelah popup ditutup
+    frame.getOverlay().sembunyikan();
+    
 //Refresh tabel
 tampilLayanan();
     }//GEN-LAST:event_btnHapusJenisActionPerformed
@@ -1554,6 +1568,34 @@ tampilLayanan();
 
     }//GEN-LAST:event_btnSimpanPengaturanActionPerformed
 
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        //Menampilkan kembali data pengaturan dari database
+        tampilPengaturan();
+
+        //Memberikan informasi kepada pengguna
+        JOptionPane.showMessageDialog(this, "Data berhasil dikembalikan ke pengaturan terakhir.");
+
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnTambahPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPenggunaActionPerformed
+        // TODO add your handling code here:
+        FrameDashboard frame =
+        (FrameDashboard) SwingUtilities.getWindowAncestor(this);
+
+        frame.getOverlay().tampilkan();
+
+        popUpTambahpengguna dialog =
+        new popUpTambahpengguna(
+            (java.awt.Frame) frame,
+            true,
+            this);
+
+        dialog.setVisible(true);
+
+        frame.getOverlay().sembunyikan();
+    }//GEN-LAST:event_btnTambahPenggunaActionPerformed
+
     private void btnHappusPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHappusPenggunaActionPerformed
 
         //Mengambil baris yang dipilih
@@ -1563,8 +1605,8 @@ tampilLayanan();
         if (baris == -1) {
 
             JOptionPane.showMessageDialog(
-                    this,
-                    "Pilih pengguna yang akan dihapus.");
+                this,
+                "Pilih pengguna yang akan dihapus.");
 
             return;
 
@@ -1572,9 +1614,9 @@ tampilLayanan();
 
         //Mengambil username dari tabel
         String username
-                = tblPengguna.getValueAt(
-                        baris,
-                        1).toString();
+        = tblPengguna.getValueAt(
+            baris,
+            1).toString();
 
         //Mencari objek pengguna berdasarkan username
         Pengguna data = null;
@@ -1584,7 +1626,7 @@ tampilLayanan();
             if (p.getUsername().equals(username)) {
 
                 data = controllerPengguna.getById(
-                        p.getIdPengguna());
+                    p.getIdPengguna());
 
                 break;
 
@@ -1596,27 +1638,30 @@ tampilLayanan();
         if (data == null) {
 
             JOptionPane.showMessageDialog(
-                    this,
-                    "Data pengguna tidak ditemukan.");
+                this,
+                "Data pengguna tidak ditemukan.");
 
             return;
 
         }
+        FrameDashboard frame =
+        (FrameDashboard) SwingUtilities.getWindowAncestor(this);
 
+        frame.getOverlay().tampilkan();
         //Membuka popup konfirmasi
         popUpKonfirmasiHapus dialog
-                = new popUpKonfirmasiHapus(
-                        (java.awt.Frame) javax.swing.SwingUtilities
-                                .getWindowAncestor(this),
-                        true,
-                        data.getIdPengguna(),
-                        this);
+        = new popUpKonfirmasiHapus(
+            (java.awt.Frame) javax.swing.SwingUtilities
+            .getWindowAncestor(this),
+            true,
+            data.getIdPengguna(),
+            this);
 
         //Menampilkan popup
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
-
-
+        // Menyembunyikan overlay setelah popup ditutup
+        frame.getOverlay().sembunyikan();
     }//GEN-LAST:event_btnHappusPenggunaActionPerformed
 
     private void btnEditPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditPenggunaActionPerformed
@@ -1624,24 +1669,24 @@ tampilLayanan();
         //Mengambil baris yang dipilih
         int baris = tblPengguna.getSelectedRow();
 
-//Jika belum memilih data
+        //Jika belum memilih data
         if (baris == -1) {
 
             JOptionPane.showMessageDialog(
-                    this,
-                    "Pilih pengguna yang akan diedit.");
+                this,
+                "Pilih pengguna yang akan diedit.");
 
             return;
 
         }
 
-//Mengambil username dari tabel
+        //Mengambil username dari tabel
         String username
-                = tblPengguna.getValueAt(
-                        baris,
-                        1).toString();
+        = tblPengguna.getValueAt(
+            baris,
+            1).toString();
 
-//Mencari objek pengguna berdasarkan username
+        //Mencari objek pengguna berdasarkan username
         Pengguna data = null;
 
         for (Pengguna p : controllerPengguna.getAll()) {
@@ -1649,7 +1694,7 @@ tampilLayanan();
             if (p.getUsername().equals(username)) {
 
                 data = controllerPengguna.getById(
-                        p.getIdPengguna());
+                    p.getIdPengguna());
 
                 break;
 
@@ -1657,54 +1702,51 @@ tampilLayanan();
 
         }
 
-//Jika data tidak ditemukan
+        //Jika data tidak ditemukan
         if (data == null) {
 
             JOptionPane.showMessageDialog(
-                    this,
-                    "Data pengguna tidak ditemukan.");
+                this,
+                "Data pengguna tidak ditemukan.");
 
             return;
 
         }
+        // Mengambil FrameDashboard sebagai parent popup
+        FrameDashboard frame =
+        (FrameDashboard) SwingUtilities.getWindowAncestor(this);
 
-//Membuka popup edit
-        popUpPensil dialog
-                = new popUpPensil(
-                        (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this),
-                        true);
+        // Menampilkan background gelap (overlay)
 
-//Mengirim data ke popup
+        frame.getOverlay().tampilkan();
+
+        // Membuka popup Edit Pengguna
+        popUpPensil dialog =
+        new popUpPensil(
+            (java.awt.Frame) frame,
+            true);
+
+        //=====================================================
+        // Mengirim data ke popup
+        //=====================================================
         dialog.setPengguna(data);
 
-//Menampilkan popup
+        //=====================================================
+        // Menampilkan popup
+        //=====================================================
+        dialog.setLocationRelativeTo(frame);
         dialog.setVisible(true);
-//Menampilkan kembali data pengguna
+
+        //=====================================================
+        // Menghilangkan background gelap
+        //=====================================================
+        frame.getOverlay().sembunyikan();
+
+        //=====================================================
+        // Menampilkan kembali data pengguna
+        //=====================================================
         tampilPengguna();
     }//GEN-LAST:event_btnEditPenggunaActionPerformed
-
-    private void btnTambahPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPenggunaActionPerformed
-        // TODO add your handling code here:
-        //Membuka popup tambah pengguna
-        popUpTambahpengguna dialog
-                = new popUpTambahpengguna(
-                        (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this),
-                        true,
-                        this);
-
-        //Menampilkan popup
-        dialog.setVisible(true);
-    }//GEN-LAST:event_btnTambahPenggunaActionPerformed
-
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
-        //Menampilkan kembali data pengaturan dari database
-        tampilPengaturan();
-
-        //Memberikan informasi kepada pengguna
-        JOptionPane.showMessageDialog(this, "Data berhasil dikembalikan ke pengaturan terakhir.");
-
-    }//GEN-LAST:event_btnResetActionPerformed
 
 //Method menampilkan seluruh data pengguna
     public void tampilPengguna() {

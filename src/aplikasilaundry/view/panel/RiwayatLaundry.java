@@ -21,6 +21,10 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import aplikasilaundry.view.frame.FrameDashboard;
+import javax.swing.SwingUtilities;
+
+
 public class RiwayatLaundry extends javax.swing.JPanel {
 
     //Menyimpan controller transaksi
@@ -418,6 +422,12 @@ public class RiwayatLaundry extends javax.swing.JPanel {
         //Ambil nomor nota
         String noNota = tblRiwayat.getValueAt(baris, 0).toString();
 
+        // Mengambil FrameDashboard sebagai parent popup
+    FrameDashboard frame =
+            (FrameDashboard) SwingUtilities.getWindowAncestor(this);
+
+    // Menampilkan overlay sebelum popup dibuka
+    frame.getOverlay().tampilkan();
         //Buka popup detail
         detailLaundry dialog
                 = new detailLaundry(
@@ -427,6 +437,9 @@ public class RiwayatLaundry extends javax.swing.JPanel {
 
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
+        
+        // Menyembunyikan overlay setelah popup ditutup
+    frame.getOverlay().sembunyikan();
     }//GEN-LAST:event_jButton5ActionPerformed
 
 

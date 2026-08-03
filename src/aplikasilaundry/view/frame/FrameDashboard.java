@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package aplikasilaundry.view.frame;
 
 import aplikasilaundry.config.Session;
@@ -25,23 +21,23 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import aplikasilaundry.util.GlassPaneOverlay;
 
-/**
- *
- * @author Sirdzat
- */
 public class FrameDashboard extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrameDashboard.class.getName());
     private CardLayout cardLayout;
+    private GlassPaneOverlay overlay;
 
-    /**
-     * Creates new form mainFrame
-     */
-   private DataLaundry dataLaundry;
-private RiwayatLaundry riwayatLaundry;
+    private DataLaundry dataLaundry;
+    private RiwayatLaundry riwayatLaundry;
     public FrameDashboard() {
         initComponents();
+        
+        overlay = new GlassPaneOverlay();
+        setGlassPane(overlay);
+        overlay.setVisible(false);
+
         inisiasiPanel();
         resetMenu();
 
@@ -59,7 +55,7 @@ private RiwayatLaundry riwayatLaundry;
         dataLaundry = new DataLaundry();
         panelContent.add(dataLaundry, "semua");
 
-       //Membuat objek panel Riwayat Laundry
+//Membuat objek panel Riwayat Laundry
 riwayatLaundry = new RiwayatLaundry();
 
 //Menambahkan panel Riwayat Laundry
@@ -70,6 +66,9 @@ panelContent.add(riwayatLaundry, "riwayat");
         panelContent.revalidate();
         panelContent.repaint();
     }
+    public GlassPaneOverlay getOverlay() {
+    return overlay;
+}
 
     public DataLaundry getDataLaundry() {
     return dataLaundry;
@@ -547,14 +546,19 @@ public RiwayatLaundry getRiwayatLaundry() {
     }//GEN-LAST:event_pnlPengaturanMouseClicked
 
     private void pnlLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLogoutMouseClicked
-        // TODO add your handling code here:
-        popUpLogout dialog = new popUpLogout(
+       // tampilkan overlay
+    overlay.tampilkan();
+
+    popUpLogout dialog = new popUpLogout(
             this,
             true
     );
 
     dialog.setLocationRelativeTo(this);
     dialog.setVisible(true);
+
+    // sembunyikan overlay
+    overlay.sembunyikan();
     }//GEN-LAST:event_pnlLogoutMouseClicked
 
     /**

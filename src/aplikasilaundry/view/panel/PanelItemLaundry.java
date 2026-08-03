@@ -1,7 +1,6 @@
 package aplikasilaundry.view.panel;
 
-//Mengimpor Frame
-import java.awt.Frame;
+
 
 //Mengimpor SwingUtilities
 import javax.swing.SwingUtilities;
@@ -11,7 +10,7 @@ import aplikasilaundry.view.dialog.popUpTambahItemLaundry;
 //Mengimpor model item laundry
 import aplikasilaundry.model.ItemLaundry;
 
-import aplikasilaundry.view.panel.TambahLaundry;
+
 //Mengimpor controller transaksi
 import aplikasilaundry.controller.TransaksiController;
 
@@ -21,6 +20,10 @@ import aplikasilaundry.util.FormatRupiah;
 import aplikasilaundry.util.TableStyle;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+
+import aplikasilaundry.view.frame.FrameDashboard;
+
+
 
 public class PanelItemLaundry extends javax.swing.JPanel {
 
@@ -461,9 +464,13 @@ public class PanelItemLaundry extends javax.swing.JPanel {
     private void pnlTambahItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTambahItemMouseClicked
         // TODO add your handling code here:
 
-        //Mengambil frame utama yang sedang aktif
-        Frame frame = (Frame) SwingUtilities.getWindowAncestor(this);
+       
+         // Mengambil FrameDashboard sebagai parent popup
+    FrameDashboard frame =
+            (FrameDashboard) SwingUtilities.getWindowAncestor(this);
 
+    // Menampilkan overlay sebelum popup dibuka
+    frame.getOverlay().tampilkan();
         //Membuat popup tambah item laundry
         popUpTambahItemLaundry dialog
                 = new popUpTambahItemLaundry(frame, true, PanelItemLaundry.this);
@@ -473,6 +480,10 @@ public class PanelItemLaundry extends javax.swing.JPanel {
 
         //Menampilkan popup
         dialog.setVisible(true);
+        
+        // Menyembunyikan overlay setelah popup ditutup
+    frame.getOverlay().sembunyikan();
+
 
 
     }//GEN-LAST:event_pnlTambahItemMouseClicked

@@ -1,15 +1,17 @@
 package aplikasilaundry.view.panel;
 
-import aplikasilaundry.view.dialog.popUpPensilEdit;
+
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Container;
+
 import javax.swing.JToggleButton;
 import javax.swing.SwingUtilities;
 import aplikasilaundry.view.dialog.detailLaundry;
 import javax.swing.JTable;
 import javax.swing.JOptionPane;
 import aplikasilaundry.view.dialog.popUpPensilEdit;
+
+import aplikasilaundry.view.frame.FrameDashboard;
 
 public class DataLaundry extends javax.swing.JPanel {
 //Menyimpan panel Semua
@@ -441,6 +443,13 @@ public class DataLaundry extends javax.swing.JPanel {
                 = tabel.getValueAt(
                         tabel.getSelectedRow(),
                         0).toString();
+        
+        // Mengambil FrameDashboard sebagai parent popup
+    FrameDashboard frame =
+            (FrameDashboard) SwingUtilities.getWindowAncestor(this);
+
+    // Menampilkan overlay sebelum popup dibuka
+    frame.getOverlay().tampilkan();
 
 //Membuka popup Edit Laundry
         popUpPensilEdit dialog
@@ -451,6 +460,9 @@ public class DataLaundry extends javax.swing.JPanel {
 
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
+        
+        // Menyembunyikan overlay setelah popup ditutup
+    frame.getOverlay().sembunyikan();
 //Memperbarui seluruh panel Data Laundry
         refreshSemuaPanel();
     }//GEN-LAST:event_btnPensilActionPerformed
@@ -525,6 +537,12 @@ public class DataLaundry extends javax.swing.JPanel {
                         tabel.getSelectedRow(),
                         0).toString();
 
+         // Mengambil FrameDashboard sebagai parent popup
+    FrameDashboard frame =
+            (FrameDashboard) SwingUtilities.getWindowAncestor(this);
+
+    // Menampilkan overlay sebelum popup dibuka
+    frame.getOverlay().tampilkan();
 //Membuka dialog Detail Laundry
         detailLaundry dialog
                 = new detailLaundry(
@@ -534,6 +552,9 @@ public class DataLaundry extends javax.swing.JPanel {
 
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
+        
+        // Menyembunyikan overlay setelah popup ditutup
+    frame.getOverlay().sembunyikan();
     }//GEN-LAST:event_btnLihatActionPerformed
 
     private void tPencarianKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tPencarianKeyReleased
