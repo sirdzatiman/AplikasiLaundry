@@ -172,7 +172,6 @@ public void tampilDataPelanggan(Pelanggan pelanggan) {
         jPanel15 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         btnCetakStruk = new javax.swing.JButton();
-        btnSimpan = new javax.swing.JButton();
         jPanel24 = new javax.swing.JPanel();
         btnKembali = new javax.swing.JButton();
         jPanel16 = new javax.swing.JPanel();
@@ -247,43 +246,29 @@ public void tampilDataPelanggan(Pelanggan pelanggan) {
         jPanel12.setBackground(new java.awt.Color(240, 243, 247));
         jPanel12.setMinimumSize(new java.awt.Dimension(437, 78));
 
-        btnCetakStruk.setBackground(new java.awt.Color(234, 179, 8));
+        btnCetakStruk.setBackground(new java.awt.Color(15, 82, 195));
+        btnCetakStruk.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCetakStruk.setForeground(new java.awt.Color(255, 255, 255));
         btnCetakStruk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Vector.png"))); // NOI18N
-        btnCetakStruk.setText("Cetak Struk");
+        btnCetakStruk.setText("Simpan & Cetak / Struk");
         btnCetakStruk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCetakStruk.addActionListener(this::btnCetakStrukActionPerformed);
-
-        btnSimpan.setBackground(new java.awt.Color(15, 82, 195));
-        btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
-        btnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Frame (7).png"))); // NOI18N
-        btnSimpan.setText("Simpan Transaksi");
-        btnSimpan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSimpan.addActionListener(this::btnSimpanActionPerformed);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 437, Short.MAX_VALUE)
-            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel12Layout.createSequentialGroup()
-                    .addGap(30, 30, 30)
-                    .addComponent(btnCetakStruk, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(30, 30, 30)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(169, Short.MAX_VALUE)
+                .addComponent(btnCetakStruk, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
-            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel12Layout.createSequentialGroup()
-                    .addGap(17, 17, 17)
-                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnCetakStruk, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(18, Short.MAX_VALUE)))
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(btnCetakStruk, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jPanel15.add(jPanel12, java.awt.BorderLayout.LINE_END);
@@ -900,10 +885,12 @@ public void tampilDataPelanggan(Pelanggan pelanggan) {
 
     // Menampilkan overlay sebelum popup dibuka
     frame.getOverlay().tampilkan();
-        popUpCetakStruk dialog
-                = new popUpCetakStruk(
-                        (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this),
-                        true);
+       popUpCetakStruk dialog =
+        new popUpCetakStruk(
+                frame,
+                true,
+                this,
+                controller);
 
         dialog.setPreviewData(
                 lblNama.getText(),
@@ -920,34 +907,6 @@ public void tampilDataPelanggan(Pelanggan pelanggan) {
          // Menyembunyikan overlay setelah popup ditutup
     frame.getOverlay().sembunyikan();
     }//GEN-LAST:event_btnCetakStrukActionPerformed
-
-    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
-        // TODO add your handling code here:
-        //Menyimpan transaksi ke database
-        controller.simpanTransaksi();
-        //Mengosongkan transaksi sementara
-        controller.resetTransaksi();
-        //Menampilkan pesan berhasil
-        javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "Transaksi berhasil disimpan.");
-
-        //Mengambil FrameDashboard yang sedang aktif
-        aplikasilaundry.view.frame.FrameDashboard frame
-                = (aplikasilaundry.view.frame.FrameDashboard) javax.swing.SwingUtilities.getWindowAncestor(this);
-
-        //Memperbarui seluruh panel Data Laundry
-        frame.getDataLaundry().refreshSemuaPanel();
-        //Mereset seluruh form Tambah Laundry
-        induk.resetForm();
-
-        //Berpindah ke halaman Data Laundry
-        frame.panggilHalaman("semua");
-
-        //Menampilkan tab Laundry Masuk
-        frame.getDataLaundry().tampilLaundryMasuk();
-
-    }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
         // TODO add your handling code here:
@@ -992,10 +951,13 @@ public void tampilDataPelanggan(Pelanggan pelanggan) {
         model.setRowCount(0);
 
     }
+    //Mengembalikan panel TambahLaundry
+public TambahLaundry getInduk() {
+    return induk;
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCetakStruk;
     private javax.swing.JButton btnKembali;
-    private javax.swing.JButton btnSimpan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

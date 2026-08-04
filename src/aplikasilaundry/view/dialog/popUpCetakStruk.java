@@ -20,6 +20,10 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+import aplikasilaundry.view.frame.FrameDashboard;
+import aplikasilaundry.view.panel.Konfirmasi;
+import aplikasilaundry.controller.TransaksiController;
+
 public class popUpCetakStruk extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpCetakStruk.class.getName());
@@ -31,17 +35,31 @@ public class popUpCetakStruk extends javax.swing.JDialog {
     private PengaturanStruk pengaturan;
 //Model tabel detail struk
     private DefaultTableModel model;
+//Menyimpan FrameDashboard
+private FrameDashboard dashboard;
 
+//Menyimpan panel konfirmasi
+private Konfirmasi konfirmasi;
+
+//Menyimpan controller transaksi
+private TransaksiController controller;
     /**
      * Creates new form popUpCetakStruk
      */
     //Constructor popup cetak struk
-    public popUpCetakStruk(java.awt.Frame parent,
-            boolean modal) {
+    public popUpCetakStruk(
+        FrameDashboard dashboard,
+        boolean modal,
+        Konfirmasi konfirmasi,
+        TransaksiController controller) {
 
-        super(parent, modal);
+    super(dashboard, modal);
 
-        initComponents();
+    this.dashboard = dashboard;
+    this.konfirmasi = konfirmasi;
+    this.controller = controller;
+
+    initComponents();
 
         tblDetailStruk.setSize(printStruk.getPreferredSize());
         //Membuat renderer rata tengah
@@ -91,6 +109,7 @@ public class popUpCetakStruk extends javax.swing.JDialog {
     public void setKeterangan(String keterangan) {
         this.keterangan = keterangan;
     }
+    
     //Method menampilkan informasi pengaturan struk
 
     private void tampilPengaturan() {
@@ -235,6 +254,7 @@ public class popUpCetakStruk extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         btnCetak = new javax.swing.JButton();
         btnTutup = new javax.swing.JButton();
+        btnSimpan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -643,35 +663,47 @@ public class popUpCetakStruk extends javax.swing.JDialog {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnCetak.setBackground(new java.awt.Color(37, 99, 235));
+        btnCetak.setBackground(new java.awt.Color(234, 179, 8));
         btnCetak.setForeground(new java.awt.Color(255, 255, 255));
         btnCetak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Container (2).png"))); // NOI18N
         btnCetak.setText("Cetak");
         btnCetak.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCetak.addActionListener(this::btnCetakActionPerformed);
 
-        btnTutup.setText("Tutup");
+        btnTutup.setBackground(new java.awt.Color(251, 44, 54));
+        btnTutup.setForeground(new java.awt.Color(255, 255, 255));
+        btnTutup.setText("close");
         btnTutup.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTutup.addActionListener(this::btnTutupActionPerformed);
+
+        btnSimpan.setBackground(new java.awt.Color(15, 82, 195));
+        btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
+        btnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Frame (7).png"))); // NOI18N
+        btnSimpan.setText("Simpan");
+        btnSimpan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSimpan.addActionListener(this::btnSimpanActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnTutup, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                .addComponent(btnCetak, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(btnTutup, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCetak, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSimpan)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(8, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCetak, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTutup, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTutup, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -758,15 +790,36 @@ public class popUpCetakStruk extends javax.swing.JDialog {
             }, format);
 
             // Menampilkan dialog pemilihan printer
-            if (job.printDialog()) {
+           if (job.printDialog()) {
 
-                // Mulai proses mencetak
-                job.print();
+    // Mulai proses mencetak
+    job.print();
 
-                // Menutup form setelah selesai mencetak
-                dispose();
+    // Menyimpan transaksi
+    controller.simpanTransaksi();
 
-            }
+    // Mengosongkan transaksi sementara
+    controller.resetTransaksi();
+
+    // Memperbarui Data Laundry
+    dashboard.getDataLaundry().refreshSemuaPanel();
+
+    // Mereset form konfirmasi
+    konfirmasi.resetForm();
+
+    // Mereset seluruh form Tambah Laundry
+    konfirmasi.getInduk().resetForm();
+
+    // Berpindah ke Data Laundry
+    dashboard.panggilHalaman("semua");
+
+    // Menampilkan tab Laundry Masuk
+    dashboard.getDataLaundry().tampilLaundryMasuk();
+
+    // Menutup popup
+    dispose();
+
+}
 
         } catch (PrinterException e) {
 
@@ -788,6 +841,34 @@ public class popUpCetakStruk extends javax.swing.JDialog {
         //Menutup popup cetak struk
         dispose();
     }//GEN-LAST:event_btnTutupActionPerformed
+
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+      
+        //Menyimpan transaksi
+controller.simpanTransaksi();
+
+//Mengosongkan transaksi sementara
+controller.resetTransaksi();
+
+//Memperbarui Data Laundry
+dashboard.getDataLaundry().refreshSemuaPanel();
+
+//Mereset form konfirmasi
+konfirmasi.resetForm();
+
+
+//Mereset seluruh form Tambah Laundry
+konfirmasi.getInduk().resetForm();
+
+//Berpindah ke Data Laundry
+dashboard.panggilHalaman("semua");
+
+//Menampilkan Laundry Masuk
+dashboard.getDataLaundry().tampilLaundryMasuk();
+
+//Menutup popup
+dispose();
+    }//GEN-LAST:event_btnSimpanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -828,6 +909,7 @@ public class popUpCetakStruk extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCetak;
+    private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnTutup;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel24;
