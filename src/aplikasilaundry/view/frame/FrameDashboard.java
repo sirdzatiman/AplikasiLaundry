@@ -1,7 +1,5 @@
 package aplikasilaundry.view.frame;
 
-import aplikasilaundry.config.Session;
-
 import aplikasilaundry.view.panel.Dasboard;
 import aplikasilaundry.view.panel.DataLaundry;
 import aplikasilaundry.view.panel.LaporanPemasukan;
@@ -14,11 +12,9 @@ import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.ComponentOrientation;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import aplikasilaundry.util.GlassPaneOverlay;
@@ -28,12 +24,13 @@ public class FrameDashboard extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrameDashboard.class.getName());
     private CardLayout cardLayout;
     private GlassPaneOverlay overlay;
-
+    private Dasboard dasboard;
     private DataLaundry dataLaundry;
     private RiwayatLaundry riwayatLaundry;
+
     public FrameDashboard() {
         initComponents();
-        
+
         overlay = new GlassPaneOverlay();
         setGlassPane(overlay);
         overlay.setVisible(false);
@@ -45,38 +42,45 @@ public class FrameDashboard extends javax.swing.JFrame {
 //        System.out.println(Session.getNamaPengguna());
 //        System.out.println(Session.getRole());
     }
+    
+    
 
     void inisiasiPanel() {
         cardLayout = (CardLayout) panelContent.getLayout();
-
-        panelContent.add(new Dasboard(), "dashboard");
+        dasboard = new Dasboard();
+        panelContent.add(dasboard, "dashboard");
         panelContent.add(new TambahLaundry(), "tambahLaundry");
 
         dataLaundry = new DataLaundry();
         panelContent.add(dataLaundry, "semua");
 
 //Membuat objek panel Riwayat Laundry
-riwayatLaundry = new RiwayatLaundry();
+        riwayatLaundry = new RiwayatLaundry();
 
 //Menambahkan panel Riwayat Laundry
-panelContent.add(riwayatLaundry, "riwayat");
+        panelContent.add(riwayatLaundry, "riwayat");
         panelContent.add(new LaporanPemasukan(), "laporanPemasukan");
         panelContent.add(new Pengaturan(), "pengaturan");
 
         panelContent.revalidate();
         panelContent.repaint();
     }
+
     public GlassPaneOverlay getOverlay() {
-    return overlay;
-}
+        return overlay;
+    }
 
     public DataLaundry getDataLaundry() {
-    return dataLaundry;
+        return dataLaundry;
+    }
+    public Dasboard getDasboard() {
+    return dasboard;
 }
     //Method mengambil panel Riwayat Laundry
-public RiwayatLaundry getRiwayatLaundry() {
-    return riwayatLaundry;
-}
+
+    public RiwayatLaundry getRiwayatLaundry() {
+        return riwayatLaundry;
+    }
 
     private void setWarnaMenu(JPanel panel, Color bg, Color fg) {
 
@@ -546,19 +550,19 @@ public RiwayatLaundry getRiwayatLaundry() {
     }//GEN-LAST:event_pnlPengaturanMouseClicked
 
     private void pnlLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLogoutMouseClicked
-       // tampilkan overlay
-    overlay.tampilkan();
+        // tampilkan overlay
+        overlay.tampilkan();
 
-    popUpLogout dialog = new popUpLogout(
-            this,
-            true
-    );
+        popUpLogout dialog = new popUpLogout(
+                this,
+                true
+        );
 
-    dialog.setLocationRelativeTo(this);
-    dialog.setVisible(true);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
 
-    // sembunyikan overlay
-    overlay.sembunyikan();
+        // sembunyikan overlay
+        overlay.sembunyikan();
     }//GEN-LAST:event_pnlLogoutMouseClicked
 
     /**

@@ -36,35 +36,36 @@ public class popUpCetakStruk extends javax.swing.JDialog {
 //Model tabel detail struk
     private DefaultTableModel model;
 //Menyimpan FrameDashboard
-private FrameDashboard dashboard;
+    private FrameDashboard dashboard;
 
 //Menyimpan panel konfirmasi
-private Konfirmasi konfirmasi;
+    private Konfirmasi konfirmasi;
 
 //Menyimpan controller transaksi
-private TransaksiController controller;
+    private TransaksiController controller;
+
     /**
      * Creates new form popUpCetakStruk
      */
     //Constructor popup cetak struk
     public popUpCetakStruk(
-        FrameDashboard dashboard,
-        boolean modal,
-        Konfirmasi konfirmasi,
-        TransaksiController controller) {
+            FrameDashboard dashboard,
+            boolean modal,
+            Konfirmasi konfirmasi,
+            TransaksiController controller) {
 
-    super(dashboard, modal);
+        super(dashboard, modal);
 
-    this.dashboard = dashboard;
-    this.konfirmasi = konfirmasi;
-    this.controller = controller;
+        this.dashboard = dashboard;
+        this.konfirmasi = konfirmasi;
+        this.controller = controller;
 
-    initComponents();
+        initComponents();
 
         tblDetailStruk.setSize(printStruk.getPreferredSize());
         //Membuat renderer rata tengah
-        DefaultTableCellRenderer centerRenderer =
-                new DefaultTableCellRenderer();
+        DefaultTableCellRenderer centerRenderer
+                = new DefaultTableCellRenderer();
 
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 
@@ -109,9 +110,8 @@ private TransaksiController controller;
     public void setKeterangan(String keterangan) {
         this.keterangan = keterangan;
     }
-    
-    //Method menampilkan informasi pengaturan struk
 
+    //Method menampilkan informasi pengaturan struk
     private void tampilPengaturan() {
 
         //Mengambil data pengaturan dari database
@@ -790,36 +790,36 @@ private TransaksiController controller;
             }, format);
 
             // Menampilkan dialog pemilihan printer
-           if (job.printDialog()) {
+            if (job.printDialog()) {
 
-    // Mulai proses mencetak
-    job.print();
+                // Mulai proses mencetak
+                job.print();
 
-    // Menyimpan transaksi
-    controller.simpanTransaksi();
+                // Menyimpan transaksi
+                controller.simpanTransaksi();
 
-    // Mengosongkan transaksi sementara
-    controller.resetTransaksi();
+                // Mengosongkan transaksi sementara
+                controller.resetTransaksi();
 
-    // Memperbarui Data Laundry
-    dashboard.getDataLaundry().refreshSemuaPanel();
+                // Memperbarui Data Laundry
+                dashboard.getDataLaundry().refreshSemuaPanel();
 
-    // Mereset form konfirmasi
-    konfirmasi.resetForm();
+                // Mereset form konfirmasi
+                konfirmasi.resetForm();
 
-    // Mereset seluruh form Tambah Laundry
-    konfirmasi.getInduk().resetForm();
+                // Mereset seluruh form Tambah Laundry
+                konfirmasi.getInduk().resetForm();
 
-    // Berpindah ke Data Laundry
-    dashboard.panggilHalaman("semua");
+                // Berpindah ke Data Laundry
+                dashboard.panggilHalaman("semua");
 
-    // Menampilkan tab Laundry Masuk
-    dashboard.getDataLaundry().tampilLaundryMasuk();
+                // Menampilkan tab Laundry Masuk
+                dashboard.getDataLaundry().tampilLaundryMasuk();
 
-    // Menutup popup
-    dispose();
+                // Menutup popup
+                dispose();
 
-}
+            }
 
         } catch (PrinterException e) {
 
@@ -843,31 +843,33 @@ private TransaksiController controller;
     }//GEN-LAST:event_btnTutupActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
-      
-        //Menyimpan transaksi
-controller.simpanTransaksi();
+
+//Menyimpan transaksi
+        controller.simpanTransaksi();
 
 //Mengosongkan transaksi sementara
-controller.resetTransaksi();
+        controller.resetTransaksi();
 
-//Memperbarui Data Laundry
-dashboard.getDataLaundry().refreshSemuaPanel();
+//Refresh Dashboard
+        dashboard.getDasboard().refreshDashboard();
+
+//Refresh Data Laundry
+        dashboard.getDataLaundry().refreshSemuaPanel();
 
 //Mereset form konfirmasi
-konfirmasi.resetForm();
-
+        konfirmasi.resetForm();
 
 //Mereset seluruh form Tambah Laundry
-konfirmasi.getInduk().resetForm();
+        konfirmasi.getInduk().resetForm();
 
 //Berpindah ke Data Laundry
-dashboard.panggilHalaman("semua");
+        dashboard.panggilHalaman("semua");
 
 //Menampilkan Laundry Masuk
-dashboard.getDataLaundry().tampilLaundryMasuk();
+        dashboard.getDataLaundry().tampilLaundryMasuk();
 
 //Menutup popup
-dispose();
+        dispose();
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     /**

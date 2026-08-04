@@ -151,7 +151,12 @@ public class Dasboard extends javax.swing.JPanel {
 
     }
     
-    
+    public void refreshDashboard() {
+
+        tampilJumlahTransaksi();
+        tampilTransaksiTerbaru();
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
