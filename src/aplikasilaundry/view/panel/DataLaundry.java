@@ -40,7 +40,7 @@ public class DataLaundry extends javax.swing.JPanel {
         panelMasuk = new LaundryMasuk();
 
         //Membuat objek panel Diproses
-        panelProses = new Diproses();
+        panelProses = new Diproses(); 
 
         //Membuat objek panel Selesai Belum Diambil
         panelSelesai = new SelesaiBelumDiambil();
