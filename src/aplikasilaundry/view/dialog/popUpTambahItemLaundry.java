@@ -179,6 +179,7 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
         btnBatal.setText(" Batal");
         btnBatal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBatal.setPreferredSize(new java.awt.Dimension(97, 32));
+        btnBatal.addActionListener(this::btnBatalActionPerformed);
 
         btnSimpan.setBackground(new java.awt.Color(15, 82, 195));
         btnSimpan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -378,6 +379,11 @@ public class popUpTambahItemLaundry extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_cJenisActionPerformed
+
+    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnBatalActionPerformed
 
     /**
      * @param args the command line arguments
