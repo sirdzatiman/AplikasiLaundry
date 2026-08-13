@@ -78,6 +78,8 @@ public class Session {
         PREF.put(KEY_NAMA, namaPengguna);
         PREF.put(KEY_USERNAME, username);
         PREF.put(KEY_ROLE, role);
+        
+        System.out.println("SESSION DISIMPAN: " + PREF.getInt(KEY_ID, 0));
 
     }
 

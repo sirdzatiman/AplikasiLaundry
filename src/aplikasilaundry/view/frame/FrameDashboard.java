@@ -116,15 +116,16 @@ public class FrameDashboard extends javax.swing.JFrame {
         if (panel == pnlDasboard) {
             jLabel2.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Home_biru.png")));
         } else if (panel == pnlTambah) {
-            jLabel4.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Tambah_Biru.png")));
+            jLabel4.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Tambah_biru.png")));
         } else if (panel == pnlData) {
-            jLabel6.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Data_Biru.png")));
+            jLabel6.setIcon(new ImageIcon(
+                    getClass().getResource("/aplikasilaundry/asset/icon/Data_biru.png")));
         } else if (panel == pnlRiwayat) {
-            jLabel8.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Riwayat_Biru.png")));
+            jLabel8.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Riwayat_biru.png")));
         } else if (panel == pnlLaporan) {
             jLabel10.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Laporan_biru.png")));
         } else if (panel == pnlPengaturan) {
-            jLabel16.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Pengaturan_Biru.png")));
+            jLabel16.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Pengaturan_biru.png")));
         }
     }
 
@@ -132,10 +133,10 @@ public class FrameDashboard extends javax.swing.JFrame {
 
         jLabel2.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Home_putih.png")));
         jLabel4.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Tambah_putih.png")));
-        jLabel6.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/data_putih.png")));
+        jLabel6.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Data_putih.png")));
         jLabel8.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Riwayat_putih.png")));
         jLabel10.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Laporan_putih.png")));
-        jLabel16.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/pengaturan_putih.png")));
+        jLabel16.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Pengaturan_putih.png")));
     }
 
     public void panggilHalaman(String namaHalaman) {

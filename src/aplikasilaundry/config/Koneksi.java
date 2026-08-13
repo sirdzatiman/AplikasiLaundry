@@ -19,7 +19,7 @@ public class Koneksi {
         try {
             //Membuat koneksi baru jika koneksi belum ada atau sudah tertutup
             if (koneksi == null || koneksi.isClosed()) {
-                String url = "jdbc:mysql://localhost:3306/mojosari_laundry1";
+                String url = "jdbc:mysql://localhost:3306/mojosari_laundry_deployment";
                 String user = "root";
                 String password = "";
                 //Menghubungkan aplikasi dengan database MySQL

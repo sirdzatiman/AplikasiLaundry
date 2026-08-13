@@ -12,10 +12,7 @@ import java.awt.Font;
 import java.awt.Insets;
 import javax.swing.JPanel;
 
-/**
- *
- * @author Sirdzat
- */
+
 public class FrameLogin extends javax.swing.JFrame {
 
     private LoginController controller;
@@ -839,7 +836,14 @@ public class FrameLogin extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrameLogin().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+            FrameLogin login = new FrameLogin();
+
+            // Menampilkan login hanya jika belum di-dispose
+            if (login.isDisplayable()) {
+                login.setVisible(true);
+            }
+        });
     }
 
 

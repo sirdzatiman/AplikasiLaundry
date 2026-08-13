@@ -203,25 +203,7 @@ private List<Layanan> daftarLayanan;
         //Tengah nomor HP
         lblNoHpLaundry.setHorizontalAlignment(
                 javax.swing.SwingConstants.CENTER);
-        //Membuat controller
-        controller
-                = new PengaturanStrukController();
-        //Membuat controller transaksi
-        controllerTransaksi
-                = new TransaksiController();
-        //Membuat controller pengguna
-        controllerPengguna
-                = new PenggunaController();
-        //Membuat controller layanan
-        controllerLayanan
-                = new LayananController();
-
-        //Menampilkan data pengaturan
-        tampilPengaturan();
-        //Menampilkan data pengguna
-        tampilPengguna();
-        //Menampilkan data layanan
-        tampilLayanan();
+      
 
         //Mempercepat scroll mouse
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(25);
@@ -547,6 +529,7 @@ daftarLayanan =
 
         setBackground(new java.awt.Color(240, 243, 247));
         setMinimumSize(new java.awt.Dimension(1006, 728));
+        setPreferredSize(new java.awt.Dimension(1006, 1602));
         setLayout(new java.awt.CardLayout());
 
         jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -657,6 +640,7 @@ daftarLayanan =
 
         jPanel40.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
+        jPanel7.setPreferredSize(new java.awt.Dimension(1006, 1207));
         jPanel7.setLayout(new java.awt.BorderLayout());
 
         jPanelPengaturanStruk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 10));
@@ -668,7 +652,7 @@ daftarLayanan =
         jPanel14.setMinimumSize(new java.awt.Dimension(1006, 85));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setText("3. Pengaturan Struk");
+        jLabel4.setText("2. Pengaturan Struk");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
@@ -685,7 +669,7 @@ daftarLayanan =
                         .addGap(6, 6, 6)
                         .addComponent(jLabel5))
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(858, Short.MAX_VALUE))
+                .addContainerGap(855, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -701,14 +685,14 @@ daftarLayanan =
 
         jPanel15.setLayout(new java.awt.BorderLayout());
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         jPanel5.setForeground(new java.awt.Color(204, 204, 204));
         jPanel5.setMinimumSize(new java.awt.Dimension(320, 500));
         jPanel5.setPreferredSize(new java.awt.Dimension(320, 535));
         jPanel5.setLayout(new java.awt.CardLayout());
 
         jPanel12.setBackground(new java.awt.Color(239, 238, 245));
-        jPanel12.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(224, 226, 230), 2)));
+        jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
         jPanel12.setPreferredSize(new java.awt.Dimension(321, 500));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/logo 1.png"))); // NOI18N
@@ -1078,7 +1062,7 @@ daftarLayanan =
                     .addComponent(lblNamaBisnis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblNoHpLaundry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel12Layout.setVerticalGroup(
@@ -1096,7 +1080,8 @@ daftarLayanan =
                         .addComponent(lblKeterangan))
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel5.add(jPanel12, "card2");
@@ -1255,6 +1240,7 @@ daftarLayanan =
 
         jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 10));
         jPanel13.setMinimumSize(new java.awt.Dimension(1006, 642));
+        jPanel13.setPreferredSize(new java.awt.Dimension(1006, 572));
         jPanel13.setLayout(new java.awt.BorderLayout());
 
         jPanel36.setBackground(new java.awt.Color(255, 255, 255));
@@ -1262,7 +1248,7 @@ daftarLayanan =
         jPanel36.setMinimumSize(new java.awt.Dimension(1006, 50));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("4. Jenis Layanan & Proses");
+        jLabel2.setText("3. Jenis Layanan & Proses");
 
         btnEditJenis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/LucidePencil.png"))); // NOI18N
         btnEditJenis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
