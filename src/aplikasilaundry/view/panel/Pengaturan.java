@@ -212,9 +212,7 @@ private List<Layanan> daftarLayanan;
                 javax.swing.BorderFactory.createLineBorder(
                         new java.awt.Color(220, 223, 230), 1));
 
-        jPanelPengaturanStruk.setBorder(
-                javax.swing.BorderFactory.createLineBorder(
-                        new java.awt.Color(220, 223, 230), 1));
+      
 
     }
 
@@ -643,13 +641,15 @@ daftarLayanan =
         jPanel7.setPreferredSize(new java.awt.Dimension(1006, 1207));
         jPanel7.setLayout(new java.awt.BorderLayout());
 
-        jPanelPengaturanStruk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 10));
+        jPanelPengaturanStruk.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247)), javax.swing.BorderFactory.createEmptyBorder(0, 10, 0, 10)));
         jPanelPengaturanStruk.setMinimumSize(new java.awt.Dimension(1006, 585));
         jPanelPengaturanStruk.setPreferredSize(new java.awt.Dimension(1006, 635));
         jPanelPengaturanStruk.setLayout(new java.awt.BorderLayout());
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel14.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 10, 0, 10));
         jPanel14.setMinimumSize(new java.awt.Dimension(1006, 85));
+        jPanel14.setPreferredSize(new java.awt.Dimension(1006, 85));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("2. Pengaturan Struk");
@@ -669,7 +669,7 @@ daftarLayanan =
                         .addGap(6, 6, 6)
                         .addComponent(jLabel5))
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(855, Short.MAX_VALUE))
+                .addContainerGap(838, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -683,11 +683,13 @@ daftarLayanan =
 
         jPanelPengaturanStruk.add(jPanel14, java.awt.BorderLayout.PAGE_START);
 
+        jPanel15.setMinimumSize(new java.awt.Dimension(1006, 535));
+        jPanel15.setPreferredSize(new java.awt.Dimension(1006, 535));
         jPanel15.setLayout(new java.awt.BorderLayout());
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         jPanel5.setForeground(new java.awt.Color(204, 204, 204));
-        jPanel5.setMinimumSize(new java.awt.Dimension(320, 500));
+        jPanel5.setMinimumSize(new java.awt.Dimension(320, 535));
         jPanel5.setPreferredSize(new java.awt.Dimension(320, 535));
         jPanel5.setLayout(new java.awt.CardLayout());
 
@@ -1090,8 +1092,8 @@ daftarLayanan =
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 10));
-        jPanel6.setMinimumSize(new java.awt.Dimension(686, 500));
-        jPanel6.setPreferredSize(new java.awt.Dimension(626, 535));
+        jPanel6.setMinimumSize(new java.awt.Dimension(686, 535));
+        jPanel6.setPreferredSize(new java.awt.Dimension(686, 535));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("Footer Sruk");
@@ -1116,7 +1118,7 @@ daftarLayanan =
                 .addComponent(jLabel9)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel33Layout.createSequentialGroup()
-                .addComponent(tNamaBisnis, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
+                .addComponent(tNamaBisnis, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel33Layout.setVerticalGroup(
@@ -1229,7 +1231,7 @@ daftarLayanan =
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSimpanPengaturan, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         jPanel15.add(jPanel6, java.awt.BorderLayout.CENTER);
@@ -1239,7 +1241,7 @@ daftarLayanan =
         jPanel7.add(jPanelPengaturanStruk, java.awt.BorderLayout.PAGE_START);
 
         jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 243, 247), 10));
-        jPanel13.setMinimumSize(new java.awt.Dimension(1006, 642));
+        jPanel13.setMinimumSize(new java.awt.Dimension(1006, 572));
         jPanel13.setPreferredSize(new java.awt.Dimension(1006, 572));
         jPanel13.setLayout(new java.awt.BorderLayout());
 
