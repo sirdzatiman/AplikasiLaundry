@@ -1,7 +1,7 @@
 package aplikasilaundry.view.frame;
 
 import aplikasilaundry.controller.LoginController;
-
+import javax.swing.ImageIcon;
 import aplikasilaundry.config.Session;
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.UIManager;
@@ -12,13 +12,13 @@ import java.awt.Font;
 import java.awt.Insets;
 import javax.swing.JPanel;
 
-
 public class FrameLogin extends javax.swing.JFrame {
 
     private LoginController controller;
 
     public FrameLogin() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/img/logo_laundry.png")).getImage());
 
         controller = new LoginController(this);
 

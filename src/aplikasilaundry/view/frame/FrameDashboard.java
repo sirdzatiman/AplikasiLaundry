@@ -30,38 +30,28 @@ public class FrameDashboard extends javax.swing.JFrame {
 
     public FrameDashboard() {
         initComponents();
-
+        setIconImage(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/img/logo_laundry.png")).getImage());
         overlay = new GlassPaneOverlay();
         setGlassPane(overlay);
         overlay.setVisible(false);
-
         inisiasiPanel();
         resetMenu();
-
         setMenuAktif(pnlDasboard);
-//        System.out.println(Session.getNamaPengguna());
-//        System.out.println(Session.getRole());
     }
-    
-    
 
     void inisiasiPanel() {
         cardLayout = (CardLayout) panelContent.getLayout();
         dasboard = new Dasboard();
         panelContent.add(dasboard, "dashboard");
         panelContent.add(new TambahLaundry(), "tambahLaundry");
-
         dataLaundry = new DataLaundry();
         panelContent.add(dataLaundry, "semua");
-
-//Membuat objek panel Riwayat Laundry
+        //Membuat objek panel Riwayat Laundry
         riwayatLaundry = new RiwayatLaundry();
-
-//Menambahkan panel Riwayat Laundry
+        //Menambahkan panel Riwayat Laundry
         panelContent.add(riwayatLaundry, "riwayat");
         panelContent.add(new LaporanPemasukan(), "laporanPemasukan");
         panelContent.add(new Pengaturan(), "pengaturan");
-
         panelContent.revalidate();
         panelContent.repaint();
     }
@@ -73,19 +63,18 @@ public class FrameDashboard extends javax.swing.JFrame {
     public DataLaundry getDataLaundry() {
         return dataLaundry;
     }
-    public Dasboard getDasboard() {
-    return dasboard;
-}
-    //Method mengambil panel Riwayat Laundry
 
+    public Dasboard getDasboard() {
+        return dasboard;
+    }
+
+    //Method mengambil panel Riwayat Laundry
     public RiwayatLaundry getRiwayatLaundry() {
         return riwayatLaundry;
     }
 
     private void setWarnaMenu(JPanel panel, Color bg, Color fg) {
-
         panel.setBackground(bg);
-
         for (Component c : panel.getComponents()) {
             if (c instanceof JLabel lbl) {
                 lbl.setForeground(fg);
@@ -94,32 +83,23 @@ public class FrameDashboard extends javax.swing.JFrame {
     }
 
     private void setMenuAktif(JPanel panel) {
-
         resetMenu();
         resetIconMenu();
-
         // Panel aktif menjadi putih dan melengkung
-        panel.putClientProperty(
-                FlatClientProperties.STYLE,
-                "arc:25;"
-                + "background:#FFFFFF;"
-        );
-
+        panel.putClientProperty(FlatClientProperties.STYLE, "arc:25;" + "background:#FFFFFF;");
         // Warna teks menjadi biru
         for (Component c : panel.getComponents()) {
             if (c instanceof JLabel lbl) {
                 lbl.setForeground(new Color(37, 99, 235));
             }
         }
-
         // Ganti icon sesuai menu aktif
         if (panel == pnlDasboard) {
             jLabel2.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Home_biru.png")));
         } else if (panel == pnlTambah) {
             jLabel4.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Tambah_biru.png")));
         } else if (panel == pnlData) {
-            jLabel6.setIcon(new ImageIcon(
-                    getClass().getResource("/aplikasilaundry/asset/icon/Data_biru.png")));
+            jLabel6.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Data_biru.png")));
         } else if (panel == pnlRiwayat) {
             jLabel8.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Riwayat_biru.png")));
         } else if (panel == pnlLaporan) {
@@ -130,7 +110,6 @@ public class FrameDashboard extends javax.swing.JFrame {
     }
 
     private void resetIconMenu() {
-
         jLabel2.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Home_putih.png")));
         jLabel4.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Tambah_putih.png")));
         jLabel6.setIcon(new ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Data_putih.png")));
@@ -140,31 +119,23 @@ public class FrameDashboard extends javax.swing.JFrame {
     }
 
     public void panggilHalaman(String namaHalaman) {
-
         cardLayout.show(panelContent, namaHalaman);
-
         switch (namaHalaman) {
-
             case "dashboard":
                 setMenuAktif(pnlDasboard);
                 break;
-
             case "tambahLaundry":
                 setMenuAktif(pnlTambah);
                 break;
-
             case "riwayat":
                 setMenuAktif(pnlRiwayat);
                 break;
-
             case "laporanPemasukan":
                 setMenuAktif(pnlLaporan);
                 break;
-
             case "pengaturan":
                 setMenuAktif(pnlPengaturan);
                 break;
-
             case "laundryMasuk":
             case "diproses":
             case "selesaiBelumDiambil":
@@ -175,10 +146,8 @@ public class FrameDashboard extends javax.swing.JFrame {
     }
 
     private void resetMenu() {
-
         Color warnaNormal = new Color(37, 99, 235);
         Color teksNormal = Color.WHITE;
-
         setWarnaMenu(pnlDasboard, warnaNormal, teksNormal);
         setWarnaMenu(pnlTambah, warnaNormal, teksNormal);
         setWarnaMenu(pnlData, warnaNormal, teksNormal);
@@ -515,37 +484,31 @@ public class FrameDashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pnlDasboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDasboardMouseClicked
-        // TODO add your handling code here:
         cardLayout.show(panelContent, "dashboard");
         setMenuAktif(pnlDasboard);
     }//GEN-LAST:event_pnlDasboardMouseClicked
 
     private void pnlTambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTambahMouseClicked
-        // TODO add your handling code here:
         cardLayout.show(panelContent, "tambahLaundry");
         setMenuAktif(pnlTambah);
     }//GEN-LAST:event_pnlTambahMouseClicked
 
     private void pnlDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDataMouseClicked
-        // TODO add your handling code here:
         cardLayout.show(panelContent, "semua");
         setMenuAktif(pnlData);
     }//GEN-LAST:event_pnlDataMouseClicked
 
     private void pnlRiwayatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlRiwayatMouseClicked
-        // TODO add your handling code here:
         cardLayout.show(panelContent, "riwayat");
         setMenuAktif(pnlRiwayat);
     }//GEN-LAST:event_pnlRiwayatMouseClicked
 
     private void pnlLaporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLaporanMouseClicked
-        // TODO add your handling code here:
         cardLayout.show(panelContent, "laporanPemasukan");
         setMenuAktif(pnlLaporan);
     }//GEN-LAST:event_pnlLaporanMouseClicked
 
     private void pnlPengaturanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlPengaturanMouseClicked
-        // TODO add your handling code here:
         cardLayout.show(panelContent, "pengaturan");
         setMenuAktif(pnlPengaturan);
     }//GEN-LAST:event_pnlPengaturanMouseClicked
@@ -553,15 +516,9 @@ public class FrameDashboard extends javax.swing.JFrame {
     private void pnlLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLogoutMouseClicked
         // tampilkan overlay
         overlay.tampilkan();
-
-        popUpLogout dialog = new popUpLogout(
-                this,
-                true
-        );
-
+        popUpLogout dialog = new popUpLogout(this, true);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
-
         // sembunyikan overlay
         overlay.sembunyikan();
     }//GEN-LAST:event_pnlLogoutMouseClicked

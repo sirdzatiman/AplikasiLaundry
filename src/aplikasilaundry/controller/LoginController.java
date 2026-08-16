@@ -1,6 +1,6 @@
 package aplikasilaundry.controller;
-
 //Mengimpor DAO pengguna
+
 import aplikasilaundry.dao.PenggunaDAO;
 //Mengimpor model Pengguna
 import aplikasilaundry.model.Pengguna;
@@ -12,11 +12,13 @@ import aplikasilaundry.view.frame.FrameLogin;
 import javax.swing.JOptionPane;
 //Mengimpor Session untuk mengelola data login pengguna
 import aplikasilaundry.config.Session;
-
 //Controller yang menangani proses login pengguna
+
 public class LoginController {
+
     //Menyimpan objek FrameLogin
     private FrameLogin frame;
+
     //Constructor untuk menghubungkan controller dengan FrameLogin
     public LoginController(FrameLogin frame) {
         this.frame = frame;
@@ -27,38 +29,24 @@ public class LoginController {
         //Mengambil data username dan password dari form login
         String username = frame.getUsername();
         String password = frame.getPassword();
-
         //Memvalidasi agar username tidak kosong
         if (username.isEmpty()) {
-            JOptionPane.showMessageDialog(
-                    frame,
-                    "Username tidak boleh kosong!"
-            );
+            JOptionPane.showMessageDialog(frame, "Username tidak boleh kosong!");
             return;
         }
-
         //Memvalidasi agar password tidak kosong
         if (password.isEmpty()) {
-            JOptionPane.showMessageDialog(
-                    frame,
-                    "Password tidak boleh kosong!"
-            );
+            JOptionPane.showMessageDialog(frame, "Password tidak boleh kosong!");
             return;
         }
-
         //Membuat objek DAO untuk proses autentikasi pengguna
         PenggunaDAO dao = new PenggunaDAO();
         //Mencari data pengguna berdasarkan username dan password
         Pengguna pengguna = dao.login(username, password);
         //Jika data pengguna ditemukan
         if (pengguna != null) {
-
             //Menyimpan data pengguna ke dalam Session
-            Session.login(
-                    pengguna.getIdPengguna(),
-                    pengguna.getNamaPengguna(),
-                    pengguna.getUsername(),
-                    pengguna.getRole()
+            Session.login(pengguna.getIdPengguna(), pengguna.getNamaPengguna(), pengguna.getUsername(), pengguna.getRole()
             );
 
             //Menanyakan apakah session ingin disimpan di perangkat

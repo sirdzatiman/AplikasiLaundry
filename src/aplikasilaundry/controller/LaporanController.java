@@ -1,6 +1,6 @@
 package aplikasilaundry.controller;
-
 //Mengimpor DAO untuk mengakses data laporan dari database
+
 import aplikasilaundry.dao.LaporanDAO;
 //Mengimpor model Laporan
 import aplikasilaundry.model.Laporan;
@@ -8,9 +8,10 @@ import aplikasilaundry.model.Laporan;
 import java.util.Date;
 //Mengimpor List untuk menampung kumpulan data laporan
 import java.util.List;
-
 //Class yang menghubungkan tampilan dengan DAO pada fitur laporan pemasukan
+
 public class LaporanController {
+
     //Objek DAO untuk mengelola proses pengambilan data laporan
     private LaporanDAO dao;
 
@@ -28,5 +29,4 @@ public class LaporanController {
     public Laporan getRingkasan(String periode, Date tanggal) {
         return dao.getRingkasan(periode, tanggal);
     }
-
 }
