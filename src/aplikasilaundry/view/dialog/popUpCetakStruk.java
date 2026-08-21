@@ -152,8 +152,6 @@ public class popUpCetakStruk extends javax.swing.JDialog {
 
         //Menampilkan data pelanggan
         lblPelanggan.setText(nama);
-        lblNoHp.setText(noHp);
-        lblAsal.setText(alamat);
 
         //Menampilkan ringkasan
         lblTotalBerat.setText(totalBerat);
@@ -225,15 +223,15 @@ public class popUpCetakStruk extends javax.swing.JDialog {
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
-        lblNoHp = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
+        jPanel25 = new javax.swing.JPanel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jPanel24 = new javax.swing.JPanel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        lblAsal1 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
-        lblAsal = new javax.swing.JLabel();
-        jPanel18 = new javax.swing.JPanel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
         jPanel19 = new javax.swing.JPanel();
         jPanel20 = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
@@ -253,7 +251,6 @@ public class popUpCetakStruk extends javax.swing.JDialog {
         lblTotalBerat = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnCetak = new javax.swing.JButton();
-        btnTutup = new javax.swing.JButton();
         btnSimpan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -383,49 +380,49 @@ public class popUpCetakStruk extends javax.swing.JDialog {
         jPanel12.setBackground(new java.awt.Color(239, 238, 245));
         jPanel12.setLayout(new java.awt.BorderLayout(13, 0));
 
-        lblNoHp.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        lblNoHp.setText("0857-9155-9991");
-        jPanel12.add(lblNoHp, java.awt.BorderLayout.CENTER);
-
         jPanel15.setPreferredSize(new java.awt.Dimension(85, 15));
         jPanel15.setLayout(new java.awt.BorderLayout());
 
-        jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel28.setText("No HP");
-        jPanel15.add(jLabel28, java.awt.BorderLayout.LINE_START);
+        jPanel25.setPreferredSize(new java.awt.Dimension(85, 15));
+        jPanel25.setLayout(new java.awt.BorderLayout());
 
-        jLabel29.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel29.setText(":");
-        jLabel29.setPreferredSize(new java.awt.Dimension(5, 14));
-        jPanel15.add(jLabel29, java.awt.BorderLayout.LINE_END);
+        jLabel38.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel38.setText("Asal");
+        jPanel25.add(jLabel38, java.awt.BorderLayout.LINE_START);
+
+        jLabel39.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel39.setText(":");
+        jLabel39.setPreferredSize(new java.awt.Dimension(5, 14));
+        jPanel25.add(jLabel39, java.awt.BorderLayout.LINE_END);
+
+        jPanel15.add(jPanel25, java.awt.BorderLayout.LINE_START);
 
         jPanel12.add(jPanel15, java.awt.BorderLayout.LINE_START);
+
+        jPanel24.setPreferredSize(new java.awt.Dimension(85, 15));
+        jPanel24.setLayout(new java.awt.BorderLayout());
+
+        jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel36.setText("Asal");
+        jPanel24.add(jLabel36, java.awt.BorderLayout.LINE_START);
+
+        jLabel37.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel37.setText(":");
+        jLabel37.setPreferredSize(new java.awt.Dimension(5, 14));
+        jPanel24.add(jLabel37, java.awt.BorderLayout.LINE_END);
+
+        jPanel12.add(jPanel24, java.awt.BorderLayout.LINE_START);
+
+        lblAsal1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        lblAsal1.setText("PPP.KH.A.BASTHOMI");
+        jPanel12.add(lblAsal1, java.awt.BorderLayout.CENTER);
 
         jPanel1.add(jPanel12);
 
         jPanel13.setBackground(new java.awt.Color(239, 238, 245));
         jPanel13.setLayout(new java.awt.BorderLayout(13, 0));
-
-        lblAsal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        lblAsal.setText("PPP.KH.A.BASTHOMI");
-        jPanel13.add(lblAsal, java.awt.BorderLayout.CENTER);
-
-        jPanel18.setPreferredSize(new java.awt.Dimension(85, 15));
-        jPanel18.setLayout(new java.awt.BorderLayout());
-
-        jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel34.setText("Asal");
-        jPanel18.add(jLabel34, java.awt.BorderLayout.LINE_START);
-
-        jLabel35.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel35.setText(":");
-        jLabel35.setPreferredSize(new java.awt.Dimension(5, 14));
-        jPanel18.add(jLabel35, java.awt.BorderLayout.LINE_END);
-
-        jPanel13.add(jPanel18, java.awt.BorderLayout.LINE_START);
-
         jPanel1.add(jPanel13);
 
         jPanel19.setBackground(new java.awt.Color(239, 238, 245));
@@ -666,15 +663,9 @@ public class popUpCetakStruk extends javax.swing.JDialog {
         btnCetak.setBackground(new java.awt.Color(234, 179, 8));
         btnCetak.setForeground(new java.awt.Color(255, 255, 255));
         btnCetak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/Container (2).png"))); // NOI18N
-        btnCetak.setText("Cetak");
+        btnCetak.setText("Cetak & Simpan");
         btnCetak.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCetak.addActionListener(this::btnCetakActionPerformed);
-
-        btnTutup.setBackground(new java.awt.Color(251, 44, 54));
-        btnTutup.setForeground(new java.awt.Color(255, 255, 255));
-        btnTutup.setText("close");
-        btnTutup.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnTutup.addActionListener(this::btnTutupActionPerformed);
 
         btnSimpan.setBackground(new java.awt.Color(15, 82, 195));
         btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
@@ -688,11 +679,9 @@ public class popUpCetakStruk extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(btnTutup, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCetak, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addComponent(btnCetak)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(btnSimpan)
                 .addContainerGap())
         );
@@ -702,7 +691,6 @@ public class popUpCetakStruk extends javax.swing.JDialog {
                 .addContainerGap(8, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCetak, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTutup, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -836,12 +824,6 @@ public class popUpCetakStruk extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnCetakActionPerformed
 
-    private void btnTutupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTutupActionPerformed
-        // TODO add your handling code here:
-        //Menutup popup cetak struk
-        dispose();
-    }//GEN-LAST:event_btnTutupActionPerformed
-
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
 
 //Menyimpan transaksi
@@ -912,20 +894,19 @@ public class popUpCetakStruk extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCetak;
     private javax.swing.JButton btnSimpan;
-    private javax.swing.JButton btnTutup;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel48;
@@ -940,13 +921,14 @@ public class popUpCetakStruk extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -954,11 +936,10 @@ public class popUpCetakStruk extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAlamatLaundry;
-    private javax.swing.JLabel lblAsal;
+    private javax.swing.JLabel lblAsal1;
     private javax.swing.JLabel lblJamMasuk;
     private javax.swing.JLabel lblKeterangan;
     private javax.swing.JLabel lblNamaBisnis;
-    private javax.swing.JLabel lblNoHp;
     private javax.swing.JLabel lblNoHpLaundry;
     private javax.swing.JLabel lblNoNota;
     private javax.swing.JLabel lblPelanggan;
