@@ -282,13 +282,18 @@ public class popUpPensilEdit extends javax.swing.JDialog {
                 = (FrameDashboard) SwingUtilities.getWindowAncestor(this);
 
 //Memperbarui data laundry
-        frame.getDataLaundry().refreshSemuaPanel();
+frame.getDataLaundry().refreshSemuaPanel();
 
 //Memperbarui data riwayat laundry
-        frame.getRiwayatLaundry().refreshData();
+frame.getRiwayatLaundry().refreshData();
+
+//Memperbarui Dashboard
+frame.getDasboard().refreshDashboard();
+
+frame.getLaporanPemasukan().refreshLaporan();
 
 //Menutup popup
-        dispose();
+dispose();
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed

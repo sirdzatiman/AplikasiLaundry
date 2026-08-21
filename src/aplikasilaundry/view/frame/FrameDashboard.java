@@ -27,6 +27,7 @@ public class FrameDashboard extends javax.swing.JFrame {
     private Dasboard dasboard;
     private DataLaundry dataLaundry;
     private RiwayatLaundry riwayatLaundry;
+    private LaporanPemasukan laporanPemasukan;
 
     public FrameDashboard() {
         initComponents();
@@ -50,7 +51,8 @@ public class FrameDashboard extends javax.swing.JFrame {
         riwayatLaundry = new RiwayatLaundry();
         //Menambahkan panel Riwayat Laundry
         panelContent.add(riwayatLaundry, "riwayat");
-        panelContent.add(new LaporanPemasukan(), "laporanPemasukan");
+        laporanPemasukan = new LaporanPemasukan();
+panelContent.add(laporanPemasukan, "laporanPemasukan");
         panelContent.add(new Pengaturan(), "pengaturan");
         panelContent.revalidate();
         panelContent.repaint();
@@ -67,6 +69,9 @@ public class FrameDashboard extends javax.swing.JFrame {
     public Dasboard getDasboard() {
         return dasboard;
     }
+    public LaporanPemasukan getLaporanPemasukan() {
+    return laporanPemasukan;
+}
 
     //Method mengambil panel Riwayat Laundry
     public RiwayatLaundry getRiwayatLaundry() {

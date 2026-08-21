@@ -66,6 +66,11 @@ public class LaporanPemasukan extends javax.swing.JPanel {
 // Kolom Subtotal
         tblLaporan.getColumnModel().getColumn(3).setCellRenderer(rupiahRenderer);
     }
+    // Memperbarui data laporan pemasukan
+public void refreshLaporan() {
+    tampilData();
+    tampilRingkasan();
+}
 
     private void tampilData() {
 
