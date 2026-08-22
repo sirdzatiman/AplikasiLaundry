@@ -64,6 +64,10 @@ public class detailLaundry extends javax.swing.JDialog {
                 //Menampilkan nama pelanggan
                 lblNama.setText(
                         transaksi.getNamaPelanggan());
+                
+                //Menampilkan nomor HP pelanggan
+                lblNoHp.setText(
+                        transaksi.getNoHp());
 
                 //Menampilkan status
                 lblStatus.setText(
@@ -207,6 +211,9 @@ public class detailLaundry extends javax.swing.JDialog {
         lblTotalBiji = new javax.swing.JLabel();
         lblBayar = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        lblNoHp = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -320,6 +327,14 @@ public class detailLaundry extends javax.swing.JDialog {
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel13.setText("No. HP");
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel14.setText(":");
+
+        lblNoHp.setText("jLabel14");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -360,12 +375,6 @@ public class detailLaundry extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(lblNoNota))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblNama))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel20)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel23)
@@ -382,7 +391,19 @@ public class detailLaundry extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblTotalBerat)
-                                    .addComponent(lblTotalBiji))))
+                                    .addComponent(lblTotalBiji)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel14))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNama)
+                                    .addComponent(lblNoHp))))
                         .addGap(0, 196, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -407,6 +428,11 @@ public class detailLaundry extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addComponent(jLabel9)
                     .addComponent(lblNama))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14)
+                    .addComponent(lblNoHp))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -478,6 +504,8 @@ public class detailLaundry extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -503,6 +531,7 @@ public class detailLaundry extends javax.swing.JDialog {
     private javax.swing.JLabel lblJamAmbil;
     private javax.swing.JLabel lblJamMasuk;
     private javax.swing.JLabel lblNama;
+    private javax.swing.JLabel lblNoHp;
     private javax.swing.JLabel lblNoNota;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblTotalBerat;
