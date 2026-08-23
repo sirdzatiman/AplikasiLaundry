@@ -59,16 +59,22 @@ public class popUpPensilEdit extends javax.swing.JDialog {
 
                     tStatus.addItem("Baru Masuk");
                     tStatus.addItem("Diproses");
+                    tStatus.addItem("Selesai");
+                    tStatus.addItem("Sudah Diambil");
                     break;
 
                 case "Diproses":
 
+                    tStatus.addItem("Baru Masuk");
                     tStatus.addItem("Diproses");
                     tStatus.addItem("Selesai");
+                    tStatus.addItem("Sudah Diambil");
                     break;
 
                 case "Selesai":
 
+                    tStatus.addItem("Baru Masuk");
+                    tStatus.addItem("Diproses");
                     tStatus.addItem("Selesai");
                     tStatus.addItem("Sudah Diambil");
                     break;
@@ -150,7 +156,8 @@ public class popUpPensilEdit extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Status");
 
-        tStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baru Masuk", "Diproses", "Selesai", " " }));
+        tStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baru Masuk", "Diproses", "Selesai" }));
+        tStatus.addActionListener(this::tStatusActionPerformed);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -312,6 +319,10 @@ dispose();
 //Menampilkan popup
         dialog.setVisible(true);
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void tStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tStatusActionPerformed
 
     /**
      * @param args the command line arguments

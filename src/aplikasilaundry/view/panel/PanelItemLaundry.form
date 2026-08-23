@@ -252,6 +252,9 @@
                       <Image iconType="3" name="/aplikasilaundry/asset/icon/icons8-add-new-20.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Tambah Item"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[130, 27]"/>
                     </Property>

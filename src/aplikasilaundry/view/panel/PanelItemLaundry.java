@@ -266,6 +266,7 @@ public class PanelItemLaundry extends javax.swing.JPanel {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasilaundry/asset/icon/icons8-add-new-20.png"))); // NOI18N
         jButton1.setText("Tambah Item");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setMaximumSize(new java.awt.Dimension(130, 27));
         jButton1.setMinimumSize(new java.awt.Dimension(130, 27));
         jButton1.addActionListener(this::jButton1ActionPerformed);
