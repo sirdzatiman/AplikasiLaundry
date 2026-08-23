@@ -52,7 +52,7 @@ public class popUpPensilEdit extends javax.swing.JDialog {
             //Menghapus seluruh isi ComboBox
             tStatus.removeAllItems();
 
-//Menentukan pilihan status sesuai status sekarang
+            //Menentukan pilihan status sesuai status sekarang
             switch (transaksi.getStatus()) {
 
                 case "Baru Masuk":
@@ -79,7 +79,7 @@ public class popUpPensilEdit extends javax.swing.JDialog {
                     break;
             }
 
-//Memilih status saat ini
+            //Memilih status saat ini
             tStatus.setSelectedItem(
                     transaksi.getStatus());
 
@@ -252,10 +252,10 @@ public class popUpPensilEdit extends javax.swing.JDialog {
         //Mengambil nama pelanggan
         String nama = tNama.getText().trim();
 
-//Mengambil status
+        //Mengambil status
         String status = tStatus.getSelectedItem().toString();
 
-//Validasi nama pelanggan
+        //Validasi nama pelanggan
         if (nama.isEmpty()) {
 
             JOptionPane.showMessageDialog(
@@ -266,30 +266,27 @@ public class popUpPensilEdit extends javax.swing.JDialog {
 
         }
 
-//Mengubah data transaksi
+        //Mengubah data transaksi
         controller.updateTransaksi(
                 noNota,
                 nama,
                 status);
 
-//Menampilkan pesan berhasil
+        //Menampilkan pesan berhasil
         JOptionPane.showMessageDialog(
                 this,
                 "Data berhasil diperbarui.");
 
-//Mengambil Frame Dashboard
+        //Mengambil Frame Dashboard
         FrameDashboard frame
                 = (FrameDashboard) SwingUtilities.getWindowAncestor(this);
 
 //Memperbarui data laundry
 frame.getDataLaundry().refreshSemuaPanel();
-
 //Memperbarui data riwayat laundry
 frame.getRiwayatLaundry().refreshData();
-
 //Memperbarui Dashboard
 frame.getDasboard().refreshDashboard();
-
 frame.getLaporanPemasukan().refreshLaporan();
 
 //Menutup popup
@@ -306,10 +303,10 @@ dispose();
                         noNota,
                         this);
 
-//Menampilkan popup di tengah
+        //Menampilkan popup di tengah
         dialog.setLocationRelativeTo(this);
 
-//Menampilkan popup
+        //Menampilkan popup
         dialog.setVisible(true);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
