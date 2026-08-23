@@ -255,7 +255,6 @@ public class popUpCetakStruk extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setUndecorated(true);
 
         printStruk.setBackground(new java.awt.Color(239, 238, 245));
         printStruk.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(224, 226, 230), 2)));
