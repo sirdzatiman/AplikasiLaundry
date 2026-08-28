@@ -13,7 +13,7 @@ import aplikasilaundry.view.dialog.popUpPensilEdit;
 import aplikasilaundry.view.frame.FrameDashboard;
 
 public class DataLaundry extends javax.swing.JPanel {
-//Menyimpan panel Semua
+    //Menyimpan panel Semua
 
     private Semua panelSemua;
 
@@ -34,15 +34,15 @@ public class DataLaundry extends javax.swing.JPanel {
         //Mengambil text field yang ada di dalam JDateChooser
         javax.swing.JTextField fieldTanggal
                 = (javax.swing.JTextField) tDate.getDateEditor().getUiComponent();
-//Menampilkan placeholder tanggal
-    fieldTanggal.setText("Pilih tanggal");
+        //Menampilkan placeholder tanggal
+        fieldTanggal.setText("Pilih tanggal");
 
-  //Memberikan warna abu-abu pada placeholder setelah JDateChooser selesai dimuat
-javax.swing.SwingUtilities.invokeLater(() -> {
-    fieldTanggal.setForeground(java.awt.Color.GRAY);
-});
-    //Menambahkan FocusListener pada text field tanggal
-    fieldTanggal.addFocusListener(new java.awt.event.FocusAdapter() {
+        //Memberikan warna abu-abu pada placeholder setelah JDateChooser selesai dimuat
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            fieldTanggal.setForeground(java.awt.Color.GRAY);
+        });
+        //Menambahkan FocusListener pada text field tanggal
+        fieldTanggal.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent e) {
 
@@ -74,6 +74,8 @@ javax.swing.SwingUtilities.invokeLater(() -> {
         //Menampilkan placeholder tanggal
         fieldTanggal.setText("Pilih tanggal");
         tPencarian.setText("Cari nama / no nota");
+        //Memberikan warna abu-abu pada placeholder
+tPencarian.setForeground(java.awt.Color.GRAY);
 
         //Membuat objek panel Semua
         panelSemua = new Semua();
@@ -635,6 +637,8 @@ javax.swing.SwingUtilities.invokeLater(() -> {
         //jika masih berisi placeholder, kosongkan field
         if (cari.equals("Cari nama / no nota")) {
             tPencarian.setText("");
+             //Mengembalikan warna teks menjadi hitam
+        tPencarian.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_tPencarianFocusGained
 
@@ -645,6 +649,8 @@ javax.swing.SwingUtilities.invokeLater(() -> {
         //Jika field kosong, tampilkan kembali placeholder
         if (cari.equals("") || cari.equals("Cari nama / no nota")) {
             tPencarian.setText("Cari nama / no nota");
+             //Mengubah warna placeholder menjadi abu-abu
+        tPencarian.setForeground(java.awt.Color.GRAY);
         }
     }//GEN-LAST:event_tPencarianFocusLost
     //Method untuk memperbarui seluruh panel Data Laundry

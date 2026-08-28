@@ -34,12 +34,13 @@ public class popUpTambahProses extends javax.swing.JDialog {
         super(parent, modal);
 
         initComponents();
-tNamaProses.setText("contoh: express");
-
-    //memindahkan fokus awal
-    javax.swing.SwingUtilities.invokeLater(() -> {
-        btnSimpan.requestFocusInWindow();
-    });
+        tNamaProses.setText("contoh: express");
+//Memberikan warna abu-abu pada placeholder
+tNamaProses.setForeground(java.awt.Color.GRAY);
+        //memindahkan fokus awal
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            btnSimpan.requestFocusInWindow();
+        });
 
         //Menyimpan popup asal
         this.popup = popup;
@@ -263,6 +264,8 @@ tNamaProses.setText("contoh: express");
         //Jika masih berisi placeholder, kosongkan field
         if (nama.equals("contoh: express")) {
             tNamaProses.setText("");
+             //Mengembalikan warna teks menjadi hitam
+        tNamaProses.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_tNamaProsesFocusGained
 
@@ -274,6 +277,8 @@ tNamaProses.setText("contoh: express");
         //Jika field kosong, tampilkan kembali placeholder
         if (nama.equals("") || nama.equals("contoh: express")) {
             tNamaProses.setText("contoh: express");
+          //Mengubah warna placeholder menjadi abu-abu
+        tNamaProses.setForeground(java.awt.Color.GRAY);   
         }
     }//GEN-LAST:event_tNamaProsesFocusLost
 

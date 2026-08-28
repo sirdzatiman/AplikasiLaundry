@@ -44,6 +44,12 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         //Menampilkan placeholder pada field jenis layanan
         tJenisLayanan.setText("Baju, bed cover, dll");
         tHarga.setText("contoh: 6000");
+        //Memberikan warna abu-abu pada placeholder jenis layanan
+        tJenisLayanan.setForeground(java.awt.Color.GRAY);
+
+        //Memberikan warna abu-abu pada placeholder harga
+        tHarga.setForeground(java.awt.Color.GRAY);
+
         //Memindahkan fokus dari field jenis layanan setelah form tampil
         javax.swing.SwingUtilities.invokeLater(() -> {
             btnSimpan.requestFocusInWindow();
@@ -65,7 +71,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
 
                         }
                 ));
-    //Menampilkan daftar proses
+        //Menampilkan daftar proses
         tampilProses();
     }
     //Method menampilkan daftar proses
@@ -86,7 +92,7 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         daftarMasterProses
                 = controllerProses.getAll();
 
-//Menampilkan seluruh data master proses
+        //Menampilkan seluruh data master proses
         for (Proses proses : daftarMasterProses) {
 
             //Menambahkan ke tabel
@@ -895,7 +901,8 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         //Jika masih berisi placeholder, kosongkan field
         if (nama.equals("Baju, bed cover, dll")) {
             tJenisLayanan.setText("");
-
+            //Mengembalikan warna teks menjadi hitam
+        tJenisLayanan.setForeground(java.awt.Color.BLACK); 
         }
     }//GEN-LAST:event_tJenisLayananFocusGained
 
@@ -906,6 +913,8 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         //Jika field kosong, tampilkan kembali placeholder
         if (nama.equals("") || nama.equals("Baju ,bed cover, dll")) {
             tJenisLayanan.setText("Baju, bed cover, dll");
+              //Mengubah warna placeholder menjadi abu-abu
+        tJenisLayanan.setForeground(java.awt.Color.GRAY);
         }
     }//GEN-LAST:event_tJenisLayananFocusLost
 
@@ -914,8 +923,10 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         //Mengambil teks yang ada di field harga
         String harga = tHarga.getText();
         //jika masih berisi placeholder, kosongkan field
-        if (harga.equals("contoh: 6000")){
+        if (harga.equals("contoh: 6000")) {
             tHarga.setText("");
+        //Mengembalikan warna teks menjadi hitam
+        tHarga.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_tHargaFocusGained
 
@@ -924,8 +935,10 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         //mengambil teks yang ada di field harga
         String harga = tHarga.getText();
         //jika field kosong, tampilkan kembali placehorder
-        if (harga.equals("")|| harga.equals("contoh: 6000")){
+        if (harga.equals("") || harga.equals("contoh: 6000")) {
             tHarga.setText("contoh: 6000");
+        //Mengubah warna placeholder menjadi abu-abu
+        tHarga.setForeground(java.awt.Color.GRAY);
         }
     }//GEN-LAST:event_tHargaFocusLost
 

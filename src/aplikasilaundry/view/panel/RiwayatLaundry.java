@@ -76,7 +76,8 @@ public class RiwayatLaundry extends javax.swing.JPanel {
         });
 
         tCariNama.setText("Cari nama / no nota");
-
+        //Memberikan warna abu-abu pada placeholder
+        tCariNama.setForeground(java.awt.Color.GRAY);
         //Membuat objek controller
         controller = new TransaksiController();
         TableStyle.TableStyle(tblRiwayat);
@@ -498,6 +499,8 @@ public class RiwayatLaundry extends javax.swing.JPanel {
         //jika masih berisi placeholder, kosongkan field
         if (cari.equals("Cari nama / no nota")) {
             tCariNama.setText("");
+        //Mengembalikan warna teks menjadi hitam
+        tCariNama.setForeground(java.awt.Color.BLACK);
         }
     }//GEN-LAST:event_tCariNamaFocusGained
 
@@ -508,6 +511,8 @@ public class RiwayatLaundry extends javax.swing.JPanel {
         //Jika field kosong, tampilkan kembali placeholder
         if (cari.equals("") || cari.equals("Cari nama / no nota")) {
             tCariNama.setText("Cari nama / no nota");
+        //Mengubah warna placeholder menjadi abu-abu
+        tCariNama.setForeground(java.awt.Color.GRAY);
         }
     }//GEN-LAST:event_tCariNamaFocusLost
 
