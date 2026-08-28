@@ -4,6 +4,7 @@
  */
 package aplikasilaundry.view.dialog;
 //Mengimpor controller proses
+
 import aplikasilaundry.controller.ProsesController;
 
 //Mengimpor model proses
@@ -11,33 +12,41 @@ import aplikasilaundry.model.Proses;
 
 //Mengimpor JOptionPane
 import javax.swing.JOptionPane;
+
 public class popUpTambahProses extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(popUpTambahProses.class.getName());
 //Popup yang membuka dialog ini
-private popUpTambahKonfigurasiLayanan popup;
+    private popUpTambahKonfigurasiLayanan popup;
     //Controller proses
-private ProsesController controller;
+    private ProsesController controller;
+
     public popUpTambahProses(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
+
     public popUpTambahProses(
-        java.awt.Frame parent,
-        boolean modal,
-        popUpTambahKonfigurasiLayanan popup){
+            java.awt.Frame parent,
+            boolean modal,
+            popUpTambahKonfigurasiLayanan popup) {
 
-    super(parent, modal);
+        super(parent, modal);
 
-    initComponents();
+        initComponents();
+tNamaProses.setText("contoh: express");
 
-    //Menyimpan popup asal
-    this.popup = popup;
-    //Membuat controller proses
-controller = new ProsesController();
+    //memindahkan fokus awal
+    javax.swing.SwingUtilities.invokeLater(() -> {
+        btnSimpan.requestFocusInWindow();
+    });
 
-}
-    
+        //Menyimpan popup asal
+        this.popup = popup;
+        //Membuat controller proses
+        controller = new ProsesController();
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -98,6 +107,15 @@ controller = new ProsesController();
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Nama Proses");
+
+        tNamaProses.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tNamaProsesFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tNamaProsesFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -186,56 +204,78 @@ controller = new ProsesController();
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-     
+
         //Validasi nama proses
-    if(tNamaProses.getText().trim().isEmpty()){
+        if (tNamaProses.getText().trim().isEmpty()) {
 
-        JOptionPane.showMessageDialog(
-                this,
-                "Nama proses belum diisi.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Nama proses belum diisi.");
 
-        return;
+            return;
 
-    }
+        }
 
-    //Membuat objek proses
-    Proses proses =
-            new Proses();
+        //Membuat objek proses
+        Proses proses
+                = new Proses();
 
-    //Mengisi nama proses
-    proses.setNamaProses(
-            tNamaProses.getText().trim());
-  System.out.println("Nama proses = " + proses.getNamaProses());
-System.out.println("Masuk ke controller..."); 
-   //Menyimpan ke database
-if(controller.simpan(proses)){
+        //Mengisi nama proses
+        proses.setNamaProses(
+                tNamaProses.getText().trim());
+        System.out.println("Nama proses = " + proses.getNamaProses());
+        System.out.println("Masuk ke controller...");
+        //Menyimpan ke database
+        if (controller.simpan(proses)) {
 
-    //Memperbarui daftar proses pada popup utama
-    popup.tampilProses();
+            //Memperbarui daftar proses pada popup utama
+            popup.tampilProses();
 
-    //Menampilkan informasi berhasil
-    JOptionPane.showMessageDialog(
-            this,
-            "Proses berhasil ditambahkan.");
+            //Menampilkan informasi berhasil
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Proses berhasil ditambahkan.");
 
-    //Menutup dialog
-    dispose();
+            //Menutup dialog
+            dispose();
 
-}else{
+        } else {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Data gagal disimpan.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Data gagal disimpan.");
 
-}
+        }
 
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         // TODO add your handling code here:
         //Menutup dialog tambah proses
-dispose();
+        dispose();
     }//GEN-LAST:event_btnBatalActionPerformed
+
+    private void tNamaProsesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tNamaProsesFocusGained
+        // TODO add your handling code here:
+        //Mengambil teks yang ada di field harga
+        String nama = tNamaProses.getText();
+
+        //Jika masih berisi placeholder, kosongkan field
+        if (nama.equals("contoh: express")) {
+            tNamaProses.setText("");
+        }
+    }//GEN-LAST:event_tNamaProsesFocusGained
+
+    private void tNamaProsesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tNamaProsesFocusLost
+        // TODO add your handling code here:
+        //Mengambil teks yang ada di field harga
+        String nama = tNamaProses.getText();
+
+        //Jika field kosong, tampilkan kembali placeholder
+        if (nama.equals("") || nama.equals("contoh: express")) {
+            tNamaProses.setText("contoh: express");
+        }
+    }//GEN-LAST:event_tNamaProsesFocusLost
 
     /**
      * @param args the command line arguments

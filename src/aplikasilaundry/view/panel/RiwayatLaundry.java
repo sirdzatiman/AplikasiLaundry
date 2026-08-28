@@ -24,7 +24,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import aplikasilaundry.view.frame.FrameDashboard;
 import javax.swing.SwingUtilities;
 
-
 public class RiwayatLaundry extends javax.swing.JPanel {
 
     //Menyimpan controller transaksi
@@ -32,13 +31,55 @@ public class RiwayatLaundry extends javax.swing.JPanel {
 
     public RiwayatLaundry() {
         initComponents();
+//Mengambil text field yang ada di dalam JDateChooser
+        javax.swing.JTextField fieldTanggal
+                = (javax.swing.JTextField) Dtanggal.getDateEditor().getUiComponent();
+
+//Menampilkan placeholder tanggal
+        fieldTanggal.setText("Pilih tanggal");
+
+//Memberikan warna abu-abu pada placeholder setelah JDateChooser selesai dimuat
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            fieldTanggal.setForeground(java.awt.Color.GRAY);
+        });
+
+//Menambahkan FocusListener pada text field tanggal
+        fieldTanggal.addFocusListener(new java.awt.event.FocusAdapter() {
+
+            @Override
+            public void focusGained(java.awt.event.FocusEvent e) {
+
+                //Jika masih berisi placeholder
+                if (fieldTanggal.getText().equals("Pilih tanggal")) {
+
+                    //Mengosongkan placeholder
+                    fieldTanggal.setText("");
+
+                    //Mengembalikan warna teks menjadi hitam
+                    fieldTanggal.setForeground(java.awt.Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(java.awt.event.FocusEvent e) {
+
+                //Jika tanggal belum dipilih
+                if (Dtanggal.getDate() == null) {
+
+                    //Menampilkan kembali placeholder
+                    fieldTanggal.setText("Pilih tanggal");
+
+                    //Mengubah warna placeholder menjadi abu-abu
+                    fieldTanggal.setForeground(java.awt.Color.GRAY);
+                }
+            }
+        });
+
+        tCariNama.setText("Cari nama / no nota");
+
         //Membuat objek controller
         controller = new TransaksiController();
         TableStyle.TableStyle(tblRiwayat);
-        
-        // ================= Alignment Tabel Riwayat =================
-
-// ================= Alignment Tabel Riwayat =================
 
         // Renderer rata tengah
         DefaultTableCellRenderer center = new DefaultTableCellRenderer();
@@ -68,7 +109,7 @@ public class RiwayatLaundry extends javax.swing.JPanel {
 
         // Status
         tblRiwayat.getColumnModel().getColumn(6).setCellRenderer(center);
-        
+
         //Menampilkan data ke tabel
         tampilData("", null);
         tblRiwayat.getColumnModel()
@@ -85,7 +126,7 @@ public class RiwayatLaundry extends javax.swing.JPanel {
 
     //Method untuk menampilkan data laundry yang sudah selesai
     private void tampilData(String keyword,
-        java.util.Date tanggal) {
+            java.util.Date tanggal) {
 
         //Mengambil model tabel
         DefaultTableModel model
@@ -244,6 +285,14 @@ public class RiwayatLaundry extends javax.swing.JPanel {
 
         tCariNama.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tCariNama.setBorder(null);
+        tCariNama.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tCariNamaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tCariNamaFocusLost(evt);
+            }
+        });
         tCariNama.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tCariNamaKeyReleased(evt);
@@ -393,23 +442,23 @@ public class RiwayatLaundry extends javax.swing.JPanel {
     private void tCariNamaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tCariNamaKeyReleased
         // TODO add your handling code here:
         tampilData(
-            tCariNama.getText(),
-            Dtanggal.getDate());
+                tCariNama.getText(),
+                Dtanggal.getDate());
     }//GEN-LAST:event_tCariNamaKeyReleased
 
     private void DtanggalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_DtanggalPropertyChange
         // TODO add your handling code here:
         if ("date".equals(evt.getPropertyName())) {
 
-        tampilData(
-                tCariNama.getText(),
-                Dtanggal.getDate());
+            tampilData(
+                    tCariNama.getText(),
+                    Dtanggal.getDate());
         }
     }//GEN-LAST:event_DtanggalPropertyChange
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
- //Cek apakah ada baris yang dipilih
+        //Cek apakah ada baris yang dipilih
         int baris = tblRiwayat.getSelectedRow();
 
         if (baris == -1) {
@@ -423,11 +472,11 @@ public class RiwayatLaundry extends javax.swing.JPanel {
         String noNota = tblRiwayat.getValueAt(baris, 0).toString();
 
         // Mengambil FrameDashboard sebagai parent popup
-    FrameDashboard frame =
-            (FrameDashboard) SwingUtilities.getWindowAncestor(this);
+        FrameDashboard frame
+                = (FrameDashboard) SwingUtilities.getWindowAncestor(this);
 
-    // Menampilkan overlay sebelum popup dibuka
-    frame.getOverlay().tampilkan();
+        // Menampilkan overlay sebelum popup dibuka
+        frame.getOverlay().tampilkan();
         //Buka popup detail
         detailLaundry dialog
                 = new detailLaundry(
@@ -437,10 +486,30 @@ public class RiwayatLaundry extends javax.swing.JPanel {
 
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
-        
+
         // Menyembunyikan overlay setelah popup ditutup
-    frame.getOverlay().sembunyikan();
+        frame.getOverlay().sembunyikan();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void tCariNamaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tCariNamaFocusGained
+        // TODO add your handling code here:
+        //mengambil tek yang ada di field pencarian
+        String cari = tCariNama.getText();
+        //jika masih berisi placeholder, kosongkan field
+        if (cari.equals("Cari nama / no nota")) {
+            tCariNama.setText("");
+        }
+    }//GEN-LAST:event_tCariNamaFocusGained
+
+    private void tCariNamaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tCariNamaFocusLost
+        // TODO add your handling code here:
+        // //mengambil tek yang ada di field pencarian
+        String cari = tCariNama.getText();
+        //Jika field kosong, tampilkan kembali placeholder
+        if (cari.equals("") || cari.equals("Cari nama / no nota")) {
+            tCariNama.setText("Cari nama / no nota");
+        }
+    }//GEN-LAST:event_tCariNamaFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

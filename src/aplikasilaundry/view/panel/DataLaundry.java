@@ -1,6 +1,5 @@
 package aplikasilaundry.view.panel;
 
-
 import java.awt.CardLayout;
 import java.awt.Color;
 
@@ -31,7 +30,50 @@ public class DataLaundry extends javax.swing.JPanel {
 
         //Membuat seluruh panel Data Laundry
         initComponents();
-        
+
+        //Mengambil text field yang ada di dalam JDateChooser
+        javax.swing.JTextField fieldTanggal
+                = (javax.swing.JTextField) tDate.getDateEditor().getUiComponent();
+//Menampilkan placeholder tanggal
+    fieldTanggal.setText("Pilih tanggal");
+
+  //Memberikan warna abu-abu pada placeholder setelah JDateChooser selesai dimuat
+javax.swing.SwingUtilities.invokeLater(() -> {
+    fieldTanggal.setForeground(java.awt.Color.GRAY);
+});
+    //Menambahkan FocusListener pada text field tanggal
+    fieldTanggal.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent e) {
+
+                //Jika masih berisi placeholder
+                if (fieldTanggal.getText().equals("Pilih tanggal")) {
+
+                    //Mengosongkan placeholder
+                    fieldTanggal.setText("");
+
+                    //Mengembalikan warna teks menjadi hitam
+                    fieldTanggal.setForeground(java.awt.Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(java.awt.event.FocusEvent e) {
+
+                //Jika tanggal belum dipilih
+                if (tDate.getDate() == null) {
+
+                    //Menampilkan kembali placeholder
+                    fieldTanggal.setText("Pilih tanggal");
+
+                    //Mengubah warna placeholder menjadi abu-abu
+                    fieldTanggal.setForeground(java.awt.Color.GRAY);
+                }
+            }
+        });
+        //Menampilkan placeholder tanggal
+        fieldTanggal.setText("Pilih tanggal");
+        tPencarian.setText("Cari nama / no nota");
 
         //Membuat objek panel Semua
         panelSemua = new Semua();
@@ -40,7 +82,7 @@ public class DataLaundry extends javax.swing.JPanel {
         panelMasuk = new LaundryMasuk();
 
         //Membuat objek panel Diproses
-        panelProses = new Diproses(); 
+        panelProses = new Diproses();
 
         //Membuat objek panel Selesai Belum Diambil
         panelSelesai = new SelesaiBelumDiambil();
@@ -322,6 +364,14 @@ public class DataLaundry extends javax.swing.JPanel {
 
         tPencarian.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tPencarian.setBorder(null);
+        tPencarian.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tPencarianFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tPencarianFocusLost(evt);
+            }
+        });
         tPencarian.addActionListener(this::tPencarianActionPerformed);
         tPencarian.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -443,13 +493,13 @@ public class DataLaundry extends javax.swing.JPanel {
                 = tabel.getValueAt(
                         tabel.getSelectedRow(),
                         0).toString();
-        
-        // Mengambil FrameDashboard sebagai parent popup
-    FrameDashboard frame =
-            (FrameDashboard) SwingUtilities.getWindowAncestor(this);
 
-    // Menampilkan overlay sebelum popup dibuka
-    frame.getOverlay().tampilkan();
+        // Mengambil FrameDashboard sebagai parent popup
+        FrameDashboard frame
+                = (FrameDashboard) SwingUtilities.getWindowAncestor(this);
+
+        // Menampilkan overlay sebelum popup dibuka
+        frame.getOverlay().tampilkan();
 
 //Membuka popup Edit Laundry
         popUpPensilEdit dialog
@@ -460,9 +510,9 @@ public class DataLaundry extends javax.swing.JPanel {
 
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
-        
+
         // Menyembunyikan overlay setelah popup ditutup
-    frame.getOverlay().sembunyikan();
+        frame.getOverlay().sembunyikan();
 //Memperbarui seluruh panel Data Laundry
         refreshSemuaPanel();
     }//GEN-LAST:event_btnPensilActionPerformed
@@ -537,12 +587,12 @@ public class DataLaundry extends javax.swing.JPanel {
                         tabel.getSelectedRow(),
                         0).toString();
 
-         // Mengambil FrameDashboard sebagai parent popup
-    FrameDashboard frame =
-            (FrameDashboard) SwingUtilities.getWindowAncestor(this);
+        // Mengambil FrameDashboard sebagai parent popup
+        FrameDashboard frame
+                = (FrameDashboard) SwingUtilities.getWindowAncestor(this);
 
-    // Menampilkan overlay sebelum popup dibuka
-    frame.getOverlay().tampilkan();
+        // Menampilkan overlay sebelum popup dibuka
+        frame.getOverlay().tampilkan();
 //Membuka dialog Detail Laundry
         detailLaundry dialog
                 = new detailLaundry(
@@ -552,9 +602,9 @@ public class DataLaundry extends javax.swing.JPanel {
 
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
-        
+
         // Menyembunyikan overlay setelah popup ditutup
-    frame.getOverlay().sembunyikan();
+        frame.getOverlay().sembunyikan();
     }//GEN-LAST:event_btnLihatActionPerformed
 
     private void tPencarianKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tPencarianKeyReleased
@@ -565,10 +615,38 @@ public class DataLaundry extends javax.swing.JPanel {
     private void tDatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tDatePropertyChange
         // TODO add your handling code here:
         if ("date".equals(evt.getPropertyName())) {
+            //Mengambil text field di dalam JDateChooser
+            javax.swing.JTextField fieldTanggal
+                    = (javax.swing.JTextField) tDate.getDateEditor().getUiComponent();
+
+            //Jika tanggal sudah dipilih
+            if (tDate.getDate() != null) {
+                fieldTanggal.setForeground(java.awt.Color.BLACK);
+            }
 
             refreshPencarian();
         }
     }//GEN-LAST:event_tDatePropertyChange
+
+    private void tPencarianFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tPencarianFocusGained
+        // TODO add your handling code here:
+        //mengambil tek yang ada di field pencarian
+        String cari = tPencarian.getText();
+        //jika masih berisi placeholder, kosongkan field
+        if (cari.equals("Cari nama / no nota")) {
+            tPencarian.setText("");
+        }
+    }//GEN-LAST:event_tPencarianFocusGained
+
+    private void tPencarianFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tPencarianFocusLost
+        // TODO add your handling code here:
+        // //mengambil tek yang ada di field pencarian
+        String cari = tPencarian.getText();
+        //Jika field kosong, tampilkan kembali placeholder
+        if (cari.equals("") || cari.equals("Cari nama / no nota")) {
+            tPencarian.setText("Cari nama / no nota");
+        }
+    }//GEN-LAST:event_tPencarianFocusLost
     //Method untuk memperbarui seluruh panel Data Laundry
 
     public void refreshSemuaPanel() {

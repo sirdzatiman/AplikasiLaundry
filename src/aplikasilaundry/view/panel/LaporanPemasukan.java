@@ -15,7 +15,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import javax.swing.JOptionPane;
-
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,6 +24,47 @@ public class LaporanPemasukan extends javax.swing.JPanel {
 
     public LaporanPemasukan() {
         initComponents();
+        //Mengambil text field yang ada di dalam JDateChooser
+        javax.swing.JTextField fieldTanggal
+                = (javax.swing.JTextField) cTanggal.getDateEditor().getUiComponent();
+
+//Menampilkan placeholder tanggal
+        fieldTanggal.setText("Pilih tanggal");
+
+//Memberikan warna abu-abu pada placeholder
+        fieldTanggal.setForeground(java.awt.Color.GRAY);
+
+//Menambahkan FocusListener pada text field tanggal
+        fieldTanggal.addFocusListener(new java.awt.event.FocusAdapter() {
+
+            @Override
+            public void focusGained(java.awt.event.FocusEvent e) {
+
+                //Jika masih berisi placeholder
+                if (fieldTanggal.getText().equals("Pilih tanggal")) {
+
+                    //Mengosongkan placeholder
+                    fieldTanggal.setText("");
+
+                    //Mengembalikan warna teks menjadi hitam
+                    fieldTanggal.setForeground(java.awt.Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(java.awt.event.FocusEvent e) {
+
+                //Jika tanggal belum dipilih
+                if (cTanggal.getDate() == null) {
+
+                    //Menampilkan kembali placeholder
+                    fieldTanggal.setText("Pilih tanggal");
+
+                    //Mengubah warna placeholder menjadi abu-abu
+                    fieldTanggal.setForeground(java.awt.Color.GRAY);
+                }
+            }
+        });
         TableStyle.TableStyle(tblLaporan);
 
         controller = new LaporanController();
@@ -67,10 +107,11 @@ public class LaporanPemasukan extends javax.swing.JPanel {
         tblLaporan.getColumnModel().getColumn(3).setCellRenderer(rupiahRenderer);
     }
     // Memperbarui data laporan pemasukan
-public void refreshLaporan() {
-    tampilData();
-    tampilRingkasan();
-}
+
+    public void refreshLaporan() {
+        tampilData();
+        tampilRingkasan();
+    }
 
     private void tampilData() {
 
