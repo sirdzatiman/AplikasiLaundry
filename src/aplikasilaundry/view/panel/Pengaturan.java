@@ -60,57 +60,68 @@ public class Pengaturan extends javax.swing.JPanel {
 
     //Controller layanan
     private LayananController controllerLayanan;
-//Menyimpan daftar layanan
-private List<Layanan> daftarLayanan;
+    //Menyimpan daftar layanan
+    private List<Layanan> daftarLayanan;
+
     public Pengaturan() {
 
-    initComponents();
-    
+        initComponents();
+
         StyledDocument doc = tFooter1.getStyledDocument();
 
         SimpleAttributeSet centerr = new SimpleAttributeSet();
         StyleConstants.setAlignment(centerr, StyleConstants.ALIGN_CENTER);
 
-    doc.setParagraphAttributes(0, doc.getLength(), centerr, false);
+        doc.setParagraphAttributes(0, doc.getLength(), centerr, false);
 
-    TableStyle.TableStyle(tblPengguna);
-    TableStyle.TableStyle(tblJenis);
-    TableStyle.TableStyle(tblDetailStruk);
+        TableStyle.TableStyle(tblPengguna);
+        TableStyle.TableStyle(tblJenis);
+        TableStyle.TableStyle(tblDetailStruk);
 
-    //Membuat controller pengaturan struk
-    controller =
-            new PengaturanStrukController();
+        //Membuat controller pengaturan struk
+        controller
+                = new PengaturanStrukController();
 
-    //Membuat controller transaksi
-    controllerTransaksi =
-            new TransaksiController();
+        //Membuat controller transaksi
+        controllerTransaksi
+                = new TransaksiController();
 
-    //Membuat controller pengguna
-    controllerPengguna =
-            new PenggunaController();
+        //Membuat controller pengguna
+        controllerPengguna
+                = new PenggunaController();
 
-    //Membuat controller layanan
-    controllerLayanan =
-            new LayananController();
+        //Membuat controller layanan
+        controllerLayanan
+                = new LayananController();
 
-    //Mengubah judul kolom preview struk
-    DefaultTableModel modelPreview =
-            (DefaultTableModel) tblDetailStruk.getModel();
+        //Mengubah judul kolom preview struk
+        DefaultTableModel modelPreview
+                = (DefaultTableModel) tblDetailStruk.getModel();
 
-    modelPreview.setColumnIdentifiers(new Object[]{
-        "Jenis",
-        "Jumlah",
-        "Harga",
-        "Subtotal"
-    });
+        modelPreview.setColumnIdentifiers(new Object[]{
+            "Jenis",
+            "Jumlah",
+            "Harga",
+            "Subtotal"
+        });
+  // Mengubah judul kolom tblJenis
+        DefaultTableModel modelJenis
+                = (DefaultTableModel) tblJenis.getModel();
 
-    //Method-method yang sudah ada
-    tampilPengaturan();
-    tampilPengguna();
+        modelJenis.setColumnIdentifiers(new Object[]{
+            "No",
+            "Jenis Item",
+            "Proses Layanan",
+            "Satuan",
+            "Harga",
+            "Keterangan"
+        });
+        //Method-method yang sudah ada
+        tampilPengaturan();
+        tampilPengguna();
 
-    //Menampilkan data layanan
-    tampilLayanan();
-
+        //Menampilkan data layanan
+        tampilLayanan();
 
         //Mengatur posisi isi kolom preview struk
 //Kolom jumlah rata tengah
@@ -145,18 +156,7 @@ private List<Layanan> daftarLayanan;
         tblDetailStruk.getTableHeader().setFont(
                 new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 12));
 
-        // Mengubah judul kolom tblJenis
-        DefaultTableModel modelJenis
-                = (DefaultTableModel) tblJenis.getModel();
-
-        modelJenis.setColumnIdentifiers(new Object[]{
-            "No",
-            "Jenis Item",
-            "Proses Layanan",
-            "Satuan",
-            "Harga",
-            "Keterangan"
-        });
+      
 
         // Mengubah judul kolom tblPengguna
         DefaultTableModel model
@@ -183,7 +183,6 @@ private List<Layanan> daftarLayanan;
         tblJenis.getColumnModel().getColumn(4).setPreferredWidth(120);
         tblJenis.getColumnModel().getColumn(5).setPreferredWidth(180);
 
-        
         //Preview tabel tidak boleh dipilih
         tblDetailStruk.setRowSelectionAllowed(false);
         tblDetailStruk.setCellSelectionEnabled(false);
@@ -203,7 +202,6 @@ private List<Layanan> daftarLayanan;
         //Tengah nomor HP
         lblNoHpLaundry.setHorizontalAlignment(
                 javax.swing.SwingConstants.CENTER);
-      
 
         //Mempercepat scroll mouse
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(25);
@@ -211,8 +209,6 @@ private List<Layanan> daftarLayanan;
         jPanelPengguna.setBorder(
                 javax.swing.BorderFactory.createLineBorder(
                         new java.awt.Color(220, 223, 230), 1));
-
-      
 
     }
 
@@ -226,9 +222,9 @@ private List<Layanan> daftarLayanan;
         //Menghapus seluruh isi tabel
         model.setRowCount(0);
 
-       //Mengambil seluruh data layanan
-daftarLayanan =
-        controllerLayanan.getAll();
+        //Mengambil seluruh data layanan
+        daftarLayanan
+                = controllerLayanan.getAll();
 
         //Nomor urut
         int no = 1;
@@ -1407,75 +1403,71 @@ daftarLayanan =
     private void btnEditJenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditJenisActionPerformed
         // TODO add your handling code here:
         //Mengambil baris yang dipilih
-int baris =
-        tblJenis.getSelectedRow();
+        int baris
+                = tblJenis.getSelectedRow();
 
 //Jika belum memilih baris
-if(baris == -1){
+        if (baris == -1) {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Pilih data layanan yang akan diedit.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Pilih data layanan yang akan diedit.");
 
-    return;
+            return;
 
-}
+        }
 
 //Mengambil data layanan
-Layanan layanan =
-        daftarLayanan.get(baris);
+        Layanan layanan
+                = daftarLayanan.get(baris);
 
+        // Mengambil FrameDashboard sebagai parent popup
+        FrameDashboard frame
+                = (FrameDashboard) SwingUtilities.getWindowAncestor(this);
 
-    // Mengambil FrameDashboard sebagai parent popup
-    FrameDashboard frame =
-            (FrameDashboard) SwingUtilities.getWindowAncestor(this);
+        // Menampilkan overlay sebelum popup dibuka
+        frame.getOverlay().tampilkan();
 
-    // Menampilkan overlay sebelum popup dibuka
-    frame.getOverlay().tampilkan();
-    
 //Membuka popup edit
-popUpEditKonfigurasiLayanan dialog =
-        new popUpEditKonfigurasiLayanan(
-                (java.awt.Frame)
-                SwingUtilities.getWindowAncestor(this),
-                true,
-                this,
-                layanan);
+        popUpEditKonfigurasiLayanan dialog
+                = new popUpEditKonfigurasiLayanan(
+                        (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
+                        true,
+                        this,
+                        layanan);
 
 //Menampilkan popup di tengah
-dialog.setLocationRelativeTo(this);
+        dialog.setLocationRelativeTo(this);
 
 //Menampilkan popup
-dialog.setVisible(true);
+        dialog.setVisible(true);
 
 // Menyembunyikan overlay setelah popup ditutup
-    frame.getOverlay().sembunyikan();
-
+        frame.getOverlay().sembunyikan();
 
 //Memperbarui tabel layanan
-tampilLayanan();
+        tampilLayanan();
 
     }//GEN-LAST:event_btnEditJenisActionPerformed
 
     private void btnTambahKonfigurasiLAyananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahKonfigurasiLAyananActionPerformed
         // TODO add your handling code here:
-          FrameDashboard frame =
-        (FrameDashboard) SwingUtilities.getWindowAncestor(this);
-   // Menampilkan background gelap (overlay)
+        FrameDashboard frame
+                = (FrameDashboard) SwingUtilities.getWindowAncestor(this);
+        // Menampilkan background gelap (overlay)
         frame.getOverlay().tampilkan();
 //Membuka dialog tambah konfigurasi layanan
         popUpTambahKonfigurasiLayanan dialog
                 = new popUpTambahKonfigurasiLayanan(
                         (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
                         true);
-        
- 
+
 //Menampilkan dialog di tengah frame
         dialog.setLocationRelativeTo(this);
 
 //Menampilkan dialog
         dialog.setVisible(true);
-  // Menyembunyikan overlay setelah popup ditutup
+        // Menyembunyikan overlay setelah popup ditutup
         frame.getOverlay().sembunyikan();
 //Memperbarui tabel layanan
         tampilLayanan();
@@ -1484,48 +1476,47 @@ tampilLayanan();
     private void btnHapusJenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusJenisActionPerformed
         // TODO add your handling code here:
 //Mengambil baris yang dipilih
-int baris =
-        tblJenis.getSelectedRow();
+        int baris
+                = tblJenis.getSelectedRow();
 
 //Validasi
-if(baris == -1){
+        if (baris == -1) {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Pilih konfigurasi layanan yang akan dihapus.");
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Pilih konfigurasi layanan yang akan dihapus.");
 
-    return;
+            return;
 
-}
+        }
 
 //Mengambil data layanan
-Layanan layanan =
-        daftarLayanan.get(baris);
+        Layanan layanan
+                = daftarLayanan.get(baris);
 
- // Mengambil FrameDashboard sebagai parent popup
-    FrameDashboard frame =
-            (FrameDashboard) SwingUtilities.getWindowAncestor(this);
+        // Mengambil FrameDashboard sebagai parent popup
+        FrameDashboard frame
+                = (FrameDashboard) SwingUtilities.getWindowAncestor(this);
 
-    // Menampilkan overlay sebelum popup dibuka
-    frame.getOverlay().tampilkan();
+        // Menampilkan overlay sebelum popup dibuka
+        frame.getOverlay().tampilkan();
 //Membuka popup hapus
-popUpKonfirmasiHapus dialog =
-        new popUpKonfirmasiHapus(
-                (java.awt.Frame)
-                SwingUtilities.getWindowAncestor(this),
-                true,
-                this,
-                layanan);
+        popUpKonfirmasiHapus dialog
+                = new popUpKonfirmasiHapus(
+                        (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
+                        true,
+                        this,
+                        layanan);
 
 //Menampilkan popup
-dialog.setLocationRelativeTo(this);
-dialog.setVisible(true);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
 
- // Menyembunyikan overlay setelah popup ditutup
-    frame.getOverlay().sembunyikan();
-    
+        // Menyembunyikan overlay setelah popup ditutup
+        frame.getOverlay().sembunyikan();
+
 //Refresh tabel
-tampilLayanan();
+        tampilLayanan();
     }//GEN-LAST:event_btnHapusJenisActionPerformed
 
     private void btnSimpanPengaturanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanPengaturanActionPerformed
@@ -1574,16 +1565,16 @@ tampilLayanan();
 
     private void btnTambahPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPenggunaActionPerformed
         // TODO add your handling code here:
-        FrameDashboard frame =
-        (FrameDashboard) SwingUtilities.getWindowAncestor(this);
+        FrameDashboard frame
+                = (FrameDashboard) SwingUtilities.getWindowAncestor(this);
 
         frame.getOverlay().tampilkan();
 
-        popUpTambahpengguna dialog =
-        new popUpTambahpengguna(
-            (java.awt.Frame) frame,
-            true,
-            this);
+        popUpTambahpengguna dialog
+                = new popUpTambahpengguna(
+                        (java.awt.Frame) frame,
+                        true,
+                        this);
 
         dialog.setVisible(true);
 
@@ -1599,8 +1590,8 @@ tampilLayanan();
         if (baris == -1) {
 
             JOptionPane.showMessageDialog(
-                this,
-                "Pilih pengguna yang akan dihapus.");
+                    this,
+                    "Pilih pengguna yang akan dihapus.");
 
             return;
 
@@ -1608,9 +1599,9 @@ tampilLayanan();
 
         //Mengambil username dari tabel
         String username
-        = tblPengguna.getValueAt(
-            baris,
-            1).toString();
+                = tblPengguna.getValueAt(
+                        baris,
+                        1).toString();
 
         //Mencari objek pengguna berdasarkan username
         Pengguna data = null;
@@ -1620,7 +1611,7 @@ tampilLayanan();
             if (p.getUsername().equals(username)) {
 
                 data = controllerPengguna.getById(
-                    p.getIdPengguna());
+                        p.getIdPengguna());
 
                 break;
 
@@ -1632,24 +1623,24 @@ tampilLayanan();
         if (data == null) {
 
             JOptionPane.showMessageDialog(
-                this,
-                "Data pengguna tidak ditemukan.");
+                    this,
+                    "Data pengguna tidak ditemukan.");
 
             return;
 
         }
-        FrameDashboard frame =
-        (FrameDashboard) SwingUtilities.getWindowAncestor(this);
+        FrameDashboard frame
+                = (FrameDashboard) SwingUtilities.getWindowAncestor(this);
 
         frame.getOverlay().tampilkan();
         //Membuka popup konfirmasi
         popUpKonfirmasiHapus dialog
-        = new popUpKonfirmasiHapus(
-            (java.awt.Frame) javax.swing.SwingUtilities
-            .getWindowAncestor(this),
-            true,
-            data.getIdPengguna(),
-            this);
+                = new popUpKonfirmasiHapus(
+                        (java.awt.Frame) javax.swing.SwingUtilities
+                                .getWindowAncestor(this),
+                        true,
+                        data.getIdPengguna(),
+                        this);
 
         //Menampilkan popup
         dialog.setLocationRelativeTo(this);
@@ -1667,8 +1658,8 @@ tampilLayanan();
         if (baris == -1) {
 
             JOptionPane.showMessageDialog(
-                this,
-                "Pilih pengguna yang akan diedit.");
+                    this,
+                    "Pilih pengguna yang akan diedit.");
 
             return;
 
@@ -1676,9 +1667,9 @@ tampilLayanan();
 
         //Mengambil username dari tabel
         String username
-        = tblPengguna.getValueAt(
-            baris,
-            1).toString();
+                = tblPengguna.getValueAt(
+                        baris,
+                        1).toString();
 
         //Mencari objek pengguna berdasarkan username
         Pengguna data = null;
@@ -1688,7 +1679,7 @@ tampilLayanan();
             if (p.getUsername().equals(username)) {
 
                 data = controllerPengguna.getById(
-                    p.getIdPengguna());
+                        p.getIdPengguna());
 
                 break;
 
@@ -1700,26 +1691,26 @@ tampilLayanan();
         if (data == null) {
 
             JOptionPane.showMessageDialog(
-                this,
-                "Data pengguna tidak ditemukan.");
+                    this,
+                    "Data pengguna tidak ditemukan.");
 
             return;
 
         }
         // Mengambil FrameDashboard sebagai parent popup
-        FrameDashboard frame =
-        (FrameDashboard) SwingUtilities.getWindowAncestor(this);
+        FrameDashboard frame
+                = (FrameDashboard) SwingUtilities.getWindowAncestor(this);
 
         // Menampilkan background gelap (overlay)
         frame.getOverlay().tampilkan();
 
         // Membuka popup Edit Pengguna
-        popUpPensil dialog =
-        new popUpPensil(
-            (java.awt.Frame) frame,
-            true);
+        popUpPensil dialog
+                = new popUpPensil(
+                        (java.awt.Frame) frame,
+                        true);
 
-       //mengirim data ke popup
+        //mengirim data ke popup
         dialog.setPengguna(data);
         // Menampilkan popup
         dialog.setLocationRelativeTo(frame);

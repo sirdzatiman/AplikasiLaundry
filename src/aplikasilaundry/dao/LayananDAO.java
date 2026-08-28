@@ -77,6 +77,11 @@ public List<Layanan> getAll(){
 
             layanan.setKeterangan(
                     rs.getString("keterangan"));
+            //Menampilkan data untuk pengecekan
+System.out.println(
+        "Layanan: " + layanan.getNamaLayanan()
+        + " | Harga: " + layanan.getHarga()
+        + " | Keterangan: " + layanan.getKeterangan());
 
             //Menambahkan ke list
             daftar.add(layanan);
