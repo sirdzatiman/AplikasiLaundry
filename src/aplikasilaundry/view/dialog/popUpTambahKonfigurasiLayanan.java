@@ -14,8 +14,10 @@ import aplikasilaundry.model.Proses;
 //Mengimpor model layanan
 import aplikasilaundry.model.Layanan;
 import aplikasilaundry.controller.LayananController;
+import aplikasilaundry.view.frame.FrameDashboard;
 //Mengimpor BigDecimal
 import java.math.BigDecimal;
+import javax.swing.SwingUtilities;
 
 public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
 
@@ -41,6 +43,38 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
         super(parent, modal);
 
         initComponents();
+        // Membuat overlay transparan untuk menggelapkan popup saat dialog lain dibuka
+javax.swing.JPanel overlay = new javax.swing.JPanel() {
+
+    @Override
+    protected void paintComponent(java.awt.Graphics g) {
+
+        // Memanggil method bawaan untuk proses pengecatan panel
+        super.paintComponent(g);
+
+        // Membuat Graphics2D agar dapat menggunakan warna transparan
+        java.awt.Graphics2D g2 =
+                (java.awt.Graphics2D) g.create();
+
+        // Mengatur warna hitam transparan
+        g2.setColor(new java.awt.Color(0, 0, 0, 100));
+
+        // Menggambar warna hitam pada seluruh area popup
+        g2.fillRect(0, 0, getWidth(), getHeight());
+
+        // Membersihkan Graphics2D
+        g2.dispose();
+    }
+};
+
+// Overlay tidak menghalangi tampilan popup
+overlay.setOpaque(false);
+
+// Memasang overlay sebagai glass pane
+setGlassPane(overlay);
+
+// Awalnya overlay disembunyikan
+overlay.setVisible(false);
         //Menampilkan placeholder pada field jenis layanan
         tJenisLayanan.setText("Baju, bed cover, dll");
         tHarga.setText("contoh: 6000");
@@ -756,18 +790,33 @@ public class popUpTambahKonfigurasiLayanan extends javax.swing.JDialog {
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
-        //Membuka dialog tambah proses
-        popUpTambahProses dialog
-                = new popUpTambahProses(
-                        (java.awt.Frame) getOwner(),
-                        true,
-                        this);
+       // Menampilkan overlay pada popup konfigurasi
+    javax.swing.JComponent glassPane =
+            (javax.swing.JComponent) getRootPane().getGlassPane();
 
-        //Menampilkan dialog di tengah popup
-        dialog.setLocationRelativeTo(this);
+    // Mengatur warna overlay menjadi hitam transparan
+    glassPane.setBackground(
+            new java.awt.Color(0, 0, 0, 100));
 
-        //Menampilkan dialog
-        dialog.setVisible(true);
+    // Menampilkan overlay
+    glassPane.setVisible(true);
+
+    // Membuka dialog tambah proses
+    popUpTambahProses dialog
+            = new popUpTambahProses(
+                    (java.awt.Frame) getOwner(),
+                    true,
+                    this);
+
+    // Menampilkan dialog di tengah popup konfigurasi
+    dialog.setLocationRelativeTo(this);
+
+    // Menampilkan dialog
+    dialog.setVisible(true);
+
+    // Menyembunyikan overlay setelah popup ditutup
+    glassPane.setVisible(false);
+
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void tJenisLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tJenisLayananActionPerformed

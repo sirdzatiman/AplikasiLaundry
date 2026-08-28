@@ -1459,18 +1459,24 @@ tampilLayanan();
 
     private void btnTambahKonfigurasiLAyananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahKonfigurasiLAyananActionPerformed
         // TODO add your handling code here:
+          FrameDashboard frame =
+        (FrameDashboard) SwingUtilities.getWindowAncestor(this);
+   // Menampilkan background gelap (overlay)
+        frame.getOverlay().tampilkan();
 //Membuka dialog tambah konfigurasi layanan
         popUpTambahKonfigurasiLayanan dialog
                 = new popUpTambahKonfigurasiLayanan(
                         (java.awt.Frame) SwingUtilities.getWindowAncestor(this),
                         true);
-
+        
+ 
 //Menampilkan dialog di tengah frame
         dialog.setLocationRelativeTo(this);
 
 //Menampilkan dialog
         dialog.setVisible(true);
-
+  // Menyembunyikan overlay setelah popup ditutup
+        frame.getOverlay().sembunyikan();
 //Memperbarui tabel layanan
         tampilLayanan();
     }//GEN-LAST:event_btnTambahKonfigurasiLAyananActionPerformed
@@ -1705,7 +1711,6 @@ tampilLayanan();
         (FrameDashboard) SwingUtilities.getWindowAncestor(this);
 
         // Menampilkan background gelap (overlay)
-
         frame.getOverlay().tampilkan();
 
         // Membuka popup Edit Pengguna
@@ -1714,25 +1719,14 @@ tampilLayanan();
             (java.awt.Frame) frame,
             true);
 
-        //=====================================================
-        // Mengirim data ke popup
-        //=====================================================
+       //mengirim data ke popup
         dialog.setPengguna(data);
-
-        //=====================================================
         // Menampilkan popup
-        //=====================================================
         dialog.setLocationRelativeTo(frame);
         dialog.setVisible(true);
-
-        //=====================================================
         // Menghilangkan background gelap
-        //=====================================================
         frame.getOverlay().sembunyikan();
-
-        //=====================================================
         // Menampilkan kembali data pengguna
-        //=====================================================
         tampilPengguna();
     }//GEN-LAST:event_btnEditPenggunaActionPerformed
 
